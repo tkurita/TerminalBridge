@@ -1,7 +1,8 @@
 global WindowController
+global TerminalSettingObj
 
-on makeObj(theWindow)
-	set theWindowController to makeObj(theWindow) of WindowController
+on makeObj(theName)
+	set theWindowController to makeObj(theName) of WindowController
 	
 	script SettingWindowObj
 		global lifeTime
@@ -10,17 +11,21 @@ on makeObj(theWindow)
 		property parent : theWindowController
 		
 		on openWindow()
+			--log "start openWIndow in SettingWindowObj"
 			activate
 			continue openWindow()
 		end openWindow
 		
 		on applyDefaults()
+			set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
+			--log "before setSettingToWindow() of TerminalSettingObj"
 			setSettingToWindow() of TerminalSettingObj
 			--log "after setSettingToWindow() of TerminalSettingObj"
 			tell my targetWindow
 				set contents of text field "LifeTime" to (lifeTime / 60) as integer
 			end tell
 			continue applyDefaults()
+			--log "end of applyDefaults in SettingWindowObj"
 		end applyDefaults
 		
 		on prepareClose()
