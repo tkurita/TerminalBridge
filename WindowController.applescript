@@ -1,6 +1,14 @@
 global DefaultsManager
 
-on makeObj(theName)
+on makeObj(argument)
+	if class of argument is window then
+		set theWindow to argument
+		set theName to name of theWindow
+	else
+		set theWindow to missing value
+		set theName to argument
+	end if
+	
 	script WindowController
 		property DialogOwner : missing value
 		property isAttached : false
@@ -8,7 +16,7 @@ on makeObj(theName)
 		
 		property isOpened : false
 		property isShown : false
-		property targetWindow : missing value
+		property targetWindow : theWindow
 		property windowName : theName
 		property isInitialized : false
 		property windowBounds : {}
@@ -18,9 +26,12 @@ on makeObj(theName)
 		
 		on initialize()
 			--log "start initialize in WindowController"
-			load nib windowName
-			--log "after load nib"
-			set targetWindow to window windowName
+			if targetWindow is missing value then
+				load nib windowName
+				--log "after load nib"
+				set targetWindow to window windowName
+			end if
+			
 			set windowBoundsKey to "WindowBounds_" & windowName
 			readDefaults()
 			applyDefaults()
@@ -36,6 +47,11 @@ on makeObj(theName)
 			if not isOpened then
 				showWindow()
 				set isOpened to true
+			else
+				if isShown then
+					set main of my targetWindow to true
+					set key of my targetWindow to true
+				end if
 			end if
 		end openWindow
 		
