@@ -153,11 +153,11 @@ on will finish launching theObject
 	
 	set WindowController to importScript("WindowController")
 	set SettingWindowObj to importScript("SettingWindowObj")
-	set SettingWindowObj to makeObj(window "Setting") of SettingWindowObj
+	set SettingWindowObj to makeObj("Setting") of SettingWindowObj
 	
 	--log "end of importScripts"
 	
-	set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
+	
 	--log "before loadSetting() of TerminalSettingObj"
 	loadSettings() of TerminalSettingObj
 	--log "end of initializing TerminalSettingObj"
