@@ -1,133 +1,115 @@
-property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:Perl mode for mi:Library Scripts:"
+(* shared script objects *)
+property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
 property TerminalCommander : load script file (LibraryFolder & "TerminalCommander")
 property StringEngine : StringEngine of TerminalCommander
 
-property lifeTime : 60 -- minutes
-property FreeTime : 0
-property isLaunched : false
-property DialogOwner : missing value
-
-property dQ : ASCII character 34
-property yenmark : ASCII character 92
-property lineFeed : ASCII character 10
-
-property FactorySetting : missing value
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
+property DefaultsManager : missing value
 
 property ScriptListObj : missing value
-property PerlPaletteObj : missing value
-property PerlExecuter : missing value
-property PerlScriptObj : missing value
+property FilterPaletteObj : missing value
+property UnixScriptExecuter : missing value
+property UnixScriptObj : missing value
+property SettingWindowObj : missing value
+property WindowControllerBase : missing value
 
---global perlScriptFile, perlOptions, outputOption
+
+(*shared constants *)
+property dQ : ASCII character 34
+property yenmark : ASCII character 92
+property lineFeed : ASCII character 10
+property idleTime : 1
+
+(* shared variable *)
+property isShouldShow : false
+property FreeTime : 0 -- second
+property DialogOwner : missing value
+-- property miAppRef : missing value
+
+(* application setting *)
+property lifeTime : 60 -- minutes
 
 (* events of application*)
 
 on importScript(scriptName)
+	--log "start importScript"
+	--log scriptName
 	tell main bundle
 		set scriptPath to path for script scriptName extension "scpt"
 	end tell
+	--log "end importScript"
 	return load script POSIX file scriptPath
 end importScript
 
-on initilize()
-	if not isLaunched then
-		set FactorySetting to importScript("FactorySetting")
-		set UtilityHandlers to importScript("UtilityHandlers")
-		set MessageUtility to importScript("MessageUtility")
-		set TerminalSettingObj to importScript("TerminalSettingObj")
-		
-		set PerlExecuter to importScript("PerlExecuter")
-		set PerlScriptObj to importScript("PerlScriptObj")
-		
-		set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
-		loadSettings() of TerminalSettingObj
-		loadSettings()
-		center window "Setting"
-		set isLaunched to true
-	end if
-end initilize
-
 on launched theObject
-	initilize()
 	(*debug code*)
-	--show window "PerlPalette"
-	--show window "Setting"
-	--outputToClipboard()
+	--log "start launched"
+	--openWindow(window "UnixFilters") of FilterPaletteObj
+	--openWindow(window "Setting") of SettingWindowObj
+	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
 	--checkSyntax()
 	(*end of debug code*)
 end launched
 
-on open theCommandID
-	initilize()
-	
-	if theCommandID is "checkSyntax" then
-		checkSyntax() of PerlScriptObj
-	else if theCommandID is "runDebugMode" then
-		runDebugMode() of PerlScriptObj
-	else if theCommandID is "runWithFinderSelection" then
-		runWithFinderSelection() of PerlScriptObj
-	else if theCommandID is "runWithFSToClipboard" then
-		runWithFSToClipboard() of PerlScriptObj
-	else if theCommandID is "outputToClipboard" then
-		outputToClipboard() of PerlScriptObj
-	else if theCommandID is "RunInTerminal" then
-		RunInTerminal() of PerlScriptObj
-	else if theCommandID is "setting" then
-		activate
-		show window "Setting"
-	else if theCommandID is "ShowPerlPalette" then
-		show window "PerlPalette"
-	else if theCommandID is "Help" then
-		call method "showHelp:"
+on open theObject
+	if class of theObject is record then
+		set theCommandID to commandID of theObject
+		try
+			set optionRecord to argument of theObject
+		on error
+			set optionRecord to missing value
+		end try
+		
+		if theCommandID is "runWithFinderSelection" then
+			runWithFinderSelection(optionRecord) of UnixScriptObj
+		else if theCommandID is "RunInTerminal" then
+			RunInTerminal(optionRecord) of UnixScriptObj
+		else if theCommandID is "setting" then
+			openWindow(window "Setting") of SettingWindowObj
+		else if theCommandID is "ShowUnixFilters" then
+			openWindow(window "UnixFilters") of FilterPaletteObj
+		else if theCommandID is "Help" then
+			call method "showHelp:"
+		end if
+		set FreeTime to 0
 	end if
-	
 	--display dialog theCommandID
-	set FreeTime to 0
 	return true
 end open
 
 on idle theObject
-	set FreeTime to FreeTime + 1
-	if FreeTime > lifeTime then
+	--log "start idle"
+	
+	if (FreeTime / 60) > lifeTime then
 		quit
 	end if
-	return 60
-end idle
-
-on will open theObject
-	set theName to name of theObject
-	if theName is "Setting" then
-		setSettingToWindow() of TerminalSettingObj
-		tell theObject
-			set contents of text field "PerlCommand" to perlCommand of PerlExecuter
-			set contents of text field "LifeTime" to lifeTime as integer
-		end tell
-		setColorsToWindow() of TerminalSettingObj
-	else if theName is "PerlPalette" then
-		initilize(theObject) of ScriptListObj
-		
-		if selectedItem of PerlPaletteObj is missing value then
-			readPaletteDefaults() of PerlPaletteObj
-			applyPaletteDefaults(theObject) of PerlPaletteObj
-		end if
+	
+	if (isOpened of FilterPaletteObj) then
+		set frontAppPath to path to frontmost application as Unicode text
+		set isShouldShow to (frontAppPath ends with ":UnixScriptServer.app:") or (frontAppPath ends with ":mi:")
+		updateVisibility(isShouldShow) of FilterPaletteObj
+		--updateVisibility(isShouldShow) of SettingWindowObj
+	else
+		set FreeTime to FreeTime + idleTime
 		
 	end if
-end will open
+	return idleTime
+end idle
 
 on clicked theObject
 	set theName to name of theObject
+	(* buttons of Setting Window *)
 	if theName is "OKButton" then
 		saveSettingsFromWindow() of TerminalSettingObj
 		saveSettingsFromWindow()
-		hide window of theObject
+		closeWindow() of SettingWindowObj
 	else if theName is "CancelButton" then
-		hide window of theObject
+		closeWindow() of SettingWindowObj
 	else if theName is "ApplyColors" then
 		applyColorsToTerminal() of TerminalSettingObj
 	else if theName is "RevertColors" then
@@ -135,12 +117,12 @@ on clicked theObject
 	else if theName is "Save" then
 		saveSettingsFromWindow() of TerminalSettingObj
 		saveSettingsFromWindow()
+		(* buttons of FilterPalette *)
 	else if theName is "EditScript" then
 		set theScript to getSelectedScript() of ScriptListObj
 		tell application "Finder"
 			open theScript
 		end tell
-		
 	else if theName is "RenameScript" then
 		renameScript() of ScriptListObj
 		
@@ -154,8 +136,8 @@ on choose menu item theObject
 	set theName to name of theObject
 	if theName is "Preference" then
 		show window "Setting"
-	else if theName is "PerlPalette" then
-		show window "PerlPalette"
+	else if theName is "UnixFilters" then
+		show window "UnixFilters"
 	else if theName is "OpenScriptFolder" then
 		set theFolder to (getContainer() of ScriptSorter of ScriptListObj)
 		tell application "Finder"
@@ -167,50 +149,24 @@ end choose menu item
 
 on awake from nib theObject
 	set theName to name of theObject
-	
-	if theName is "PerlPalette" then
+	--log "start awake from nib for " & theName
+	if theName is "UnixFilters" then
 		set hides when deactivated of theObject to false
-		--set floating of theObject to true
-		set PerlPaletteObj to importScript("PerlPaletteObj")
+		set floating of theObject to true
 		
 	else if theName is "scriptDataSource" then
-		set ScriptListObj to importScript("ScriptListObj")
 		tell theObject
 			make new data column at the end of the data columns with properties {name:"name"}
 		end tell
+	else if theName is "Setting" then
+		--set floating of theObject to true
 	end if
+	--log "end awake from nib"
 end awake from nib
 
-on will quit theObject
-	writePaletteDefaults(window "PerlPalette") of PerlPaletteObj
-end will quit
-
 on double clicked theObject
-	tell application "mi"
-		set theText to content of selection object 1 of front document
-	end tell
-	set theList to every paragraph of theText
-	startStringEngine() of StringEngine
-	set theText to joinStringList of StringEngine for theList by lineFeed
-	stopStringEngine() of StringEngine
-	set the clipboard to theText
-	
-	set sourceItem to getSelectedScript() of ScriptListObj
-	if alias of (info for sourceItem) then
-		try
-			tell application "Finder"
-				set sourceItem to original item of sourceItem
-			end tell
-		on error number -1728 -- no original alias file
-			set sourceItem to missing value
-			display dialog "No original Item for the alias file." attached to window "PerlPalette" buttons {"OK"} default button "OK" with icon 0
-			return false
-		end try
-	end if
-	
-	runForClipboardContents(sourceItem) of PerlScriptObj
+	runFilterScript() of ScriptListObj
 end double clicked
-
 
 on dialog ended theObject with reply theReply
 	if DialogOwner is "RenameScript" then
@@ -220,29 +176,76 @@ on dialog ended theObject with reply theReply
 	end if
 end dialog ended
 
-(* read and write defaults ===============================================*)
+on will finish launching theObject
+	--log "start will finish launching"
+	set DefaultsManager to importScript("DefaultsManager")
+	loadFactorySettings("FactorySettings") of DefaultsManager
+	
+	set UtilityHandlers to importScript("UtilityHandlers")
+	set MessageUtility to importScript("MessageUtility")
+	set TerminalSettingObj to importScript("TerminalSettingObj")
+	
+	set UnixScriptExecuter to importScript("UnixScriptExecuter")
+	set UnixScriptObj to importScript("UnixScriptObj")
+	
+	set ScriptListObj to importScript("ScriptListObj")
+	set WindowControllerBase to importScript("WindowControllerBase")
+	set SettingWindowObj to importScript("SettingWindowObj")
+	set SettingWindowObj to makeObj() of SettingWindowObj
+	set FilterPaletteObj to importScript("FilterPaletteObj")
+	set FilterPaletteObj to makeObj() of FilterPaletteObj
+	
+	log "end of importScripts"
+	
+	set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
+	log "before loadSetting() of TerminalSettingObj"
+	loadSettings() of TerminalSettingObj
+	log "end of initializing TerminalSettingObj"
+	loadSettings()
+	--center window "Setting"
+	--set miAppRef to path to application "mi" as alias
+	log "end finish launching"
+end will finish launching
+
+on will close theObject
+	set theName to name of theObject
+	if theName is "UnixFilters" then
+		prepareClose() of FilterPaletteObj
+	else if theName is "Setting" then
+		prepareClose() of SettingWindowObj
+	end if
+end will close
+
+on should zoom theObject proposed bounds proposedBounds
+	set theName to name of theObject
+	if theName is "Setting" then
+		return toggleCollapseWIndow of SettingWindowObj
+	else if theName is "UnixFilters" then
+		return toggleCollapsePanel of FilterPaletteObj
+	end if
+end should zoom
+
+on will resize theObject proposed size proposedSize
+	return size of theObject
+end will resize
+
+on will open theObject
+	(*Add your script here.*)
+end will open
 
 on loadSettings()
 	--commands
-	set perlCommand to readDefaultValue("PerlCommand", perlCommand of PerlExecuter) of UtilityHandlers
-	
-	set lifeTime to readDefaultValue("LifeTime", lifeTime) of UtilityHandlers
+	set lifeTime to readDefaultValue("LifeTime") of DefaultsManager
 end loadSettings
 
 on writeSettings()
 	tell user defaults
-		set contents of default entry "PerlCommand" to perlCommand of PerlExecuter
 		set contents of default entry "LifeTime" to lifeTime
 	end tell
 end writeSettings
-(* end : read and write defaults ===============================================*)
 
-(* handlers get values from window ===============================================*)
 on saveSettingsFromWindow() -- get all values from and window and save into preference
 	tell window "Setting"
-		
-		set perlCommand of PerlExecuter to contents of text field "PerlCommand"
-		
 		set theLifeTime to (contents of text field "LifeTime") as string
 		if theLifeTime is not "" then
 			set lifeTime to theLifeTime as integer
@@ -251,6 +254,3 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 	
 	writeSettings()
 end saveSettingsFromWindow
-
-(* end: handlers get values from window ===============================================*)
-

@@ -1,8 +1,12 @@
-property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:Perl mode for mi:Library Scripts:"
+property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
 property FileSorter : load script file (LibraryFolder & "FileSorter")
-
+global lineFeed
 global UtilityHandlers
 global DialogOwner
+global StringEngine
+global MessageUtility
+global UnixScriptExecuter
+global DefaultsManager
 
 script ScriptSorter
 	property parent : FileSorter
@@ -27,19 +31,20 @@ script ScriptSorter
 	end buildIndexArray
 	
 	on getContainer()
-		set thePath to (path to preferences folder from user domain as Unicode text) & "mi:mode:Perl:Scripts:"
+		log "start getContainer"
+		set thePath to (path to preferences folder from user domain as Unicode text) & "mi:UnixScriptTools:Scripts:"
 		try
 			set theAlias to thePath as alias
-		on error number -43
+		on error errMsg number -43
+			log errMsg
 			set resourcePath to resource path of main bundle
 			set scriptsZip to quoted form of (resourcePath & "/Scripts.zip")
-			set perlModePath to quoted form of POSIX path of ((path to preferences folder from user domain as Unicode text) & "mi:mode:Perl:")
-			do shell script "ditto --sequesterRsrc -x -k " & scriptsZip & space & perlModePath
+			set unixScriptToolsPath to quoted form of POSIX path of ((path to preferences folder from user domain as Unicode text) & "mi:UnixScriptTools:")
+			do shell script "ditto --sequesterRsrc -x -k " & scriptsZip & space & unixScriptToolsPath
 			set theAlias to thePath as alias
 			tell application "Finder"
 				set arrangement of icon view options of container window of theAlias to snap to grid
 			end tell
-			--error number -128
 		end try
 		return theAlias
 	end getContainer
@@ -56,17 +61,21 @@ property selectedDataRow : missing value
 property selectedItemAlias : missing value
 property scriptListDataSource : missing value
 property scriptFolder : missing value
+property scriptTable : missing value
+property targetWindow : missing value
 
-on initilize(theObject)
+on initialize(theWindow)
+	log "start initilize of ScriptListObj"
 	set scriptFolder to getContainer() of ScriptSorter
-	set scriptTable to table view "ScriptList" of scroll view "ScriptList" of theObject
+	set targetWindow to theWindow
+	set scriptTable to table view "ScriptList" of scroll view "ScriptList" of theWindow
 	set scriptListDataSource to data source of scriptTable
 	if scriptList is missing value then
 		readScriptList()
 	else
 		updateScriptList()
 	end if
-end initilize
+end initialize
 
 on copyItem(sourceItem, saveLocation, newName)
 	set tmpFolder to path to temporary items
@@ -80,16 +89,26 @@ on copyItem(sourceItem, saveLocation, newName)
 end copyItem
 
 on getSelectedScript()
-	set scriptTable to table view "ScriptList" of scroll view "ScriptList" of window "PerlPalette"
 	set selectedDataRow to selected data row of scriptTable
 	try
 		set lastScriptName to contents of data cell "Name" of selectedDataRow
 	on error number -2753
 		set noSelectionMsg to localized string "noSelection"
-		display dialog noSelectionMsg attached to window "PerlPalette" buttons {"OK"} default button "OK" with icon 0
+		display dialog noSelectionMsg attached to window "UnixFilters" buttons {"OK"} default button "OK" with icon 0
 		error number -128
 	end try
 	set selectedItemAlias to ((scriptFolder as Unicode text) & lastScriptName) as alias
+	if alias of (info for selectedItemAlias) then
+		try
+			tell application "Finder"
+				set selectedItemAlias to original item of selectedItemAlias
+			end tell
+		on error number -1728 -- no original alias file
+			set theMessage to localized string "noOriginalItem"
+			display dialog theMessage attached to window "UnixFilters" buttons {"OK"} default button "OK" with icon 0
+			error "No Original item for the filter script." number 1630
+		end try
+	end if
 	return selectedItemAlias
 end getSelectedScript
 
@@ -118,7 +137,7 @@ end makeNewScript
 
 on newScript(theMessage)
 	set DialogOwner to "NewScript"
-	set theReply to display dialog theMessage attached to window "PerlPalette" default answer "Untitled.pl"
+	set theReply to display dialog theMessage attached to targetWindow default answer "Untitled.pl"
 end newScript
 
 on doRename(theReply)
@@ -137,10 +156,11 @@ on renameScript()
 	getSelectedScript()
 	set enterNewNameMsg to localized string "enterNewName"
 	set DialogOwner to "RenameScript"
-	set theReply to display dialog enterNewNameMsg attached to window "PerlPalette" default answer lastScriptName
+	set theReply to display dialog enterNewNameMsg attached to targetWindow default answer lastScriptName
 end renameScript
 
 on readScriptList()
+	--log "start readScriptList"
 	if exists default entry "lastRebuildDate" of user defaults then
 		set lastRebuildDate to contents of default entry "lastRebuildDate" of user defaults
 		tell application "System Events"
@@ -149,7 +169,7 @@ on readScriptList()
 		--display dialog (lastRebuildDate as string) & return & (currentModDate as string)
 		
 		if lastRebuildDate > currentModDate then
-			set scriptList to readDefaultValue("scriptList", scriptList) of UtilityHandlers
+			set scriptList to readDefaultValueWith("scriptList", scriptList) of DefaultsManager
 			append scriptListDataSource with scriptList
 		else
 			rebuild()
@@ -194,3 +214,39 @@ on writeScriptList()
 	set contents of default entry "scriptList" of user defaults to scriptList
 	set contents of default entry "lastRebuildDate" of user defaults to current date
 end writeScriptList
+
+on runFilterScript()
+	log "start runFilterScript"
+	(*get input data from mi*)
+	tell application "mi"
+		set theText to content of selection object 1 of front document
+	end tell
+	set theList to every paragraph of theText
+	set beginning of theList to "<<EndOfData"
+	set end of theList to "EndOfData"
+	startStringEngine() of StringEngine
+	set theText to joinStringList of StringEngine for theList by lineFeed
+	stopStringEngine() of StringEngine
+	--set the clipboard to theText
+	
+	set theScriptFile to getSelectedScript()
+	set theFilterScriptExecuter to newFilterScriptExecuter of UnixScriptExecuter from theScriptFile
+	set postOption of theFilterScriptExecuter to theText
+	set theResult to runScript() of theFilterScriptExecuter
+	
+	if theResult is not "" then
+		set useNewWindow to ((state of cell "InNewWindow" of matrix "ResultMode" of targetWindow) is on state)
+		if useNewWindow then
+			set docTitle to lastScriptName & "-stdout-" & ((current date) as string)
+			tell application "mi"
+				make new document with data theResult with properties {name:docTitle}
+				--set asksaving of document docTitle to false
+			end tell
+		else
+			tell application "mi"
+				set content of selection object 1 of document 1 to theResult
+			end tell
+		end if
+	end if
+	beep
+end runFilterScript
