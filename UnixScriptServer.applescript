@@ -45,6 +45,7 @@ on importScript(scriptName)
 end importScript
 
 on launched theObject
+	hide window "Startup"
 	(*debug code*)
 	--log "start launched"
 	--openWindow() of SettingWindowObj
@@ -141,9 +142,11 @@ end double clicked
 
 on will finish launching theObject
 	--log "start will finish launching"
+	showStartupMessage("Loading Factory Settings ...")
 	set DefaultsManager to importScript("DefaultsManager")
 	loadFactorySettings("FactorySettings") of DefaultsManager
 	
+	showStartupMessage("Loading Scripts ...")
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set MessageUtility to importScript("MessageUtility")
 	set TerminalSettingObj to importScript("TerminalSettingObj")
@@ -157,7 +160,7 @@ on will finish launching theObject
 	
 	--log "end of importScripts"
 	
-	
+	showStartupMessage("Loading Preferences ...")
 	--log "before loadSetting() of TerminalSettingObj"
 	loadSettings() of TerminalSettingObj
 	--log "end of initializing TerminalSettingObj"
@@ -186,7 +189,23 @@ on will resize theObject proposed size proposedSize
 	return size of theObject
 end will resize
 
+on will open theObject
+	--log "start will open"
+	set theName to name of theObject
+	
+	if theName is "Startup" then
+		set level of theObject to 1
+		center theObject
+		set alpha value of theObject to 0.7
+	end if
+	--log "end will open"
+end will open
+
 on loadSettings()
 	set lifeTime to (readDefaultValue("LifeTime") of DefaultsManager)
 end loadSettings
+
+on showStartupMessage(theMessage)
+	set contents of text field "StartupMessage" of window "Startup" to theMessage
+end showStartupMessage
 
