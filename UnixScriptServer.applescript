@@ -15,7 +15,7 @@ property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
 property SettingWindowObj : missing value
 property WindowController : missing value
-
+property CommandBuilder : missing value
 
 (*shared constants *)
 property dQ : ASCII character 34
@@ -151,6 +151,7 @@ on will finish launching theObject
 	set MessageUtility to importScript("MessageUtility")
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
+	set CommandBuilder to importScript("CommandBuilder")
 	set UnixScriptExecuter to importScript("UnixScriptExecuter")
 	set UnixScriptObj to importScript("UnixScriptObj")
 	
