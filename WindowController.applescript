@@ -16,7 +16,7 @@ on makeObj(theWindow)
 		property expandedBounds : missing value
 		
 		on initialize()
-			log "start initialize in WindowController"
+			--log "start initialize in WindowController"
 			set windowBoundsKey to "WindowBounds_" & (name of targetWindow)
 			readDefaults()
 			applyDefaults()
