@@ -1,14 +1,10 @@
-global WindowControllerBase
-
-on makeObj(theWindow)
-	copy WindowControllerBase to newWindowControllerBase
-	setTargetWindow(theWindow) of newWindowControllerBase
+on makeObj(WindowController)
 	
 	script SettingWindowObj
 		global lifeTime
 		global TerminalSettingObj
 		
-		property parent : newWindowControllerBase
+		property parent : WindowController
 		
 		on openWindow()
 			activate
