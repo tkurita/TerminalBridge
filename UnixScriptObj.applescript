@@ -8,7 +8,7 @@ on RunInTerminal(optionRecord)
 	try
 		set theScriptExecuter to newUnixScriptExecuter() of UnixScriptExecuter
 	on error errMsg number errNum
-		if errNum is not in {1600, 1610} then
+		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
 		end if
 		return
@@ -34,7 +34,7 @@ on runWithFinderSelection(optionRecord)
 	try
 		set theScriptExecuter to newUnixScriptExecuter() of UnixScriptExecuter
 	on error errMsg number errNum
-		if errNum is not in {1600, 1610} then
+		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
 		end if
 		return
