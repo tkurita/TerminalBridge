@@ -11,8 +11,8 @@
 	<key>BoldTextColor</key>
 	<array>
 		<integer>65535</integer>
-		<integer>65535</integer>
-		<integer>65535</integer>
+		<integer>0</integer>
+		<integer>0</integer>
 	</array>
 	<key>CursorColor</key>
 	<array>
