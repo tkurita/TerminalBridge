@@ -1,10 +1,13 @@
 global DefaultsManager
 
 on makeObj(argument)
-	if class of argument is window then
+	--log (class of argument as unicode text)
+	if class of argument is in {window, panel} then
+		--log "argument is window"
 		set theWindow to argument
 		set theName to name of theWindow
 	else
+		--log "argument is not window"
 		set theWindow to missing value
 		set theName to argument
 	end if
@@ -49,8 +52,7 @@ on makeObj(argument)
 				set isOpened to true
 			else
 				if isShown then
-					set main of my targetWindow to true
-					set key of my targetWindow to true
+					show targetWindow
 				end if
 			end if
 		end openWindow
