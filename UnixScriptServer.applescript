@@ -14,7 +14,7 @@ property FilterPaletteObj : missing value
 property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
 property SettingWindowObj : missing value
-property WindowControllerBase : missing value
+property WindowController : missing value
 
 
 (*shared constants *)
@@ -102,7 +102,6 @@ on clicked theObject
 		closeWindow() of SettingWindowObj
 	else if theName is "CancelButton" then
 		closeWindow() of SettingWindowObj
-		applyDefaults() of SettingWindowObj
 	else if theName is "ApplyColors" then
 		applyColorsToTerminal() of TerminalSettingObj
 	else if theName is "RevertColors" then
@@ -152,9 +151,9 @@ on will finish launching theObject
 	set UnixScriptExecuter to importScript("UnixScriptExecuter")
 	set UnixScriptObj to importScript("UnixScriptObj")
 	
-	set WindowControllerBase to importScript("WindowControllerBase")
+	set WindowController to importScript("WindowController")
 	set SettingWindowObj to importScript("SettingWindowObj")
-	set SettingWindowObj to makeObj(window "Setting") of SettingWindowObj
+	set SettingWindowObj to makeObj(makeObj(window "Setting") of WindowController) of SettingWindowObj
 	
 	--log "end of importScripts"
 	
