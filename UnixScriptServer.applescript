@@ -107,8 +107,7 @@ on clicked theObject
 	else if theName is "RevertColors" then
 		revertColorsToTerminal() of TerminalSettingObj
 	else if theName is "Save" then
-		saveSettingsFromWindow() of TerminalSettingObj
-		saveSettingsFromWindow()
+		saveSettingsFromWindow() of SettingWindowObj
 		(* buttons of FilterPalette *)
 	end if
 end clicked
@@ -117,8 +116,6 @@ on choose menu item theObject
 	set theName to name of theObject
 	if theName is "Preference" then
 		show window "Setting"
-	else if theName is "UnixFilters" then
-		show window "UnixFilters"
 	else if theName is "OpenScriptFolder" then
 		set theFolder to (getContainer() of ScriptSorter of ScriptListObj)
 		tell application "Finder"
@@ -158,16 +155,15 @@ on will finish launching theObject
 	set SettingWindowObj to importScript("SettingWindowObj")
 	set SettingWindowObj to makeObj(window "Setting") of SettingWindowObj
 	
-	log "end of importScripts"
+	--log "end of importScripts"
 	
 	set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
-	log "before loadSetting() of TerminalSettingObj"
+	--log "before loadSetting() of TerminalSettingObj"
 	loadSettings() of TerminalSettingObj
-	log "end of initializing TerminalSettingObj"
+	--log "end of initializing TerminalSettingObj"
 	loadSettings()
-	--center window "Setting"
 	--set miAppRef to path to application "mi" as alias
-	log "end finish launching"
+	--log "end finish launching"
 end will finish launching
 
 on will close theObject
@@ -191,7 +187,6 @@ on will resize theObject proposed size proposedSize
 end will resize
 
 on loadSettings()
-	--commands
 	set lifeTime to (readDefaultValue("LifeTime") of DefaultsManager)
 end loadSettings
 
