@@ -102,6 +102,7 @@ on clicked theObject
 		closeWindow() of SettingWindowObj
 	else if theName is "CancelButton" then
 		closeWindow() of SettingWindowObj
+		applyDefaults() of SettingWindowObj
 	else if theName is "ApplyColors" then
 		applyColorsToTerminal() of TerminalSettingObj
 	else if theName is "RevertColors" then
