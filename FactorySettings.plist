@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BackgroundColor</key>
+	<array>
+		<integer>65535</integer>
+		<integer>45746</integer>
+		<integer>27499</integer>
+	</array>
+	<key>BoldTextColor</key>
+	<array>
+		<integer>65535</integer>
+		<integer>65535</integer>
+		<integer>65535</integer>
+	</array>
+	<key>CursorColor</key>
+	<array>
+		<integer>21823</integer>
+		<integer>21823</integer>
+		<integer>21823</integer>
+	</array>
+	<key>CustomTitle</key>
+	<string>UnixScript Console</string>
+	<key>ExecutionString</key>
+	<string>export PROMPT_COMMAND='echo -ne "\033]0;UnixScript Console\007"'</string>
+	<key>IsChangeBackground</key>
+	<true/>
+	<key>IsChangeBoldText</key>
+	<true/>
+	<key>IsChangeCursor</key>
+	<false/>
+	<key>IsChangeNormalText</key>
+	<true/>
+	<key>IsChangeSelection</key>
+	<false/>
+	<key>LifeTime</key>
+	<integer>60</integer>
+	<key>NormalTextColor</key>
+	<array>
+		<integer>0</integer>
+		<integer>0</integer>
+		<integer>0</integer>
+	</array>
+	<key>SelectionColor</key>
+	<array>
+		<integer>43690</integer>
+		<integer>43690</integer>
+		<integer>43690</integer>
+	</array>
+	<key>Shell</key>
+	<string>/bin/bash</string>
+	<key>StringEncoding</key>
+	<integer>4</integer>
+	<key>TerminalOpaqueness</key>
+	<integer>58100</integer>
+	<key>UseCtrlVEscapes</key>
+	<string>YES</string>
+	<key>UseLoginShell</key>
+	<false/>
+</dict>
+</plist>
