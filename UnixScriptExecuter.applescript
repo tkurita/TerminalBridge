@@ -1,99 +1,8 @@
-global PathAnalyzer
-global TerminalCommander
+
 global MessageUtility
-global lineFeed
+global CommandBuilder
 
-on newBaseExecuter(theScriptFile, theScriptCommand)
-	script UnixScriptExecuterBase
-		property scriptCommand : theScriptCommand
-		property scriptFile : theScriptFile
-		property postOption : ""
-		property preOption : ""
-		property commandOption : ""
-		property commandArg : ""
-		
-		on setRunOptions(optionRecord)
-			try
-				set commandOption to commandOption of optionRecord
-			end try
-			try
-				set postOption to postOption of optionRecord
-			end try
-			try
-				set preOption to preOption of optionRecord
-			end try
-			try
-				set commandArg to commandArg of optionRecord
-			end try
-		end setRunOptions
-		
-		on buildCommand()
-			set pathRecord to do(scriptFile) of PathAnalyzer
-			set theFolder to folderReference of pathRecord
-			
-			--build cd command
-			set theFolder to quoted form of POSIX path of theFolder
-			set cdCommand to "cd  " & theFolder
-			
-			--build the command for script execution
-			if preOption is not "" then
-				set theScriptCommand to preOption & space & scriptCommand
-			end if
-			
-			if commandOption is not "" then
-				set theScriptCommand to theScriptCommand & space & commandOption
-			end if
-			
-			set theScriptCommand to theScriptCommand & space & (name of pathRecord)
-			
-			if commandArg is not "" then
-				set theScriptCommand to theScriptCommand & space & commandArg
-			end if
-			
-			if postOption is not "" then
-				set theScriptCommand to theScriptCommand & space & postOption
-			end if
-			
-			return cdCommand & lineFeed & theScriptCommand
-			
-		end buildCommand
-	end script
-	
-	return UnixScriptExecuterBase
-end newBaseExecuter
-
-
-on newFilterScriptExecuter from theScriptFile
-	--log "start newFilterScriptExecuter"
-	set firstLine to read theScriptFile before lineFeed
-	
-	if firstLine starts with "#!" then
-		set theScriptCommand to text 3 thru -1 of firstLine
-	else
-		set invalidCommand to localized string "invalidCommand"
-		tell application "Finder"
-			set theName to name of theScriptFile
-		end tell
-		set theMessage to aDoc & space & sQ & theName & eQ & space & invalidCommand
-		showMessageOnmi(theMessage) of MessageUtility
-		error "The document does not start with #!." number 1620
-	end if
-	
-	set theBaseExecuter to newBaseExecuter(theScriptFile, theScriptCommand)
-	
-	script FilterScriptExecuter
-		property parent : theBaseExecuter
-		
-		on runScript()
-			--log "start runScript in FilterScriptExecuter"
-			set allCommand to my buildCommand()
-			--log "exec command : " & allCommand
-			return do shell script allCommand
-		end runScript
-	end script
-end newFilterScriptExecuter
-
-on newUnixScriptExecuter()
+on makeObj()
 	tell application "mi"
 		set theFile to file of document 1
 		set theName to name of document 1
@@ -161,12 +70,14 @@ on newUnixScriptExecuter()
 		error "The documet is not saved" number 1600
 	end if
 	
-	set theBaseExecuter to newBaseExecuter(theScriptFile, theScriptCommand)
-	set postOption of theBaseExecuter to theOutput
+	set theCommandBuilder to makeObj(theScriptFile, theScriptCommand) of CommandBuilder
+	set postOption of theCommandBuilder to theOutput
 	
 	script UnixScriptExecuter
-		property parent : theBaseExecuter
 		global FreeTime
+		global TerminalCommander
+		
+		property parent : theCommandBuilder
 		
 		on runScript given activation:activateFlag
 			set allCommand to my buildCommand()
@@ -177,5 +88,5 @@ on newUnixScriptExecuter()
 	end script
 	
 	return UnixScriptExecuter
-end newUnixScriptExecuter
+end makeObj
 
