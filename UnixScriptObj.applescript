@@ -6,7 +6,7 @@ global UnixScriptExecuter
 
 on RunInTerminal(optionRecord)
 	try
-		set theScriptExecuter to newUnixScriptExecuter() of UnixScriptExecuter
+		set theScriptExecuter to makeObj() of UnixScriptExecuter
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -32,7 +32,7 @@ end getFinderSelection
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
 	try
-		set theScriptExecuter to newUnixScriptExecuter() of UnixScriptExecuter
+		set theScriptExecuter to makeObj() of UnixScriptExecuter
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
