@@ -1,10 +1,13 @@
-on makeObj(WindowController)
+global WindndowController
+
+on makeObj(theWindow)
+	set theWindowController to makeObj(theWindow) of WindowController
 	
 	script SettingWindowObj
 		global lifeTime
 		global TerminalSettingObj
 		
-		property parent : WindowController
+		property parent : theWindowController
 		
 		on openWindow()
 			activate
