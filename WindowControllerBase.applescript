@@ -1,5 +1,9 @@
 global DefaultsManager
 
+property DialogOwner : missing value
+property isAttached : false
+property targetPanel : missing value
+
 property isOpened : false
 property isShown : false
 property targetWindow : missing value
@@ -9,18 +13,21 @@ property windowBoundsKey : missing value
 property isCollapsed : false
 property expandedBounds : missing value
 
+on setTargetWindow(theWindow)
+	set targetWindow to theWindow
+end setTargetWindow
+
 on initialize()
 	--log "start initialize in WindowControllerBase"
-	set windowBoundsKey to (name of targetWindow) & "WindowBounds"
+	set windowBoundsKey to "WindowBounds_" & (name of targetWindow)
 	readDefaults()
 	applyDefaults()
 	set isInitialized to true
 	--log "end initialize in WindowControllerBase"
 end initialize
 
-on openWindow(theWindow)
+on openWindow()
 	--log "start openWindow in WindowControllerBase"
-	set targetWindow to theWindow
 	if not isInitialized then
 		initialize()
 	end if
@@ -47,6 +54,11 @@ on closeWindow()
 end closeWindow
 
 on updateVisibility(isShouldShow)
+	if isAttached then
+		log "attached"
+		return
+	end if
+	
 	if isShouldShow and isOpened then
 		if not isShown then
 			showWindow()
@@ -57,6 +69,37 @@ on updateVisibility(isShouldShow)
 		end if
 	end if
 end updateVisibility
+
+on attachPanel(thePanel)
+	if not isAttached then
+		set isAttached to true
+		set targetPanel to thePanel
+		display targetPanel attached to targetWindow
+		return true
+	else
+		return false
+	end if
+end attachPanel
+
+on closeAttachedPanel()
+	close panel targetPanel
+	set isAttached to false
+end closeAttachedPanel
+
+on displayMessage(theMessage)
+	if not (isAttached) then
+		set isAttached to true
+		display dialog theMessage attached to targetWindow buttons {"OK"} default button "OK"
+		set DialogOwner to "Message_" & (name of targetWindow)
+		return true
+	else
+		return false
+	end if
+end displayMessage
+
+on dialogEnded()
+	set isAttached to false
+end dialogEnded
 
 on prepareClose()
 	log "prepareClose in WindowControllerBase"
