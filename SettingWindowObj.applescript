@@ -1,4 +1,4 @@
-global WindndowController
+global WindowController
 
 on makeObj(theWindow)
 	set theWindowController to makeObj(theWindow) of WindowController
