@@ -1,32 +1,29 @@
 global TerminalCommander
-global UtilityHandlers
+global DefaultsManager
 
 property terminalSettingBox : missing value
-property FactorySetting : missing value
 
 on loadColorSettings()
-	set isChangeBackground of TerminalCommander to readDefaultValue("IsChangeBackground", isChangeBackground of FactorySetting) of UtilityHandlers
-	set backgroundColor of TerminalCommander to readDefaultValue("BackgroundColor", backgroundColor of FactorySetting) of UtilityHandlers
-	set terminalOpaqueness of TerminalCommander to readDefaultValue("TerminalOpaqueness", terminalOpaqueness of FactorySetting) of UtilityHandlers
-	set isChangeNormalText of TerminalCommander to readDefaultValue("IsChangeNormalText", isChangeNormalText of FactorySetting) of UtilityHandlers
-	set normalTextColor of TerminalCommander to readDefaultValue("NormalTextColor", normalTextColor of FactorySetting) of UtilityHandlers
-	set isChangeBoldText of TerminalCommander to readDefaultValue("IsChangeBoldText", isChangeBoldText of FactorySetting) of UtilityHandlers
-	set boldTextColor of TerminalCommander to readDefaultValue("BoldTextColor", boldTextColor of FactorySetting) of UtilityHandlers
-	set isChangeCursor of TerminalCommander to readDefaultValue("IsChangeCursor", isChangeCursor of FactorySetting) of UtilityHandlers
-	set cursorColor of TerminalCommander to readDefaultValue("CursorColor", cursorColor of FactorySetting) of UtilityHandlers
-	set isChangeSelection of TerminalCommander to readDefaultValue("IsChangeSelection", isChangeSelection of FactorySetting) of UtilityHandlers
-	set selectionColor of TerminalCommander to readDefaultValue("SelectionColor", selectionColor of FactorySetting) of UtilityHandlers
+	set isChangeBackground of TerminalCommander to readDefaultValue("IsChangeBackground") of DefaultsManager
+	set backgroundColor of TerminalCommander to readDefaultValue("BackgroundColor") of DefaultsManager
+	set terminalOpaqueness of TerminalCommander to readDefaultValue("TerminalOpaqueness") of DefaultsManager
+	set isChangeNormalText of TerminalCommander to readDefaultValue("IsChangeNormalText") of DefaultsManager
+	set normalTextColor of TerminalCommander to readDefaultValue("NormalTextColor") of DefaultsManager
+	set isChangeBoldText of TerminalCommander to readDefaultValue("IsChangeBoldText") of DefaultsManager
+	set boldTextColor of TerminalCommander to readDefaultValue("BoldTextColor") of DefaultsManager
+	set isChangeCursor of TerminalCommander to readDefaultValue("IsChangeCursor") of DefaultsManager
+	set cursorColor of TerminalCommander to readDefaultValue("CursorColor") of DefaultsManager
+	set isChangeSelection of TerminalCommander to readDefaultValue("IsChangeSelection") of DefaultsManager
+	set selectionColor of TerminalCommander to readDefaultValue("SelectionColor") of DefaultsManager
 end loadColorSettings
 
-on loadSettings(theFactorySetting)
-	set FactorySetting to theFactorySetting
-	
-	set customTitle of TerminalCommander to customTitle of FactorySetting
-	set stringEncoding of TerminalCommander to stringEncoding of FactorySetting
-	set useLoginShell of TerminalCommander to readDefaultValue("UseLoginShell", useLoginShell of FactorySetting) of UtilityHandlers
-	set shellPath of TerminalCommander to readDefaultValue("Shell", shellPath of FactorySetting) of UtilityHandlers
-	set useCtrlVEscapes of TerminalCommander to readDefaultValue("UseCtrlVEscapes", useCtrlVEscapes of FactorySetting) of UtilityHandlers
-	set executionString of TerminalCommander to readDefaultValue("ExecutionString", executionString of FactorySetting) of UtilityHandlers
+on loadSettings()
+	set customTitle of TerminalCommander to getFactorySetting of DefaultsManager for "CustomTitle"
+	set stringEncoding of TerminalCommander to getFactorySetting of DefaultsManager for "StringEncoding"
+	set useLoginShell of TerminalCommander to readDefaultValue("UseLoginShell") of DefaultsManager
+	set shellPath of TerminalCommander to readDefaultValue("Shell") of DefaultsManager
+	set useCtrlVEscapes of TerminalCommander to readDefaultValue("UseCtrlVEscapes") of DefaultsManager
+	set executionString of TerminalCommander to readDefaultValue("ExecutionString") of DefaultsManager
 	--colors
 	loadColorSettings()
 	
@@ -110,6 +107,7 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 end saveSettingsFromWindow
 
 on setColorsToWindow()
+	log "start setColorsToWindow"
 	tell box "TerminalColors" of terminalSettingBox
 		
 		if isChangeBackground of TerminalCommander then
@@ -163,6 +161,7 @@ on setColorsToWindow()
 end setColorsToWindow
 
 on setSettingToWindow()
+	log "start setSettingToWindow"
 	tell terminalSettingBox
 		if useLoginShell of TerminalCommander then
 			set state of cell "UseLoginShell" of matrix "ShellMode" to on state
@@ -171,7 +170,7 @@ on setSettingToWindow()
 			set state of cell "UseCommand" of matrix "ShellMode" to on state
 			set state of cell "UseLoginShell" of matrix "ShellMode" to off state
 		end if
-		
+		log "after UseLoginShell"
 		set contents of text field "ShellPath" to shellPath of TerminalCommander
 		
 		if useCtrlVEscapes of TerminalCommander is "YES" then
