@@ -1,0 +1,19 @@
+/*getPerlScript*/
+"aDocument" = "書類";
+"isModified" = "は修正されています。";
+"startQuote" ="“";
+"endQuote" ="”";
+"doYouSave" = "実行前に保存しますか？";
+"isNotSaved" = "は保存されていません。";
+
+/*ScriptListObj::renameScript*/
+"enterNewName" = "新しいファイル名を入力してください";
+
+/*ScriptListObj::getSelectedScript*/
+"noSelection" = "スクリプトが選択されていません。";
+
+/*ScriptListObj::newScript*/
+"enterNewScriptName" = "スクリプト名を入力してください。";
+
+/*ScriptListObj::makeNewScript*/
+"isExists" = "は既に存在します。\r別のスクリプト名を入力してください。";

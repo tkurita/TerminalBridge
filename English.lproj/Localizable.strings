@@ -1,0 +1,19 @@
+/*getPerlScript*/
+"startQuote" = "“";
+"endQuote" = "”";
+"aDocument" = "A document";
+"isModified" = "is modified.";
+"doYouSave" = "Do you save the document before executing a script.";
+"isNotSaved" = "is not saved.";
+
+/*ScriptListObj::renameScript*/
+"enterNewName" = "Enter new file name.";
+
+/*ScriptListObj::getSelectedScript*/
+"noSelection" = "No selected script.";
+
+/*ScriptListObj::newScript*/
+"enterNewScriptName" = "Enter script name.";
+
+/*ScriptListObj::makeNewScript*/
+"isExists" = "still exists\rEnter other script name.";
