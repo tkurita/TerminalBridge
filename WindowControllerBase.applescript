@@ -48,14 +48,14 @@ on hideWindow()
 end hideWindow
 
 on closeWindow()
-	log "start closeWindow in WindowControllerBase"
+	--log "start closeWindow in WindowControllerBase"
 	prepareClose()
 	hide targetWindow
 end closeWindow
 
 on updateVisibility(isShouldShow)
 	if isAttached then
-		log "attached"
+		--log "attached"
 		return
 	end if
 	
@@ -102,7 +102,7 @@ on dialogEnded()
 end dialogEnded
 
 on prepareClose()
-	log "prepareClose in WindowControllerBase"
+	--log "prepareClose in WindowControllerBase"
 	set isOpened to false
 	set isShown to false
 	writeDefaults()

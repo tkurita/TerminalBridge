@@ -107,7 +107,7 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 end saveSettingsFromWindow
 
 on setColorsToWindow()
-	log "start setColorsToWindow"
+	--log "start setColorsToWindow"
 	tell box "TerminalColors" of terminalSettingBox
 		
 		if isChangeBackground of TerminalCommander then
@@ -161,7 +161,7 @@ on setColorsToWindow()
 end setColorsToWindow
 
 on setSettingToWindow()
-	log "start setSettingToWindow"
+	--log "start setSettingToWindow"
 	tell terminalSettingBox
 		if useLoginShell of TerminalCommander then
 			set state of cell "UseLoginShell" of matrix "ShellMode" to on state
@@ -170,7 +170,7 @@ on setSettingToWindow()
 			set state of cell "UseCommand" of matrix "ShellMode" to on state
 			set state of cell "UseLoginShell" of matrix "ShellMode" to off state
 		end if
-		log "after UseLoginShell"
+		--log "after UseLoginShell"
 		set contents of text field "ShellPath" to shellPath of TerminalCommander
 		
 		if useCtrlVEscapes of TerminalCommander is "YES" then

@@ -30,7 +30,7 @@ on getFinderSelection()
 end getFinderSelection
 
 on runWithFinderSelection(optionRecord)
-	log "start runWithFinderSelection"
+	--log "start runWithFinderSelection"
 	try
 		set theScriptExecuter to newUnixScriptExecuter() of UnixScriptExecuter
 	on error errMsg number errNum
@@ -41,6 +41,6 @@ on runWithFinderSelection(optionRecord)
 	end try
 	setRunOptions(optionRecord) of theScriptExecuter
 	set commandArg of theScriptExecuter to getFinderSelection()
-	log postOption of theScriptExecuter
+	--log postOption of theScriptExecuter
 	runScript of theScriptExecuter with activation
 end runWithFinderSelection
