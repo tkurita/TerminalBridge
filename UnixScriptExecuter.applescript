@@ -70,7 +70,7 @@ on newFilterScriptExecuter from theScriptFile
 	if firstLine starts with "#!" then
 		set theScriptCommand to text 3 thru -1 of firstLine
 	else
-		set invalidCommand to localized string "invalidCommnad"
+		set invalidCommand to localized string "invalidCommand"
 		tell application "Finder"
 			set theName to name of theScriptFile
 		end tell
@@ -140,7 +140,7 @@ on newUnixScriptExecuter()
 				set theScriptCommand to text 1 thru -2 of theScriptCommand
 			end if
 		else
-			set invalidCommand to localized string "invalidCommnad"
+			set invalidCommand to localized string "invalidCommand"
 			set theMessage to aDoc & space & sQ & theName & eQ & space & invalidCommand
 			showMessageOnmi(theMessage) of MessageUtility
 			error "The document does not start with #!." number 1620
