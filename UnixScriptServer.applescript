@@ -153,7 +153,7 @@ on will finish launching theObject
 	
 	set WindowController to importScript("WindowController")
 	set SettingWindowObj to importScript("SettingWindowObj")
-	set SettingWindowObj to makeObj(makeObj(window "Setting") of WindowController) of SettingWindowObj
+	set SettingWindowObj to makeObj(window "Setting") of SettingWindowObj
 	
 	--log "end of importScripts"
 	
