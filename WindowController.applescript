@@ -1,4 +1,5 @@
 global DefaultsManager
+global AlertManager
 
 on makeObj(argument)
 	--log (class of argument as unicode text)
@@ -117,10 +118,26 @@ on makeObj(argument)
 			end if
 		end displayMessage
 		
+		on displayAlert(theMessage)
+			if not (isAttached) then
+				set isAttached to true
+				display alert theMessage attached to targetWindow as warning
+				addAlertRecrod of AlertManager for a reference to me
+				return true
+			else
+				return false
+			end if
+		end displayAlert
+		
 		on dialogEnded()
 			set isAttached to false
 		end dialogEnded
-		
+
+		on alertEnded for theAlertRecord given dialgReply:theReply
+			--log "start alertEnded in WindowController"
+			set isAttached to false
+		end alertEnded
+
 		on prepareClose()
 			--log "prepareClose in WindowController"
 			set isOpened to false
