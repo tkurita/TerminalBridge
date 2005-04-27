@@ -1,9 +1,9 @@
 (* shared script objects *)
 property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
-property TerminalCommander : load script file (LibraryFolder & "TerminalCommander")
-property StringEngine : StringEngine of TerminalCommander
+property StringEngine : load script file (LibraryFolder & "StringEngine")
 
+property TerminalCommander : missing value
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
@@ -95,23 +95,28 @@ on idle theObject
 end idle
 
 on clicked theObject
+	--log "start clicked"
 	set FreeTime to 0
-	set theName to name of theObject
-	(* buttons of Setting Window *)
-	if theName is "OKButton" then
-		saveSettingsFromWindow() of SettingWindowObj
-		closeWindow() of SettingWindowObj
-	else if theName is "CancelButton" then
-		closeWindow() of SettingWindowObj
-	else if theName is "ApplyColors" then
-		applyColorsToTerminal() of TerminalSettingObj
-	else if theName is "RevertColors" then
-		revertColorsToTerminal() of TerminalSettingObj
-	else if theName is "Save" then
-		saveSettingsFromWindow() of SettingWindowObj
-		(* buttons of FilterPalette *)
+	set theTag to tag of theObject
+	if theTag is 1 then
+		controlClicked(theObject) of TerminalSettingObj
+	else if theTag is 5 then
+		(* 5: Other Setting *)
+		controlClicked(theObject) of SettingWindowObj
+	else
+		controlClicked(theObject)
 	end if
 end clicked
+
+on controlClicked(theObject)
+	set theName to name of theObject
+	--set windowName to name of window of theObject
+	if theName is "RevertToDefault" then
+		RevertToDefault() of SettingWindowObj
+	else if theName is "HelpButton" then
+		showHelp() of SettingWindowObj
+	end if
+end controlClicked
 
 on choose menu item theObject
 	set theName to name of theObject
@@ -144,11 +149,12 @@ on will finish launching theObject
 	--log "start will finish launching"
 	showStartupMessage("Loading Factory Settings ...")
 	set DefaultsManager to importScript("DefaultsManager")
-	loadFactorySettings("FactorySettings") of DefaultsManager
+	registerFactorySetting("FactorySettings") of DefaultsManager
 	
 	showStartupMessage("Loading Scripts ...")
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set MessageUtility to importScript("MessageUtility")
+	set TerminalCommander to importScript("TerminalCommander")
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
 	set CommandBuilder to importScript("CommandBuilder")
@@ -201,6 +207,17 @@ on will open theObject
 	end if
 	--log "end will open"
 end will open
+
+on end editing theObject
+	--log "start end editing"
+	set FreeTime to 0
+	set theTag to tag of theObject
+	if theTag is 1 then
+		endEditing(theObject) of TerminalSettingObj
+	else if theTag is 5 then -- other setting
+		endEditing(theObject) of SettingWindowObj
+	end if
+end end editing
 
 on loadSettings()
 	set lifeTime to (readDefaultValue("LifeTime") of DefaultsManager)
