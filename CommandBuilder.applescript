@@ -31,7 +31,7 @@ on makeObj(theScriptFile, theScriptCommand)
 			
 			--build cd command
 			set theFolder to quoted form of POSIX path of theFolder
-			set cdCommand to "cd  " & theFolder
+			set cdCommand to "cd " & theFolder
 			
 			--build the command for script execution
 			if preOption is not "" then
