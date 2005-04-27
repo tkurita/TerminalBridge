@@ -47,7 +47,11 @@ on makeObj(theName)
 			tell my targetWindow
 				set contents of text field "LifeTime" to (lifeTime / 60) as integer
 			end tell
-			continue applyDefaults()
+			if my windowBounds is {} then
+				center my targetWindow
+			else
+				set position of my targetWindow to items 1 thru 2 of my windowBounds
+			end if
 			--log "end of applyDefaults in SettingWindowObj"
 		end applyDefaults
 		
