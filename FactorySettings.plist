@@ -35,7 +35,7 @@
 	<key>IsChangeSelection</key>
 	<false/>
 	<key>LifeTime</key>
-	<integer>60</integer>
+	<integer>3600</integer>
 	<key>NormalTextColor</key>
 	<array>
 		<integer>0</integer>
@@ -55,7 +55,7 @@
 	<key>TerminalOpaqueness</key>
 	<integer>58100</integer>
 	<key>UseCtrlVEscapes</key>
-	<string>YES</string>
+	<string>No</string>
 	<key>UseLoginShell</key>
 	<false/>
 </dict>
