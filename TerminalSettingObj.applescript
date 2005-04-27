@@ -3,6 +3,80 @@ global DefaultsManager
 
 property terminalSettingBox : missing value
 
+on endEditing(theObject)
+	set theName to name of theObject
+	if theName is "ShellPath" then
+		set theShellPath to contents of contents of theObject
+		if theShellPath is not "" then
+			set shellPath of TerminalCommander to theShellPath
+			set contents of default entry "Shell" of user defaults to theShellPath
+		end if
+	else if theName is "ExecutionString" then
+		tell TerminalCommander
+			set executionString of it to contents of contents of theObject
+			set contents of default entry "ExecutionString" of user defaults to executionString of it
+		end tell
+	end if
+end endEditing
+
+on controlClicked(theObject)
+	set theName to name of theObject
+	--log theName
+	if theName is "ShellMode" then
+		tell TerminalCommander
+			set useLoginShell of it to ((current row of theObject) is 1)
+			set contents of default entry "UseLoginShell" of user defaults to useLoginShell of it
+		end tell
+		
+	else if theName is "UseCtrlVEscapes" then
+		tell TerminalCommander
+			if state of theObject is 1 then
+				set useCtrlVEscapes of it to "YES"
+			else
+				set useCtrlVEscapes of it to "NO"
+			end if
+			set contents of default entry "UseCtrlVEscapes" of user defaults to useCtrlVEscapes of it
+		end tell
+	else if theName is "ApplyColors" then
+		applyColorsToTerminal() 
+	else if theName is "RevertColors" then
+		revertColorsToTerminal()
+	else if theName is "SaveColors" then
+		getColorSettingsFromWindow()
+		writeColorSettings()
+	end if
+end controlClicked
+
+on revertToFactoryColorSettings()
+	tell DefaultsManager
+		set isChangeBackground of TerminalCommander to getFactorySetting of it for "IsChangeBackground"
+		set backgroundColor of TerminalCommander to getFactorySetting of it for "BackgroundColor"
+		set terminalOpaqueness of TerminalCommander to getFactorySetting of it for "TerminalOpaqueness"
+		set isChangeNormalText of TerminalCommander to getFactorySetting of it for "IsChangeNormalText"
+		set normalTextColor of TerminalCommander to getFactorySetting of it for "NormalTextColor"
+		set isChangeBoldText of TerminalCommander to getFactorySetting of it for "IsChangeBoldText"
+		set boldTextColor of TerminalCommander to getFactorySetting of it for "BoldTextColor"
+		set isChangeCursor of TerminalCommander to getFactorySetting of it for "IsChangeCursor"
+		set cursorColor of TerminalCommander to getFactorySetting of it for "CursorColor"
+		set isChangeSelection of TerminalCommander to getFactorySetting of it for "IsChangeSelection"
+		set selectionColor of TerminalCommander to getFactorySetting of it for "SelectionColor"
+	end tell
+end revertToFactoryColorSettings
+
+on revertToFactorySetting()
+	tell DefaultsManager
+		set useLoginShell of TerminalCommander to getFactorySetting of it for "UseLoginShell"
+		set shellPath of TerminalCommander to getFactorySetting of it for "Shell"
+		set useCtrlVEscapes of TerminalCommander to getFactorySetting of it for "UseCtrlVEscapes"
+		set executionString of TerminalCommander to getFactorySetting of it for "ExecutionString"
+	end tell
+	
+	--colors
+	revertToFactoryColorSettings()
+	
+	writeSettings()
+end revertToFactorySetting
+
 on loadColorSettings()
 	set isChangeBackground of TerminalCommander to readDefaultValue("IsChangeBackground") of DefaultsManager
 	set backgroundColor of TerminalCommander to readDefaultValue("BackgroundColor") of DefaultsManager
@@ -39,7 +113,12 @@ on writeSettings()
 		set contents of default entry "Shell" to shellPath of TerminalCommander
 		set contents of default entry "UseCtrlVEscapes" to useCtrlVEscapes of TerminalCommander
 		set contents of default entry "ExecutionString" to executionString of TerminalCommander
-		--colors
+	end tell
+	writeColorSettings()
+end writeSettings
+
+on writeColorSettings()
+	tell user defaults
 		set contents of default entry "IsChangeBackground" to isChangeBackground of TerminalCommander
 		set contents of default entry "BackgroundColor" to backgroundColor of TerminalCommander
 		set contents of default entry "TerminalOpaqueness" to terminalOpaqueness of TerminalCommander
@@ -52,7 +131,7 @@ on writeSettings()
 		set contents of default entry "IsChangeSelection" to isChangeSelection of TerminalCommander
 		set contents of default entry "SelectionColor" to selectionColor of TerminalCommander
 	end tell
-end writeSettings
+end
 
 on getColorSettingsFromWindow()
 	tell box "TerminalColors" of terminalSettingBox
@@ -160,8 +239,9 @@ on setColorsToWindow()
 	end tell
 end setColorsToWindow
 
-on setSettingToWindow()
+on setSettingToWindow(theView)
 	--log "start setSettingToWindow"
+	set terminalSettingBox to theView
 	tell terminalSettingBox
 		if useLoginShell of TerminalCommander then
 			set state of cell "UseLoginShell" of matrix "ShellMode" to on state
