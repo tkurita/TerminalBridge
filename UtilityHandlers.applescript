@@ -44,6 +44,12 @@ on isRunning(appName)
 	end tell
 end isRunning
 
+on activeAppName()
+	set theWorkspace to call method "sharedWorkspace" of class "NSWorkspace"
+	set appInfo to call method "activeApplication" of theWorkspace
+	return |NSApplicationName| of appInfo
+end activeAppName
+
 on copyItem(sourceItem, saveLocation, newName)
 	set tmpFolder to path to temporary items
 	tell application "Finder"
