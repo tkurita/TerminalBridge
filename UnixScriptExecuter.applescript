@@ -74,7 +74,6 @@ on makeObj()
 	set postOption of theCommandBuilder to theOutput
 	
 	script UnixScriptExecuter
-		global FreeTime
 		global TerminalCommander
 		
 		property parent : theCommandBuilder
@@ -83,7 +82,6 @@ on makeObj()
 			set allCommand to my buildCommand()
 			doCommands of TerminalCommander for allCommand given activation:activateFlag
 			beep
-			set FreeTime to 0
 		end runScript
 	end script
 	
