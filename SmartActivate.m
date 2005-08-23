@@ -1,32 +1,26 @@
 #import "SmartActivate.h"
 
-CFDictionaryRef getProcessInfoForCreator(CFStringRef targetCreator) {
+NSDictionary *getProcessInfoForCreator(NSString *targetCreator) {
 	/* find an applicarion process specified by theSignature(creator type) from runnning process.
 		if target application can be found, get information of the process and return as a result
 	*/
-	//printf("start getProcessInfoForCreator\n");
 	OSErr err;
 	ProcessSerialNumber psn = {kNoProcess, kNoProcess};
-	CFDictionaryRef pDict;
-	CFStringRef fileCreator;
-	CFComparisonResult isSameSignature;
-	Boolean isFound = false;
+	NSDictionary *pDict;
+	NSString *fileCreator;
+	BOOL isFound = NO;
 	
 	err = GetNextProcess(&psn);
 	while( err == noErr) {
-		pDict = ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask);
-		fileCreator = CFDictionaryGetValue (pDict,CFSTR("FileCreator"));
-		if (fileCreator != NULL) {
-			isSameSignature = CFStringCompare (fileCreator,targetCreator,0);
-			//printf("compare success\n");
-			if (isSameSignature == kCFCompareEqualTo) {
-				//printf("target is found\n");
-				isFound = true;
+		pDict = (NSDictionary *)ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask);
+		fileCreator = [pDict objectForKey:@"FileCreator"];
+		if (fileCreator != nil) {
+			if ([fileCreator isEqualToString:targetCreator]){
+				isFound = YES;
 				break;
 			}
 		}
-		//show(CFSTR("Dictionary: %@"), pDict);
-		CFRelease(pDict);
+		[pDict release];
 		err = GetNextProcess (&psn);
 	}
 	
@@ -35,7 +29,7 @@ CFDictionaryRef getProcessInfoForCreator(CFStringRef targetCreator) {
 	}
 	else{
 		//printf("NULL will be retruned\n");
-		return NULL;
+		return nil;
 	}
 }
 
@@ -44,14 +38,14 @@ CFDictionaryRef getProcessInfoForCreator(CFStringRef targetCreator) {
 -(BOOL)smartActivate:(NSString *)targetCreator {
 	//printf("start smartActivate\n");
 	
-	CFDictionaryRef pDict = getProcessInfoForCreator((CFStringRef)targetCreator);
-	if (pDict != NULL) {
-		//printf("will activate\n");
+	NSDictionary *pDict = getProcessInfoForCreator(targetCreator);
+	if (pDict != nil) {
+		//NSLog(@"will activate");
+		//NSLog([pDict description]);
 		ProcessSerialNumber psn;
-		CFNumberGetValue(CFDictionaryGetValue(pDict,CFSTR("PSN")),
-				kCFNumberLongLongType,&psn);
+		[[pDict objectForKey:@"PSN"] getValue:&psn];
 		SetFrontProcessWithOptions(&psn,kSetFrontProcessFrontWindowOnly);
-		CFRelease(pDict);
+		[pDict release];
 		return YES;
 	}
 	else {
