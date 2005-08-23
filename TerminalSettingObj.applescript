@@ -38,7 +38,7 @@ on controlClicked(theObject)
 			set contents of default entry "UseCtrlVEscapes" of user defaults to useCtrlVEscapes of it
 		end tell
 	else if theName is "ApplyColors" then
-		applyColorsToTerminal() 
+		applyColorsToTerminal()
 	else if theName is "RevertColors" then
 		revertColorsToTerminal()
 	else if theName is "SaveColors" then
@@ -131,7 +131,7 @@ on writeColorSettings()
 		set contents of default entry "IsChangeSelection" to isChangeSelection of TerminalCommander
 		set contents of default entry "SelectionColor" to selectionColor of TerminalCommander
 	end tell
-end
+end writeColorSettings
 
 on getColorSettingsFromWindow()
 	tell box "TerminalColors" of terminalSettingBox
@@ -164,7 +164,7 @@ on getColorSettingsFromWindow()
 end getColorSettingsFromWindow
 
 on saveSettingsFromWindow() -- get all values from and window and save into preference
-	tell terminalSettingBox
+	tell box "ShellBox" of terminalSettingBox
 		set useLoginShell of TerminalCommander to ((state of cell "UseLoginShell" of matrix "ShellMode") is on state)
 		set theShellPath to contents of text field "ShellPath"
 		if theShellPath is not "" then
@@ -176,12 +176,12 @@ on saveSettingsFromWindow() -- get all values from and window and save into pref
 		else
 			set useCtrlVEscapes of TerminalCommander to "NO"
 		end if
-		
-		set executionString of TerminalCommander to contents of text field "ExecutionString"
-		
-		my getColorSettingsFromWindow()
 	end tell
 	
+	tell box "ExecutionStringBox" of terminalSettingBox
+		set executionString of TerminalCommander to contents of text field "ExecutionString"
+	end tell
+	my getColorSettingsFromWindow()
 	writeSettings()
 end saveSettingsFromWindow
 
@@ -242,7 +242,7 @@ end setColorsToWindow
 on setSettingToWindow(theView)
 	--log "start setSettingToWindow"
 	set terminalSettingBox to theView
-	tell terminalSettingBox
+	tell box "ShellBox" of terminalSettingBox
 		if useLoginShell of TerminalCommander then
 			set state of cell "UseLoginShell" of matrix "ShellMode" to on state
 			set state of cell "UseCommand" of matrix "ShellMode" to off state
@@ -258,9 +258,10 @@ on setSettingToWindow(theView)
 		else
 			set state of button "UseCtrlVEscapes" to 0
 		end if
-		
+	end tell
+	
+	tell box "ExecutionStringBox" of terminalSettingBox
 		set contents of text field "ExecutionString" to executionString of TerminalCommander
-		
 	end tell
 	setColorsToWindow()
 end setSettingToWindow
