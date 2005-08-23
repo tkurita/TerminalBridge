@@ -9,28 +9,16 @@ property UtilityHandlers : missing value
 property MessageUtility : missing value
 property DefaultsManager : missing value
 
-property ScriptListObj : missing value
-property FilterPaletteObj : missing value
 property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
 property SettingWindowObj : missing value
-property WindowController : missing value
 property CommandBuilder : missing value
 
 (*shared constants *)
 property dQ : ASCII character 34
 property yenmark : ASCII character 92
 property lineFeed : ASCII character 10
-property idleTime : 60 -- sec
 
-(* shared variable *)
-property isShouldShow : false
-property FreeTime : 0 -- second
-property DialogOwner : missing value
--- property miAppRef : missing value
-
-(* application setting *)
-property lifeTime : missing value -- second
 
 (* events of application*)
 
@@ -58,8 +46,6 @@ end launched
 
 on open theObject
 	if class of theObject is record then
-		set FreeTime to 0
-		
 		set theCommandID to commandID of theObject
 		try
 			set optionRecord to argument of theObject
@@ -82,21 +68,8 @@ on open theObject
 	return true
 end open
 
-on idle theObject
-	--log "start idle"
-	
-	if (FreeTime) > lifeTime then
-		quit
-	end if
-	
-	set FreeTime to FreeTime + idleTime
-	
-	return idleTime
-end idle
-
 on clicked theObject
 	--log "start clicked"
-	set FreeTime to 0
 	set theTag to tag of theObject
 	if theTag is 1 then
 		controlClicked(theObject) of TerminalSettingObj
@@ -113,8 +86,6 @@ on controlClicked(theObject)
 	--set windowName to name of window of theObject
 	if theName is "RevertToDefault" then
 		RevertToDefault() of SettingWindowObj
-	else if theName is "HelpButton" then
-		showHelp() of SettingWindowObj
 	end if
 end controlClicked
 
@@ -122,12 +93,6 @@ on choose menu item theObject
 	set theName to name of theObject
 	if theName is "Preference" then
 		show window "Setting"
-	else if theName is "OpenScriptFolder" then
-		set theFolder to (getContainer() of ScriptSorter of ScriptListObj)
-		tell application "Finder"
-			activate
-			open theFolder
-		end tell
 	end if
 end choose menu item
 
@@ -139,11 +104,6 @@ on awake from nib theObject
 	end if
 	--log "end awake from nib"
 end awake from nib
-
-on double clicked theObject
-	set FreeTime to 0
-	runFilterScript() of ScriptListObj
-end double clicked
 
 on will finish launching theObject
 	--log "start will finish launching"
@@ -161,9 +121,7 @@ on will finish launching theObject
 	set UnixScriptExecuter to importScript("UnixScriptExecuter")
 	set UnixScriptObj to importScript("UnixScriptObj")
 	
-	set WindowController to importScript("WindowController")
 	set SettingWindowObj to importScript("SettingWindowObj")
-	set SettingWindowObj to makeObj("Setting") of SettingWindowObj
 	
 	--log "end of importScripts"
 	
@@ -171,30 +129,9 @@ on will finish launching theObject
 	--log "before loadSetting() of TerminalSettingObj"
 	loadSettings() of TerminalSettingObj
 	--log "end of initializing TerminalSettingObj"
-	loadSettings()
-	--set miAppRef to path to application "mi" as alias
+	
 	--log "end finish launching"
 end will finish launching
-
-on will close theObject
-	set theName to name of theObject
-	
-	if theName is "Setting" then
-		prepareClose() of SettingWindowObj
-	end if
-end will close
-
-on should zoom theObject proposed bounds proposedBounds
-	set FreeTime to 0
-	set theName to name of theObject
-	if theName is "Setting" then
-		return toggleCollapseWIndow() of SettingWindowObj
-	end if
-end should zoom
-
-on will resize theObject proposed size proposedSize
-	return size of theObject
-end will resize
 
 on will open theObject
 	--log "start will open"
@@ -210,18 +147,11 @@ end will open
 
 on end editing theObject
 	--log "start end editing"
-	set FreeTime to 0
 	set theTag to tag of theObject
 	if theTag is 1 then
 		endEditing(theObject) of TerminalSettingObj
-	else if theTag is 5 then -- other setting
-		endEditing(theObject) of SettingWindowObj
 	end if
 end end editing
-
-on loadSettings()
-	set lifeTime to (readDefaultValue("LifeTime") of DefaultsManager)
-end loadSettings
 
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
