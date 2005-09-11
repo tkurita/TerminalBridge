@@ -26,11 +26,6 @@ on RevertToDefault()
 end RevertToDefault
 
 on applyDefaults()
-	--set terminalSettingBox of TerminalSettingObj to box "TerminalSetting" of window "Setting"
 	setSettingToWindow(box "TerminalSetting" of targetWindow) of TerminalSettingObj
 	--log "end of applyDefaults in SettingWindowObj"
 end applyDefaults
-
-on saveSettingsFromWindow() -- get all values from and window and save into preference
-	saveSettingsFromWindow() of TerminalSettingObj
-end saveSettingsFromWindow
