@@ -7,7 +7,7 @@ property TerminalCommander : missing value
 property TerminalSettingObj : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
-property DefaultsManager : missing value
+property appController : missing value
 
 property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
@@ -36,7 +36,7 @@ on launched theObject
 	hide window "Startup"
 	(*debug code*)
 	--log "start launched"
-	--openWindow() of SettingWindowObj
+	openWindow() of SettingWindowObj
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
@@ -73,9 +73,6 @@ on clicked theObject
 	set theTag to tag of theObject
 	if theTag is 1 then
 		controlClicked(theObject) of TerminalSettingObj
-	else if theTag is 5 then
-		(* 5: Other Setting *)
-		controlClicked(theObject) of SettingWindowObj
 	else
 		controlClicked(theObject)
 	end if
@@ -106,12 +103,9 @@ on awake from nib theObject
 end awake from nib
 
 on will finish launching theObject
-	--log "start will finish launching"
-	showStartupMessage("Loading Factory Settings ...")
-	set DefaultsManager to importScript("DefaultsManager")
-	registerFactorySetting("FactorySettings") of DefaultsManager
-	
+	--log "start will finish launching"	
 	showStartupMessage("Loading Scripts ...")
+	set appController to call method "delegate"
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set MessageUtility to importScript("MessageUtility")
 	set TerminalCommander to importScript("TerminalCommander")
@@ -144,14 +138,6 @@ on will open theObject
 	end if
 	--log "end will open"
 end will open
-
-on end editing theObject
-	--log "start end editing"
-	set theTag to tag of theObject
-	if theTag is 1 then
-		endEditing(theObject) of TerminalSettingObj
-	end if
-end end editing
 
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
