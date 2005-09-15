@@ -16,7 +16,7 @@
 	[theWindow setFrameUsingName:frameName];
 	
 	[super showWindow:sender];
-	[self setDisplayToggleTime];
+	[self setDisplayToggleTimer];
 
 	NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
 	[notiCenter addObserver:self selector:@selector(willApplicationQuit:) name:NSApplicationWillTerminateNotification object:nil];	
@@ -37,13 +37,63 @@
 	frameName = [theName retain];
 }
 
+#pragma mark methods for applications the window float on
+- (void)useFloating
+{
+	NSWindow *theWindow = [self window];
+	[theWindow setHidesOnDeactivate:NO];
+	[theWindow setLevel:NSFloatingWindowLevel];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ([keyPath isEqualToString:applicationsFloatingOnKeyPath]) {
+		NSArray *appList = [[[object values] valueForKey:applicationsFloatingOnEntryName] valueForKey:@"appName"];
+		[self setApplicationsFloagingOn:appList];
+	}
+}
+
+- (void)setApplicationsFloagingOnKeyPathFromKey:(NSString *)theKey
+{
+	[theKey retain];
+	[applicationsFloatingOnEntryName release];
+	applicationsFloatingOnEntryName = theKey;
+	
+	NSString *firstKey = @"values";
+	NSString *keyPath = [firstKey stringByAppendingPathExtension:theKey];
+	
+	[keyPath retain];
+	[applicationsFloatingOnKeyPath release];
+	applicationsFloatingOnKeyPath = keyPath;
+}
+
+- (void)bindApplicationsFloatingOnForKey:(NSString *)theKey
+{
+#if useLog
+	NSLog(@"start bindApplicationsFloatingOnForKey");
+#endif
+	[self setApplicationsFloagingOnKeyPathFromKey:theKey];
+	NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
+	NSArray *appList = [[[defaultsController values] valueForKey:theKey] valueForKey:@"appName"];
+	[self setApplicationsFloagingOn:appList];
+	[defaultsController addObserver:self forKeyPath:applicationsFloatingOnKeyPath options:NSKeyValueObservingOptionNew context:nil];
+}
+
 - (void)setApplicationsFloatingOnFromDefaultName:(NSString *)entryName
 {
 #if useLog
 	NSLog(@"setApplicationsFloatingOnFromDefaultName");
 #endif
-	[applicationsFloatingOn autorelease];
-	applicationsFloatingOn = [[[NSUserDefaults standardUserDefaults] arrayForKey:entryName] retain];
+	NSArray *appList = [[[NSUserDefaults standardUserDefaults] 
+						arrayForKey:entryName] valueForKey:@"appName"];
+	[self setApplicationsFloagingOn:appList];
+}
+
+- (void)setApplicationsFloagingOn:(NSArray *)appList
+{
+	[appList retain];
+	[applicationsFloatingOn release];
+	applicationsFloatingOn = appList;
 }
 
 #pragma mark methods for others
@@ -59,13 +109,50 @@
 	if (!isCollapsed) [theWindow saveFrameUsingName:frameName];
 }
 
-- (void)useFloating
+#pragma mark methods for toggle visibility
+- (BOOL)isWorkingDisplayToggleTimer
 {
-	id theWindow = [self window];
-	[theWindow setHidesOnDeactivate:NO];
-	[theWindow setLevel:NSFloatingWindowLevel];
+	if (displayToggleTimer == nil) return NO;
+	return [displayToggleTimer isValid];
 }
 
+- (void)updateVisibility:(NSTimer *)theTimer
+{
+#if useLog
+	NSLog(@"updateVisibility:");
+#endif
+	NSString *appName = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSApplicationName"];
+	if (appName == nil) {
+		return;
+	}
+	
+	NSWindow *theWindow = [self window];
+#if useLog
+	NSLog([applicationsFloatingOn description]);
+	NSLog(appName);
+#endif
+	if ([applicationsFloatingOn containsObject:appName]){
+		if (![theWindow isVisible]) [super showWindow:self];
+	}
+	else {
+		if ([theWindow isVisible]) {
+			if ([theWindow attachedSheet] == nil) [self close];	
+		}
+	}
+}
+
+- (void)setDisplayToggleTimer
+{
+#if useLog
+	NSLog(@"setDisplayToggleTimer");
+#endif
+	if (displayToggleTimer != nil) {
+		[displayToggleTimer invalidate];
+	}
+	[displayToggleTimer release];
+	displayToggleTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateVisibility:) userInfo:nil repeats:YES];
+	[displayToggleTimer retain];
+}
 
 #pragma mark methods for collapsing
 - (float)titleBarHeight
@@ -110,40 +197,6 @@
 	}
 }
 
-- (void)updateVisibility:(NSTimer *)theTimer
-{
-#if useLog
-	NSLog(@"updateVisibility:");
-#endif
-	NSString *appName = [[[NSWorkspace sharedWorkspace] activeApplication] objectForKey:@"NSApplicationName"];
-	if (appName == nil) {
-		return;
-	}
-
-	id theWindow = [self window];
-
-	if ([applicationsFloatingOn containsObject:appName]){
-		if (![theWindow isVisible]) [super showWindow:self];
-	}
-	else {
-		if ([theWindow isVisible]) {
-			if ([theWindow attachedSheet] == nil) [self close];	
-		}
-	}
-}
-
-- (void)setDisplayToggleTime
-{
-#if useLog
-	NSLog(@"setDisplayToggleTime");
-#endif
-	if (displayToggleTime != nil) {
-		[displayToggleTime invalidate];
-	}
-	[displayToggleTime release];
-	displayToggleTime = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(updateVisibility:) userInfo:nil repeats:YES];
-	[displayToggleTime retain];
-}
 
 - (void)useWindowCollapse
 {
@@ -180,8 +233,10 @@
 #if useLog
 	NSLog(@"start windowShouldClose");
 #endif
-	if (displayToggleTime != nil) {
-		[displayToggleTime invalidate];
+	if (displayToggleTimer != nil) {
+		[displayToggleTimer invalidate];
+		[displayToggleTimer release];
+		displayToggleTimer = nil;
 	}
 	[self saveDefaults];
 	return YES;
