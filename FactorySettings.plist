@@ -34,8 +34,6 @@
 	<true/>
 	<key>IsChangeSelection</key>
 	<false/>
-	<key>LifeTime</key>
-	<integer>3600</integer>
 	<key>NormalTextColor</key>
 	<array>
 		<integer>0</integer>
@@ -50,6 +48,8 @@
 	</array>
 	<key>Shell</key>
 	<string>/bin/bash</string>
+	<key>ShellMode</key>
+	<integer>1</integer>
 	<key>StringEncoding</key>
 	<integer>4</integer>
 	<key>TerminalOpaqueness</key>
