@@ -1,9 +1,8 @@
 /* SettingWindowController */
 
 #import <Cocoa/Cocoa.h>
-#import "PaletteWindowController.h"
 
-@interface SettingWindowController : PaletteWindowController
+@interface SettingWindowController : NSWindowController
 {
 }
 - (IBAction)showSettingHelp:(id)sender;

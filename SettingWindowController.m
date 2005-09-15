@@ -13,7 +13,7 @@
 
 - (void)awakeFromNib
 {
-	[self setFrameName:@"Setting"];
-}
+	[[self window] center];
+	[self setWindowFrameAutosaveName:@"SettingWindow"];}
 
 @end
