@@ -5,18 +5,12 @@ property StringEngine : load script file (LibraryFolder & "StringEngine")
 global StringEngine
 --property linefeed : ASCII character 10
 
---terminal defaults set by changing the terminal preference file
-property useCtrlVEscapes : missing value
-property useLoginShell : true
-property shellPath : missing value
-
 --terminal defaults set from applescript
 property customTitle : missing value
 property displayShellPath : missing value
 property displayCustomTitle : missing value
 property displayDeviceName : missing value
 property stringEncoding : missing value
-property executionString : missing value
 
 --terminal appearance
 property isChangeBackground : false
@@ -173,6 +167,7 @@ on changeTerminalPref()
 	set defaultObjList to {}
 	set theShellPath to getShellPath()
 	entryDefaultsObj("Shell", theShellPath)
+	set useCtrlVEscapes to contents of default entry "UseCtrlVEscapes" of user defaults
 	entryDefaultsObj("UseCtrlVEscapes", useCtrlVEscapes)
 	entryDefaultsObj("StringEncoding", stringEncoding)
 	--entryDefaultsObj("CustomTitle", customTitle)
@@ -189,10 +184,16 @@ on revertTerminalPref()
 end revertTerminalPref
 
 on getShellPath()
-	if useLoginShell or (shellPath is missing value) then
+	set shellMode to contents of default entry "ShellMode" of user defaults
+	if (shellMode is 0) then
 		return system attribute "SHELL"
 	else
-		return shellPath
+		set shellPath to contents of default entry "Shell" of user defaults
+		if (shellPath is "") then
+			return system attribute "SHELL"
+		else
+			return shellPath
+		end if
 	end if
 end getShellPath
 
@@ -227,7 +228,8 @@ on doCommands for shellCommands given activation:activateFlag
 			end if
 		end tell
 		
-		if executionString is not missing value then
+		set executionString to contents of default entry "ExecutionString" of user defaults
+		if executionString is not "" then
 			set terminalReference to execCommand(executionString & return & shellCommands)
 		else
 			set terminalReference to execCommand(shellCommands)
