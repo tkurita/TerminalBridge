@@ -36,7 +36,7 @@ on launched theObject
 	hide window "Startup"
 	(*debug code*)
 	--log "start launched"
-	openWindow() of SettingWindowObj
+	--openWindow() of SettingWindowObj
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
@@ -93,15 +93,6 @@ on choose menu item theObject
 	end if
 end choose menu item
 
-on awake from nib theObject
-	set theName to name of theObject
-	--log "start awake from nib for " & theName
-	if theName is "Setting" then
-		--set floating of theObject to true
-	end if
-	--log "end awake from nib"
-end awake from nib
-
 on will finish launching theObject
 	--log "start will finish launching"	
 	showStartupMessage("Loading Scripts ...")
@@ -126,18 +117,6 @@ on will finish launching theObject
 	
 	--log "end finish launching"
 end will finish launching
-
-on will open theObject
-	--log "start will open"
-	set theName to name of theObject
-	
-	if theName is "Startup" then
-		set level of theObject to 1
-		center theObject
-		set alpha value of theObject to 0.7
-	end if
-	--log "end will open"
-end will open
 
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
