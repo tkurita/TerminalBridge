@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>UnixScriptServer</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.2.1 copyright 2005, Tetsuro KURITA</string>
+	<string>1.2.2 copyright 2005, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>UnixScriptServer Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -25,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
