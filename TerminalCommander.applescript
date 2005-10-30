@@ -32,7 +32,6 @@ property terminalReference : missing value
 --internal parameter
 property isTerminalLaunched : missing value
 property defaultObjList : {}
-property numWindow : missing value
 
 on writeTerminalPref(theKey, theValue)
 	if theValue is not missing value then
@@ -204,7 +203,7 @@ on doCommands for shellCommands given activation:activateFlag
 		end tell
 		
 		if activateFlag then
-			call method "smartActivate:" with parameter "trmx"
+			call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 		end if
 		
 		tell application "Terminal"
@@ -216,35 +215,35 @@ on doCommands for shellCommands given activation:activateFlag
 		
 		tell application "Terminal"
 			if isTerminalLaunched then
-				set numWindow to count window
+				set isExecInFrontWindow to false
 			else
-				set numWindow to 0
 				if activateFlag then
 					activate
 					set activateFlag to false
 				else
 					launch
 				end if
+				set isExecInFrontWindow to true
 			end if
 		end tell
 		
 		set executionString to contents of default entry "ExecutionString" of user defaults
 		if executionString is not "" then
-			set terminalReference to execCommand(executionString & return & shellCommands)
+			set terminalReference to execCommand(executionString & return & shellCommands, isExecInFrontWindow)
 		else
-			set terminalReference to execCommand(shellCommands)
+			set terminalReference to execCommand(shellCommands, isExecInFrontWindow)
 		end if
 		
 		applyTtitleStetting()
 		revertTerminalPref()
 		revertColors() of theTerminalColorObj
 		if activateFlag then
-			call method "smartActivate:" with parameter "trmx"
+			call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"
 		end if
 	end if
 end doCommands
 
-on waitNewWindow()
+on waitNewWindow(numWindow)
 	repeat
 		tell application "Terminal"
 			set currentNumWin to count window
@@ -257,13 +256,18 @@ on waitNewWindow()
 	end repeat
 end waitNewWindow
 
-on execCommand(theCommands)
+on execCommand(theCommands, isExecInFrontWindow)
 	tell application "Terminal"
-		if isTerminalLaunched then
-			do script theCommands
-			my waitNewWindow()
-		else
+		if isExecInFrontWindow then
 			do script theCommands in window 1
+		else
+			if isTerminalLaunched then
+				set numWindow to count window
+			else
+				set numWindow to 0
+			end if
+			do script theCommands
+			my waitNewWindow(numWindow)
 		end if
 		return window 1
 	end tell
