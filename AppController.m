@@ -34,6 +34,11 @@
 	if ([appName isEqualToString:@"mi"] ) [[NSApplication sharedApplication] terminate:self];
 }
 
+- (IBAction)closeWindow:(id)sender
+{
+	[[NSApp mainWindow] close];
+}
+
 #pragma mark methods for factory settings
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
 {
