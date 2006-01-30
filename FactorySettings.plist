@@ -21,9 +21,9 @@
 		<integer>21823</integer>
 	</array>
 	<key>CustomTitle</key>
-	<string>UnixScript Console</string>
+	<string>* UnixScript Console *</string>
 	<key>ExecutionString</key>
-	<string>export PROMPT_COMMAND='echo -ne "\033]0;UnixScript Console\007"'</string>
+	<string>export PROMPT_COMMAND='echo -ne "\033]0;* UnixScript Console *\007"'</string>
 	<key>IsChangeBackground</key>
 	<true/>
 	<key>IsChangeBoldText</key>
