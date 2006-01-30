@@ -1,7 +1,7 @@
 (* shared script objects *)
 property LibraryFolder : (path to home folder as Unicode text) & "Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
-property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
-property StringEngine : load script file (LibraryFolder & "StringEngine")
+property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
+property StringEngine : load script file (LibraryFolder & "StringEngine.scpt")
 
 property TerminalCommander : missing value
 property TerminalSettingObj : missing value
