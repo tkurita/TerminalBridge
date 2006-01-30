@@ -1,5 +1,5 @@
 (* shared script objects *)
-property LibraryFolder : "IGAGURI HD:Users:tkurita:Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
+property LibraryFolder : (path to home folder as Unicode text) & "Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer")
 property StringEngine : load script file (LibraryFolder & "StringEngine")
 
