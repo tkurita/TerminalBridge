@@ -7,7 +7,7 @@
 +(BOOL)activateAppOfInfo:(NSDictionary *)pDict
 {
 	if (pDict != nil) {
-		OSStatus result = activateForProcessInfo(pDict);
+		OSStatus result = activateForProcessInfo((CFDictionaryRef)pDict);
 		return result==noErr;
 	}
 	else {
