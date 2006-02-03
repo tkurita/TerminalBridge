@@ -2,6 +2,14 @@
 
 @implementation SettingWindowController
 
+- (IBAction)insert:(id)sender
+{
+	//[arrayController insertObject:[NSDictionary dictionaryWithObject:@"process" forKey:@"process"] atArrangedObjectIndex:2];
+	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObject:@"new_process" forKey:@"process"];
+	[arrayController addObject:newObj];
+	[arrayController setSelectedObjects:[NSArray arrayWithObject:newObj]];
+}
+
 - (IBAction)showSettingHelp:(id)sender
 {
 	NSHelpManager *helpManager = [NSHelpManager sharedHelpManager];

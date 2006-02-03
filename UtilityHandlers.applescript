@@ -1,4 +1,18 @@
 global StringEngine
+global appController
+
+property yenmark : missing value
+property backslash : missing value
+
+on cleanYenmark(theText)
+	if yenmark is missing value then
+		set yenmark to call method "factoryDefaultForKey:" of appController with parameter "yenmark"
+		set backslash to call method "factoryDefaultForKey:" of appController with parameter "backslash"
+	end if
+	
+	set theText to theText as Unicode text
+	return uTextReplace of StringEngine for theText from yenmark by backslash
+end cleanYenmark
 
 on importScript(scriptName)
 	tell main bundle
@@ -16,17 +30,25 @@ end loadPlistDictionary
 
 on getKeyValue for entryName from dictionaryValue
 	return call method "objectForKey:" of dictionaryValue with parameter entryName
-	--return call method "valueForKey:" of dictionaryValue with parameter entryName
 end getKeyValue
 
 on stripHeadTailSpaces(theText)
-	if theText starts with space then
+	set spaceList to {space,tab, return}
+	try
+	if (first character of theText) is in spaceList then
 		set theText to stripHeadTailSpaces(text 2 thru -1 of theText)
-	else if theText ends with space then
+	else if (last character of theText) is in spaceList then
 		set theText to stripHeadTailSpaces(text 1 thru -2 of theText)
 	else
 		return theText
 	end if
+	on error msg number errn
+		if length of theText is 1 then
+			return ""
+		else
+			error msg number errn
+		end if
+	end try
 end stripHeadTailSpaces
 
 on isExists(filePath)

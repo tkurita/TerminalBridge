@@ -1,8 +1,38 @@
 #import "AppController.h"
+#import "DelimedStringToArrayTransformer.h"
 
 #define useLog 0
 
+static id sharedObj;
+
 @implementation AppController
+
++ (void)initialize	// Early initialization
+{	
+	NSValueTransformer *transformer = [[[DelimedStringToArrayTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"DelimedStringToArrayTransformer"];
+
+	sharedObj = nil;
+}
+
++ (id)sharedAppController
+{
+	if (sharedObj == nil) {
+		sharedObj = [[self alloc] init];
+	}
+	return sharedObj;
+}
+
+- (id)init
+{
+	if (self = [super init]) {
+		if (sharedObj == nil) {
+			sharedObj = self;
+		}
+	}
+	
+	return self;
+}
 
 - (void)checkQuit:(NSTimer *)aTimer
 {

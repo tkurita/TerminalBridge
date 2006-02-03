@@ -2,6 +2,7 @@
 property LibraryFolder : (path to home folder as Unicode text) & "Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
 property StringEngine : load script file (LibraryFolder & "StringEngine.scpt")
+property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary.scpt")
 
 property TerminalCommander : missing value
 property TerminalSettingObj : missing value
@@ -13,10 +14,10 @@ property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
 property SettingWindowObj : missing value
 property CommandBuilder : missing value
+property EditorClient : missing value
 
 (*shared constants *)
 property dQ : ASCII character 34
-property yenmark : ASCII character 92
 property lineFeed : ASCII character 10
 
 
@@ -40,6 +41,7 @@ on launched theObject
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
+	--sendSelection() of UnixScriptObj
 	--checkSyntax()
 	(*end of debug code*)
 end launched
@@ -48,15 +50,21 @@ on open theObject
 	if class of theObject is record then
 		set theCommandID to commandID of theObject
 		try
-			set optionRecord to argument of theObject
+			set theArg to argument of theObject
 		on error
-			set optionRecord to missing value
+			set theArg to missing value
 		end try
 		
 		if theCommandID is "runWithFinderSelection" then
-			runWithFinderSelection(optionRecord) of UnixScriptObj
+			runWithFinderSelection(theArg) of UnixScriptObj
 		else if theCommandID is "RunInTerminal" then
-			RunInTerminal(optionRecord) of UnixScriptObj
+			RunInTerminal(theArg) of UnixScriptObj
+		else if theCommandID is "sendSelection" then
+			sendSelection() of UnixScriptObj
+		else if theCommandID is "showInteractiveTerminal" then
+			showInteractiveTerminal() of UnixScriptObj
+		else if theCommandID is "sendCommand" then
+			sendCommand(theArg) of UnixScriptObj
 		else if theCommandID is "setting" then
 			openWindow() of SettingWindowObj
 		else if theCommandID is "Help" then
@@ -96,7 +104,8 @@ end choose menu item
 on will finish launching theObject
 	--log "start will finish launching"	
 	showStartupMessage("Loading Scripts ...")
-	set appController to call method "delegate"
+	--set appController to call method "delegate"
+	set appController to call method "sharedAppController" of class "AppController"
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set MessageUtility to importScript("MessageUtility")
 	set TerminalCommander to importScript("TerminalCommander")
@@ -107,7 +116,7 @@ on will finish launching theObject
 	set UnixScriptObj to importScript("UnixScriptObj")
 	
 	set SettingWindowObj to importScript("SettingWindowObj")
-	
+	set EditorClient to importScript("EditorClient")
 	--log "end of importScripts"
 	
 	showStartupMessage("Loading Preferences ...")
@@ -121,4 +130,8 @@ end will finish launching
 on showStartupMessage(theMessage)
 	set contents of text field "StartupMessage" of window "Startup" to theMessage
 end showStartupMessage
+
+on selected tab view item theObject tab view item tabViewItem
+	selectedTab(tabViewItem) of SettingWindowObj
+end selected tab view item
 

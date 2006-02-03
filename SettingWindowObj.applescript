@@ -1,13 +1,17 @@
 global TerminalSettingObj
+global appController
 
 property WindowController : missing value
 property targetWindow : missing value
+
+property isLoadedTerminalSetting : false
 
 on initilize()
 	set WindowController to call method "alloc" of class "SettingWindowController"
 	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "Setting"
 	set targetWindow to call method "window" of WindowController
-	applyDefaults()
+	selectedTab(current tab view item of tab view "SettingTabs" of my targetWindow)
+	--applyDefaults()
 end initilize
 
 on openWindow()
@@ -21,11 +25,26 @@ end openWindow
 
 on RevertToDefault()
 	--log "start RevertToDefault"
-	revertToFactorySetting() of TerminalSettingObj
-	applyDefaults()
+	set currentTab to current tab view item of tab view "SettingTabs" of my targetWindow
+	set theName to name of currentTab
+	if theName is "TerminalSetting" then
+		revertToFactorySetting() of TerminalSettingObj
+	else if theName is "InteractiveProcess" then
+		call method "revertToFactoryDefaultForKey:" of appController with parameter "CleanCommands"
+	end if
+	selectedTab(currentTab)
 end RevertToDefault
 
-on applyDefaults()
-	setSettingToWindow(box "TerminalSetting" of targetWindow) of TerminalSettingObj
-	--log "end of applyDefaults in SettingWindowObj"
-end applyDefaults
+on selectedTab(tabViewItem)
+	set theName to name of tabViewItem
+	if theName is "TerminalSetting" then
+		loadTerminalSetting(tabViewItem)
+	end if
+end selectedTab
+
+on loadTerminalSetting(theView)
+	if not isLoadedTerminalSetting then
+		setSettingToWindow(theView) of TerminalSettingObj
+		set isLoadedTerminalSetting to true
+	end if
+end loadTerminalSetting
