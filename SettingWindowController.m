@@ -2,12 +2,18 @@
 
 @implementation SettingWindowController
 
-- (IBAction)insert:(id)sender
+- (IBAction)addProcess:(id)sender
 {
-	//[arrayController insertObject:[NSDictionary dictionaryWithObject:@"process" forKey:@"process"] atArrangedObjectIndex:2];
 	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObject:@"new_process" forKey:@"process"];
-	[arrayController addObject:newObj];
-	[arrayController setSelectedObjects:[NSArray arrayWithObject:newObj]];
+	[cleanCommandController addObject:newObj];
+	[cleanCommandController setSelectedObjects:[NSArray arrayWithObject:newObj]];
+}
+
+- (IBAction)addModeCommand:(id)sender
+{
+	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"new_mode",@"mode",@"new_command",@"command",nil]; 
+	[defaultCommandController addObject:newObj];
+	[defaultCommandController setSelectedObjects:[NSArray arrayWithObject:newObj]];
 }
 
 - (IBAction)showSettingHelp:(id)sender
@@ -29,6 +35,7 @@
 - (void)awakeFromNib
 {
 	[[self window] center];
-	[self setWindowFrameAutosaveName:@"SettingWindow"];}
+	[self setWindowFrameAutosaveName:@"SettingWindow"];
+}
 
 @end

@@ -4,9 +4,11 @@
 
 @interface SettingWindowController : NSWindowController
 {
-    IBOutlet id arrayController;
+    IBOutlet id cleanCommandController;
+	IBOutlet id defaultCommandController;
 }
-- (IBAction)insert:(id)sender;
+- (IBAction)addProcess:(id)sender;
+- (IBAction)addModeCommand:(id)sender;
 - (IBAction)showSettingHelp:(id)sender;
 
 @end

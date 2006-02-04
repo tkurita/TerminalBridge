@@ -1,5 +1,6 @@
 #import "AppController.h"
 #import "DelimedStringToArrayTransformer.h"
+#import "DictionaryToArrayTransformer.h"
 
 #define useLog 0
 
@@ -11,7 +12,9 @@ static id sharedObj;
 {	
 	NSValueTransformer *transformer = [[[DelimedStringToArrayTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DelimedStringToArrayTransformer"];
-
+	transformer = [[[DictionaryToArrayTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"DictionaryToArrayTransformer"];
+	
 	sharedObj = nil;
 }
 
