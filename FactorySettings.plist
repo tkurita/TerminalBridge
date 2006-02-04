@@ -24,6 +24,15 @@
 	</array>
 	<key>CustomTitle</key>
 	<string>* UnixScript Console *</string>
+	<key>DefaultCommands</key>
+	<dict>
+		<key>Octave</key>
+		<string>octave</string>
+		<key>Perl</key>
+		<string>perl</string>
+		<key>gnuplot</key>
+		<string>gnuplot</string>
+	</dict>
 	<key>ExecutionString</key>
 	<string>unset PROMPT_COMMAND</string>
 	<key>IsChangeBackground</key>
