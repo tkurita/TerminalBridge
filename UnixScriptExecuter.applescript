@@ -4,6 +4,7 @@ global KeyValueDictionary
 global EditorClient
 global UtilityHandlers
 global StringEngine
+global appController
 
 property interactiveExecuters : missing value
 
@@ -29,6 +30,7 @@ on initialize()
 end initialize
 
 on lookupExecuter given interactive:interactiveFlag
+	--log "start lookupExecuter"
 	set theName to getDocumentName() of EditorClient
 	
 	set aDoc to localized string "aDocument"
@@ -53,12 +55,24 @@ on lookupExecuter given interactive:interactiveFlag
 	end if
 	
 	set firstLine to getParagraph(1) of EditorClient
-	set secondLine to getParagraph(2) of EditorClient
 	
+	set theScriptCommand to missing value
 	if firstLine starts with "#!" then
 		set theScriptCommand to text 3 thru -1 of firstLine
 		set theScriptCommand to stripHeadTailSpaces(theScriptCommand) of UtilityHandlers
-	else
+	end if
+	
+	if theScriptCommand is missing value then
+		set docMode to getDocumentMode() of EditorClient
+		set theScriptCommand to call method "getDefaultCommandForMode:" of appController with parameter docMode
+		try
+			get theScriptCommand
+		on error number -2753
+			set theScriptCommand to missing value
+		end try
+	end if
+	
+	if theScriptCommand is missing value then
 		set invalidCommand to localized string "invalidCommand"
 		set theMessage to aDoc & space & sQ & theName & eQ & space & invalidCommand
 		showMessage(theMessage) of EditorClient
@@ -89,8 +103,6 @@ on lookupExecuter given interactive:interactiveFlag
 		set ith to ith + 1
 	end repeat
 	
-	log theProcessName
-	
 	if interactiveFlag then
 		set baseCommand to first word of theScriptCommand
 		
@@ -110,11 +122,12 @@ on lookupExecuter given interactive:interactiveFlag
 			return getValue of interactiveExecuters given forKey:keyValue
 		end if
 	end if
-	
+	--log "end lookupExecuter"
 	return missing value
 end lookupExecuter
 
-on makeObj given interactive:interactiveFlag
+on getExecuter given interactive:interactiveFlag
+	--log "start getExecuter"
 	initialize()
 	set theExecuter to lookupExecuter given interactive:interactiveFlag
 	
@@ -125,12 +138,36 @@ on makeObj given interactive:interactiveFlag
 	set theCommandBuilder to makeObj(theScriptFile, theScriptCommand) of CommandBuilder
 	set postOption of theCommandBuilder to theOutput
 	
+	set theExecuter to makeObj(theCommandBuilder)
+	setCleanCommands(theProcessName) of theExecuter
+	
+	if interactiveFlag then
+		set theTitle to "* Inferior " & baseCommand
+		if useOwnTerm then
+			set theTitle to theTitle & "--" & theName
+		end if
+		
+		if setTargetTerminal(theTitle & " *") of theExecuter then
+			setValue of interactiveExecuters given forKey:keyValue, withValue:theExecuter
+		else
+			set theExecuter to missing value
+		end if
+	end if
+	--log "end getExecuter"
+	return theExecuter
+end getExecuter
+
+on makeObj(theCommandBuilder)
 	script UnixScriptExecuter
 		global TerminalCommander
 		
 		property parent : theCommandBuilder
-		property processName : theProcessName
+		property processName : missing value
 		property targetTerminal : missing value
+		
+		on setCleanCommands(theProcesses)
+			set processName to theProcesses & ";" & (contents of default entry "CleanCommands" of user defaults)
+		end setCleanCommands
 		
 		on bringToFront()
 			if getTargetTerminal of (my targetTerminal) without allowBusyStatus then
@@ -153,7 +190,7 @@ on makeObj given interactive:interactiveFlag
 		end openNewTerminal
 		
 		on sendCommand(theCommand)
-			--log "start sendCommand"
+			--log "start sendCommand in executer"
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
 			
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
@@ -172,9 +209,12 @@ on makeObj given interactive:interactiveFlag
 		end sendCommand
 		
 		on checkTerminalStatus()
+			--log "start checkTerminalStatus"
 			set processList to getProcessesOnShell() of my targetTerminal
+			--log processList
 			if isBusy() of my targetTerminal then
 				set supportProcesses to everyTextItem of StringEngine from my processName by ";"
+				--log supportProcesses
 				set newProcceses to {}
 				repeat with theItem in processList
 					if theItem is not in supportProcesses then
@@ -192,7 +232,7 @@ on makeObj given interactive:interactiveFlag
 					return false
 				end if
 			else
-				if (processList is {}) and (theCommand is not missing value) then
+				if (processList is {}) then
 					openNewTerminal()
 				end if
 			end if
@@ -205,33 +245,19 @@ on makeObj given interactive:interactiveFlag
 			copy TerminalCommander to targetTerminal
 			forgetTerminal() of targetTerminal
 			setCustomTitle(theCustomTitle) of targetTerminal
-			set allProcName to processName & (contents of default entry "CleanCommands" of user defaults)
-			setCleanCommands(allProcName) of targetTerminal
+			setCleanCommands(processName) of targetTerminal
 			setWindowCloseAction("2") of targetTerminal
 			set theCommand to my buildInteractiveCommand()
+			--log "after buildInteractiveCommand"
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
+			--log "after cleanYenmark"
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
 				return checkTerminalStatus()
 			else
-				doCommands of targetTerminal for (theCommand) without activation
+				doCommands of targetTerminal for theCommand without activation
 			end if
 			--log "end setTargetTerminal"
 			return true
 		end setTargetTerminal
 	end script
-	
-	if interactiveFlag then
-		set theTitle to "* Inferior " & baseCommand
-		if useOwnTerm then
-			set theTitle to theTitle & "--" & theName
-		end if
-		
-		if setTargetTerminal(theTitle & " *") of UnixScriptExecuter then
-			setValue of interactiveExecuters given forKey:keyValue, withValue:UnixScriptExecuter
-		else
-			set UnixScriptExecuter to missing value
-		end if
-	end if
-	
-	return UnixScriptExecuter
 end makeObj
