@@ -9,6 +9,12 @@ on getDocumentFileAlilas()
 	end try
 end getDocumentFileAlilas
 
+on getDocumentMode()
+	tell application "mi"
+		return mode of document 1
+	end tell
+end getDocumentMode
+
 on getDocumentName()
 	tell application "mi"
 		return name of document 1
@@ -45,7 +51,7 @@ on showMessageWithAsk(theMessage)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
 		try
-			display dialog theMessage with icon note
+			display dialog theMessage
 		on error
 			return false
 		end try
@@ -56,7 +62,7 @@ end showMessageWithAsk
 on showMessage(theMessage)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
-		display dialog theMessage buttons {"OK"} default button "OK" with icon note
+		display dialog theMessage buttons {"OK"} default button "OK"
 	end tell
 end showMessage
 
