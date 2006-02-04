@@ -2,13 +2,13 @@ global UnixScriptExecuter
 global EditorClient
 global TerminalCommander
 global UtilityHandlers
+global StringEngine
 
 (* execute tex commands called from tools from mi  ====================================*)
 (* interactive process *)
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
-	--set theExecuter to lookupExecuter of UnixScriptExecuter with interactive
-	set theExecuter to makeObj of UnixScriptExecuter with interactive
+	set theExecuter to getExecuter of UnixScriptExecuter with interactive
 	if theExecuter is missing value then
 		--log "the Executer is not found"
 		if getTargetTerminal of TerminalCommander without allowBusyStatus then
@@ -27,8 +27,9 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on sendCommand(theCommand)
+	--log "start sendCommand in UnixScriptOjb"
 	try
-		set theScriptExecuter to makeObj of UnixScriptExecuter with interactive
+		set theScriptExecuter to getExecuter of UnixScriptExecuter with interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -47,8 +48,9 @@ on sendCommand(theCommand)
 end sendCommand
 
 on sendSelection()
+	--log "start sendSelection"
 	try
-		set theScriptExecuter to makeObj of UnixScriptExecuter with interactive
+		set theScriptExecuter to getExecuter of UnixScriptExecuter with interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -61,12 +63,18 @@ on sendSelection()
 	end if
 	
 	set theCommand to getSelection() of EditorClient
-	
 	if theCommand is "" then
 		set theCommand to getCurrentLine() of EditorClient
+		set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+	else
+		set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+		tell StringEngine
+			startStringEngine() of it
+			set theCommand to uTextReplace of it for theCommand from tab by "  "
+			stopStringEngine() of it
+		end tell
 	end if
 	
-	set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
 	if theCommand is not "" then
 		sendCommand(theCommand) of theScriptExecuter
 	end if
@@ -75,7 +83,7 @@ end sendSelection
 (* simply run in Terminal *)
 on RunInTerminal(optionRecord)
 	try
-		set theScriptExecuter to makeObj of UnixScriptExecuter without interactive
+		set theScriptExecuter to getExecuter of UnixScriptExecuter without interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -101,7 +109,7 @@ end getFinderSelection
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
 	try
-		set theScriptExecuter to makeObj of UnixScriptExecuter with interactive
+		set theScriptExecuter to getExecuter of UnixScriptExecuter with interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
