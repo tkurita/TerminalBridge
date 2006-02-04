@@ -14,5 +14,6 @@
 - (id)factoryDefaultForKey:(NSString *)theKey;
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey;
 + (id)sharedAppController;
+- (NSString *)getDefaultCommandForMode:(NSString *)theMode;
 
 @end

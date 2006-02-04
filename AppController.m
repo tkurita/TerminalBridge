@@ -72,6 +72,12 @@ static id sharedObj;
 	[[NSApp mainWindow] close];
 }
 
+- (NSString *)getDefaultCommandForMode:(NSString *)theMode
+{
+	NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCommands"];
+	return [dict objectForKey:theMode];
+}
+
 #pragma mark methods for factory settings
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
 {
