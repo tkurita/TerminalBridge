@@ -29,8 +29,9 @@ on RevertToDefault()
 	set theName to name of currentTab
 	if theName is "TerminalSetting" then
 		revertToFactorySetting() of TerminalSettingObj
-	else if theName is "InteractiveProcess" then
+	else if theName is "CommandAndProcess" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "CleanCommands"
+		call method "revertToFactoryDefaultForKey:" of appController with parameter "DefaultCommands"
 	end if
 	selectedTab(currentTab)
 end RevertToDefault
