@@ -30,6 +30,7 @@ on makeObj(theScriptFile, theScriptCommand)
 		end getBaseCommand
 		
 		on buildInteractiveCommand()
+			--log "start buildInteractiveCommand"
 			set pathRecord to do(my scriptFile) of PathAnalyzer
 			set theFolder to folderReference of pathRecord
 			
@@ -40,7 +41,8 @@ on makeObj(theScriptFile, theScriptCommand)
 			if commandOption is not "" then
 				set theScriptCommand to theScriptCommand & space & commandOption
 			end if
-			
+			--log cdCommand & lineFeed & theScriptCommand
+			--log "end buildInteractiveCommand"
 			return cdCommand & lineFeed & theScriptCommand
 		end buildInteractiveCommand
 		
