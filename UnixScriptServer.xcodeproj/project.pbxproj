@@ -1,0 +1,582 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXAppleScriptBuildPhase section */
+		2CA91F0308B5E93B00A6B73C /* AppleScript */ = {
+			isa = PBXAppleScriptBuildPhase;
+			buildActionMask = 2147483647;
+			contextName = "";
+			files = (
+				2CA91F0408B5E93B00A6B73C /* UnixScriptServer.applescript in AppleScript */,
+				2CA91F0508B5E93B00A6B73C /* ColorSwitch.applescript in AppleScript */,
+				2CA91F0608B5E93B00A6B73C /* UnixScriptObj.applescript in AppleScript */,
+				2CA91F0708B5E93B00A6B73C /* TerminalSettingObj.applescript in AppleScript */,
+				2CA91F0808B5E93B00A6B73C /* MessageUtility.applescript in AppleScript */,
+				2CA91F0908B5E93B00A6B73C /* UnixScriptExecuter.applescript in AppleScript */,
+				2CA91F0A08B5E93B00A6B73C /* UtilityHandlers.applescript in AppleScript */,
+				2CA91F0C08B5E93B00A6B73C /* SettingWindowObj.applescript in AppleScript */,
+				2CA91F0E08B5E93B00A6B73C /* CommandBuilder.applescript in AppleScript */,
+				2CA91F0F08B5E93B00A6B73C /* TerminalCommander.applescript in AppleScript */,
+				2CC4854E09906657004E4BDE /* EditorClient.applescript in AppleScript */,
+			);
+			isSharedContext = 0;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXAppleScriptBuildPhase section */
+
+/* Begin PBXBuildFile section */
+		2C086A78098E281500623C18 /* setuphelp.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2C086A77098E281500623C18 /* setuphelp.sh */; };
+		2C701E7708BB85D5000D1339 /* SettingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C701E7508BB85D5000D1339 /* SettingWindowController.h */; };
+		2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */; };
+		2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */; };
+		2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */; };
+		2CA91F0008B5E93B00A6B73C /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD4834208169C3800A7FDA9 /* SmartActivate.h */; };
+		2CA91F0108B5E93B00A6B73C /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0B918408B5D01500602706 /* AppController.h */; };
+		2CA91F0408B5E93B00A6B73C /* UnixScriptServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0508B5E93B00A6B73C /* ColorSwitch.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C738EF80519C8F90010646F /* ColorSwitch.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0608B5E93B00A6B73C /* UnixScriptObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C10B9F70618556700598626 /* UnixScriptObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0708B5E93B00A6B73C /* TerminalSettingObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CC7DB0A0623BC9B003A9309 /* TerminalSettingObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0808B5E93B00A6B73C /* MessageUtility.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB98006243FF3004731C7 /* MessageUtility.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0908B5E93B00A6B73C /* UnixScriptExecuter.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C6FB982062440FA004731C7 /* UnixScriptExecuter.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0A08B5E93B00A6B73C /* UtilityHandlers.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0C08B5E93B00A6B73C /* SettingWindowObj.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C22DEC8078A8BF800C57192 /* SettingWindowObj.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0E08B5E93B00A6B73C /* CommandBuilder.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C42EC4007B350E800C8005B /* CommandBuilder.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0F08B5E93B00A6B73C /* TerminalCommander.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F1108B5E93B00A6B73C /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
+		2CA91F1208B5E93B00A6B73C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C9E42BE052215CB00248965 /* Localizable.strings */; };
+		2CA91F1308B5E93B00A6B73C /* FactorySettings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CC8C94A07882A3600085682 /* FactorySettings.plist */; };
+		2CA91F1408B5E93B00A6B73C /* Setting.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C732BDF07AE5AE3005ACE75 /* Setting.nib */; };
+		2CA91F1608B5E93B00A6B73C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		2CA91F1708B5E93B00A6B73C /* SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CD4834308169C3800A7FDA9 /* SmartActivate.m */; };
+		2CA91F1808B5E93B00A6B73C /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B918308B5D01500602706 /* AppController.m */; };
+		2CA91F1B08B5E93B00A6B73C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		2CA91F1C08B5E93B00A6B73C /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */; };
+		2CC483CA098FBCA4004E4BDE /* SmartActivate.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CC483C9098FBCA4004E4BDE /* SmartActivate.c */; };
+		2CC4854E09906657004E4BDE /* EditorClient.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CC4854D09906657004E4BDE /* EditorClient.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CC48BB209921FAE004E4BDE /* DelimedStringToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */; };
+		2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */; };
+		2CC48BC2099237DE004E4BDE /* stringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC48BC0099237DE004E4BDE /* stringExtra.m */; };
+		2CC48BC3099237DE004E4BDE /* stringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48BC1099237DE004E4BDE /* stringExtra.h */; };
+		2CC48DFC0994898A004E4BDE /* DictionaryToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48DFA0994898A004E4BDE /* DictionaryToArrayTransformer.h */; };
+		2CC48DFD0994898A004E4BDE /* DictionaryToArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC48DFB0994898A004E4BDE /* DictionaryToArrayTransformer.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		2CD607E60569023A00FAFD6B /* SDDebug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
+			};
+			name = SDDebug;
+		};
+		4A9504CCFFE6A4B311CA0CBA /* Development */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O0";
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		4A9504CDFFE6A4B311CA0CBA /* Deployment */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 3.1;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_OSAFLAGS = "-x";
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXFileReference section */
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		2C086A77098E281500623C18 /* setuphelp.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = setuphelp.sh; sourceTree = "<group>"; };
+		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		2C0B918408B5D01500602706 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		2C10B9F70618556700598626 /* UnixScriptObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = UnixScriptObj.applescript; sourceTree = "<group>"; };
+		2C22DEC8078A8BF800C57192 /* SettingWindowObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowObj.applescript; sourceTree = "<group>"; };
+		2C42EC4007B350E800C8005B /* CommandBuilder.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = CommandBuilder.applescript; sourceTree = "<group>"; };
+		2C6FB98006243FF3004731C7 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
+		2C6FB982062440FA004731C7 /* UnixScriptExecuter.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = UnixScriptExecuter.applescript; sourceTree = "<group>"; };
+		2C701E7508BB85D5000D1339 /* SettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindowController.h; sourceTree = "<group>"; };
+		2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindowController.m; sourceTree = "<group>"; };
+		2C732BE007AE5AE3005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
+		2C738EF80519C8F90010646F /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
+		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
+		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
+		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2CA91F1E08B5E93B00A6B73C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
+		2CA91F1F08B5E93B00A6B73C /* UnixScriptServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnixScriptServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
+		2CC483C9098FBCA4004E4BDE /* SmartActivate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SmartActivate.c; sourceTree = "<group>"; };
+		2CC4854D09906657004E4BDE /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
+		2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelimedStringToArrayTransformer.h; sourceTree = "<group>"; };
+		2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelimedStringToArrayTransformer.m; sourceTree = "<group>"; };
+		2CC48BC0099237DE004E4BDE /* stringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stringExtra.m; sourceTree = "<group>"; };
+		2CC48BC1099237DE004E4BDE /* stringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringExtra.h; sourceTree = "<group>"; };
+		2CC48DFA0994898A004E4BDE /* DictionaryToArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryToArrayTransformer.h; sourceTree = "<group>"; };
+		2CC48DFB0994898A004E4BDE /* DictionaryToArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryToArrayTransformer.m; sourceTree = "<group>"; };
+		2CC7DB0A0623BC9B003A9309 /* TerminalSettingObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TerminalSettingObj.applescript; sourceTree = "<group>"; };
+		2CC8C94A07882A3600085682 /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = "-2147483647"; path = FactorySettings.plist; sourceTree = "<group>"; };
+		2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
+		2CD4834208169C3800A7FDA9 /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
+		2CD4834308169C3800A7FDA9 /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
+		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
+		DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UnixScriptServer.applescript; sourceTree = "<group>"; };
+		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2CA91F1A08B5E93B00A6B73C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CA91F1B08B5E93B00A6B73C /* Cocoa.framework in Frameworks */,
+				2CA91F1C08B5E93B00A6B73C /* AppleScriptKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */,
+				2C22DEC8078A8BF800C57192 /* SettingWindowObj.applescript */,
+				2C10B9F70618556700598626 /* UnixScriptObj.applescript */,
+				2C6FB982062440FA004731C7 /* UnixScriptExecuter.applescript */,
+				2CC4854D09906657004E4BDE /* EditorClient.applescript */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CA91F1F08B5E93B00A6B73C /* UnixScriptServer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Scripts */,
+				2C42ECF707B3771800C8005B /* LibraryScripts */,
+				2C0B914D08B5CF1900602706 /* Classes */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2CC48BC0099237DE004E4BDE /* stringExtra.m */,
+				2CC48BC1099237DE004E4BDE /* stringExtra.h */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C086A77098E281500623C18 /* setuphelp.sh */,
+				2CA91F1E08B5E93B00A6B73C /* Info.plist */,
+				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
+				2C732BDF07AE5AE3005ACE75 /* Setting.nib */,
+				DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */,
+				2CC8C94A07882A3600085682 /* FactorySettings.plist */,
+				2C9E42BE052215CB00248965 /* Localizable.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2C0B914D08B5CF1900602706 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */,
+				2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */,
+				2C701E7508BB85D5000D1339 /* SettingWindowController.h */,
+				2C701E7608BB85D5000D1339 /* SettingWindowController.m */,
+				2C0B918308B5D01500602706 /* AppController.m */,
+				2C0B918408B5D01500602706 /* AppController.h */,
+				2CD4834208169C3800A7FDA9 /* SmartActivate.h */,
+				2CC483C9098FBCA4004E4BDE /* SmartActivate.c */,
+				2CD4834308169C3800A7FDA9 /* SmartActivate.m */,
+				2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */,
+				2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */,
+				2CC48DFA0994898A004E4BDE /* DictionaryToArrayTransformer.h */,
+				2CC48DFB0994898A004E4BDE /* DictionaryToArrayTransformer.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		2C42ECF707B3771800C8005B /* LibraryScripts */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */,
+				2CC7DB0A0623BC9B003A9309 /* TerminalSettingObj.applescript */,
+				2C42EC4007B350E800C8005B /* CommandBuilder.applescript */,
+				2C6FB98006243FF3004731C7 /* MessageUtility.applescript */,
+				2C738EF80519C8F90010646F /* ColorSwitch.applescript */,
+				2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */,
+			);
+			name = LibraryScripts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		2CA91EFF08B5E93B00A6B73C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CA91F0008B5E93B00A6B73C /* SmartActivate.h in Headers */,
+				2CA91F0108B5E93B00A6B73C /* AppController.h in Headers */,
+				2C701E7708BB85D5000D1339 /* SettingWindowController.h in Headers */,
+				2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */,
+				2CC48BB209921FAE004E4BDE /* DelimedStringToArrayTransformer.h in Headers */,
+				2CC48BC3099237DE004E4BDE /* stringExtra.h in Headers */,
+				2CC48DFC0994898A004E4BDE /* DictionaryToArrayTransformer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2CA91EFE08B5E93B00A6B73C /* UnixScriptServer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C4A700E0980A72B00D4AF6B /* Build configuration list for PBXNativeTarget "UnixScriptServer" */;
+			buildPhases = (
+				2CA91EFF08B5E93B00A6B73C /* Headers */,
+				2CA91F0308B5E93B00A6B73C /* AppleScript */,
+				2CA91F1008B5E93B00A6B73C /* Resources */,
+				2CA91F1508B5E93B00A6B73C /* Sources */,
+				2CA91F1A08B5E93B00A6B73C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = UnixScriptServer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			name = UnixScriptServer;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Application;
+			productReference = 2CA91F1F08B5E93B00A6B73C /* UnixScriptServer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "UnixScriptServer" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA /* Development */,
+				4A9504CDFFE6A4B311CA0CBA /* Deployment */,
+				2CD607E60569023A00FAFD6B /* SDDebug */,
+			);
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
+			projectDirPath = "";
+			targets = (
+				2CA91EFE08B5E93B00A6B73C /* UnixScriptServer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2CA91F1008B5E93B00A6B73C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CA91F1108B5E93B00A6B73C /* MainMenu.nib in Resources */,
+				2CA91F1208B5E93B00A6B73C /* Localizable.strings in Resources */,
+				2CA91F1308B5E93B00A6B73C /* FactorySettings.plist in Resources */,
+				2CA91F1408B5E93B00A6B73C /* Setting.nib in Resources */,
+				2C086A78098E281500623C18 /* setuphelp.sh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2CA91F1508B5E93B00A6B73C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CA91F1608B5E93B00A6B73C /* main.m in Sources */,
+				2CA91F1708B5E93B00A6B73C /* SmartActivate.m in Sources */,
+				2CA91F1808B5E93B00A6B73C /* AppController.m in Sources */,
+				2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */,
+				2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */,
+				2CC483CA098FBCA4004E4BDE /* SmartActivate.c in Sources */,
+				2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */,
+				2CC48BC2099237DE004E4BDE /* stringExtra.m in Sources */,
+				2CC48DFD0994898A004E4BDE /* DictionaryToArrayTransformer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C8C1DD80520B0DB009688D1 /* Japanese */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		2C732BDF07AE5AE3005ACE75 /* Setting.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C732BE007AE5AE3005ACE75 /* Japanese */,
+			);
+			name = Setting.nib;
+			sourceTree = "<group>";
+		};
+		2C9E42BE052215CB00248965 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C9E42C1052215F000248965 /* Japanese */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2C4A700F0980A72B00D4AF6B /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = UnixScriptServer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Development;
+		};
+		2C4A70100980A72B00D4AF6B /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 3.1;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_OSAFLAGS = "-x";
+				PRODUCT_NAME = UnixScriptServer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		2C4A70110980A72B00D4AF6B /* SDDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
+				PRODUCT_NAME = UnixScriptServer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = SDDebug;
+		};
+		2C4A70120980A72B00D4AF6B /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = UnixScriptServer;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		2C4A70140980A72B00D4AF6B /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_C_LANGUAGE_STANDARD = c99;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Development;
+		};
+		2C4A70150980A72B00D4AF6B /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				GCC_C_LANGUAGE_STANDARD = c99;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Deployment;
+		};
+		2C4A70160980A72B00D4AF6B /* SDDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = SDDebug;
+		};
+		2C4A70170980A72B00D4AF6B /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C4A700E0980A72B00D4AF6B /* Build configuration list for PBXNativeTarget "UnixScriptServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4A700F0980A72B00D4AF6B /* Development */,
+				2C4A70100980A72B00D4AF6B /* Deployment */,
+				2C4A70110980A72B00D4AF6B /* SDDebug */,
+				2C4A70120980A72B00D4AF6B /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "UnixScriptServer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C4A70140980A72B00D4AF6B /* Development */,
+				2C4A70150980A72B00D4AF6B /* Deployment */,
+				2C4A70160980A72B00D4AF6B /* SDDebug */,
+				2C4A70170980A72B00D4AF6B /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
