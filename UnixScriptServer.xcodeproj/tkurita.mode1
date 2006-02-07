@@ -269,7 +269,6 @@
 								<string>2C42ECF707B3771800C8005B</string>
 								<string>2C0B914D08B5CF1900602706</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
-								<string>2C9E42BE052215CB00248965</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
@@ -278,8 +277,6 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>5</integer>
-									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -330,78 +327,24 @@
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
 										<string>UnixScriptExecuter.applescript</string>
-										<key>_historyCapacity</key>
-										<integer>0</integer>
-										<key>bookmark</key>
-										<string>2CC48A600991939A004E4BDE</string>
 										<key>history</key>
 										<array>
-											<string>2C0869AB098E277700623C18</string>
 											<string>2CC4857D09906FA5004E4BDE</string>
 											<string>2CC4857E09906FA5004E4BDE</string>
 											<string>2CC4857F09906FA5004E4BDE</string>
-											<string>2CC4858009906FA5004E4BDE</string>
-											<string>2CC4858109906FA5004E4BDE</string>
-											<string>2CC4869E0990AD74004E4BDE</string>
-											<string>2CC4869F0990AD74004E4BDE</string>
-											<string>2CC4898A0990EBA6004E4BDE</string>
-											<string>2CC48993099103F5004E4BDE</string>
-											<string>2CC489D009911CAA004E4BDE</string>
-											<string>2CC489FE09912E5F004E4BDE</string>
 											<string>2CC48A0809912F75004E4BDE</string>
-											<string>2CC48A1709918E98004E4BDE</string>
-											<string>2CC48A5609919327004E4BDE</string>
-											<string>2CC48A5D0991939A004E4BDE</string>
-											<string>2CC48A5E0991939A004E4BDE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
-											<string>2C4A72F20980A93500D4AF6B</string>
 											<string>2C0869A1098E26B200623C18</string>
-											<string>2C0869AD098E277700623C18</string>
 											<string>2C086A91098E2AA700623C18</string>
 											<string>2C086A92098E2AA700623C18</string>
 											<string>2CC4858909906FA5004E4BDE</string>
 											<string>2CC4858A09906FA5004E4BDE</string>
-											<string>2CC4858B09906FA5004E4BDE</string>
-											<string>2CC4858C09906FA5004E4BDE</string>
-											<string>2CC4858D09906FA5004E4BDE</string>
-											<string>2CC4858E09906FA5004E4BDE</string>
-											<string>2CC4858F09906FA5004E4BDE</string>
-											<string>2CC4859009906FA5004E4BDE</string>
-											<string>2CC4859109906FA5004E4BDE</string>
-											<string>2CC4859309906FA5004E4BDE</string>
 											<string>2CC4859609906FA5004E4BDE</string>
-											<string>2CC485A30990759E004E4BDE</string>
-											<string>2CC485AB099075CE004E4BDE</string>
-											<string>2CC48611099079D6004E4BDE</string>
-											<string>2CC486370990887E004E4BDE</string>
-											<string>2CC4866109908C3C004E4BDE</string>
-											<string>2CC4866D09908CF1004E4BDE</string>
-											<string>2CC4866F09908CF1004E4BDE</string>
-											<string>2CC486A60990AD74004E4BDE</string>
-											<string>2CC486A90990AD74004E4BDE</string>
-											<string>2CC486AA0990AD74004E4BDE</string>
-											<string>2CC486AB0990AD74004E4BDE</string>
-											<string>2CC486AC0990AD74004E4BDE</string>
-											<string>2CC486B10990AD74004E4BDE</string>
 											<string>2CC4898E0990EBA6004E4BDE</string>
-											<string>2CC4898F0990EBA6004E4BDE</string>
-											<string>2CC489900990EBA6004E4BDE</string>
-											<string>2CC48996099103F5004E4BDE</string>
-											<string>2CC489D609911CAA004E4BDE</string>
 											<string>2CC48A0109912E5F004E4BDE</string>
-											<string>2CC48A0209912E5F004E4BDE</string>
-											<string>2CC48A1909918E98004E4BDE</string>
-											<string>2CC48A1A09918E98004E4BDE</string>
-											<string>2CC48A1B09918E98004E4BDE</string>
-											<string>2CC48A1C09918E98004E4BDE</string>
-											<string>2CC48A1D09918E98004E4BDE</string>
-											<string>2CC48A4109919174004E4BDE</string>
-											<string>2CC48A510991926E004E4BDE</string>
 											<string>2CC48A5809919327004E4BDE</string>
-											<string>2CC48A5909919327004E4BDE</string>
-											<string>2CC48A5F0991939A004E4BDE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -459,9 +402,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CC483BA098FBC77004E4BDE</string>
+				<string>2C385CD10999189200C07AFA</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CC483BB098FBC77004E4BDE</string>
+				<string>2C385CD20999189200C07AFA</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -595,7 +538,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>00000002098F560300000000</string>
+		<string>/Users/tkurita/Factories/Script factory/ProjectsX/UnixScriptTools for mi/UnixScriptServer/UnixScriptServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>181 101 1117 837 0 0 1440 938 </string>
@@ -636,12 +579,10 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 319}, {912, 381}}</string>
+								<string>{{0, 252}, {912, 448}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -679,7 +620,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C4A70240980A77C00D4AF6B</string>
-				<string>2CC4848E09904034004E4BDE</string>
+				<string>2C385CA0099917DC00C07AFA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
