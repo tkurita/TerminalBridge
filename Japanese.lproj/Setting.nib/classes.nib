@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {addModeCommand = id; addProcess = id; showSettingHelp = id; }; 
+            CLASS = SettingWindowController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {cleanCommandController = id; defaultCommandController = id; }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}
