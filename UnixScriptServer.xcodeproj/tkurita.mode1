@@ -538,6 +538,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C4A70240980A77C00D4AF6B</string>
 		<string>/Users/tkurita/Factories/Script factory/ProjectsX/UnixScriptTools for mi/UnixScriptServer/UnixScriptServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -579,10 +580,12 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-								<string>{{0, 252}, {912, 448}}</string>
+								<string>{{0, 174}, {912, 526}}</string>
 								<key>PBXProjectModuleGUID</key>
 								<string>XCMainBuildResultsModuleGUID</string>
 								<key>PBXProjectModuleLabel</key>
@@ -620,7 +623,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C4A70240980A77C00D4AF6B</string>
-				<string>2C385CA0099917DC00C07AFA</string>
+				<string>2C385D2B099997F200C07AFA</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
