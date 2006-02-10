@@ -167,7 +167,7 @@
 				2C6FB982062440FA004731C7 /* UnixScriptExecuter.applescript */,
 				2CC4854D09906657004E4BDE /* EditorClient.applescript */,
 			);
-			name = Scripts;
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -273,7 +273,7 @@
 				2C738EF80519C8F90010646F /* ColorSwitch.applescript */,
 				2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */,
 			);
-			name = LibraryScripts;
+			path = LibraryScripts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
