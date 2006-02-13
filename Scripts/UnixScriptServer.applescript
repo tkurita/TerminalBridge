@@ -1,5 +1,5 @@
 (* shared script objects *)
-property LibraryFolder : (path to home folder as Unicode text) & "Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
+property LibraryFolder : (path to home folder as Unicode text) & "Dev:Projects:UnixScriptToolsFormi:Library Scripts:"
 property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
 property StringEngine : load script file (LibraryFolder & "StringEngine.scpt")
 property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary.scpt")
@@ -10,11 +10,13 @@ property UtilityHandlers : missing value
 property MessageUtility : missing value
 property appController : missing value
 
+property ExecuterController : missing value
 property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
 property SettingWindowObj : missing value
 property CommandBuilder : missing value
 property EditorClient : missing value
+property TerminalClient : missing value
 
 (*shared constants *)
 property dQ : ASCII character 34
@@ -38,6 +40,7 @@ on launched theObject
 	(*debug code*)
 	--log "start launched"
 	--openWindow() of SettingWindowObj
+	--getLastResult() of UnixScriptObj
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
@@ -65,6 +68,8 @@ on open theObject
 			showInteractiveTerminal() of UnixScriptObj
 		else if theCommandID is "sendCommand" then
 			sendCommand(theArg) of UnixScriptObj
+		else if theCommandID is "getLastResult" then
+			getLastResult() of UnixScriptObj
 		else if theCommandID is "setting" then
 			openWindow() of SettingWindowObj
 		else if theCommandID is "Help" then
@@ -111,8 +116,10 @@ on will finish launching theObject
 	set TerminalCommander to importScript("TerminalCommander")
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
-	set CommandBuilder to importScript("CommandBuilder")
 	set UnixScriptExecuter to importScript("UnixScriptExecuter")
+	set CommandBuilder to importScript("CommandBuilder")
+	set ExecuterController to importScript("ExecuterController")
+	ExecuterController's initialize()
 	set UnixScriptObj to importScript("UnixScriptObj")
 	
 	set SettingWindowObj to importScript("SettingWindowObj")

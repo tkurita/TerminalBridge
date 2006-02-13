@@ -45,6 +45,33 @@
 	<true/>
 	<key>IsChangeSelection</key>
 	<false/>
+	<key>ModeDefaults</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<string>octave</string>
+			<key>mode</key>
+			<string>Octave</string>
+			<key>prompt</key>
+			<string>octave:\d+&gt;</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>Perl</string>
+			<key>mode</key>
+			<string>perl -w</string>
+			<key>prompt</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<string>gnuplot</string>
+			<key>mode</key>
+			<string>gnuplot</string>
+			<key>prompt</key>
+			<string>gnuplot&gt;</string>
+		</dict>
+	</array>
 	<key>NormalTextColor</key>
 	<array>
 		<integer>0</integer>

@@ -5,7 +5,8 @@
 @interface AppController : NSObject
 {
 	NSTimer *appQuitTimer;
-	NSDictionary *factoryDefaults;	
+	NSDictionary *factoryDefaults;
+
 }
 - (IBAction)closeWindow:(id)sender;
 
@@ -14,6 +15,5 @@
 - (id)factoryDefaultForKey:(NSString *)theKey;
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey;
 + (id)sharedAppController;
-- (NSString *)getDefaultCommandForMode:(NSString *)theMode;
 
 @end

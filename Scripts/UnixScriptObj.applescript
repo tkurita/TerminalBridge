@@ -1,4 +1,4 @@
-global UnixScriptExecuter
+global ExecuterController
 global EditorClient
 global TerminalCommander
 global UtilityHandlers
@@ -6,9 +6,34 @@ global StringEngine
 
 (* execute tex commands called from tools from mi  ====================================*)
 (* interactive process *)
+on getLastResult()
+	--log "start getLastResult in UnixScriptObj"
+	set theExecuter to getExecuter of ExecuterController with interactive without creation
+	if theExecuter is missing value then
+		return
+	end if
+	
+	try
+		set theResult to getLastResult() of theExecuter
+	on error errMsg number 1640
+		set theMessage to localized string "cantFindTerminal"
+		showMessage(theMessage) of EditorClient
+		return
+	end try
+	
+	if theResult is missing value then
+		set theMessage to localized string "noLastResult"
+		showMessage(theMessage) of EditorClient
+		return
+	end if
+	
+	insertText(theResult) of EditorClient
+	--log "end getLastResult in UnixScriptObj"
+end getLastResult
+
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
-	set theExecuter to getExecuter of UnixScriptExecuter with interactive
+	set theExecuter to getExecuter of ExecuterController with interactive and creation
 	if theExecuter is missing value then
 		--log "the Executer is not found"
 		if getTargetTerminal of TerminalCommander without allowBusyStatus then
@@ -29,7 +54,7 @@ end showInteractiveTerminal
 on sendCommand(theCommand)
 	--log "start sendCommand in UnixScriptOjb"
 	try
-		set theScriptExecuter to getExecuter of UnixScriptExecuter with interactive
+		set theScriptExecuter to getExecuter of ExecuterController with interactive and creation
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -50,7 +75,7 @@ end sendCommand
 on sendSelection()
 	--log "start sendSelection"
 	try
-		set theScriptExecuter to getExecuter of UnixScriptExecuter with interactive
+		set theScriptExecuter to getExecuter of ExecuterController with interactive and creation
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -65,7 +90,9 @@ on sendSelection()
 	set theCommand to getSelection() of EditorClient
 	if theCommand is "" then
 		set theCommand to getCurrentLine() of EditorClient
-		set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+		if theCommand is not "" then
+			set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+		end if
 	else
 		set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
 		tell StringEngine
@@ -83,7 +110,7 @@ end sendSelection
 (* simply run in Terminal *)
 on RunInTerminal(optionRecord)
 	try
-		set theScriptExecuter to getExecuter of UnixScriptExecuter without interactive
+		set theScriptExecuter to getExecuter of ExecuterController with creation without interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -109,7 +136,7 @@ end getFinderSelection
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
 	try
-		set theScriptExecuter to getExecuter of UnixScriptExecuter with interactive
+		set theScriptExecuter to getExecuter of ExecuterController with interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum

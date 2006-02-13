@@ -89,3 +89,11 @@ on getCurrentLine()
 		end tell
 	end tell
 end getCurrentLine
+
+on insertText(theString)
+	tell application "mi"
+		tell document 1
+			set selection object 1 to theString
+		end tell
+	end tell
+end insertText

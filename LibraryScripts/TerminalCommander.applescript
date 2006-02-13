@@ -1,4 +1,4 @@
-property LibraryFolder : (path to home folder as Unicode text) & "Factories:Script factory:ProjectsX:UnixScriptTools for mi:Library Scripts:"
+property LibraryFolder : (path to home folder as Unicode text) & "Dev:Projects:UnixScriptToolsFormi:Library Scripts:"
 property parent : load script file (LibraryFolder & "TerminalCommander.scpt")
 
 on activateTerminal()

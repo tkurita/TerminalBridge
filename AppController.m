@@ -72,11 +72,6 @@ static id sharedObj;
 	[[NSApp mainWindow] close];
 }
 
-- (NSString *)getDefaultCommandForMode:(NSString *)theMode
-{
-	NSDictionary *dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"DefaultCommands"];
-	return [dict objectForKey:theMode];
-}
 
 #pragma mark methods for factory settings
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
@@ -95,6 +90,7 @@ static id sharedObj;
 }
 
 #pragma mark delegate of NSApplication
+
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
 #if useLog
@@ -102,8 +98,9 @@ static id sharedObj;
 #endif
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
 	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
+
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults registerDefaults:factoryDefaults];	
+	[userDefaults registerDefaults:factoryDefaults];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -111,6 +108,7 @@ static id sharedObj;
 #if useLog
 	NSLog(@"start applicationDidFinishLaunching");
 #endif
+	
 	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(checkQuit:) userInfo:nil repeats:YES];
 	[appQuitTimer retain];
 	

@@ -11,7 +11,7 @@
 
 - (IBAction)addModeCommand:(id)sender
 {
-	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"new_mode",@"mode",@"new_command",@"command",nil]; 
+	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"new_mode",@"mode",@"new_command",@"command",@"new_prompt",@"prompt",nil]; 
 	[defaultCommandController addObject:newObj];
 	[defaultCommandController setSelectedObjects:[NSArray arrayWithObject:newObj]];
 }
