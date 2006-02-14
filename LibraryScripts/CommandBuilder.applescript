@@ -12,6 +12,9 @@ on makeObj(theScriptFile, theScriptCommand)
 		
 		on setRunOptions(optionRecord)
 			try
+				set scriptCommand to scriptCommand of optionRecord
+			end try
+			try
 				set commandOption to commandOption of optionRecord
 			end try
 			try
