@@ -13,8 +13,8 @@ on initialize()
 	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
 end initialize
 
-on getExecuter given interactive:interactiveFlag, creation:createFlag
-	log "start getExecuter"
+on getExecuter given interactive:interactiveFlag
+	--log "start getExecuter"
 	set theScriptFile to missing value
 	set theScriptCommand to missing value
 	set theOutput to missing value
@@ -132,12 +132,6 @@ on getExecuter given interactive:interactiveFlag, creation:createFlag
 		setPrompt(thePrompt) of theExecuter
 		return theExecuter
 	end if
-	
-	(*	
-	if not createFlag then
-		return theExecuter
-	end if
-*)
 	
 	set theCommandBuilder to makeObj(theScriptFile, theScriptCommand) of CommandBuilder
 	set postOption of theCommandBuilder to theOutput

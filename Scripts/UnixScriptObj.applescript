@@ -8,10 +8,7 @@ global StringEngine
 (* interactive process *)
 on getLastResult()
 	--log "start getLastResult in UnixScriptObj"
-	set theExecuter to getExecuter of ExecuterController with interactive without creation
-	if theExecuter is missing value then
-		return
-	end if
+	set theExecuter to getExecuter of ExecuterController with interactive
 	
 	try
 		set theResult to getLastResult() of theExecuter
@@ -33,7 +30,7 @@ end getLastResult
 
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
-	set theExecuter to getExecuter of ExecuterController with interactive and creation
+	set theExecuter to getExecuter of ExecuterController with interactive
 	if theExecuter is missing value then
 		--log "the Executer is not found"
 		if getTargetTerminal of TerminalCommander without allowBusyStatus then
@@ -54,7 +51,7 @@ end showInteractiveTerminal
 on sendCommand(theCommand)
 	--log "start sendCommand in UnixScriptOjb"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive and creation
+		set theScriptExecuter to getExecuter of ExecuterController with interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -75,7 +72,7 @@ end sendCommand
 on sendSelection()
 	--log "start sendSelection"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive and creation
+		set theScriptExecuter to getExecuter of ExecuterController with interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -110,7 +107,7 @@ end sendSelection
 (* simply run in Terminal *)
 on RunInTerminal(optionRecord)
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with creation without interactive
+		set theScriptExecuter to getExecuter of ExecuterController without interactive
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
