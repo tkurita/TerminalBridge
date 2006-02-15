@@ -1,6 +1,7 @@
 global TerminalCommander
 global TerminalClient
 global UtilityHandlers
+global StringEngine
 
 on makeObj(theCommandBuilder)
 	script UnixScriptExecuter
@@ -86,7 +87,11 @@ on makeObj(theCommandBuilder)
 			set processList to getProcessesOnShell() of my targetTerminal
 			--log processList
 			if isBusy() of my targetTerminal then
-				set supportProcesses to everyTextItem of StringEngine from my processName by ";"
+				tell StringEngine
+					starStringEngine() of it
+					set supportProcesses to everyTextItem of it from my processName by ";"
+					stopStringEngine() of it
+				end tell
 				--log supportProcesses
 				set newProcceses to {}
 				repeat with theItem in processList
