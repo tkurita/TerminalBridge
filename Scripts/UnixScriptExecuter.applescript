@@ -2,6 +2,7 @@ global TerminalCommander
 global TerminalClient
 global UtilityHandlers
 global StringEngine
+global EditorClient
 
 on makeObj(theCommandBuilder)
 	script UnixScriptExecuter
@@ -88,7 +89,7 @@ on makeObj(theCommandBuilder)
 			--log processList
 			if isBusy() of my targetTerminal then
 				tell StringEngine
-					starStringEngine() of it
+					startStringEngine() of it
 					set supportProcesses to everyTextItem of it from my processName by ";"
 					stopStringEngine() of it
 				end tell
