@@ -12,8 +12,6 @@ static id sharedObj;
 {	
 	NSValueTransformer *transformer = [[[DelimedStringToArrayTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DelimedStringToArrayTransformer"];
-	transformer = [[[DictionaryToArrayTransformer alloc] init] autorelease];
-	[NSValueTransformer setValueTransformer:transformer forName:@"DictionaryToArrayTransformer"];
 	
 	sharedObj = nil;
 }
