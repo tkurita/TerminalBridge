@@ -124,10 +124,13 @@ on getExecuter given interactive:interactiveFlag
 			if docMode is missing value then
 				set docMode to getDocumentMode() of EditorClient
 			end if
-			set thePrompt to call method "promptForMode:" of TerminalClient with parameter docMode
+			set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter docMode
+			try -- theDefPrompt may be undefined
+				set thePrompt to theDefPrompt
+			end try
+			--log thePrompt
 		end if
 	end if
-	
 	if theExecuter is not missing value then
 		setPrompt(thePrompt) of theExecuter
 		return theExecuter
