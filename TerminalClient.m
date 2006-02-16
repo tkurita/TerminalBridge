@@ -1,6 +1,8 @@
 #import "TerminalClient.h"
 #import <OgreKit/OgreKit.h>
 
+#define useLog 0
+
 static id sharedObj;
 
 @implementation TerminalClient
@@ -34,9 +36,10 @@ static id sharedObj;
 
 - (NSNumber *)extactLastResult:(NSString *)theText withPrompt:(NSString *)thePrompt
 {
+#if useLog
 	NSLog(@"start extactLastResult:");
+#endif
 	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:[@"^" stringByAppendingString:thePrompt]];
-	//theText = @"a\nb\nc";
 	
 	NSRange lastRange, firstRange;
 	NSRange theRange = NSMakeRange([theText length],0);
@@ -51,10 +54,14 @@ static id sharedObj;
 		theRange = [theText lineRangeForRange:theRange];
 		theSubString = [theText substringWithRange:theRange];
 		match = [regex matchInString:theSubString];
+#if useLog
 		NSLog(theSubString);
+#endif
 		if (match == nil) {
+#if useLog
 			NSLog(theSubString);
-			//NSLog([match matchedString]);
+			NSLog([match matchedString]);
+#endif
 			lastRange = theRange;
 			break;
 		}
@@ -64,6 +71,8 @@ static id sharedObj;
 		return  [NSNumber numberWithInt:0];
 	}
 	
+	// find the line start with prompt
+	firstRange = lastRange;
 	while(theRange.location > 0) {
 		theRange.location = theRange.location - 1;
 		theRange.length = 0;
@@ -75,7 +84,9 @@ static id sharedObj;
 			break;
 		} 
 		else {
+#if useLog
 			NSLog(theSubString);
+#endif
 			firstRange = theRange;
 		}
 	}
@@ -102,7 +113,7 @@ static id sharedObj;
 
 -(void)setLastResult:(NSString *)theString {
 	OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@"^"];
-	theString = [regex replaceAllMatchesInString:theString withString:@"#"];
+	theString = [regex replaceAllMatchesInString:theString withString:@"# "];
 	[theString retain];
 	[_lastResult release];
 	_lastResult = theString;
@@ -120,7 +131,9 @@ static id sharedObj;
 
 - (void)setModeDefaults:(NSArray *)modeDefaults
 {
-	//NSLog([modeDefaults description]);
+#if useLog
+	NSLog([modeDefaults description]);
+#endif
 	[modeCommands release];
 	[modePrompts release];
 	
