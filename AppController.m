@@ -1,6 +1,5 @@
 #import "AppController.h"
 #import "DelimedStringToArrayTransformer.h"
-#import "DictionaryToArrayTransformer.h"
 
 #define useLog 0
 
