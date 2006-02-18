@@ -31,7 +31,7 @@ on RevertToDefault()
 		revertToFactorySetting() of TerminalSettingObj
 	else if theName is "CommandAndProcess" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "CleanCommands"
-		call method "revertToFactoryDefaultForKey:" of appController with parameter "DefaultCommands"
+		call method "revertToFactoryDefaultForKey:" of appController with parameter "ModeDefaults"
 	end if
 	selectedTab(currentTab)
 end RevertToDefault

@@ -68,8 +68,6 @@
 		2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */; };
 		2CC48BC2099237DE004E4BDE /* stringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC48BC0099237DE004E4BDE /* stringExtra.m */; };
 		2CC48BC3099237DE004E4BDE /* stringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48BC1099237DE004E4BDE /* stringExtra.h */; };
-		2CC48DFC0994898A004E4BDE /* DictionaryToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48DFA0994898A004E4BDE /* DictionaryToArrayTransformer.h */; };
-		2CC48DFD0994898A004E4BDE /* DictionaryToArrayTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CC48DFB0994898A004E4BDE /* DictionaryToArrayTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
@@ -156,8 +154,6 @@
 		2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelimedStringToArrayTransformer.m; sourceTree = "<group>"; };
 		2CC48BC0099237DE004E4BDE /* stringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stringExtra.m; sourceTree = "<group>"; };
 		2CC48BC1099237DE004E4BDE /* stringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringExtra.h; sourceTree = "<group>"; };
-		2CC48DFA0994898A004E4BDE /* DictionaryToArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryToArrayTransformer.h; sourceTree = "<group>"; };
-		2CC48DFB0994898A004E4BDE /* DictionaryToArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryToArrayTransformer.m; sourceTree = "<group>"; };
 		2CC7DB0A0623BC9B003A9309 /* TerminalSettingObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TerminalSettingObj.applescript; sourceTree = "<group>"; };
 		2CC8C94A07882A3600085682 /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = "-2147483647"; path = FactorySettings.plist; sourceTree = "<group>"; };
 		2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
@@ -283,8 +279,6 @@
 				2CD4834308169C3800A7FDA9 /* SmartActivate.m */,
 				2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */,
 				2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */,
-				2CC48DFA0994898A004E4BDE /* DictionaryToArrayTransformer.h */,
-				2CC48DFB0994898A004E4BDE /* DictionaryToArrayTransformer.m */,
 				2C591E67099E0CBF000BC6BA /* TerminalClient.h */,
 				2C591E68099E0CBF000BC6BA /* TerminalClient.m */,
 			);
@@ -317,7 +311,6 @@
 				2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */,
 				2CC48BB209921FAE004E4BDE /* DelimedStringToArrayTransformer.h in Headers */,
 				2CC48BC3099237DE004E4BDE /* stringExtra.h in Headers */,
-				2CC48DFC0994898A004E4BDE /* DictionaryToArrayTransformer.h in Headers */,
 				2C591E69099E0CBF000BC6BA /* TerminalClient.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,7 +406,6 @@
 				2CC483CA098FBCA4004E4BDE /* SmartActivate.c in Sources */,
 				2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */,
 				2CC48BC2099237DE004E4BDE /* stringExtra.m in Sources */,
-				2CC48DFD0994898A004E4BDE /* DictionaryToArrayTransformer.m in Sources */,
 				2C591E6A099E0CBF000BC6BA /* TerminalClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,7 +440,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		2C4A700F0980A72B00D4AF6B /* Development */ = {
+		2C4A700F0980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -477,9 +469,9 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		2C4A70100980A72B00D4AF6B /* Deployment */ = {
+		2C4A70100980A72B00D4AF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
@@ -508,7 +500,7 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		2C4A70110980A72B00D4AF6B /* SDDebug */ = {
 			isa = XCBuildConfiguration;
@@ -563,15 +555,15 @@
 			};
 			name = Default;
 		};
-		2C4A70140980A72B00D4AF6B /* Development */ = {
+		2C4A70140980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Development;
+			name = Debug;
 		};
-		2C4A70150980A72B00D4AF6B /* Deployment */ = {
+		2C4A70150980A72B00D4AF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -582,7 +574,7 @@
 				PREBINDING = NO;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		2C4A70160980A72B00D4AF6B /* SDDebug */ = {
 			isa = XCBuildConfiguration;
@@ -604,8 +596,8 @@
 		2C4A700E0980A72B00D4AF6B /* Build configuration list for PBXNativeTarget "UnixScriptServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C4A700F0980A72B00D4AF6B /* Development */,
-				2C4A70100980A72B00D4AF6B /* Deployment */,
+				2C4A700F0980A72B00D4AF6B /* Debug */,
+				2C4A70100980A72B00D4AF6B /* Release */,
 				2C4A70110980A72B00D4AF6B /* SDDebug */,
 				2C4A70120980A72B00D4AF6B /* Default */,
 			);
@@ -615,8 +607,8 @@
 		2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "UnixScriptServer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2C4A70140980A72B00D4AF6B /* Development */,
-				2C4A70150980A72B00D4AF6B /* Deployment */,
+				2C4A70140980A72B00D4AF6B /* Debug */,
+				2C4A70150980A72B00D4AF6B /* Release */,
 				2C4A70160980A72B00D4AF6B /* SDDebug */,
 				2C4A70170980A72B00D4AF6B /* Default */,
 			);

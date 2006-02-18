@@ -44,7 +44,7 @@
 			<key>mode</key>
 			<string>Octave</string>
 			<key>prompt</key>
-			<string>octave:\d+&gt;</string>
+			<string>(octave:\d+)?&gt;</string>
 		</dict>
 		<dict>
 			<key>command</key>
@@ -60,7 +60,7 @@
 			<key>mode</key>
 			<string>gnuplot</string>
 			<key>prompt</key>
-			<string>gnuplot&gt;</string>
+			<string>(gnuplot)?&gt;</string>
 		</dict>
 	</array>
 	<key>NormalTextColor</key>

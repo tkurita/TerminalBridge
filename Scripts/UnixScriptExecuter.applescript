@@ -35,11 +35,11 @@ on makeObj(theCommandBuilder)
 		end getLastResult
 		
 		on setPrompt(thePrompt)
-			log "start setPrompt"
+			--log "start setPrompt"
 			if thePrompt is not missing value then
 				set commandPrompt to thePrompt
 			end if
-			log "end setPrompt"
+			--log "end setPrompt"
 		end setPrompt
 		
 		on setCleanCommands(theProcesses)
