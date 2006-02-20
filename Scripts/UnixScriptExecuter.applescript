@@ -66,6 +66,13 @@ on makeObj(theCommandBuilder)
 			doCmdInNewTerm of targetTerminal for interactiveCommand without activation
 		end openNewTerminal
 		
+		on openNewTermForCommand(theCommand)
+			set interactiveCommand to my buildInteractiveCommand()
+			set interactiveCommand to cleanYenmark(interactiveCommand) of UtilityHandlers
+			set interactiveCommand to interactiveCommand & return & theCommand
+			doCmdInNewTerm of targetTerminal for interactiveCommand without activation
+		end openNewTermForCommand
+		
 		on sendCommand(theCommand)
 			--log "start sendCommand in executer"
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
@@ -77,8 +84,7 @@ on makeObj(theCommandBuilder)
 					return false
 				end if
 			else
-				openNewTerminal()
-				doCmdInCurrentTerm of (my targetTerminal) for theCommand without activation
+				openNewTermForCommand(theCommand)
 			end if
 			
 			--log "end sendCommand"
