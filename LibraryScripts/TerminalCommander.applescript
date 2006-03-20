@@ -1,5 +1,4 @@
-property LibraryFolder : (path to home folder as Unicode text) & "Dev:Projects:UnixScriptToolsFormi:Library Scripts:"
-property parent : load script file (LibraryFolder & "TerminalCommander.scpt")
+property parent : loadLib("TerminalCommander") of application (get "UnixScriptToolsLib")
 
 on activateTerminal()
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "trmx"

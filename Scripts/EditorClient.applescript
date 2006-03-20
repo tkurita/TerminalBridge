@@ -1,3 +1,5 @@
+global StringEngine
+
 on getDocumentFileAlilas()
 	tell application "mi"
 		set theFile to file of document 1
@@ -28,17 +30,20 @@ on isModified()
 end isModified
 
 on saveWithAsking()
-	set aDoc to localized string "aDocument"
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
-	
-	set isModified to localized string "isModified"
 	set doYouSaveText to localized string "doYouSave"
-	
 	tell application "mi"
 		set theName to name of document 1
+	end tell
+	
+	tell StringEngine
+		storeDelimiter()
+		set docIsModified to insertTexts for {theName} into (localized string "docIsModified")
+		restoreDelimiter()
+	end tell
+	
+	tell application "mi"
 		try
-			set theResult to display dialog (aDoc & space & sQ & theName & eQ & space & isModified & return & doYouSaveText)
+			set theResult to display dialog (docIsModified & return & doYouSaveText)
 		on error number -128
 			return false
 		end try

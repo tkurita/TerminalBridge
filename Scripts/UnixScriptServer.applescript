@@ -1,8 +1,11 @@
 (* shared script objects *)
-property LibraryFolder : (path to home folder as Unicode text) & "Dev:Projects:UnixScriptToolsFormi:Library Scripts:"
-property PathAnalyzer : load script file (LibraryFolder & "PathAnalyzer.scpt")
-property StringEngine : load script file (LibraryFolder & "StringEngine.scpt")
-property KeyValueDictionary : load script file (LibraryFolder & "KeyValueDictionary.scpt")
+on loadLib(theName)
+	return loadLib(theName) of application (get "UnixScriptToolsLib")
+end loadLib
+
+property PathAnalyzer : loadLib("PathAnalyzer")
+property StringEngine : loadLib("StringEngine")
+property KeyValueDictionary : loadLib("KeyValueDictionary")
 
 property TerminalCommander : missing value
 property TerminalSettingObj : missing value
