@@ -6,8 +6,6 @@
 	<string>Japanese</string>
 	<key>CFBundleExecutable</key>
 	<string>UnixScriptServer</string>
-	<key>CFBundleGetInfoString</key>
-	<string>2.0.1 copyright 2005-2006, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>UnixScriptServerHelp</string>
 	<key>CFBundleHelpBookName</key>
@@ -24,6 +22,8 @@
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleGetInfoString</key>
+	<string>2.0.1 copyright 2005-2006, Tetsuro KURITA</string>
 	<key>CFBundleVersion</key>
 	<string>2.0.1</string>
 	<key>LSUIElement</key>
