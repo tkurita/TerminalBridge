@@ -139,97 +139,15 @@ end getInteractiveExecuter
 
 on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	--log "start getExecuter"
-	(*
-	set theScriptFile to missing value
-	set theScriptCommand to missing value
-	set theOutput to missing value
-	set theProcessName to missing value
-	set theName to missing value
-	set baseCommand to missing value
-	set useOwnTerm to false
-	set keyValue to missing value
-	set theOutput to ""
-	set thePrompt to missing value
-	set theExecuter to missing value
-	set docMode to missing value
-	*)
 	(* get info of front document of Editor *)
 	set docInfo to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
-	(*
-	set theName to getDocumentName() of EditorClient
-	set theScriptFile to getDocumentFileAlilas() of EditorClient
-	if theScriptFile is missing value then
-		set isNotSaved to localized string "isNotSaved"
-		set theMessage to (aDoc & space & sQ & theName & eQ & space & isNotSaved)
-		showMessage(theMessage) of EditorClient
-		error "The documet is not saved" number 1600
-	end if
 	
-	if not interactiveFlag then
-		set modifiedFlag to isModified() of EditorClient
-		if modifiedFlag then
-			if not saveWithAsking() of EditorClient then
-				error "The documen is modified. Saving the document is canceld by user." number 1610
-			end if
-		end if
-	end if
-	*)
 	(* resolve command name *)
 	set commandInfo to resolveCommand()
-	(*
-	set firstLine to getParagraph(1) of EditorClient
 	
-	set theScriptCommand to missing value
-	if firstLine starts with "#!" then
-		set theScriptCommand to text 3 thru -1 of firstLine
-		set theScriptCommand to stripHeadTailSpaces(theScriptCommand) of UtilityHandlers
-	end if
-	
-	if theScriptCommand is missing value then
-		set docMode to getDocumentMode() of EditorClient
-		set theScriptCommand to call method "commandForMode:" of TerminalClient with parameter docMode
-		try
-			get theScriptCommand
-		on error number -2753
-			set theScriptCommand to missing value
-		end try
-	end if
-	
-	if theScriptCommand is missing value then
-		set invalidCommand to localized string "invalidCommand"
-		set theMessage to aDoc & space & sQ & theName & eQ & space & invalidCommand
-		showMessage(theMessage) of EditorClient
-		error "The document does not start with #!." number 1620
-	end if
-	*)
 	(* get header commands *)
 	set headerCommands to resolveHeaderCommand()
-	(*
-	set ith to 1
-	repeat
-		set theParagraph to getParagraph(ith) of EditorClient
-		if theParagraph starts with "#" then
-			ignoring case
-				if theParagraph starts with "#output" then
-					set theOutput to stripHeadTailSpaces(text 9 thru -1 of theOutput) of UtilityHandlers
-				else if theParagraph starts with "#process" then
-					if length of theParagraph > 9 then
-						set theProcessName to stripHeadTailSpaces(text 10 thru -1 of theParagraph) of UtilityHandlers
-					end if
-				else if theParagraph starts with "#prompt" then
-					if length of theParagraph > 8 then
-						set thePrompt to stripHeadTailSpaces(text 9 thru -1 of theParagraph) of UtilityHandlers
-					end if
-				else if theParagraph starts with "#useOwnTerm" then
-					set useOwnTerm to true
-				end if
-			end ignoring
-		else
-			exit repeat
-		end if
-		set ith to ith + 1
-	end repeat
-	*)
+	
 	if interactiveFlag then
 		set {keyValue, theExecuter} to getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		if theExecuter is not missing value then

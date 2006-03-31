@@ -34,12 +34,16 @@ on makeObj(theScriptFile, theScriptCommand)
 		
 		on buildInteractiveCommand()
 			--log "start buildInteractiveCommand"
-			set pathRecord to do(my scriptFile) of PathAnalyzer
-			set theFolder to folderReference of pathRecord
+			if scriptFile is missing value then
+				set cdCommand to ""
+			else
+				set pathRecord to analyzePath(my scriptFile) of PathAnalyzer
+				set theFolder to folderReference of pathRecord
+				--build cd command
+				set theFolder to quoted form of POSIX path of theFolder
+				set cdCommand to "cd " & theFolder
+			end if
 			
-			--build cd command
-			set theFolder to quoted form of POSIX path of theFolder
-			set cdCommand to "cd " & theFolder
 			set theScriptCommand to my scriptCommand
 			if commandOption is not "" then
 				set theScriptCommand to theScriptCommand & space & commandOption
@@ -50,7 +54,7 @@ on makeObj(theScriptFile, theScriptCommand)
 		end buildInteractiveCommand
 		
 		on buildCommand()
-			set pathRecord to do(scriptFile) of PathAnalyzer
+			set pathRecord to analyzePath(scriptFile) of PathAnalyzer
 			set theFolder to folderReference of pathRecord
 			
 			--build cd command

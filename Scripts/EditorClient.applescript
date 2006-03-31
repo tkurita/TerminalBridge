@@ -64,6 +64,18 @@ on showMessageWithAsk(theMessage)
 	return true
 end showMessageWithAsk
 
+on showMessageWithButtons(theMessage, buttonList, defaultButton)
+	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
+	tell application "mi"
+		try
+			set theResult to display dialog theMessage buttons buttonList default button defaultButton
+		on error
+			set theResult to {button returned:missing value}
+		end try
+	end tell
+	return theResult
+end showMessageWithButtons
+
 on showMessage(theMessage)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"

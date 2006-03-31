@@ -63,14 +63,14 @@ on makeObj(theCommandBuilder)
 		on openNewTerminal()
 			set interactiveCommand to my buildInteractiveCommand()
 			set interactiveCommand to cleanYenmark(interactiveCommand) of UtilityHandlers
-			doCmdInNewTerm of targetTerminal for interactiveCommand without activation
+			return doCmdInNewTerm of targetTerminal for interactiveCommand without activation
 		end openNewTerminal
 		
 		on openNewTermForCommand(theCommand)
 			set interactiveCommand to my buildInteractiveCommand()
 			set interactiveCommand to cleanYenmark(interactiveCommand) of UtilityHandlers
 			set interactiveCommand to interactiveCommand & return & theCommand
-			doCmdInNewTerm of targetTerminal for interactiveCommand without activation
+			return doCmdInNewTerm of targetTerminal for interactiveCommand without activation
 		end openNewTermForCommand
 		
 		on sendCommand(theCommand)
@@ -78,6 +78,7 @@ on makeObj(theCommandBuilder)
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
 			
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
+				--log "before checkTerminalStatus in sendCommand in executer"
 				if checkTerminalStatus() then
 					doCmdInCurrentTerm of (my targetTerminal) for theCommand without activation
 				else
@@ -93,9 +94,11 @@ on makeObj(theCommandBuilder)
 		
 		on checkTerminalStatus()
 			--log "start checkTerminalStatus"
+			set theResult to true
 			set processList to getProcessesOnShell() of my targetTerminal
 			--log processList
 			if isBusy() of my targetTerminal then
+				--log "targetTermianl is Busy "
 				tell StringEngine
 					startStringEngine() of it
 					set supportProcesses to everyTextItem of it from my processName by ";"
@@ -112,19 +115,25 @@ on makeObj(theCommandBuilder)
 				set processTexts to joinUTextList of StringEngine for newProcceses by return
 				set termName to getTerminalName() of my targetTerminal
 				set theMessage to getLocalizedString of UtilityHandlers given keyword:"cantExecCommand", insertTexts:{termName, processTexts}
-				if showMessageWithAsk(theMessage) of EditorClient then
-					openNewTerminal()
-					return true
+				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
+				set theMessageResult to showMessageWithButtons(theMessage, buttonList, item 3 of buttonList) of EditorClient
+				--log "after showMessageWithButtons"
+				set theReturned to button returned of theMessageResult
+				if theReturned is item 3 of buttonList then
+					bringToFront() of my targetTerminal
+					set theResult to false
+				else if theReturned is item 2 of buttonList then
+					set theResult to openNewTerminal()
 				else
-					return false
+					set theResult to false
 				end if
 			else
 				if (processList is {}) then
-					openNewTerminal()
+					set theResult to openNewTerminal()
 				end if
 			end if
-			
-			return true
+			--log "end of checkTerminalStatus"
+			return theResult
 		end checkTerminalStatus
 		
 		on setTargetTerminal given title:theCustomTitle, ignoreStatus:isIgnoreStatus

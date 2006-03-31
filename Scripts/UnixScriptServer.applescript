@@ -40,15 +40,15 @@ end importScript
 
 on launched theObject
 	hide window "Startup"
-	showInteractiveTerminal() of UnixScriptObj
 	(*debug code*)
+	--showInteractiveTerminal() of UnixScriptObj
 	--log "start launched"
 	--openWindow() of SettingWindowObj
 	--getLastResult() of UnixScriptObj
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
-	--sendSelection() of UnixScriptObj
+	sendSelection() of UnixScriptObj
 	--checkSyntax()
 	(*end of debug code*)
 end launched
