@@ -8,7 +8,7 @@ global StringEngine
 (* interactive process *)
 on getLastResult()
 	--log "start getLastResult in UnixScriptObj"
-	set theExecuter to getExecuter of ExecuterController with interactive
+	set theExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	
 	try
 		set theResult to getLastResult() of theExecuter
@@ -30,16 +30,17 @@ end getLastResult
 
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
-	set theExecuter to getExecuter of ExecuterController with interactive
+	set theExecuter to getExecuter of ExecuterController with interactive and allowBusyStatus
 	if theExecuter is missing value then
 		--log "the Executer is not found"
-		if getTargetTerminal of TerminalCommander without allowBusyStatus then
+		-- このブロックはいらないかもしれない。theExecuter は いつ missing value　になる？
+		if getTargetTerminal of TerminalCommander with allowBusyStatus then
 			set theResult to bringToFront() of TerminalCommander
 		else
 			set theResult to false
 		end if
 	else
-		set theResult to bringToFront() of theExecuter
+		set theResult to bringToFront of theExecuter with allowBusyStatus
 	end if
 	
 	if not theResult then
@@ -51,7 +52,7 @@ end showInteractiveTerminal
 on sendCommand(theCommand)
 	--log "start sendCommand in UnixScriptOjb"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive
+		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -72,7 +73,7 @@ end sendCommand
 on sendSelection()
 	--log "start sendSelection"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive
+		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -107,7 +108,7 @@ end sendSelection
 (* simply run in Terminal *)
 on RunInTerminal(optionRecord)
 	try
-		set theScriptExecuter to getExecuter of ExecuterController without interactive
+		set theScriptExecuter to getExecuter of ExecuterController without interactive and allowBusyStatus
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -121,10 +122,10 @@ end RunInTerminal
 --run with Finder's selection
 on getFinderSelection()
 	tell application "Finder"
-		set thelist to selection
+		set theList to selection
 	end tell
-	set itemText to (quoted form of POSIX path of (item 1 of thelist as alias))
-	repeat with theItem in (rest of thelist)
+	set itemText to (quoted form of POSIX path of (item 1 of theList as alias))
+	repeat with theItem in (rest of theList)
 		set itemText to itemText & space & (quoted form of POSIX path of (theItem as alias))
 	end repeat
 	return itemText
@@ -133,7 +134,7 @@ end getFinderSelection
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive
+		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum

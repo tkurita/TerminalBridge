@@ -40,6 +40,7 @@ end importScript
 
 on launched theObject
 	hide window "Startup"
+	showInteractiveTerminal() of UnixScriptObj
 	(*debug code*)
 	--log "start launched"
 	--openWindow() of SettingWindowObj

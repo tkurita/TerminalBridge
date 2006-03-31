@@ -46,8 +46,8 @@ on makeObj(theCommandBuilder)
 			set processName to theProcesses & ";" & (contents of default entry "CleanCommands" of user defaults)
 		end setCleanCommands
 		
-		on bringToFront()
-			if getTargetTerminal of (my targetTerminal) without allowBusyStatus then
+		on bringToFront given allowBusyStatus:isAllowBusy
+			if getTargetTerminal of (my targetTerminal) given allowBusyStatus:isAllowBusy then
 				return bringToFront() of (my targetTerminal)
 			else
 				return false
@@ -127,8 +127,9 @@ on makeObj(theCommandBuilder)
 			return true
 		end checkTerminalStatus
 		
-		on setTargetTerminal(theCustomTitle)
+		on setTargetTerminal given title:theCustomTitle, ignoreStatus:isIgnoreStatus
 			--log "start setTargetTerminal"
+			set theResult to true
 			copy TerminalCommander to targetTerminal
 			forgetTerminal() of targetTerminal
 			setCustomTitle(theCustomTitle) of targetTerminal
@@ -139,12 +140,14 @@ on makeObj(theCommandBuilder)
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
 			--log "after cleanYenmark"
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
-				return checkTerminalStatus()
+				if not isIgnoreStatus then
+					set theResult to checkTerminalStatus()
+				end if
 			else
-				doCommands of targetTerminal for theCommand without activation
+				set theResult to doCommands of targetTerminal for theCommand without activation
 			end if
 			--log "end setTargetTerminal"
-			return true
+			return theResult
 		end setTargetTerminal
 	end script
 end makeObj
