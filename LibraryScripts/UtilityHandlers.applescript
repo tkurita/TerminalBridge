@@ -32,25 +32,6 @@ on getKeyValue for entryName from dictionaryValue
 	return call method "objectForKey:" of dictionaryValue with parameter entryName
 end getKeyValue
 
-on stripHeadTailSpaces(theText)
-	set spaceList to {space, tab, return}
-	try
-		if (first character of theText) is in spaceList then
-			set theText to stripHeadTailSpaces(text 2 thru -1 of theText)
-		else if (last character of theText) is in spaceList then
-			set theText to stripHeadTailSpaces(text 1 thru -2 of theText)
-		else
-			return theText
-		end if
-	on error msg number errn
-		if length of theText is 1 then
-			return ""
-		else
-			error msg number errn
-		end if
-	end try
-end stripHeadTailSpaces
-
 on isExists(filePath)
 	try
 		filePath as alias

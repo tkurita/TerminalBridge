@@ -2,7 +2,6 @@ global MessageUtility
 global CommandBuilder
 global KeyValueDictionary
 global EditorClient
-global UtilityHandlers
 global StringEngine
 global UnixScriptExecuter
 global TerminalClient
@@ -47,7 +46,7 @@ on resolveCommand()
 	set theScriptCommand to missing value
 	if firstLine starts with "#!" then
 		set theScriptCommand to text 3 thru -1 of firstLine
-		set theScriptCommand to stripHeadTailSpaces(theScriptCommand) of UtilityHandlers
+		set theScriptCommand to StringEngine's stripHeadTailSpaces(theScriptCommand)
 	end if
 	
 	set docMode to missing value
@@ -79,14 +78,14 @@ on resolveHeaderCommand()
 		if theParagraph starts with "#" then
 			ignoring case
 				if theParagraph starts with "#output" then
-					set output of headerCommands to stripHeadTailSpaces(text 9 thru -1 of theParagraph) of UtilityHandlers
+					set output of headerCommands to StringEngine's stripHeadTailSpaces(text 9 thru -1 of theParagraph)
 				else if theParagraph starts with "#process" then
 					if length of theParagraph > 9 then
-						set process of headerCommands to stripHeadTailSpaces(text 10 thru -1 of theParagraph) of UtilityHandlers
+						set process of headerCommands to StringEngine's stripHeadTailSpaces(text 10 thru -1 of theParagraph)
 					end if
 				else if theParagraph starts with "#prompt" then
 					if length of theParagraph > 8 then
-						set prompt of headerCommands to stripHeadTailSpaces(text 9 thru -1 of theParagraph) of UtilityHandlers
+						set prompt of headerCommands to StringEngine's stripHeadTailSpaces(text 9 thru -1 of theParagraph)
 					end if
 				else if theParagraph starts with "#useOwnTerm" then
 					set useOwnTerm of headerCommands to true

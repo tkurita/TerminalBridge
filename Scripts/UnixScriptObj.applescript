@@ -1,7 +1,6 @@
 global ExecuterController
 global EditorClient
 global TerminalCommander
-global UtilityHandlers
 global StringEngine
 
 (* execute tex commands called from tools from mi  ====================================*)
@@ -64,7 +63,7 @@ on sendCommand(theCommand)
 		return
 	end if
 	
-	set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+	set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
 	if theCommand is not "" then
 		sendCommand(theCommand) of theScriptExecuter
 	end if
@@ -89,10 +88,10 @@ on sendSelection()
 	if theCommand is "" then
 		set theCommand to getCurrentLine() of EditorClient
 		if theCommand is not "" then
-			set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+			set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
 		end if
 	else
-		set theCommand to stripHeadTailSpaces(theCommand) of UtilityHandlers
+		set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
 		tell StringEngine
 			startStringEngine() of it
 			set theCommand to uTextReplace of it for theCommand from tab by "  "

@@ -9,6 +9,7 @@ on makeObj(theScriptFile, theScriptCommand)
 		property preOption : ""
 		property commandOption : ""
 		property commandArg : ""
+		property _invalidValues : {"", missing value}
 		
 		on setRunOptions(optionRecord)
 			try
@@ -62,23 +63,23 @@ on makeObj(theScriptFile, theScriptCommand)
 			set cdCommand to "cd " & theFolder
 			
 			--build the command for script execution
-			if preOption is not "" then
+			if preOption is not in _invalidValues then
 				set theScriptCommand to preOption & space & scriptCommand
 			else
 				set theScriptCommand to scriptCommand
 			end if
 			
-			if commandOption is not "" then
+			if commandOption is not in _invalidValues then
 				set theScriptCommand to theScriptCommand & space & commandOption
 			end if
 			
 			set theScriptCommand to theScriptCommand & space & (quoted form of (name of pathRecord))
 			
-			if commandArg is not "" then
+			if commandArg is not in _invalidValues then
 				set theScriptCommand to theScriptCommand & space & commandArg
 			end if
 			
-			if postOption is not "" then
+			if postOption is not in _invalidValues then
 				set theScriptCommand to theScriptCommand & space & postOption
 			end if
 			
