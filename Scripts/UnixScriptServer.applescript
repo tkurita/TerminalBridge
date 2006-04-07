@@ -48,7 +48,7 @@ on launched theObject
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
-	sendSelection() of UnixScriptObj
+	--sendSelection() of UnixScriptObj
 	--checkSyntax()
 	(*end of debug code*)
 end launched
