@@ -7,24 +7,25 @@ global UnixScriptExecuter
 global TerminalClient
 
 property interactiveExecuters : missing value
-property aDoc : missing value
-property sQ : missing value
-property eQ : missing value
+property _aDoc : missing value
+property _sQ : missing value
+property _eQ : missing value
 
 on initialize()
 	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
-	set aDoc to localized string "aDocument"
-	set sQ to localized string "startQuote"
-	set eQ to localized string "endQuote"
+	set _aDoc to localized string "aDocument"
+	set _sQ to localized string "startQuote"
+	set _eQ to localized string "endQuote"
 end initialize
 
 on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
+	--log "start getDocumentInfo"
 	set theName to getDocumentName() of EditorClient
 	set theScriptFile to getDocumentFileAlilas() of EditorClient
 	
 	if (not isAllowUnsaved) and (theScriptFile is missing value) then
 		set isNotSaved to localized string "isNotSaved"
-		set theMessage to (aDoc & space & sQ & theName & eQ & space & isNotSaved)
+		set theMessage to (_aDoc & space & _sQ & theName & _eQ & space & isNotSaved)
 		showMessage(theMessage) of EditorClient
 		error "The documet is not saved" number 1600
 	end if
@@ -40,7 +41,8 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 	return {name:theName, file:theScriptFile}
 end getDocumentInfo
 
-on resolveCommand()
+on resolveCommand(docInfo)
+	--log "start resolveCommand"
 	set firstLine to getParagraph(1) of EditorClient
 	
 	set theScriptCommand to missing value
@@ -62,15 +64,16 @@ on resolveCommand()
 	
 	if theScriptCommand is missing value then
 		set invalidCommand to localized string "invalidCommand"
-		set theMessage to aDoc & space & sQ & theName & eQ & space & invalidCommand
+		set theMessage to _aDoc & space & _sQ & (name of docInfo) & _eQ & space & invalidCommand
 		showMessage(theMessage) of EditorClient
 		error "The document does not start with #!." number 1620
 	end if
-	
+	--log "end resolveCommand"
 	return {command:theScriptCommand, mode:docMode, baseCommand:missing value}
 end resolveCommand
 
 on resolveHeaderCommand()
+	--log "start resolveHeaderCommand"
 	set headerCommands to {useOwnTerm:false, output:missing value, prompt:missing value, process:missing value}
 	set ith to 1
 	repeat
@@ -100,7 +103,7 @@ on resolveHeaderCommand()
 end resolveHeaderCommand
 
 on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
-	--	log "start getInteractiveExecuter"
+	--log "start getInteractiveExecuter"
 	--	log docInfo
 	--	log commandInfo
 	--	log headerCommands
@@ -132,7 +135,7 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 			set prompt of headerCommands to theDefPrompt
 		end try
 	end if
-	
+	--log "end getInteractiveExecuter"
 	return {keyValue, theExecuter}
 end getInteractiveExecuter
 
@@ -142,7 +145,7 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	set docInfo to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
 	(* resolve command name *)
-	set commandInfo to resolveCommand()
+	set commandInfo to resolveCommand(docInfo)
 	
 	(* get header commands *)
 	set headerCommands to resolveHeaderCommand()
@@ -165,7 +168,7 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	if interactiveFlag then
 		set theTitle to "* Inferior " & baseCommand of commandInfo
 		if useOwnTerm of headerCommands then
-			set theTitle to theTitle & "--" & theName
+			set theTitle to theTitle & "--" & (name of docInfo)
 		end if
 		
 		if setTargetTerminal of theExecuter given title:(theTitle & " *"), ignoreStatus:isAllowBusy then
