@@ -107,7 +107,12 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 	--	log docInfo
 	--	log commandInfo
 	--	log headerCommands
-	set baseCommand of commandInfo to first word of command of commandInfo
+	tell StringEngine
+		storeDelimiter()
+		set comList to everyTextItem from (command of commandInfo) by space
+		set baseCommand of commandInfo to last word of (first item of comList)
+		restoreDelimiter()
+	end tell
 	
 	if (useOwnTerm of headerCommands) and (file of docInfo is not missing value) then
 		set keyValue to file of docInfo
