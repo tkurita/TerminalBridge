@@ -88,7 +88,7 @@ on getLocalizedString given keyword:theKeyword, insertTexts:insertList
 	tell StringEngine
 		storeDelimiter() of it
 		set theText to insertTexts of it for insertList into theText
-		retoreDelimiter() of it
+		restoreDelimiter() of it
 	end tell
 	--log "end getLocalizedString"
 	return theText
