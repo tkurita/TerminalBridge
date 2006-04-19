@@ -1058,8 +1058,8 @@
 	};
 	2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {727, 646}}";
-			sepNavSelRange = "{1112, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {727, 629}}";
+			sepNavSelRange = "{1021, 0}";
 			sepNavVisRect = "{{0, 0}, {727, 580}}";
 			sepNavWindowFrame = "{{15, 239}, {772, 694}}";
 		};
@@ -1108,9 +1108,9 @@
 	DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {727, 2550}}";
-			sepNavSelRange = "{4585, 0}";
-			sepNavVisRect = "{{0, 0}, {727, 580}}";
-			sepNavWindowFrame = "{{389, 211}, {772, 694}}";
+			sepNavSelRange = "{3523, 73}";
+			sepNavVisRect = "{{0, 1738}, {727, 580}}";
+			sepNavWindowFrame = "{{383, -45}, {772, 694}}";
 		};
 	};
 }
