@@ -6,6 +6,7 @@ end loadLib
 property PathAnalyzer : loadLib("PathAnalyzer")
 property StringEngine : loadLib("StringEngine")
 property KeyValueDictionary : loadLib("KeyValueDictionary")
+property TerminalCommanderBase : loadLib("TerminalCommander")
 
 property TerminalCommander : missing value
 property TerminalSettingObj : missing value
@@ -117,7 +118,7 @@ on will finish launching theObject
 	set appController to call method "sharedAppController" of class "AppController"
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set MessageUtility to importScript("MessageUtility")
-	set TerminalCommander to importScript("TerminalCommander")
+	set TerminalCommander to makeObj() of (importScript("TerminalCommander"))
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
 	set UnixScriptExecuter to importScript("UnixScriptExecuter")

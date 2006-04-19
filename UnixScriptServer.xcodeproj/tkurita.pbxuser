@@ -184,7 +184,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 167108387;
+			PBXPerProjectTemplateStateSaveDate = 167114639;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -644,7 +644,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 282 746 464 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 167108387;
+			PBXWorkspaceStateSaveDate = 167114639;
 		};
 		sourceControlManager = 2CF80EF1059B1ACB005C53F6 /* Source Control */;
 		userBookmarkGroup = 2C72B7620521B991000AF3F1 /* PBXBookmarkGroup */;
@@ -1058,8 +1058,8 @@
 	};
 	2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {727, 580}}";
-			sepNavSelRange = "{911, 0}";
+			sepNavIntBoundsRect = "{{0, 0}, {727, 646}}";
+			sepNavSelRange = "{1112, 0}";
 			sepNavVisRect = "{{0, 0}, {727, 580}}";
 			sepNavWindowFrame = "{{15, 239}, {772, 694}}";
 		};
@@ -1107,9 +1107,9 @@
 	};
 	DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {727, 2533}}";
-			sepNavSelRange = "{904, 0}";
-			sepNavVisRect = "{{0, 248}, {727, 580}}";
+			sepNavIntBoundsRect = "{{0, 0}, {727, 2550}}";
+			sepNavSelRange = "{4585, 0}";
+			sepNavVisRect = "{{0, 0}, {727, 580}}";
 			sepNavWindowFrame = "{{389, 211}, {772, 694}}";
 		};
 	};
