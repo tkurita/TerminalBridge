@@ -220,6 +220,7 @@
 		29B97314FDCFA39411CA2CEA /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2C1DAFBF09F6283500139324 /* SmartActivateTmp */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
 				2C42ECF707B3771800C8005B /* ASStudioScriptLib */,
 				2C0B914D08B5CF1900602706 /* Classes */,
@@ -274,15 +275,22 @@
 				2C701E7608BB85D5000D1339 /* SettingWindowController.m */,
 				2C0B918308B5D01500602706 /* AppController.m */,
 				2C0B918408B5D01500602706 /* AppController.h */,
-				2CD4834208169C3800A7FDA9 /* SmartActivate.h */,
-				2CC483C9098FBCA4004E4BDE /* SmartActivate.c */,
-				2CD4834308169C3800A7FDA9 /* SmartActivate.m */,
 				2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */,
 				2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */,
 				2C591E67099E0CBF000BC6BA /* TerminalClient.h */,
 				2C591E68099E0CBF000BC6BA /* TerminalClient.m */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		2C1DAFBF09F6283500139324 /* SmartActivateTmp */ = {
+			isa = PBXGroup;
+			children = (
+				2CD4834208169C3800A7FDA9 /* SmartActivate.h */,
+				2CC483C9098FBCA4004E4BDE /* SmartActivate.c */,
+				2CD4834308169C3800A7FDA9 /* SmartActivate.m */,
+			);
+			path = SmartActivateTmp;
 			sourceTree = "<group>";
 		};
 		2C42ECF707B3771800C8005B /* ASStudioScriptLib */ = {
