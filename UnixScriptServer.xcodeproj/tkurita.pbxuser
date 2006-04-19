@@ -184,7 +184,7 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 167017230;
+			PBXPerProjectTemplateStateSaveDate = 167074180;
 			PBXPrepackagedSmartGroups_v2 = (
 				{
 					PBXTransientLocationAtTop = bottom;
@@ -644,12 +644,7 @@
 				PBXModuleWindowStatusBarHidden = YES;
 				RubberWindowFrame = "440 282 746 464 0 0 1280 832 ";
 			};
-			PBXWorkspaceStateSaveDate = 167017230;
-		};
-		perUserProjectItems = {
-			2CDB6CE309F47D0D00DA813E /* PBXTextBookmark */ = 2CDB6CE309F47D0D00DA813E /* PBXTextBookmark */;
-			2CDB6CE409F47D0D00DA813E /* PBXTextBookmark */ = 2CDB6CE409F47D0D00DA813E /* PBXTextBookmark */;
-			2CDB6CF509F482B100DA813E /* PBXTextBookmark */ = 2CDB6CF509F482B100DA813E /* PBXTextBookmark */;
+			PBXWorkspaceStateSaveDate = 167074180;
 		};
 		sourceControlManager = 2CF80EF1059B1ACB005C53F6 /* Source Control */;
 		userBookmarkGroup = 2C72B7620521B991000AF3F1 /* PBXBookmarkGroup */;
@@ -1063,9 +1058,9 @@
 	};
 	2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {717, 561}}";
+			sepNavIntBoundsRect = "{{0, 0}, {727, 580}}";
 			sepNavSelRange = "{911, 0}";
-			sepNavVisRect = "{{0, 248}, {717, 303}}";
+			sepNavVisRect = "{{0, 0}, {727, 580}}";
 			sepNavWindowFrame = "{{15, 239}, {772, 694}}";
 		};
 	};
@@ -1094,33 +1089,6 @@
 		lineNumber = 1;
 		modificationTime = 165258859.405882;
 		state = 1;
-	};
-	2CDB6CE309F47D0D00DA813E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */;
-		rLen = 7;
-		rLoc = 2636;
-		rType = 0;
-	};
-	2CDB6CE409F47D0D00DA813E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */;
-		name = "UtilityHandlers.applescript: 97";
-		rLen = 0;
-		rLoc = 2743;
-		rType = 0;
-		vrLen = 447;
-		vrLoc = 2296;
-	};
-	2CDB6CF509F482B100DA813E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */;
-		name = "UtilityHandlers.applescript: 97";
-		rLen = 0;
-		rLoc = 2743;
-		rType = 0;
-		vrLen = 447;
-		vrLoc = 2296;
 	};
 	2CF80EF1059B1ACB005C53F6 /* Source Control */ = {
 		isa = PBXSourceControlManager;
