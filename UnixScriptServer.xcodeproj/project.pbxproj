@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				080E96DDFE201D6D7F000001 /* Scripts */,
-				2C42ECF707B3771800C8005B /* LibraryScripts */,
+				2C42ECF707B3771800C8005B /* ASStudioScriptLib */,
 				2C0B914D08B5CF1900602706 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -285,7 +285,7 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		2C42ECF707B3771800C8005B /* LibraryScripts */ = {
+		2C42ECF707B3771800C8005B /* ASStudioScriptLib */ = {
 			isa = PBXGroup;
 			children = (
 				2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */,
@@ -295,7 +295,7 @@
 				2C738EF80519C8F90010646F /* ColorSwitch.applescript */,
 				2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */,
 			);
-			path = LibraryScripts;
+			path = ASStudioScriptLib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

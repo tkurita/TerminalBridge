@@ -618,7 +618,7 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CB0B41309F55CFF00DE21AE</string>
+				<string>2C1DABE509F5DF4E00139324</string>
 				<string>11E0B1FE06471DED0097A5F4</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -649,7 +649,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>2C4A70240980A77C00D4AF6B</string>
 		<string>/Users/tkurita/Dev/Projects/UnixScriptToolsFormi/trunk/UnixScriptServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
