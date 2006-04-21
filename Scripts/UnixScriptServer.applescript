@@ -39,6 +39,12 @@ on importScript(scriptName)
 	return load script POSIX file scriptPath
 end importScript
 
+script ScriptImporter
+	on do(scriptName)
+		return importScript(scriptName)
+	end do
+end script
+
 on launched theObject
 	hide window "Startup"
 	(*debug code*)
