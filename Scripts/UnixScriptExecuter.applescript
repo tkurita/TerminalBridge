@@ -79,7 +79,7 @@ on makeObj(theCommandBuilder)
 			
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
 				--log "before checkTerminalStatus in sendCommand in executer"
-				if checkTerminalStatus() then
+				if checkTerminalStatus(0) then
 					doCmdInCurrentTerm of (my targetTerminal) for theCommand without activation
 				else
 					return false
@@ -92,7 +92,7 @@ on makeObj(theCommandBuilder)
 			return true
 		end sendCommand
 		
-		on checkTerminalStatus()
+		on checkTerminalStatus(checkCount)
 			--log "start checkTerminalStatus"
 			set theResult to true
 			set processList to getProcessesOnShell() of my targetTerminal
@@ -100,9 +100,8 @@ on makeObj(theCommandBuilder)
 			if isBusy() of my targetTerminal then
 				--log "targetTermianl is Busy "
 				tell StringEngine
-					startStringEngine() of it
-					set supportProcesses to everyTextItem of it from my processName by ";"
-					stopStringEngine() of it
+					storeDelimiter()
+					set supportProcesses to everyTextItem from my processName by ";"
 				end tell
 				--log supportProcesses
 				set newProcceses to {}
@@ -112,7 +111,18 @@ on makeObj(theCommandBuilder)
 					end if
 				end repeat
 				
-				set processTexts to joinUTextList of StringEngine for newProcceses by return
+				if length of newProcesses is 0 then
+					if checkCount < 3 then
+						delay 1
+						return checkTerminalStatus(checkCount + 1)
+					end if
+				end if
+				
+				tell StringEngine
+					set processTexts to joinUTextList for newProcceses by return
+					restoreDelimiter()
+				end tell
+				
 				set termName to getTerminalName() of my targetTerminal
 				set theMessage to getLocalizedString of UtilityHandlers given keyword:"cantExecCommand", insertTexts:{termName, processTexts}
 				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
@@ -150,7 +160,7 @@ on makeObj(theCommandBuilder)
 			--log "after cleanYenmark"
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
 				if not isIgnoreStatus then
-					set theResult to checkTerminalStatus()
+					set theResult to checkTerminalStatus(0)
 				end if
 			else
 				set theResult to doCommands of targetTerminal for theCommand without activation
