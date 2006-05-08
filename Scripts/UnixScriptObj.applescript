@@ -133,7 +133,7 @@ end getFinderSelection
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
+		set theScriptExecuter to getExecuter of ExecuterController without interactive and allowBusyStatus
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
@@ -142,6 +142,5 @@ on runWithFinderSelection(optionRecord)
 	end try
 	setRunOptions(optionRecord) of theScriptExecuter
 	set commandArg of theScriptExecuter to getFinderSelection()
-	--log postOption of theScriptExecuter
 	runScript of theScriptExecuter with activation
 end runWithFinderSelection
