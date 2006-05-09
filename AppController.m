@@ -1,6 +1,6 @@
 #import "AppController.h"
 #import "DelimedStringToArrayTransformer.h"
-
+#import "DonationReminder.h"
 #define useLog 0
 
 static id sharedObj;
@@ -111,6 +111,8 @@ static id sharedObj;
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
+	
+	[DonationReminder remindDonation];
 }
 
 @end

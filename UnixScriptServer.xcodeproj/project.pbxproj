@@ -41,6 +41,9 @@
 		2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */; };
 		2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */; };
 		2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */; };
+		2C8622130A0F16C9004855E4 /* DonationReminder.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8622110A0F16C9004855E4 /* DonationReminder.nib */; };
+		2C86221A0A0F1A8D004855E4 /* DonationReminder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8622180A0F1A8D004855E4 /* DonationReminder.h */; };
+		2C86221B0A0F1A8D004855E4 /* DonationReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8622190A0F1A8D004855E4 /* DonationReminder.m */; };
 		2CA91F0008B5E93B00A6B73C /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD4834208169C3800A7FDA9 /* SmartActivate.h */; };
 		2CA91F0108B5E93B00A6B73C /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0B918408B5D01500602706 /* AppController.h */; };
 		2CA91F0408B5E93B00A6B73C /* UnixScriptServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -143,6 +146,9 @@
 		2C738EF80519C8F90010646F /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
 		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
 		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
+		2C8622120A0F16C9004855E4 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DonationReminder.nib; sourceTree = "<group>"; };
+		2C8622180A0F1A8D004855E4 /* DonationReminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DonationReminder.h; sourceTree = "<group>"; };
+		2C8622190A0F1A8D004855E4 /* DonationReminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DonationReminder.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA91F1E08B5E93B00A6B73C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
@@ -252,6 +258,7 @@
 				DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */,
 				2CC8C94A07882A3600085682 /* FactorySettings.plist */,
 				2C9E42BE052215CB00248965 /* Localizable.strings */,
+				2C8622110A0F16C9004855E4 /* DonationReminder.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -279,6 +286,8 @@
 				2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */,
 				2C591E67099E0CBF000BC6BA /* TerminalClient.h */,
 				2C591E68099E0CBF000BC6BA /* TerminalClient.m */,
+				2C8622180A0F1A8D004855E4 /* DonationReminder.h */,
+				2C8622190A0F1A8D004855E4 /* DonationReminder.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -320,6 +329,7 @@
 				2CC48BB209921FAE004E4BDE /* DelimedStringToArrayTransformer.h in Headers */,
 				2CC48BC3099237DE004E4BDE /* stringExtra.h in Headers */,
 				2C591E69099E0CBF000BC6BA /* TerminalClient.h in Headers */,
+				2C86221A0A0F1A8D004855E4 /* DonationReminder.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +406,7 @@
 				2CA91F1308B5E93B00A6B73C /* FactorySettings.plist in Resources */,
 				2CA91F1408B5E93B00A6B73C /* Setting.nib in Resources */,
 				2C086A78098E281500623C18 /* setuphelp.sh in Resources */,
+				2C8622130A0F16C9004855E4 /* DonationReminder.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +426,7 @@
 				2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */,
 				2CC48BC2099237DE004E4BDE /* stringExtra.m in Sources */,
 				2C591E6A099E0CBF000BC6BA /* TerminalClient.m in Sources */,
+				2C86221B0A0F1A8D004855E4 /* DonationReminder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +447,14 @@
 				2C732BE007AE5AE3005ACE75 /* Japanese */,
 			);
 			name = Setting.nib;
+			sourceTree = "<group>";
+		};
+		2C8622110A0F16C9004855E4 /* DonationReminder.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C8622120A0F16C9004855E4 /* Japanese */,
+			);
+			name = DonationReminder.nib;
 			sourceTree = "<group>";
 		};
 		2C9E42BE052215CB00248965 /* Localizable.strings */ = {
