@@ -104,10 +104,10 @@ on makeObj(theCommandBuilder)
 					set supportProcesses to everyTextItem from my processName by ";"
 				end tell
 				--log supportProcesses
-				set newProcceses to {}
+				set newProcesses to {}
 				repeat with theItem in processList
 					if theItem is not in supportProcesses then
-						set end of newProcceses to contents of theItem
+						set end of newProcesses to contents of theItem
 					end if
 				end repeat
 				
@@ -119,7 +119,7 @@ on makeObj(theCommandBuilder)
 				end if
 				
 				tell StringEngine
-					set processTexts to joinUTextList for newProcceses by return
+					set processTexts to joinUTextList for newProcesses by return
 					restoreDelimiter()
 				end tell
 				
