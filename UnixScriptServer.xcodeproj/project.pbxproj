@@ -73,43 +73,6 @@
 		2CC48BC3099237DE004E4BDE /* stringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48BC1099237DE004E4BDE /* stringExtra.h */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXBuildStyle section */
-		2CD607E60569023A00FAFD6B /* SDDebug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				OPTIMIZATION_CFLAGS = "-O0";
-				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
-			};
-			name = SDDebug;
-		};
-		4A9504CCFFE6A4B311CA0CBA /* Development */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				OPTIMIZATION_CFLAGS = "-O0";
-				ZERO_LINK = YES;
-			};
-			name = Development;
-		};
-		4A9504CDFFE6A4B311CA0CBA /* Deployment */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 3.1;
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				OTHER_OSAFLAGS = "-x";
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-/* End PBXBuildStyle section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		2C591CC2099C7C74000BC6BA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -188,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */,
-				2C22DEC8078A8BF800C57192 /* SettingWindowObj.applescript */,
 				2C10B9F70618556700598626 /* UnixScriptObj.applescript */,
+				2C22DEC8078A8BF800C57192 /* SettingWindowObj.applescript */,
 				2C6FB982062440FA004731C7 /* ExecuterController.applescript */,
 				2CC4854D09906657004E4BDE /* EditorClient.applescript */,
 				2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */,
@@ -349,23 +312,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = UnixScriptServer;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
 			dependencies = (
 			);
 			name = UnixScriptServer;
@@ -380,13 +326,6 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "UnixScriptServer" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504CCFFE6A4B311CA0CBA /* Development */,
-				4A9504CDFFE6A4B311CA0CBA /* Deployment */,
-				2CD607E60569023A00FAFD6B /* SDDebug */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
