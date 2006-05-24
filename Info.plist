@@ -23,9 +23,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.0.3b copyright 2005-2006, Tetsuro KURITA</string>
+	<string>2.0.3 copyright 2005-2006, Tetsuro KURITA</string>
 	<key>CFBundleVersion</key>
-	<string>2.0.3b</string>
+	<string>2.0.3</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
