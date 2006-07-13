@@ -89,6 +89,8 @@
 	<false/>
 	<key>backslash</key>
 	<string>\</string>
+	<key>useExecCommand</key>
+	<true/>
 	<key>yenmark</key>
 	<string>¥</string>
 </dict>

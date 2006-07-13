@@ -95,7 +95,11 @@ on makeObj(theCommandBuilder)
 		on checkTerminalStatus(checkCount)
 			--log "start checkTerminalStatus"
 			set theResult to true
-			set processList to getProcessesOnShell() of my targetTerminal
+			if (contents of default entry "useExecCommand" of user defaults) then
+				set processList to getProcesses() of my targetTerminal
+			else
+				set processList to getProcessesOnShell() of my targetTerminal
+			end if
 			--log processList
 			if isBusy() of my targetTerminal then
 				--log "targetTermianl is Busy "

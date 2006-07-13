@@ -28,7 +28,6 @@ property lineFeed : ASCII character 10
 
 
 (* events of application*)
-
 on importScript(scriptName)
 	--log "start importScript"
 	--log scriptName
