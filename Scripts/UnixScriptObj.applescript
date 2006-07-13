@@ -40,6 +40,15 @@ on showInteractiveTerminal()
 		end if
 	else
 		set theResult to bringToFront of theExecuter with allowBusyStatus
+		if not theResult then
+			set theResult to openNewTerminal() of theExecuter
+		end if
+		
+		if theResult then
+			set theResult to bringToFront of theExecuter with allowBusyStatus
+		else
+			showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
+		end if
 	end if
 	
 	if not theResult then
@@ -121,10 +130,10 @@ end RunInTerminal
 --run with Finder's selection
 on getFinderSelection()
 	tell application "Finder"
-		set theList to selection
+		set thelist to selection
 	end tell
-	set itemText to (quoted form of POSIX path of (item 1 of theList as alias))
-	repeat with theItem in (rest of theList)
+	set itemText to (quoted form of POSIX path of (item 1 of thelist as alias))
+	repeat with theItem in (rest of thelist)
 		set itemText to itemText & space & (quoted form of POSIX path of (theItem as alias))
 	end repeat
 	return itemText
