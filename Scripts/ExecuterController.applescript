@@ -159,6 +159,7 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 		set {keyValue, theExecuter} to getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		if theExecuter is not missing value then
 			setPrompt(prompt of headerCommands) of theExecuter
+			setScriptFile(file of docInfo) of theExecuter
 			return theExecuter
 		end if
 	end if

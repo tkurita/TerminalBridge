@@ -2,6 +2,7 @@ global ExecuterController
 global EditorClient
 global TerminalCommander
 global StringEngine
+global UtilityHandlers
 
 (* execute tex commands called from tools from mi  ====================================*)
 (* interactive process *)
@@ -31,7 +32,7 @@ on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
 	set theExecuter to getExecuter of ExecuterController with interactive and allowBusyStatus
 	if theExecuter is missing value then
-		--log "the Executer is not found"
+		consoleLog("UnixScriptServer: the Executer is not found") of UtilityHandlers
 		-- このブロックはいらないかもしれない。theExecuter は いつ missing value　になる？
 		if getTargetTerminal of TerminalCommander with allowBusyStatus then
 			set theResult to bringToFront() of TerminalCommander
