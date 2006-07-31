@@ -654,6 +654,7 @@
 			2C0BB05D0A7E5ECD007AFDE3 /* PBXTextBookmark */ = 2C0BB05D0A7E5ECD007AFDE3 /* PBXTextBookmark */;
 			2C0BB0650A7E5F23007AFDE3 /* PBXTextBookmark */ = 2C0BB0650A7E5F23007AFDE3 /* PBXTextBookmark */;
 			2C0BB0680A7E5F3F007AFDE3 /* PBXTextBookmark */ = 2C0BB0680A7E5F3F007AFDE3 /* PBXTextBookmark */;
+			2C0BB0BB0A7E6C15007AFDE3 /* PBXTextBookmark */ = 2C0BB0BB0A7E6C15007AFDE3 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 2CF80EF1059B1ACB005C53F6 /* Source Control */;
 		userBookmarkGroup = 2C72B7620521B991000AF3F1 /* PBXBookmarkGroup */;
@@ -690,6 +691,14 @@
 			sepNavSelRange = "{140, 0}";
 			sepNavVisRect = "{{0, 0}, {717, 368}}";
 			sepNavWindowFrame = "{{38, 113}, {933, 799}}";
+		};
+	};
+	2C0BB03E0A7E5E39007AFDE3 /* PaletteWindowController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {706, 676}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {706, 643}}";
+			sepNavWindowFrame = "{{61, 150}, {751, 741}}";
 		};
 	};
 	2C0BB0430A7E5E3A007AFDE3 /* StringExtra.m */ = {
@@ -758,6 +767,16 @@
 		vrLoc = 0;
 	};
 	2C0BB0680A7E5F3F007AFDE3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */;
+		name = StringExtra;
+		rLen = 11;
+		rLoc = 53;
+		rType = 0;
+		vrLen = 483;
+		vrLoc = 0;
+	};
+	2C0BB0BB0A7E6C15007AFDE3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */;
 		name = StringExtra;

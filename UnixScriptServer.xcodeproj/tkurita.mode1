@@ -562,20 +562,24 @@
 								<string>2C1DAFBF09F6283500139324</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>2C42ECF707B3771800C8005B</string>
-								<string>2C0B914D08B5CF1900602706</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
 								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>2C0BAF680A7E5BDB007AFDE3</string>
+								<string>2C0BB0BF0A7E6C22007AFDE3</string>
+								<string>2C0BB0C00A7E6C22007AFDE3</string>
 								<string>2C0BB06E0A7E5F9F007AFDE3</string>
+								<string>2C0BB0C10A7E6C22007AFDE3</string>
 								<string>1C37FAAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>44</integer>
-									<integer>40</integer>
-									<integer>39</integer>
+									<integer>14</integer>
+									<integer>13</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -653,6 +657,7 @@
 		<string>2C4A70240980A77C00D4AF6B</string>
 		<string>2C59233009A04F15000BC6BA</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Users/tkurita/Dev/Projects/UnixScriptToolsFormi/trunk/UnixScriptServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -1076,7 +1081,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {788, 621}}</string>
 								<key>RubberWindowFrame</key>
-								<string>98 227 788 662 0 0 1440 938 </string>
+								<string>512 158 788 662 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXRunSessionModule</string>
@@ -1099,18 +1104,18 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>2C4747460A65F19700096E8A</string>
+				<string>2C0BB0BC0A7E6C15007AFDE3</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>2C4747470A65F19700096E8A</string>
+				<string>2C0BB0BD0A7E6C15007AFDE3</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
 			<key>WindowString</key>
-			<string>98 227 788 662 0 0 1440 938 </string>
+			<string>512 158 788 662 0 0 1440 938 </string>
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

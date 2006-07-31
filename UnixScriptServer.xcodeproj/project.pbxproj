@@ -32,11 +32,10 @@
 
 /* Begin PBXBuildFile section */
 		2C086A78098E281500623C18 /* setuphelp.sh in Resources */ = {isa = PBXBuildFile; fileRef = 2C086A77098E281500623C18 /* setuphelp.sh */; };
-		2C0BB0460A7E5E3A007AFDE3 /* PaletteWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0BB03E0A7E5E39007AFDE3 /* PaletteWindowController.h */; };
 		2C0BB04A0A7E5E3A007AFDE3 /* StringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0BB0420A7E5E3A007AFDE3 /* StringExtra.h */; };
 		2C0BB04B0A7E5E3A007AFDE3 /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BB0430A7E5E3A007AFDE3 /* StringExtra.m */; };
-		2C0BB04C0A7E5E3A007AFDE3 /* WindowVisibilityController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0BB0440A7E5E3A007AFDE3 /* WindowVisibilityController.h */; };
-		2C0BB06B0A7E5F63007AFDE3 /* PathExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0BB0690A7E5F62007AFDE3 /* PathExtra.h */; };
+		2C0BB0740A7E6A2F007AFDE3 /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0BB06F0A7E6A2F007AFDE3 /* DonationReminder.framework */; };
+		2C0BB0750A7E6A4E007AFDE3 /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C0BB06F0A7E6A2F007AFDE3 /* DonationReminder.framework */; };
 		2C591CC1099C7BAE000BC6BA /* OgreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C591CA6099C7BAE000BC6BA /* OgreKit.framework */; };
 		2C591DBC099C83D7000BC6BA /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C591CA6099C7BAE000BC6BA /* OgreKit.framework */; };
 		2C591E69099E0CBF000BC6BA /* TerminalClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C591E67099E0CBF000BC6BA /* TerminalClient.h */; };
@@ -46,9 +45,6 @@
 		2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */; };
 		2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */; };
 		2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */; };
-		2C8622130A0F16C9004855E4 /* DonationReminder.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8622110A0F16C9004855E4 /* DonationReminder.nib */; };
-		2C86221A0A0F1A8D004855E4 /* DonationReminder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8622180A0F1A8D004855E4 /* DonationReminder.h */; };
-		2C86221B0A0F1A8D004855E4 /* DonationReminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8622190A0F1A8D004855E4 /* DonationReminder.m */; };
 		2CA91F0008B5E93B00A6B73C /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD4834208169C3800A7FDA9 /* SmartActivate.h */; };
 		2CA91F0108B5E93B00A6B73C /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0B918408B5D01500602706 /* AppController.h */; };
 		2CA91F0408B5E93B00A6B73C /* UnixScriptServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -83,6 +79,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2C0BB0750A7E6A4E007AFDE3 /* DonationReminder.framework in CopyFiles */,
 				2C591DBC099C83D7000BC6BA /* OgreKit.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +102,7 @@
 		2C0BB0450A7E5E3A007AFDE3 /* WindowVisibilityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowVisibilityController.m; sourceTree = "<group>"; };
 		2C0BB0690A7E5F62007AFDE3 /* PathExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathExtra.h; sourceTree = "<group>"; };
 		2C0BB06A0A7E5F62007AFDE3 /* PathExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathExtra.m; sourceTree = "<group>"; };
+		2C0BB06F0A7E6A2F007AFDE3 /* DonationReminder.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DonationReminder.framework; path = "../../../AppleGlot Environment/_NewLoc/DonationReminder.framework"; sourceTree = SOURCE_ROOT; };
 		2C10B9F70618556700598626 /* UnixScriptObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = UnixScriptObj.applescript; sourceTree = "<group>"; };
 		2C22DEC8078A8BF800C57192 /* SettingWindowObj.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowObj.applescript; sourceTree = "<group>"; };
 		2C42EC4007B350E800C8005B /* CommandBuilder.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = CommandBuilder.applescript; sourceTree = "<group>"; };
@@ -151,6 +149,7 @@
 				2CA91F1B08B5E93B00A6B73C /* Cocoa.framework in Frameworks */,
 				2CA91F1C08B5E93B00A6B73C /* AppleScriptKit.framework in Frameworks */,
 				2C591CC1099C7BAE000BC6BA /* OgreKit.framework in Frameworks */,
+				2C0BB0740A7E6A2F007AFDE3 /* DonationReminder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +238,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C0BB06F0A7E6A2F007AFDE3 /* DonationReminder.framework */,
 				2C591CA6099C7BAE000BC6BA /* OgreKit.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
@@ -316,11 +316,7 @@
 				2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */,
 				2CC48BB209921FAE004E4BDE /* DelimedStringToArrayTransformer.h in Headers */,
 				2C591E69099E0CBF000BC6BA /* TerminalClient.h in Headers */,
-				2C86221A0A0F1A8D004855E4 /* DonationReminder.h in Headers */,
-				2C0BB0460A7E5E3A007AFDE3 /* PaletteWindowController.h in Headers */,
 				2C0BB04A0A7E5E3A007AFDE3 /* StringExtra.h in Headers */,
-				2C0BB04C0A7E5E3A007AFDE3 /* WindowVisibilityController.h in Headers */,
-				2C0BB06B0A7E5F63007AFDE3 /* PathExtra.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +369,6 @@
 				2CA91F1308B5E93B00A6B73C /* FactorySettings.plist in Resources */,
 				2CA91F1408B5E93B00A6B73C /* Setting.nib in Resources */,
 				2C086A78098E281500623C18 /* setuphelp.sh in Resources */,
-				2C8622130A0F16C9004855E4 /* DonationReminder.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +387,6 @@
 				2CC483CA098FBCA4004E4BDE /* SmartActivate.c in Sources */,
 				2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */,
 				2C591E6A099E0CBF000BC6BA /* TerminalClient.m in Sources */,
-				2C86221B0A0F1A8D004855E4 /* DonationReminder.m in Sources */,
 				2C0BB04B0A7E5E3A007AFDE3 /* StringExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +436,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../AppleGlot Environment/_NewLoc\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -474,7 +470,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../AppleGlot Environment/_NewLoc\"";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -504,7 +502,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../AppleGlot Environment/_NewLoc\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -531,7 +531,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../AppleGlot Environment/_NewLoc\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
