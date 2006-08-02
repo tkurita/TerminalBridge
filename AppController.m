@@ -1,6 +1,6 @@
 #import "AppController.h"
 #import "DelimedStringToArrayTransformer.h"
-#import "DonationReminder.h"
+#import "DonationReminder/DonationReminder.h"
 #define useLog 0
 
 static id sharedObj;
