@@ -102,7 +102,10 @@ end getSelection
 on getCurrentLine()
 	tell application "mi"
 		tell document 1
-			return paragraph 1 of selection object 1
+			--return paragraph 1 of selection object 1
+			-- avoid mi 2.1.8a3 bug 2006.08.16
+			set parIndex to index of paragraph 1 of selection object 1
+			return paragraph parIndex
 		end tell
 	end tell
 end getCurrentLine
