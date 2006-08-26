@@ -1,33 +1,6 @@
 global StringEngine
 
-on getDocumentFileAlilas()
-	tell application "mi"
-		set theFile to file of document 1
-	end tell
-	try
-		return theFile as alias
-	on error
-		return missing value
-	end try
-end getDocumentFileAlilas
-
-on getDocumentMode()
-	tell application "mi"
-		return mode of document 1
-	end tell
-end getDocumentMode
-
-on getDocumentName()
-	tell application "mi"
-		return name of document 1
-	end tell
-end getDocumentName
-
-on isModified()
-	tell application "mi"
-		return modified of document 1
-	end tell
-end isModified
+property parent : loadLib("miClient") of application (get "UnixScriptToolsLib")
 
 on saveWithAsking()
 	set doYouSaveText to localized string "doYouSave"
@@ -82,38 +55,3 @@ on showMessage(theMessage)
 		display dialog theMessage buttons {"OK"} default button "OK"
 	end tell
 end showMessage
-
-on getParagraph(ith)
-	tell application "mi"
-		tell document 1
-			return paragraph ith
-		end tell
-	end tell
-end getParagraph
-
-on getSelection()
-	tell application "mi"
-		tell document 1
-			return selection object 1
-		end tell
-	end tell
-end getSelection
-
-on getCurrentLine()
-	tell application "mi"
-		tell document 1
-			--return paragraph 1 of selection object 1
-			-- avoid mi 2.1.8a3 bug 2006.08.16
-			set parIndex to index of paragraph 1 of selection object 1
-			return paragraph parIndex
-		end tell
-	end tell
-end getCurrentLine
-
-on insertText(theString)
-	tell application "mi"
-		tell document 1
-			set selection object 1 to theString
-		end tell
-	end tell
-end insertText
