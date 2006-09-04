@@ -86,6 +86,11 @@ on open theObject
 			call method "showHelp:"
 		end if
 		
+		try
+			if (activateTerminal of theObject) then
+				call method "activateAppOfIdentifer:" of class "SmartActivate" with parameter "com.apple.Terminal"
+			end if
+		end try
 	end if
 	--display dialog theCommandID
 	return true

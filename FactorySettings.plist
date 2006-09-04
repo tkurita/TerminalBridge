@@ -24,6 +24,8 @@
 	</array>
 	<key>CustomTitle</key>
 	<string>* UnixScript Console *</string>
+	<key>DonationURL</key>
+	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
 	<key>ExecutionString</key>
 	<string>unset PROMPT_COMMAND</string>
 	<key>IsChangeBackground</key>
