@@ -26,7 +26,6 @@ property TerminalClient : missing value
 property dQ : ASCII character 34
 property lineFeed : ASCII character 10
 
-
 (* events of application*)
 on importScript(scriptName)
 	--log "start importScript"
@@ -73,7 +72,7 @@ on open theObject
 		else if theCommandID is "RunInTerminal" then
 			RunInTerminal(theArg) of UnixScriptObj
 		else if theCommandID is "sendSelection" then
-			sendSelection() of UnixScriptObj
+			sendSelection(theArg) of UnixScriptObj
 		else if theCommandID is "showInteractiveTerminal" then
 			showInteractiveTerminal() of UnixScriptObj
 		else if theCommandID is "sendCommand" then

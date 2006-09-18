@@ -10,6 +10,7 @@ property interactiveExecuters : missing value
 property _aDoc : missing value
 property _sQ : missing value
 property _eQ : missing value
+property _hcommandLabels : {"useOwnTerm", "escapeChars", "process", "output", "prompt", "interactive"}
 
 on initialize()
 	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
@@ -74,25 +75,32 @@ end resolveCommand
 
 on resolveHeaderCommand()
 	--log "start resolveHeaderCommand"
-	set headerCommands to {useOwnTerm:false, output:missing value, prompt:missing value, process:missing value}
+	set headerCommands to makeObjWithKeysAndValues({"useOwnTerm"}, {false}) of KeyValueDictionary
 	set ith to 1
 	repeat
 		set theParagraph to getParagraph(ith) of EditorClient
 		if theParagraph starts with "#" then
 			ignoring case
-				if theParagraph starts with "#output" then
-					set output of headerCommands to StringEngine's stripHeadTailSpaces(text 9 thru -1 of theParagraph)
-				else if theParagraph starts with "#process" then
-					if length of theParagraph > 9 then
-						set process of headerCommands to StringEngine's stripHeadTailSpaces(text 10 thru -1 of theParagraph)
+				repeat with labelName in my _hcommandLabels
+					set labelName to contents of labelName
+					set theLabel to "#" & labelName
+					if theParagraph starts with theLabel then
+						if labelName is "useOwnTerm" then
+							set theValue to true
+						else
+							set valPos to (length of theLabel) + 2
+							if length of theParagraph is less than or equal to valPos then
+								exit repeat
+							end if
+							set theValue to StringEngine's stripHeadTailSpaces(text valPos thru -1 of theParagraph)
+							if labelName is "escapeChars" then
+								set theValue to run script theValue
+							end if
+						end if
+						setValue of headerCommands given forKey:labelName, withValue:theValue
+						exit repeat
 					end if
-				else if theParagraph starts with "#prompt" then
-					if length of theParagraph > 8 then
-						set prompt of headerCommands to StringEngine's stripHeadTailSpaces(text 9 thru -1 of theParagraph)
-					end if
-				else if theParagraph starts with "#useOwnTerm" then
-					set useOwnTerm of headerCommands to true
-				end if
+				end repeat
 			end ignoring
 		else
 			exit repeat
@@ -114,14 +122,14 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		restoreDelimiter()
 	end tell
 	
-	if (useOwnTerm of headerCommands) and (file of docInfo is not missing value) then
+	if (getValue of headerCommands given forKey:"useOwnTerm") and (file of docInfo is not missing value) then
 		set keyValue to file of docInfo
 	else
 		set keyValue to baseCommand of commandInfo
 	end if
 	
-	if process of headerCommands is missing value then
-		set process of headerCommands to baseCommand of commandInfo
+	if (getValue of headerCommands given forKey:"process") is missing value then
+		setValue of headerCommands given forKey:"process", withValue:baseCommand of commandInfo
 	end if
 	set theExecuter to missing value
 	
@@ -131,15 +139,16 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		set theExecuter to getValue of interactiveExecuters given forKey:keyValue
 	end if
 	
-	if prompt of headerCommands is missing value then
+	if (getValue of headerCommands given forKey:"prompt") is missing value then
 		if (mode of commandInfo) is missing value then
 			set mode of commandInfo to getDocumentMode() of EditorClient
 		end if
 		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of commandInfo)
 		try -- theDefPrompt may be undefined
-			set prompt of headerCommands to theDefPrompt
+			setValue of headerCommands given forKey:"prompt", withValue:theDefPrompt
 		end try
 	end if
+	
 	--log "end getInteractiveExecuter"
 	return {keyValue, theExecuter}
 end getInteractiveExecuter
@@ -154,26 +163,33 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	
 	(* get header commands *)
 	set headerCommands to resolveHeaderCommand()
+	--log (headerCommands's dumpData())
 	
+	(* get interactive executer *)
 	if interactiveFlag then
+		set interactiveCommand to getValue of headerCommands given forKey:"interactive"
+		if interactiveCommand is not missing value then
+			set command of commandInfo to interactiveCommand
+		end if
 		set {keyValue, theExecuter} to getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		if theExecuter is not missing value then
-			setPrompt(prompt of headerCommands) of theExecuter
 			setScriptFile(file of docInfo) of theExecuter
+			setOptions(headerCommands) of theExecuter
 			return theExecuter
 		end if
 	end if
 	
 	(* make new Executer *)
 	set theCommandBuilder to makeObj(file of docInfo, command of commandInfo) of CommandBuilder
-	set postOption of theCommandBuilder to output of headerCommands
+	--set postOption of theCommandBuilder to output of headerCommands
 	
 	set theExecuter to UnixScriptExecuter's makeObj(theCommandBuilder)
-	setCleanCommands(process of headerCommands) of theExecuter
+	--setCleanCommands(process of headerCommands) of theExecuter
+	setOptions(headerCommands) of theExecuter
 	
 	if interactiveFlag then
 		set theTitle to "* Inferior " & baseCommand of commandInfo
-		if useOwnTerm of headerCommands then
+		if getValue of headerCommands given forKey:"useOwnTerm" then
 			set theTitle to theTitle & "--" & (name of docInfo)
 		end if
 		
@@ -183,12 +199,12 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 			set theExecuter to missing value
 		end if
 	end if
-	
+	(*
 	if theExecuter is not missing value then
 		--log "executer is found"
-		setPrompt(prompt of headerCommands) of theExecuter
+		setOptions(headerCommands) of theExecuter
 	end if
-	
+	*)
 	--log "end getExecuter"
 	return theExecuter
 end getExecuter

@@ -79,7 +79,7 @@ on sendCommand(theCommand)
 	end if
 end sendCommand
 
-on sendSelection()
+on sendSelection(arg)
 	--log "start sendSelection"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
@@ -131,10 +131,10 @@ end RunInTerminal
 --run with Finder's selection
 on getFinderSelection()
 	tell application "Finder"
-		set thelist to selection
+		set theList to selection
 	end tell
-	set itemText to (quoted form of POSIX path of (item 1 of thelist as alias))
-	repeat with theItem in (rest of thelist)
+	set itemText to (quoted form of POSIX path of (item 1 of theList as alias))
+	repeat with theItem in (rest of theList)
 		set itemText to itemText & space & (quoted form of POSIX path of (theItem as alias))
 	end repeat
 	return itemText

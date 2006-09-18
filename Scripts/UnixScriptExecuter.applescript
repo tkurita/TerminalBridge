@@ -9,7 +9,8 @@ on makeObj(theCommandBuilder)
 		property parent : theCommandBuilder
 		property processName : missing value
 		property targetTerminal : missing value
-		property commandPrompt : missing value
+		property _commandPrompt : missing value
+		property _options : missing value
 		
 		on getLastResult()
 			--log "start getLastResult in UnixScriptExecuter"
@@ -19,11 +20,11 @@ on makeObj(theCommandBuilder)
 			end if
 			
 			set theContents to my targetTerminal's getContents()
-			set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my commandPrompt}
+			set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			
 			if theResult is -1 then
 				set theContents to my targetTerminal's getHistory()
-				set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my commandPrompt}
+				set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			end if
 			
 			if theResult is not 1 then
@@ -34,10 +35,19 @@ on makeObj(theCommandBuilder)
 			return call method "lastResultWithCR" of TerminalClient
 		end getLastResult
 		
+		on setOptions(theVal)
+			--log "start setOptions"
+			set my _options to theVal
+			setPrompt(getValue of _options given forKey:"prompt")
+			setCleanCommands(getValue of _options given forKey:"process")
+			set my postOption to getValue of _options given forKey:"output"
+			--log "end setOptions"
+		end setOptions
+		
 		on setPrompt(thePrompt)
 			--log "start setPrompt"
 			if thePrompt is not missing value then
-				set commandPrompt to thePrompt
+				set my _commandPrompt to thePrompt
 			end if
 			--log "end setPrompt"
 		end setPrompt
@@ -76,6 +86,16 @@ on makeObj(theCommandBuilder)
 		on sendCommand(theCommand)
 			--log "start sendCommand in executer"
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
+			set escapeChars to getValue of _options given forKey:"escapeChars"
+			if escapeChars is not missing value then
+				tell StringEngine
+					storeDelimiter()
+					repeat with theChar in escapeChars
+						set theCommand to uTextReplace for theCommand from theChar by (backslash of UtilityHandlers) & theChar
+					end repeat
+					restoreDelimiter()
+				end tell
+			end if
 			
 			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
 				--log "before checkTerminalStatus in sendCommand in executer"
