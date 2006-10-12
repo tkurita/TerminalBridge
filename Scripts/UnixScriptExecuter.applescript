@@ -8,22 +8,22 @@ on makeObj(theCommandBuilder)
 	script UnixScriptExecuter
 		property parent : theCommandBuilder
 		property processName : missing value
-		property targetTerminal : missing value
+		property _targetTerminal : missing value
 		property _commandPrompt : missing value
 		property _options : missing value
 		
 		on getLastResult()
 			--log "start getLastResult in UnixScriptExecuter"
-			if not (getTargetTerminal of (my targetTerminal) without allowBusyStatus) then
+			if not (getTargetTerminal of (my _targetTerminal) without allowBusyStatus) then
 				error "No Terminal found." number 1640
 				return missing value
 			end if
 			
-			set theContents to my targetTerminal's getContents()
+			set theContents to my _targetTerminal's getContents()
 			set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			
 			if theResult is -1 then
-				set theContents to my targetTerminal's getHistory()
+				set theContents to my _targetTerminal's getHistory()
 				set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			end if
 			
@@ -57,8 +57,8 @@ on makeObj(theCommandBuilder)
 		end setCleanCommands
 		
 		on bringToFront given allowBusyStatus:isAllowBusy
-			if getTargetTerminal of (my targetTerminal) given allowBusyStatus:isAllowBusy then
-				return bringToFront() of (my targetTerminal)
+			if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isAllowBusy then
+				return bringToFront() of (my _targetTerminal)
 			else
 				return false
 			end if
@@ -71,20 +71,24 @@ on makeObj(theCommandBuilder)
 		end runScript
 		
 		on openNewTerminal()
+			log "start openNewTerminal"
 			set interactiveCommand to my buildInteractiveCommand()
 			set interactiveCommand to cleanYenmark(interactiveCommand) of UtilityHandlers
-			return doCmdInNewTerm of targetTerminal for interactiveCommand without activation
+			--log interactiveCommand
+			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation
 		end openNewTerminal
 		
 		on openNewTermForCommand(theCommand)
+			log "start openNewTermForCommand"
 			set interactiveCommand to my buildInteractiveCommand()
 			set interactiveCommand to cleanYenmark(interactiveCommand) of UtilityHandlers
 			set interactiveCommand to interactiveCommand & return & theCommand
-			return doCmdInNewTerm of targetTerminal for interactiveCommand without activation
+			--log interactiveCommand
+			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation
 		end openNewTermForCommand
 		
 		on sendCommand(theCommand)
-			--log "start sendCommand in executer"
+			log "start sendCommand in executer"
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
 			set escapeChars to getValue of _options given forKey:"escapeChars"
 			if escapeChars is not missing value then
@@ -97,10 +101,12 @@ on makeObj(theCommandBuilder)
 				end tell
 			end if
 			
-			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
-				--log "before checkTerminalStatus in sendCommand in executer"
+			if getTargetTerminal of (my _targetTerminal) with allowBusyStatus then
+				log "before checkTerminalStatus in sendCommand in executer"
 				if checkTerminalStatus(0) then
-					doCmdInCurrentTerm of (my targetTerminal) for theCommand without activation
+					log "will doCmdInCurrentTerm"
+					--log theCommand
+					doCmdInCurrentTerm of (my _targetTerminal) for theCommand without activation
 				else
 					return false
 				end if
@@ -112,16 +118,28 @@ on makeObj(theCommandBuilder)
 			return true
 		end sendCommand
 		
+		(*!
+		== chackTerminalStatus
+		Check busy status of a terminal window. 
+		When the terminal window is busy, it will ask next actions of "cancel", "open new term" and "show the term" to user
+		process setting of _tergetTerminal is concerned.
+		
+		=== Parameter 
+		* checkCount -- a number of trial after 1 sec delay.
+		
+		=== Result
+		boolean -- true when the terminal is not busy or a new terminal is opened.
+		*)
 		on checkTerminalStatus(checkCount)
 			--log "start checkTerminalStatus"
 			set theResult to true
 			if (contents of default entry "useExecCommand" of user defaults) then
-				set processList to getProcesses() of my targetTerminal
+				set processList to getProcesses() of my _targetTerminal
 			else
-				set processList to getProcessesOnShell() of my targetTerminal
+				set processList to getProcessesOnShell() of my _targetTerminal
 			end if
 			--log processList
-			if isBusy() of my targetTerminal then
+			if isBusy() of my _targetTerminal then
 				--log "targetTermianl is Busy "
 				tell StringEngine
 					storeDelimiter()
@@ -147,14 +165,14 @@ on makeObj(theCommandBuilder)
 					restoreDelimiter()
 				end tell
 				
-				set termName to getTerminalName() of my targetTerminal
+				set termName to getTerminalName() of my _targetTerminal
 				set theMessage to getLocalizedString of UtilityHandlers given keyword:"cantExecCommand", insertTexts:{termName, processTexts}
 				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
 				set theMessageResult to showMessageWithButtons(theMessage, buttonList, item 3 of buttonList) of EditorClient
 				--log "after showMessageWithButtons"
 				set theReturned to button returned of theMessageResult
 				if theReturned is item 3 of buttonList then
-					bringToFront() of my targetTerminal
+					bringToFront() of my _targetTerminal
 					set theResult to false
 				else if theReturned is item 2 of buttonList then
 					set theResult to openNewTerminal()
@@ -173,22 +191,26 @@ on makeObj(theCommandBuilder)
 		on setTargetTerminal given title:theCustomTitle, ignoreStatus:isIgnoreStatus
 			--log "start setTargetTerminal"
 			set theResult to true
-			copy TerminalCommander to targetTerminal
-			forgetTerminal() of targetTerminal
-			setCustomTitle(theCustomTitle) of targetTerminal
-			setCleanCommands(processName) of targetTerminal
-			setWindowCloseAction("2") of targetTerminal
+			copy TerminalCommander to my _targetTerminal
+			tell my _targetTerminal
+				forgetTerminal()
+				setCustomTitle(theCustomTitle)
+				setCleanCommands(processName)
+				setWindowCloseAction("2")
+			end tell
+			(* -- 2006.10.06 必ず、terminal window を確保する必要があるのか？
 			set theCommand to my buildInteractiveCommand()
 			--log "after buildInteractiveCommand"
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
 			--log "after cleanYenmark"
-			if getTargetTerminal of (my targetTerminal) with allowBusyStatus then
+			if getTargetTerminal of (my _targetTerminal) with allowBusyStatus then
 				if not isIgnoreStatus then
 					set theResult to checkTerminalStatus(0)
 				end if
 			else
-				set theResult to doCommands of targetTerminal for theCommand without activation
+				set theResult to doCommands of (my _targetTerminal) for theCommand without activation
 			end if
+			*)
 			--log "end setTargetTerminal"
 			return theResult
 		end setTargetTerminal
