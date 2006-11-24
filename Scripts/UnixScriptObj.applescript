@@ -24,6 +24,12 @@ on getLastResult()
 		return
 	end if
 	
+	if ((count paragraph of theResult) is 2) and (paragraph 2 of theResult is "") then
+		set selectionRec to getSelectionRecord() of EditorClient
+		if (cursorInParagraph of selectionRec is not 0) then
+			set theResult to first paragraph of theResult
+		end if
+	end if
 	insertText(theResult) of EditorClient
 	--log "end getLastResult in UnixScriptObj"
 end getLastResult
@@ -32,6 +38,7 @@ on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
 	set theExecuter to getExecuter of ExecuterController with interactive and allowBusyStatus
 	if theExecuter is missing value then
+		display alert "UnixScriptServer: the Executer is not found"
 		consoleLog("UnixScriptServer: the Executer is not found") of UtilityHandlers
 		-- このブロックはいらないかもしれない。theExecuter は いつ missing value　になる？
 		if getTargetTerminal of TerminalCommander with allowBusyStatus then
@@ -59,7 +66,7 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on sendCommand(theCommand)
-	--log "start sendCommand in UnixScriptOjb"
+	log "start sendCommand in UnixScriptOjb"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
@@ -72,8 +79,6 @@ on sendCommand(theCommand)
 	if theScriptExecuter is missing value then
 		return
 	end if
-	
-	set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
 	if theCommand is not "" then
 		sendCommand(theCommand) of theScriptExecuter
 	end if
@@ -97,11 +102,7 @@ on sendSelection(arg)
 	set theCommand to getSelection() of EditorClient
 	if theCommand is "" then
 		set theCommand to getCurrentLine() of EditorClient
-		if theCommand is not "" then
-			set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
-		end if
 	else
-		set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
 		tell StringEngine
 			startStringEngine() of it
 			set theCommand to uTextReplace of it for theCommand from tab by "  "
@@ -124,7 +125,7 @@ on RunInTerminal(optionRecord)
 		end if
 		return
 	end try
-	setRunOptions(optionRecord) of theScriptExecuter
+	theScriptExecuter's setRunOptions(optionRecord)
 	runScript of theScriptExecuter with activation
 end RunInTerminal
 
@@ -150,7 +151,7 @@ on runWithFinderSelection(optionRecord)
 		end if
 		return
 	end try
-	setRunOptions(optionRecord) of theScriptExecuter
+	theScriptExecuter's setRunOptions(optionRecord)
 	set commandArg of theScriptExecuter to getFinderSelection()
 	runScript of theScriptExecuter with activation
 end runWithFinderSelection
