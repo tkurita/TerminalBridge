@@ -66,7 +66,7 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on sendCommand(theCommand)
-	--log "start sendCommand in UnixScriptOjb"
+	--log "start sendCommand in UnixScriptObj"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
