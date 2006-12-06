@@ -37,7 +37,7 @@ end getLastResult
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
 	set theExecuter to getExecuter of ExecuterController with interactive and allowBusyStatus
-	if theExecuter is missing value then
+	(*if theExecuter is missing value then
 		display alert "UnixScriptServer: the Executer is not found"
 		consoleLog("UnixScriptServer: the Executer is not found") of UtilityHandlers
 		-- このブロックはいらないかもしれない。theExecuter は いつ missing value　になる？
@@ -46,18 +46,18 @@ on showInteractiveTerminal()
 		else
 			set theResult to false
 		end if
-	else
-		set theResult to bringToFront of theExecuter with allowBusyStatus
-		if not theResult then
-			set theResult to openNewTerminal() of theExecuter
-		end if
-		
-		if theResult then
-			set theResult to bringToFront of theExecuter with allowBusyStatus
-		else
-			showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
-		end if
+	else*)
+	set theResult to bringToFront of theExecuter with allowBusyStatus
+	if not theResult then
+		set theResult to openNewTerminal() of theExecuter
 	end if
+	
+	if theResult then
+		set theResult to bringToFront of theExecuter with allowBusyStatus
+	else
+		showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
+	end if
+	--end if
 	
 	if not theResult then
 		set theMessage to localized string "cantFindTerminal"
@@ -66,7 +66,7 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on sendCommand(theCommand)
-	log "start sendCommand in UnixScriptOjb"
+	--log "start sendCommand in UnixScriptOjb"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
@@ -83,6 +83,20 @@ on sendCommand(theCommand)
 		sendCommand(theCommand) of theScriptExecuter
 	end if
 end sendCommand
+
+on isEndWithStrings(theString, stringList)
+	set theResult to false
+	if theString ends with return then
+		set theString to text 1 thru -2 of theString
+	end if
+	repeat with a_string in stringList
+		if theString ends with a_string then
+			set theResult to true
+			exit repeat
+		end if
+	end repeat
+	return theResult
+end isEndWithStrings
 
 on sendSelection(arg)
 	--log "start sendSelection"
@@ -102,11 +116,44 @@ on sendSelection(arg)
 	set theCommand to getSelection() of EditorClient
 	if theCommand is "" then
 		set theCommand to getCurrentLine() of EditorClient
+		if theCommand is return then return
+		
+		if arg is missing value then
+			set line_end_escapes to missing value
+		else
+			try
+				set line_end_escapes to lineEndEscape of arg
+			on error
+				set line_end_escapes to missing value
+			end try
+		end if
+		
+		if line_end_escapes is not missing value then
+			if isEndWithStrings(theCommand, line_end_escapes) then
+				set current_index to getCurrentLineIndex() of EditorClient
+				set next_index to current_index + 1
+				set next_line to getParagraph(next_index) of EditorClient
+				set command_list to {theCommand, next_line}
+				repeat while (isEndWithStrings(next_line, line_end_escapes))
+					set next_index to next_index + 1
+					set next_line to getParagraph(next_index) of EditorClient
+					set end of command_list to next_line
+				end repeat
+				tell StringEngine
+					storeDelimiters() of it
+					set theCommand to joinUTextList of it for command_list by ""
+					set theCommand to uTextReplace of it for theCommand from tab by "  "
+					restoreDelimiters() of it
+				end tell
+				
+			end if
+		end if
+		
 	else
 		tell StringEngine
-			startStringEngine() of it
+			storeDelimiters() of it
 			set theCommand to uTextReplace of it for theCommand from tab by "  "
-			stopStringEngine() of it
+			restoreDelimiters() of it
 		end tell
 	end if
 	

@@ -131,13 +131,6 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 	if (getValue of headerCommands given forKey:"process") is missing value then
 		setValue of headerCommands given forKey:"process", withValue:baseCommand of commandInfo
 	end if
-	set theExecuter to missing value
-	
-	if (interactiveExecuters is missing value) then
-		set interactiveExecuters to makeObj() of KeyValueDictionary
-	else
-		set theExecuter to getValue of interactiveExecuters given forKey:keyValue
-	end if
 	
 	if (getValue of headerCommands given forKey:"prompt") is missing value then
 		if (mode of commandInfo) is missing value then
@@ -149,12 +142,20 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		end try
 	end if
 	
+	set theExecuter to missing value
+	if (interactiveExecuters is missing value) then
+		set interactiveExecuters to KeyValueDictionary's makeObj()
+	else
+		set theExecuter to getValue of interactiveExecuters given forKey:keyValue
+	end if
+	
 	--log "end getInteractiveExecuter"
 	return {keyValue, theExecuter}
 end getInteractiveExecuter
 
 on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	--log "start getExecuter"
+	set theExecuter to missing value
 	(* get info of front document of Editor *)
 	set docInfo to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
@@ -167,44 +168,36 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	
 	(* get interactive executer *)
 	if interactiveFlag then
-		set interactiveCommand to getValue of headerCommands given forKey:"interactive"
-		if interactiveCommand is not missing value then
-			set command of commandInfo to interactiveCommand
-		end if
 		set {keyValue, theExecuter} to getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		if theExecuter is not missing value then
-			setScriptFile(file of docInfo) of theExecuter
-			setOptions(headerCommands) of theExecuter
-			return theExecuter
+			theExecuter's updateScriptFile(file of docInfo)
+			theExecuter's setOptions(headerCommands)
 		end if
+	else
+		removeItem of headerCommands given forKey:"interactive"
 	end if
 	
 	(* make new Executer *)
-	set theCommandBuilder to makeObj(file of docInfo, command of commandInfo) of CommandBuilder
-	--set postOption of theCommandBuilder to output of headerCommands
-	
-	set theExecuter to UnixScriptExecuter's makeObj(theCommandBuilder)
-	--setCleanCommands(process of headerCommands) of theExecuter
-	setOptions(headerCommands) of theExecuter
-	
-	if interactiveFlag then
-		set theTitle to "* Inferior " & baseCommand of commandInfo
-		if getValue of headerCommands given forKey:"useOwnTerm" then
-			set theTitle to theTitle & "--" & (name of docInfo)
-		end if
+	if theExecuter is missing value then
+		set theCommandBuilder to CommandBuilder's makeObj(file of docInfo, command of commandInfo)
 		
-		if setTargetTerminal of theExecuter given title:(theTitle & " *"), ignoreStatus:isAllowBusy then
-			setValue of interactiveExecuters given forKey:keyValue, withValue:theExecuter
-		else
-			set theExecuter to missing value
+		set theExecuter to UnixScriptExecuter's makeObj(theCommandBuilder)
+		setOptions(headerCommands) of theExecuter
+		
+		if interactiveFlag then
+			set theTitle to "* Inferior " & baseCommand of commandInfo
+			if getValue of headerCommands given forKey:"useOwnTerm" then
+				set theTitle to theTitle & "--" & (name of docInfo)
+			end if
+			
+			if setTargetTerminal of theExecuter given title:(theTitle & " *"), ignoreStatus:isAllowBusy then
+				setValue of interactiveExecuters given forKey:keyValue, withValue:theExecuter
+			else
+				set theExecuter to missing value
+			end if
 		end if
 	end if
-	(*
-	if theExecuter is not missing value then
-		--log "executer is found"
-		setOptions(headerCommands) of theExecuter
-	end if
-	*)
+	
 	--log "end getExecuter"
 	return theExecuter
 end getExecuter

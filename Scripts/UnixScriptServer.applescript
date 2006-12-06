@@ -25,6 +25,7 @@ property TerminalClient : missing value
 (*shared constants *)
 property dQ : ASCII character 34
 property lineFeed : ASCII character 10
+property backslash : ASCII character 128
 
 (* events of application*)
 on importScript(scriptName)
@@ -51,6 +52,7 @@ on launched theObject
 	--openWindow() of SettingWindowObj
 	--getLastResult() of UnixScriptObj
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
+	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
 	--sendSelection() of UnixScriptObj
