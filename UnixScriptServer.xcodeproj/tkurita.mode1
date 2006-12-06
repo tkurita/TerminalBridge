@@ -185,48 +185,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>2CEF92080B2661FC00E4A450</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>UnixScriptObj.applescript</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>2CEF92090B2661FC00E4A450</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>UnixScriptObj.applescript</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>2CEF920A0B2661FC00E4A450</string>
-						<key>history</key>
-						<array>
-							<string>2CEF92020B2661F400E4A450</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {769, 701}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>173 179 769 742 0 0 1440 938 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>1117</integer>
@@ -315,8 +274,9 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>8</integer>
-									<integer>6</integer>
+									<integer>32</integer>
+									<integer>31</integer>
+									<integer>24</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -370,7 +330,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CEF92050B2661FC00E4A450</string>
+										<string>2CEF93E90B26852B00E4A450</string>
 										<key>history</key>
 										<array>
 											<string>2C1BA8BC0ABE314B0011E405</string>
@@ -391,7 +351,7 @@
 											<string>2CC097210AE87A3C00A443B8</string>
 											<string>2CC097220AE87A3C00A443B8</string>
 											<string>2CC097230AE87A3C00A443B8</string>
-											<string>2C284D020B265F0C00930DCD</string>
+											<string>2CEF92F20B26631400E4A450</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -506,9 +466,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2CEF92060B2661FC00E4A450</string>
+				<string>2CEF93EA0B26852B00E4A450</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2CEF92070B2661FC00E4A450</string>
+				<string>2CEF93EB0B26852B00E4A450</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -668,7 +628,6 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>/Users/tkurita/Dev/Projects/UnixScriptToolsFormi/trunk/UnixScriptServer.xcodeproj</string>
-		<string>2CEF92080B2661FC00E4A450</string>
 	</array>
 	<key>WindowString</key>
 	<string>73 147 401 788 0 0 1440 938 </string>
@@ -750,7 +709,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C4A70240980A77C00D4AF6B</string>
-				<string>2C284CBB0B2657CC00930DCD</string>
+				<string>2CEF92F50B26631400E4A450</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
