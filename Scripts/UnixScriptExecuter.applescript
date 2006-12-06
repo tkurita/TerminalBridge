@@ -64,7 +64,7 @@ on makeObj(theCommandBuilder)
 		*)
 		on checkTerminalStatus(checkCount)
 			--log "start checkTerminalStatus"
-			set theResult to true
+			set theResult to kTerminalReady
 			if (contents of default entry "useExecCommand" of user defaults) then
 				set processList to getProcesses() of my _targetTerminal
 			else
