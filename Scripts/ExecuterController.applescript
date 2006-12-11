@@ -5,12 +5,13 @@ global EditorClient
 global StringEngine
 global UnixScriptExecuter
 global TerminalClient
+global PathAnalyzer
 
 property interactiveExecuters : missing value
 property _aDoc : missing value
 property _sQ : missing value
 property _eQ : missing value
-property _hcommandLabels : {"useOwnTerm", "escapeChars", "process", "output", "prompt", "interactive"}
+property _hcommandLabels : {"useOwnTerm", "escapeChars", "process", "output", "prompt", "interactive", "shareTerm"}
 
 on initialize()
 	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
@@ -122,8 +123,19 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 		restoreDelimiter()
 	end tell
 	
-	if (getValue of headerCommands given forKey:"useOwnTerm") and (file of docInfo is not missing value) then
-		set keyValue to file of docInfo
+	if (file of docInfo is not missing value) then
+		if (getValue of headerCommands given forKey:"useOwnTerm") then
+			set keyValue to file of docInfo
+		else
+			set shared_path to getValue of headerCommands given forKey:"shareTerm"
+			if shared_path is missing value then
+				set keyValue to baseCommand of commandInfo
+			else
+				set folder_path to POSIX path of PathAnalyzer's folderOf(file of docInfo)
+				set keyValue to POSIX file (folder_path & "/" & shared_path) as alias
+				--setValue of headerCommands given forKey:"shareTerm", withValue:keyValue
+			end if
+		end if
 	else
 		set keyValue to baseCommand of commandInfo
 	end if
@@ -188,6 +200,12 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 			set theTitle to "* Inferior " & baseCommand of commandInfo
 			if getValue of headerCommands given forKey:"useOwnTerm" then
 				set theTitle to theTitle & "--" & (name of docInfo)
+			else
+				set shared_path to getValue of headerCommands given forKey:"shareTerm"
+				if (shared_path is not missing value) then
+					set doc_name to PathAnalyzer's nameOf(keyValue)
+					set theTitle to theTitle & "--" & doc_name
+				end if
 			end if
 			
 			if setTargetTerminal of theExecuter given title:(theTitle & " *"), ignoreStatus:isAllowBusy then
