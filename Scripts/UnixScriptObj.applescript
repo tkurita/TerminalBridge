@@ -30,7 +30,7 @@ on getLastResult()
 			set theResult to first paragraph of theResult
 		end if
 	end if
-	insertText(theResult) of EditorClient
+	insert_text(theResult) of EditorClient
 	--log "end getLastResult in UnixScriptObj"
 end getLastResult
 
@@ -113,9 +113,9 @@ on sendSelection(arg)
 		return
 	end if
 	
-	set theCommand to getSelection() of EditorClient
+	set theCommand to get_selection() of EditorClient
 	if theCommand is "" then
-		set theCommand to getCurrentLine() of EditorClient
+		set theCommand to current_paragraph() of EditorClient
 		if theCommand is return then return
 		
 		if arg is missing value then
@@ -130,13 +130,13 @@ on sendSelection(arg)
 		
 		if line_end_escapes is not missing value then
 			if isEndWithStrings(theCommand, line_end_escapes) then
-				set current_index to getCurrentLineIndex() of EditorClient
+				set current_index to index_current_paragraph() of EditorClient
 				set next_index to current_index + 1
-				set next_line to getParagraph(next_index) of EditorClient
+				set next_line to paragraph_at_index(next_index) of EditorClient
 				set command_list to {theCommand, next_line}
 				repeat while (isEndWithStrings(next_line, line_end_escapes))
 					set next_index to next_index + 1
-					set next_line to getParagraph(next_index) of EditorClient
+					set next_line to paragraph_at_index(next_index) of EditorClient
 					set end of command_list to next_line
 				end repeat
 				tell StringEngine

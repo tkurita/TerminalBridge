@@ -22,8 +22,8 @@ end initialize
 
 on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
 	--log "start getDocumentInfo"
-	set theName to getDocumentName() of EditorClient
-	set theScriptFile to getDocumentFileAlilas() of EditorClient
+	set theName to document_name() of EditorClient
+	set theScriptFile to document_file_as_alias() of EditorClient
 	
 	if (not isAllowUnsaved) and (theScriptFile is missing value) then
 		set isNotSaved to localized string "isNotSaved"
@@ -33,7 +33,7 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 	end if
 	
 	if not isAllowModified then
-		set modifiedFlag to isModified() of EditorClient
+		set modifiedFlag to is_modified() of EditorClient
 		if modifiedFlag then
 			if not saveWithAsking() of EditorClient then
 				error "The documen is modified. Saving the document is canceld by user." number 1610
@@ -55,7 +55,7 @@ on resolveCommand(docInfo)
 	
 	set docMode to missing value
 	if theScriptCommand is missing value then
-		set docMode to getDocumentMode() of EditorClient
+		set docMode to document_mode() of EditorClient
 		set theScriptCommand to call method "commandForMode:" of TerminalClient with parameter docMode
 		try
 			get theScriptCommand
@@ -79,7 +79,7 @@ on resolveHeaderCommand()
 	set headerCommands to makeObjWithKeysAndValues({"useOwnTerm"}, {false}) of KeyValueDictionary
 	set ith to 1
 	repeat
-		set theParagraph to getParagraph(ith) of EditorClient
+		set theParagraph to paragraph_at_index(ith) of EditorClient
 		if theParagraph starts with "#" then
 			ignoring case
 				repeat with labelName in my _hcommandLabels
@@ -146,7 +146,7 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 	
 	if (getValue of headerCommands given forKey:"prompt") is missing value then
 		if (mode of commandInfo) is missing value then
-			set mode of commandInfo to getDocumentMode() of EditorClient
+			set mode of commandInfo to document_mode() of EditorClient
 		end if
 		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of commandInfo)
 		try -- theDefPrompt may be undefined
