@@ -661,6 +661,7 @@
 			2C1E921F0B3817860086DB87 = 2C1E921F0B3817860086DB87 /* PBXTextBookmark */;
 			2C792E760B6F7309005672E4 = 2C792E760B6F7309005672E4 /* PBXTextBookmark */;
 			2C7930390B732177005672E4 /* PBXTextBookmark */ = 2C7930390B732177005672E4 /* PBXTextBookmark */;
+			2C79304F0B7322BC005672E4 /* PBXTextBookmark */ = 2C79304F0B7322BC005672E4 /* PBXTextBookmark */;
 			2C7F728D0AD378EE0047808B = 2C7F728D0AD378EE0047808B /* PBXTextBookmark */;
 			2C7F728E0AD378EE0047808B = 2C7F728E0AD378EE0047808B /* PBXTextBookmark */;
 			2C7F72900AD378EE0047808B = 2C7F72900AD378EE0047808B /* PBXTextBookmark */;
@@ -791,7 +792,7 @@
 		fRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */;
 		name = "UnixScriptExecuter.applescript: 196";
 		rLen = 0;
-		rLoc = 9229;
+		rLoc = 9231;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -911,7 +912,7 @@
 		fRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */;
 		name = "UnixScriptExecuter.applescript: 269";
 		rLen = 0;
-		rLoc = 9229;
+		rLoc = 9231;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -959,7 +960,7 @@
 	2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {896, 4573}}";
-			sepNavSelRange = "{9229, 0}";
+			sepNavSelRange = "{9231, 0}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{381, 86}, {820, 823}}";
 		};
@@ -1063,7 +1064,7 @@
 		fRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */;
 		name = "UnixScriptExecuter.applescript: 269";
 		rLen = 0;
-		rLoc = 9229;
+		rLoc = 9231;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;
@@ -1073,7 +1074,17 @@
 		fRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */;
 		name = "UnixScriptExecuter.applescript: 269";
 		rLen = 0;
-		rLoc = 9229;
+		rLoc = 9231;
+		rType = 0;
+		vrLen = 0;
+		vrLoc = 0;
+	};
+	2C79304F0B7322BC005672E4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */;
+		name = "UnixScriptExecuter.applescript: 269";
+		rLen = 0;
+		rLoc = 9231;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 0;

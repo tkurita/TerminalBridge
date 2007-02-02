@@ -5,7 +5,7 @@ global StringEngine
 global UtilityHandlers
 
 (* execute tex commands called from tools from mi  ====================================*)
-(* interactive process *)
+(*= interactive process *)
 on getLastResult()
 	--log "start getLastResult in UnixScriptObj"
 	set theExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
@@ -80,7 +80,7 @@ on sendCommand(theCommand)
 		return
 	end if
 	if theCommand is not "" then
-		sendCommand(theCommand) of theScriptExecuter
+		sendCommand of theScriptExecuter for theCommand with allowBusyStatus
 	end if
 end sendCommand
 
@@ -158,26 +158,32 @@ on sendSelection(arg)
 	end if
 	
 	if theCommand is not "" then
-		sendCommand(theCommand) of theScriptExecuter
+		sendCommand of theScriptExecuter for theCommand with allowBusyStatus
 	end if
 end sendSelection
 
-(* simply run in Terminal *)
-on RunInTerminal(optionRecord)
+(*= non-interactive commands *)
+on getCommonTerminal(optionRecord)
 	try
 		set theScriptExecuter to getExecuter of ExecuterController without interactive and allowBusyStatus
 	on error errMsg number errNum
 		if errNum is not in {1600, 1610, 1620} then
 			error errMsg number errNum
 		end if
-		return
+		return missing value
 	end try
 	theScriptExecuter's setRunOptions(optionRecord)
+	return theScriptExecuter
+end getCommonTerminal
+
+(*==  simply run in Terminal *)
+on RunInTerminal(optionRecord)
+	set theScriptExecuter to getCommonTerminal(optionRecord)
 	runScript of theScriptExecuter with activation
 end RunInTerminal
 
---run with Finder's selection
-on getFinderSelection()
+(* == run with Finder's selection *)
+on getFinderSelection(optionRecord)
 	tell application "Finder"
 		set theList to selection
 	end tell
@@ -190,15 +196,15 @@ end getFinderSelection
 
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
-	try
-		set theScriptExecuter to getExecuter of ExecuterController without interactive and allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620} then
-			error errMsg number errNum
-		end if
-		return
-	end try
-	theScriptExecuter's setRunOptions(optionRecord)
+	set theScriptExecuter to getCommonTerminal(optionRecord)
 	set commandArg of theScriptExecuter to getFinderSelection()
 	runScript of theScriptExecuter with activation
 end runWithFinderSelection
+
+(*== send command without CommandBuilder *)
+on sendCommandInCommonTerm(optionRecord)
+	set theCommand to StringEngine's stripHeadTailSpaces(command of optionRecord)
+	set theCommand to cleanYenmark(theCommand) of UtilityHandlers
+	doCommands of TerminalCommander for theCommand with activation
+	beep
+end sendCommandInCommonTerm

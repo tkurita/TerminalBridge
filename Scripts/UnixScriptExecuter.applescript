@@ -10,6 +10,7 @@ property kShowTerminal : "ShowTerminal"
 property kCancel : "Cancel"
 
 on makeObj(theCommandBuilder)
+	--log "start makeObj in UnixScriptExecuter"
 	script UnixScriptExecuter
 		property _commandBuilder : theCommandBuilder
 		property processName : missing value
@@ -159,10 +160,16 @@ on makeObj(theCommandBuilder)
 			return theResult
 		end setTargetTerminal
 		
-		on sendCommand(theCommand)
-			--log "start sendCommand in executer"
+		on clenupCommandText(theCommand)
 			set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
+			return theCommand
+		end clenupCommandText
+		
+		--on sendCommand(theCommand)
+		on sendCommand for theCommand given allowBusyStatus:isBusyAllowed
+			--log "start sendCommand in executer"
+			set theCommand to clenupCommandText(theCommand)
 			set escapeChars to getValue of _options given forKey:"escapeChars"
 			if escapeChars is not missing value then
 				tell StringEngine
@@ -174,7 +181,7 @@ on makeObj(theCommandBuilder)
 				end tell
 			end if
 			
-			if getTargetTerminal of (my _targetTerminal) with allowBusyStatus then
+			if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isBusyAllowed then
 				--log "before checkTerminalStatus in sendCommand in executer"
 				set the_result to checkTerminalStatus(0)
 				if the_result is kTerminalReady then
@@ -253,5 +260,10 @@ on makeObj(theCommandBuilder)
 			beep
 		end runScript
 		
+		on sendCommandInCommonTerm for theCommand given activation:activateFlag
+			set theCommand to clenupCommandText(theCommand)
+			doCommands of TerminalCommander for theCommand given activation:activateFlag
+			beep
+		end sendCommandInCommonTerm
 	end script
 end makeObj

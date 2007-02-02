@@ -73,6 +73,9 @@ on open theObject
 			runWithFinderSelection(theArg) of UnixScriptObj
 		else if theCommandID is "RunInTerminal" then
 			RunInTerminal(theArg) of UnixScriptObj
+		else if theCommandID is "sendCommandInCommonTerm" then
+			sendCommandInCommonTerm(theArg) of UnixScriptObj
+			(* interactive process *)
 		else if theCommandID is "sendSelection" then
 			sendSelection(theArg) of UnixScriptObj
 		else if theCommandID is "showInteractiveTerminal" then
@@ -81,6 +84,7 @@ on open theObject
 			sendCommand(theArg) of UnixScriptObj
 		else if theCommandID is "getLastResult" then
 			getLastResult() of UnixScriptObj
+			(* control UnixScriptServer *)
 		else if theCommandID is "setting" then
 			openWindow() of SettingWindowObj
 		else if theCommandID is "Help" then
