@@ -178,8 +178,10 @@ end getCommonTerminal
 
 (*==  simply run in Terminal *)
 on RunInTerminal(optionRecord)
-	set theScriptExecuter to getCommonTerminal(optionRecord)
-	runScript of theScriptExecuter with activation
+	set an_executer to getCommonTerminal(optionRecord)
+	if an_executer is missing value then return
+	
+	runScript of an_executer with activation
 end RunInTerminal
 
 (* == run with Finder's selection *)
@@ -196,7 +198,9 @@ end getFinderSelection
 
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
-	set theScriptExecuter to getCommonTerminal(optionRecord)
+	set an_executer to getCommonTerminal(optionRecord)
+	if a_execter is missing value then return
+	
 	set commandArg of theScriptExecuter to getFinderSelection()
 	runScript of theScriptExecuter with activation
 end runWithFinderSelection
