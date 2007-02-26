@@ -75,9 +75,9 @@ on makeObj(theCommandBuilder)
 			if isBusy() of my _targetTerminal then
 				--log "targetTermianl is Busy "
 				tell StringEngine
-					storeDelimiter()
-					set supportProcesses to everyTextItem from my processName by ";"
-					restoreDelimiter()
+					store_delimiters()
+					set supportProcesses to split for my processName by ";"
+					restore_delimiters()
 				end tell
 				--log supportProcesses
 				set newProcesses to {}

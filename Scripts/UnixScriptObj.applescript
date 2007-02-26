@@ -140,10 +140,10 @@ on sendSelection(arg)
 					set end of command_list to next_line
 				end repeat
 				tell StringEngine
-					storeDelimiters() of it
-					set theCommand to joinUTextList of it for command_list by ""
-					set theCommand to uTextReplace of it for theCommand from tab by "  "
-					restoreDelimiters() of it
+					store_delimiters() of it
+					set theCommand to join of it for command_list by ""
+					set theCommand to replace of it for theCommand from tab by "  "
+					restore_delimiters() of it
 				end tell
 				
 			end if
@@ -151,9 +151,9 @@ on sendSelection(arg)
 		
 	else
 		tell StringEngine
-			storeDelimiters() of it
-			set theCommand to uTextReplace of it for theCommand from tab by "  "
-			restoreDelimiters() of it
+			store_delimiters() of it
+			set theCommand to replace of it for theCommand from tab by "  "
+			restore_delimiters() of it
 		end tell
 	end if
 	
@@ -185,12 +185,16 @@ on RunInTerminal(optionRecord)
 end RunInTerminal
 
 (* == run with Finder's selection *)
-on getFinderSelection(optionRecord)
+on getFinderSelection()
 	tell application "Finder"
-		set theList to selection
+		set a_list to selection
 	end tell
-	set itemText to (quoted form of POSIX path of (item 1 of theList as alias))
-	repeat with theItem in (rest of theList)
+	if length of a_list is 0 then
+		return missing value
+	end if
+	
+	set itemText to (quoted form of POSIX path of (item 1 of a_list as alias))
+	repeat with theItem in (rest of a_list)
 		set itemText to itemText & space & (quoted form of POSIX path of (theItem as alias))
 	end repeat
 	return itemText
@@ -198,11 +202,21 @@ end getFinderSelection
 
 on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
-	set an_executer to getCommonTerminal(optionRecord)
-	if a_execter is missing value then return
+	set a_selection to getFinderSelection()
+	if a_selection is missing value then
+		showMessage("No Selection in Finder") of EditorClient
+		return
+	end if
+	if optionRecord is missing value then
+		set optionRecord to {commandArg:a_selection}
+	else
+		set optionRecord to optionRecord & {commandArg:a_selection}
+	end if
 	
-	set commandArg of theScriptExecuter to getFinderSelection()
-	runScript of theScriptExecuter with activation
+	set an_executer to getCommonTerminal(optionRecord)
+	if an_executer is missing value then return
+	
+	runScript of an_executer with activation
 end runWithFinderSelection
 
 (*== send command without CommandBuilder *)

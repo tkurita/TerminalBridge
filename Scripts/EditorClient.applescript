@@ -49,9 +49,9 @@ on showMessageWithButtons(theMessage, buttonList, defaultButton)
 	return theResult
 end showMessageWithButtons
 
-on showMessage(theMessage)
+on showMessage(msg)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
 	tell application "mi"
-		display dialog theMessage buttons {"OK"} default button "OK"
+		display alert msg
 	end tell
 end showMessage
