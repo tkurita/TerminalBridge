@@ -138,8 +138,8 @@ on makeObj(theCommandBuilder)
 			set theResult to true
 			copy TerminalCommander to my _targetTerminal
 			tell my _targetTerminal
-				forgetTerminal()
-				setCustomTitle(theCustomTitle)
+				forget()
+				set_custom_title(theCustomTitle)
 				setCleanCommands(processName)
 				setWindowCloseAction("2")
 			end tell

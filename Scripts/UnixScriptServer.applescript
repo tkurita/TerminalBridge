@@ -1,12 +1,12 @@
 (* shared script objects *)
-on loadLib(theName)
-	return loadLib(theName) of application (get "UnixScriptToolsLib")
-end loadLib
+on load(a_name)
+	return load(a_name) of application (get "UnixScriptToolsLib")
+end load
 
-property PathAnalyzer : loadLib("PathAnalyzer")
-property StringEngine : loadLib("StringEngine")
-property KeyValueDictionary : loadLib("KeyValueDictionary")
-property TerminalCommanderBase : loadLib("TerminalCommander")
+property PathAnalyzer : load("PathAnalyzer")
+property StringEngine : StringEngine of PathAnalyzer
+property KeyValueDictionary : load("KeyValueDictionary")
+property TerminalCommanderBase : load("TerminalCommander")
 
 property TerminalCommander : missing value
 property TerminalSettingObj : missing value
@@ -62,32 +62,35 @@ end launched
 
 on open theObject
 	if class of theObject is record then
-		set theCommandID to commandID of theObject
+		set command_id to commandID of theObject
+		
+		set arg to missing value
 		try
-			set theArg to argument of theObject
-		on error
-			set theArg to missing value
+			set arg to argument of theObject
 		end try
 		
-		if theCommandID is "runWithFinderSelection" then
-			runWithFinderSelection(theArg) of UnixScriptObj
-		else if theCommandID is "RunInTerminal" then
-			RunInTerminal(theArg) of UnixScriptObj
-		else if theCommandID is "sendCommandInCommonTerm" then
-			sendCommandInCommonTerm(theArg) of UnixScriptObj
+		if command_id is "runWithFinderSelection" then
+			runWithFinderSelection(arg) of UnixScriptObj
+		else if command_id is "RunInTerminal" then
+			RunInTerminal(arg) of UnixScriptObj
+		else if command_id is "sendCommandInCommonTerm" then
+			sendCommandInCommonTerm(arg) of UnixScriptObj
+		else if command_id is "send_in_named_term" then
+			send_in_named_term(arg) of UnixScriptObj
+			
 			(* interactive process *)
-		else if theCommandID is "sendSelection" then
-			sendSelection(theArg) of UnixScriptObj
-		else if theCommandID is "showInteractiveTerminal" then
+		else if command_id is "sendSelection" then
+			sendSelection(arg) of UnixScriptObj
+		else if command_id is "showInteractiveTerminal" then
 			showInteractiveTerminal() of UnixScriptObj
-		else if theCommandID is "sendCommand" then
-			sendCommand(theArg) of UnixScriptObj
-		else if theCommandID is "getLastResult" then
+		else if command_id is "sendCommand" then
+			sendCommand(arg) of UnixScriptObj
+		else if command_id is "getLastResult" then
 			getLastResult() of UnixScriptObj
 			(* control UnixScriptServer *)
-		else if theCommandID is "setting" then
+		else if command_id is "setting" then
 			openWindow() of SettingWindowObj
-		else if theCommandID is "Help" then
+		else if command_id is "Help" then
 			call method "showHelp:"
 		end if
 		
@@ -97,7 +100,7 @@ on open theObject
 			end if
 		end try
 	end if
-	--display dialog theCommandID
+	--display dialog command_id
 	return true
 end open
 

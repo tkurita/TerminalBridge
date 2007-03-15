@@ -3,9 +3,10 @@ global EditorClient
 global TerminalCommander
 global StringEngine
 global UtilityHandlers
+global KeyValueDictionary
 
-(* execute tex commands called from tools from mi  ====================================*)
-(*= interactive process *)
+(*== execute tex commands called from tools from mi  *)
+(*=== interactive process *)
 on getLastResult()
 	--log "start getLastResult in UnixScriptObj"
 	set theExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
@@ -176,7 +177,7 @@ on getCommonTerminal(optionRecord)
 	return theScriptExecuter
 end getCommonTerminal
 
-(*==  simply run in Terminal *)
+(*===  simply run in Terminal *)
 on RunInTerminal(optionRecord)
 	set an_executer to getCommonTerminal(optionRecord)
 	if an_executer is missing value then return
@@ -184,7 +185,7 @@ on RunInTerminal(optionRecord)
 	runScript of an_executer with activation
 end RunInTerminal
 
-(* == run with Finder's selection *)
+(*=== run with Finder's selection *)
 on getFinderSelection()
 	tell application "Finder"
 		set a_list to selection
@@ -219,10 +220,38 @@ on runWithFinderSelection(optionRecord)
 	runScript of an_executer with activation
 end runWithFinderSelection
 
-(*== send command without CommandBuilder *)
+(*=== send command without CommandBuilder *)
 on sendCommandInCommonTerm(optionRecord)
-	set theCommand to StringEngine's stripHeadTailSpaces(command of optionRecord)
-	set theCommand to cleanYenmark(theCommand) of UtilityHandlers
-	doCommands of TerminalCommander for theCommand with activation
+	set a_command to StringEngine's strip_head_tail_spaces(command of optionRecord)
+	set a_command to cleanYenmark(a_command) of UtilityHandlers
+	do_command of TerminalCommander for a_command with activation
 	beep
 end sendCommandInCommonTerm
+
+property _namedTerms : missing value
+
+on get_named_term(a_name)
+	set target_term to missing value
+	if my _namedTerms is missing value then
+		set my _namedTerms to make_obj() of KeyValueDictionary
+	else
+		set target_term to my _namedTerms's value_for_key(a_name)
+	end if
+	
+	if target_term is missing value then
+		copy TerminalCommander to target_term
+		TerminalCommander's forgetTerminal()
+		target_term's forget()
+		target_term's set_custom_title("* " & a_name & " *")
+		set_value of (my _namedTerms) given for_key:a_name, with_value:target_term
+	end if
+	
+	return target_term
+end get_named_term
+
+on send_in_named_term(opt_rec)
+	set target_term to get_named_term(termTitle of opt_rec)
+	set a_command to StringEngine's strip_head_tail_spaces(command of opt_rec)
+	set a_command to cleanYenmark(a_command) of UtilityHandlers
+	do_command of target_term for a_command with activation
+end send_in_named_term
