@@ -1,29 +1,30 @@
 global StringEngine
 
-property parent : loadLib("miClient") of application (get "UnixScriptToolsLib")
+property parent : load("miClient") of application (get "UnixScriptToolsLib")
 
-on saveWithAsking()
-	set doYouSaveText to localized string "doYouSave"
+on save_with_asking()
+	set do_you_save_msg to localized string "doYouSave"
+	
 	tell application "mi"
-		set theName to name of document 1
+		set a_name to name of document 1
 	end tell
 	
 	tell StringEngine
-		storeDelimiter()
-		set docIsModified to insertTexts for {theName} into (localized string "docIsModified")
-		restoreDelimiter()
+		store_delimiters()
+		set doc_modified_msg to formated_text given template:(localized string "docIsModified"), args:{a_name}
+		restore_delimiters()
 	end tell
 	
 	tell application "mi"
 		try
-			set theResult to display dialog (docIsModified & return & doYouSaveText)
+			set a_result to display dialog (doc_modified_msg & return & do_you_save_msg)
 		on error number -128
 			return false
 		end try
 		save document 1
 		return true
 	end tell
-end saveWithAsking
+end save_with_asking
 
 on showMessageWithAsk(theMessage)
 	call method "activateAppOfType:" of class "SmartActivate" with parameter "MMKE"
