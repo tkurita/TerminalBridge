@@ -95,9 +95,9 @@ on makeObj(theCommandBuilder)
 				end if
 				
 				tell StringEngine
-					storeDelimiter()
-					set processTexts to joinUTextList for newProcesses by return
-					restoreDelimiter()
+					store_delimiters()
+					set processTexts to join for newProcesses by return
+					restore_delimiters()
 				end tell
 				
 				set termName to getTerminalName() of my _targetTerminal
@@ -112,7 +112,7 @@ on makeObj(theCommandBuilder)
 				else if theReturned is item 2 of buttonList then
 					set theResult to openNewTerminal()
 					if theResult then
-						set theResult to kTermianlReady
+						set theResult to kTerminalReady
 					else
 						set theResult to kCancel
 					end if
@@ -123,7 +123,7 @@ on makeObj(theCommandBuilder)
 				if (processList is {}) then
 					set theResult to openNewTerminal()
 					if theResult then
-						set theResult to kTermianlReady
+						set theResult to kTerminalReady
 					else
 						set theResult to kCancel
 					end if
@@ -170,14 +170,14 @@ on makeObj(theCommandBuilder)
 		on sendCommand for theCommand given allowBusyStatus:isBusyAllowed
 			--log "start sendCommand in executer"
 			set theCommand to clenupCommandText(theCommand)
-			set escapeChars to getValue of _options given forKey:"escapeChars"
+			set escapeChars to _options's value_for_key("escapeChars")
 			if escapeChars is not missing value then
 				tell StringEngine
-					storeDelimiter()
+					store_delimiters()
 					repeat with theChar in escapeChars
-						set theCommand to uTextReplace for theCommand from theChar by (backslash of UtilityHandlers) & theChar
+						set theCommand to replace for theCommand from theChar by (backslash of UtilityHandlers) & theChar
 					end repeat
-					restoreDelimiter()
+					restore_delimiters()
 				end tell
 			end if
 			

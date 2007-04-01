@@ -117,10 +117,10 @@ on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
 	--	log commandInfo
 	--	log headerCommands
 	tell StringEngine
-		storeDelimiter()
-		set comList to everyTextItem from (command of commandInfo) by space
+		store_delimiters()
+		set comList to split for (command of commandInfo) by space
 		set baseCommand of commandInfo to last word of (first item of comList)
-		restoreDelimiter()
+		restore_delimiters()
 	end tell
 	
 	if (file of docInfo is not missing value) then
