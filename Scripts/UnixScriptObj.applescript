@@ -51,14 +51,12 @@ on showInteractiveTerminal()
 	set theResult to bring_to_front of theExecuter with allowBusyStatus
 	if not theResult then
 		set theResult to openNewTerminal() of theExecuter
+		if theResult then
+			set theResult to bring_to_front of theExecuter with allowBusyStatus
+		else
+			showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
+		end if
 	end if
-	
-	if theResult then
-		set theResult to bringToFront of theExecuter with allowBusyStatus
-	else
-		showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
-	end if
-	--end if
 	
 	if not theResult then
 		set theMessage to localized string "cantFindTerminal"
