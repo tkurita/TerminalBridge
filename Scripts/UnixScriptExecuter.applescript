@@ -9,7 +9,39 @@ property kTerminalReady : "TerminalReady"
 property kShowTerminal : "ShowTerminal"
 property kCancel : "Cancel"
 
-on makeObj(theCommandBuilder)
+(*== Common Handlers *)
+on set_options(values)
+	--log "start setOptions"
+	set my _options to values
+	setPrompt(my _options's value_for_key("prompt"))
+	setCleanCommands(my _options's value_for_key("process"))
+	my _commandBuilder's setPostOption(my _options's value_for_key("output"))
+	
+	set interactiveCommand to my _options's value_for_key("interactive")
+	if interactiveCommand is not missing value then
+		my _commandBuilder's setCommand(interactiveCommand)
+	end if
+	
+	--log "end setOptions"
+end set_options
+
+on set_run_options(opt_record)
+	my _commandBuilder's set_run_options(opt_record)
+end set_run_options
+
+on update_script_file(a_file)
+	my _commandBuilder's setScriptFile(a_file)
+end update_script_file
+
+on brint_to_front given allowBusyStatus:isAllowBusy
+	if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isAllowBusy then
+		return bringToFront() of (my _targetTerminal)
+	else
+		return false
+	end if
+end brint_to_front
+
+on make_obj(theCommandBuilder)
 	--log "start makeObj in UnixScriptExecuter"
 	script UnixScriptExecuter
 		property _commandBuilder : theCommandBuilder
@@ -17,38 +49,6 @@ on makeObj(theCommandBuilder)
 		property _targetTerminal : missing value
 		property _commandPrompt : missing value
 		property _options : missing value
-		
-		(*** common handlers ***)
-		on setOptions(theVal)
-			--log "start setOptions"
-			set my _options to theVal
-			setPrompt(getValue of _options given forKey:"prompt")
-			setCleanCommands(getValue of _options given forKey:"process")
-			_commandBuilder's setPostOption(getValue of _options given forKey:"output")
-			
-			set interactiveCommand to getValue of _options given forKey:"interactive"
-			if interactiveCommand is not missing value then
-				_commandBuilder's setCommand(interactiveCommand)
-			end if
-			
-			--log "end setOptions"
-		end setOptions
-		
-		on setRunOptions(optionRecord)
-			_commandBuilder's setRunOptions(optionRecord)
-		end setRunOptions
-		
-		on updateScriptFile(theFile)
-			_commandBuilder's setScriptFile(theFile)
-		end updateScriptFile
-		
-		on bringToFront given allowBusyStatus:isAllowBusy
-			if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isAllowBusy then
-				return bringToFront() of (my _targetTerminal)
-			else
-				return false
-			end if
-		end bringToFront
 		
 		(*** handlers for interactive mode ***)
 		(*!
@@ -266,4 +266,4 @@ on makeObj(theCommandBuilder)
 			beep
 		end sendCommandInCommonTerm
 	end script
-end makeObj
+end make_obj

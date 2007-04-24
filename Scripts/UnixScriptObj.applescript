@@ -48,7 +48,7 @@ on showInteractiveTerminal()
 			set theResult to false
 		end if
 	else*)
-	set theResult to bringToFront of theExecuter with allowBusyStatus
+	set theResult to bring_to_front of theExecuter with allowBusyStatus
 	if not theResult then
 		set theResult to openNewTerminal() of theExecuter
 	end if
@@ -173,7 +173,7 @@ on getCommonTerminal(optionRecord)
 		end if
 		return missing value
 	end try
-	theScriptExecuter's setRunOptions(optionRecord)
+	theScriptExecuter's set_run_options(optionRecord)
 	return theScriptExecuter
 end getCommonTerminal
 

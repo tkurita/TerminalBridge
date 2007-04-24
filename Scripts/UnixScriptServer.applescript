@@ -136,7 +136,7 @@ on will finish launching theObject
 	set appController to call method "sharedAppController" of class "AppController"
 	set UtilityHandlers to importScript("UtilityHandlers")
 	set MessageUtility to importScript("MessageUtility")
-	set TerminalCommander to makeObj() of (importScript("TerminalCommander"))
+	set TerminalCommander to make_obj() of (importScript("TerminalCommander"))
 	set TerminalSettingObj to importScript("TerminalSettingObj")
 	
 	set UnixScriptExecuter to importScript("UnixScriptExecuter")

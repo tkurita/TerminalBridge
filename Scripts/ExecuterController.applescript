@@ -43,7 +43,7 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 	return {name:a_name, file:a_script_file}
 end getDocumentInfo
 
-on resolveCommand(docInfo)
+on resolveCommand(doc_info)
 	--log "start resolveCommand"
 	set firstLine to paragraph_at_index(1) of EditorClient
 	
@@ -66,7 +66,7 @@ on resolveCommand(docInfo)
 	
 	if theScriptCommand is missing value then
 		set invalidCommand to localized string "invalidCommand"
-		set theMessage to _aDoc & space & _sQ & (name of docInfo) & _eQ & space & invalidCommand
+		set theMessage to _aDoc & space & _sQ & (name of doc_info) & _eQ & space & invalidCommand
 		showMessage(theMessage) of EditorClient
 		error "The document does not start with #!." number 1620
 	end if
@@ -111,68 +111,68 @@ on resolveHeaderCommand()
 	return headerCommands
 end resolveHeaderCommand
 
-on getInteractiveExecuter(docInfo, commandInfo, headerCommands)
+on getInteractiveExecuter(doc_info, command_info, headerCommands)
 	--log "start getInteractiveExecuter"
-	--	log docInfo
-	--	log commandInfo
+	--	log doc_info
+	--	log command_info
 	--	log headerCommands
 	tell StringEngine
 		store_delimiters()
-		set comList to split for (command of commandInfo) by space
-		set baseCommand of commandInfo to last word of (first item of comList)
+		set comList to split for (command of command_info) by space
+		set baseCommand of command_info to last word of (first item of comList)
 		restore_delimiters()
 	end tell
 	
-	if (file of docInfo is not missing value) then
+	if (file of doc_info is not missing value) then
 		if (headerCommands's value_for_key("useOwnTerm")) then
-			set keyValue to file of docInfo
+			set executer_key to file of doc_info
 		else
 			set shared_path to headerCommands's value_for_key("shareTerm")
 			if shared_path is missing value then
-				set keyValue to baseCommand of commandInfo
+				set executer_key to baseCommand of command_info
 			else
-				set folder_path to POSIX path of PathAnalyzer's folder_of(file of docInfo)
-				set keyValue to POSIX file (folder_path & "/" & shared_path) as alias
-				--setValue of headerCommands given forKey:"shareTerm", withValue:keyValue
+				set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
+				set executer_key to POSIX file (folder_path & "/" & shared_path) as alias
+				--setValue of headerCommands given forKey:"shareTerm", withValue:executer_key
 			end if
 		end if
 	else
-		set keyValue to baseCommand of commandInfo
+		set executer_key to baseCommand of command_info
 	end if
 	
 	if (headerCommands's value_for_key("process")) is missing value then
-		set_value of headerCommands given for_key:"process", with_value:baseCommand of commandInfo
+		set_value of headerCommands given for_key:"process", with_value:baseCommand of command_info
 	end if
 	
 	if (headerCommands's value_for_key("prompt")) is missing value then
-		if (mode of commandInfo) is missing value then
-			set mode of commandInfo to document_mode() of EditorClient
+		if (mode of command_info) is missing value then
+			set mode of command_info to document_mode() of EditorClient
 		end if
-		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of commandInfo)
+		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of command_info)
 		try -- theDefPrompt may be undefined
 			set_value of headerCommands given for_key:"prompt", with_value:theDefPrompt
 		end try
 	end if
 	
-	set theExecuter to missing value
+	set an_executer to missing value
 	if (interactiveExecuters is missing value) then
 		set interactiveExecuters to KeyValueDictionary's make_obj()
 	else
-		set theExecuter to interactiveExecuters's value_for_key(keyValue)
+		set an_executer to interactiveExecuters's value_for_key(executer_key)
 	end if
 	
 	--log "end getInteractiveExecuter"
-	return {keyValue, theExecuter}
+	return {executer_key, an_executer}
 end getInteractiveExecuter
 
 on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	--log "start getExecuter"
-	set theExecuter to missing value
+	set an_executer to missing value
 	(* get info of front document of Editor *)
-	set docInfo to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
+	set doc_info to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
 	(* resolve command name *)
-	set commandInfo to resolveCommand(docInfo)
+	set command_info to resolveCommand(doc_info)
 	
 	(* get header commands *)
 	set headerCommands to resolveHeaderCommand()
@@ -180,42 +180,45 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	
 	(* get interactive executer *)
 	if interactiveFlag then
-		set {keyValue, theExecuter} to getInteractiveExecuter(docInfo, commandInfo, headerCommands)
-		if theExecuter is not missing value then
-			theExecuter's updateScriptFile(file of docInfo)
-			theExecuter's setOptions(headerCommands)
+		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, headerCommands)
+		if an_executer is not missing value then
+			an_executer's update_script_file(file of doc_info)
+			if (headerCommands's value_for_key("interactive")) is missing value then
+				set_value of headerCommands given for_key:"interactive", with_value:command of command_info
+			end if
+			an_executer's set_options(headerCommands)
 		end if
 	else
-		removeItem of headerCommands given forKey:"interactive"
+		headerCommands's remove_for_key("interactive")
 	end if
 	
 	(* make new Executer *)
-	if theExecuter is missing value then
-		set theCommandBuilder to CommandBuilder's makeObj(file of docInfo, command of commandInfo)
+	if an_executer is missing value then
+		set a_command_builder to CommandBuilder's make_obj(file of doc_info, command of command_info)
 		
-		set theExecuter to UnixScriptExecuter's makeObj(theCommandBuilder)
-		setOptions(headerCommands) of theExecuter
+		set an_executer to UnixScriptExecuter's make_obj(a_command_builder)
+		set_options(headerCommands) of an_executer
 		
 		if interactiveFlag then
-			set theTitle to "* Inferior " & baseCommand of commandInfo
+			set a_title to "* Inferior " & baseCommand of command_info
 			if headerCommands's value_for_key("useOwnTerm") then
-				set theTitle to theTitle & "--" & (name of docInfo)
+				set a_title to a_title & "--" & (name of doc_info)
 			else
 				set shared_path to headerCommands's value_for_key("shareTerm")
 				if (shared_path is not missing value) then
-					set doc_name to PathAnalyzer's name_of(keyValue)
-					set theTitle to theTitle & "--" & doc_name
+					set doc_name to PathAnalyzer's name_of(executer_key)
+					set a_title to a_title & "--" & doc_name
 				end if
 			end if
 			
-			if setTargetTerminal of theExecuter given title:(theTitle & " *"), ignoreStatus:isAllowBusy then
-				set_value of interactiveExecuters given for_key:keyValue, with_value:theExecuter
+			if setTargetTerminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
+				set_value of interactiveExecuters given for_key:executer_key, with_value:an_executer
 			else
-				set theExecuter to missing value
+				set an_executer to missing value
 			end if
 		end if
 	end if
 	
 	--log "end getExecuter"
-	return theExecuter
+	return an_executer
 end getExecuter
