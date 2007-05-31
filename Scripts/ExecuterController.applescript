@@ -131,8 +131,11 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 			if shared_path is missing value then
 				set executer_key to baseCommand of command_info
 			else
-				set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
-				set executer_key to POSIX file (folder_path & "/" & shared_path) as alias
+				if shared_path does not start with "/" then
+					set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
+					set shared_path to folder_path & "/" & shared_path
+				end if
+				set executer_key to POSIX file (shared_path) as alias
 				--setValue of headerCommands given forKey:"shareTerm", withValue:executer_key
 			end if
 		end if
