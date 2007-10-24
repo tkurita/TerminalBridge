@@ -34,7 +34,7 @@ on update_script_file(a_file)
 end update_script_file
 
 on bring_to_front given allowBusyStatus:isAllowBusy
-	log "start bring_to_front in UnixScriptExecuter"
+	--log "start bring_to_front in UnixScriptExecuter"
 	if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isAllowBusy then
 		return bringToFront() of (my _targetTerminal)
 	else

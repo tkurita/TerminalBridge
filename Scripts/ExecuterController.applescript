@@ -50,7 +50,7 @@ on resolveCommand(doc_info)
 	set theScriptCommand to missing value
 	if firstLine starts with "#!" then
 		set theScriptCommand to text 3 thru -1 of firstLine
-		set theScriptCommand to StringEngine's strip_head_tail_spaces(theScriptCommand)
+		set theScriptCommand to StringEngine's strip(theScriptCommand)
 	end if
 	
 	set docMode to missing value
@@ -93,7 +93,7 @@ on resolveHeaderCommand()
 							if length of a_paragraph is less than or equal to valPos then
 								exit repeat
 							end if
-							set a_value to StringEngine's strip_head_tail_spaces(text valPos thru -1 of a_paragraph)
+							set a_value to StringEngine's strip(text valPos thru -1 of a_paragraph)
 							if a_label is "escapeChars" then
 								set a_value to run script a_value
 							end if

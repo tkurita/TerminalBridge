@@ -220,7 +220,7 @@ end runWithFinderSelection
 
 (*=== send command without CommandBuilder *)
 on sendCommandInCommonTerm(optionRecord)
-	set a_command to StringEngine's strip_head_tail_spaces(command of optionRecord)
+	set a_command to StringEngine's strip(command of optionRecord)
 	set a_command to cleanYenmark(a_command) of UtilityHandlers
 	do_command of TerminalCommander for a_command with activation
 	beep
@@ -249,7 +249,7 @@ end get_named_term
 
 on send_in_named_term(opt_rec)
 	set target_term to get_named_term(termTitle of opt_rec)
-	set a_command to StringEngine's strip_head_tail_spaces(command of opt_rec)
+	set a_command to StringEngine's strip(command of opt_rec)
 	set a_command to cleanYenmark(a_command) of UtilityHandlers
 	do_command of target_term for a_command with activation
 end send_in_named_term
