@@ -162,7 +162,7 @@ on make_obj(theCommandBuilder)
 		end setTargetTerminal
 		
 		on clenupCommandText(theCommand)
-			set theCommand to StringEngine's stripHeadTailSpaces(theCommand)
+			set theCommand to StringEngine's strip(theCommand)
 			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
 			return theCommand
 		end clenupCommandText
