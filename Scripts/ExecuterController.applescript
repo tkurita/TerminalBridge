@@ -1,6 +1,6 @@
 global MessageUtility
 global CommandBuilder
-global KeyValueDictionary
+global XDict
 global EditorClient
 global StringEngine
 global UnixScriptExecuter
@@ -76,7 +76,7 @@ end resolveCommand
 
 on resolveHeaderCommand()
 	--log "start resolveHeaderCommand"
-	set headerCommands to make_with_lists({"useOwnTerm"}, {false}) of KeyValueDictionary
+	set headerCommands to make_with_lists({"useOwnTerm"}, {false}) of XDict
 	set ith to 1
 	repeat
 		set a_paragraph to paragraph_at_index(ith) of EditorClient
@@ -98,7 +98,7 @@ on resolveHeaderCommand()
 								set a_value to run script a_value
 							end if
 						end if
-						set_value of headerCommands given for_key:a_label, with_value:a_value
+						headerCommands's set_value(a_label, a_value)
 						exit repeat
 					end if
 				end repeat
@@ -144,7 +144,7 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 	end if
 	
 	if (headerCommands's value_for_key("process")) is missing value then
-		set_value of headerCommands given for_key:"process", with_value:baseCommand of command_info
+		headerCommands's set_value("process", baseCommand of command_info)
 	end if
 	
 	if (headerCommands's value_for_key("prompt")) is missing value then
@@ -153,13 +153,13 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 		end if
 		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of command_info)
 		try -- theDefPrompt may be undefined
-			set_value of headerCommands given for_key:"prompt", with_value:theDefPrompt
+			headerCommands's set_value("prompt", theDefPrompt)
 		end try
 	end if
 	
 	set an_executer to missing value
 	if (interactiveExecuters is missing value) then
-		set interactiveExecuters to KeyValueDictionary's make_obj()
+		set interactiveExecuters to make XDict
 	else
 		set an_executer to interactiveExecuters's value_for_key(executer_key)
 	end if
@@ -187,7 +187,7 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 		if an_executer is not missing value then
 			an_executer's update_script_file(file of doc_info)
 			if (headerCommands's value_for_key("interactive")) is missing value then
-				set_value of headerCommands given for_key:"interactive", with_value:command of command_info
+				headerCommands's set_value("interactive", command of command_info)
 			end if
 			an_executer's set_options(headerCommands)
 		end if
@@ -215,7 +215,7 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 			end if
 			
 			if setTargetTerminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
-				set_value of interactiveExecuters given for_key:executer_key, with_value:an_executer
+				interactiveExecuters's set_value(executer_key, an_executer)
 			else
 				set an_executer to missing value
 			end if

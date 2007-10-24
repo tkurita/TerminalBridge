@@ -3,7 +3,7 @@ global EditorClient
 global TerminalCommander
 global StringEngine
 global UtilityHandlers
-global KeyValueDictionary
+global XDict
 
 (*== execute tex commands called from tools from mi  *)
 (*=== interactive process *)
@@ -231,7 +231,7 @@ property _namedTerms : missing value
 on get_named_term(a_name)
 	set target_term to missing value
 	if my _namedTerms is missing value then
-		set my _namedTerms to make_obj() of KeyValueDictionary
+		set my _namedTerms to make XDict
 	else
 		set target_term to my _namedTerms's value_for_key(a_name)
 	end if
@@ -241,7 +241,7 @@ on get_named_term(a_name)
 		TerminalCommander's forgetTerminal()
 		target_term's forget()
 		target_term's set_custom_title("* " & a_name & " *")
-		set_value of (my _namedTerms) given for_key:a_name, with_value:target_term
+		my _namedTerms's set_value(a_name, target_term)
 	end if
 	
 	return target_term

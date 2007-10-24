@@ -5,7 +5,7 @@ end load
 
 property PathAnalyzer : load("PathAnalyzer")
 property StringEngine : StringEngine of PathAnalyzer
-property KeyValueDictionary : load("KeyValueDictionary")
+property XDict : load("XDict")
 property TerminalCommanderBase : load("TerminalCommander")
 
 property TerminalCommander : missing value
