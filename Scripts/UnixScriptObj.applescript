@@ -69,7 +69,7 @@ on sendCommand(theCommand)
 	try
 		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620} then
+		if errNum is not in {1600, 1610, 1620, 1660} then
 			error errMsg number errNum
 		end if
 		return
@@ -102,7 +102,7 @@ on sendSelection(arg)
 	try
 		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
 	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620} then
+		if errNum is not in {1600, 1610, 1620, 1660} then
 			error errMsg number errNum
 		end if
 		return

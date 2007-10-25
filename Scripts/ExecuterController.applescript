@@ -135,8 +135,25 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 					set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
 					set shared_path to folder_path & "/" & shared_path
 				end if
-				set executer_key to POSIX file (shared_path) as alias
-				--setValue of headerCommands given forKey:"shareTerm", withValue:executer_key
+				try
+					set executer_key to POSIX file (shared_path) as alias
+				on error msg number -1700
+					set a_message to localized string "noShareTermFile"
+					tell StringEngine
+						store_delimiters()
+						set a_message to formated_text given template:a_message, args:{shared_path}
+						restore_delimiters()
+					end tell
+					set ignore_label to localized string "ignore"
+					set cancel_label to localized string "cancel"
+					set a_result to EditorClient's showMessageWithButtons(a_message, {cancel_label, ignore_label}, ignore_label)
+					if button returned of a_result is ignore_label then
+						set executer_key to baseCommand of command_info
+						headerCommands's remove_for_key("shareTerm")
+					else
+						error "No shareTerm File." number 1660
+					end if
+				end try
 			end if
 		end if
 	else
@@ -156,7 +173,6 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 			headerCommands's set_value("prompt", theDefPrompt)
 		end try
 	end if
-	
 	set an_executer to missing value
 	if (interactiveExecuters is missing value) then
 		set interactiveExecuters to make XDict
@@ -164,7 +180,6 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 		set an_executer to interactiveExecuters's value_for_key(executer_key)
 	end if
 	
-	--log "end getInteractiveExecuter"
 	return {executer_key, an_executer}
 end getInteractiveExecuter
 
