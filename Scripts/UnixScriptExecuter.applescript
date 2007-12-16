@@ -15,11 +15,11 @@ on set_options(values)
 	set my _options to values
 	setPrompt(my _options's value_for_key("prompt"))
 	setCleanCommands(my _options's value_for_key("process"))
-	my _commandBuilder's setPostOption(my _options's value_for_key("output"))
+	my _commandBuilder's set_post_option(my _options's value_for_key("output"))
 	
 	set interactiveCommand to my _options's value_for_key("interactive")
 	if interactiveCommand is not missing value then
-		my _commandBuilder's setCommand(interactiveCommand)
+		my _commandBuilder's set_command(interactiveCommand)
 	end if
 	
 	--log "end setOptions"
@@ -30,7 +30,7 @@ on set_run_options(opt_record)
 end set_run_options
 
 on update_script_file(a_file)
-	my _commandBuilder's setScriptFile(a_file)
+	my _commandBuilder's set_target_file(a_file)
 end update_script_file
 
 on bring_to_front given allowBusyStatus:isAllowBusy
@@ -227,7 +227,8 @@ on make_obj(theCommandBuilder)
 		
 		on openNewTerminal()
 			--log "start openNewTerminal"
-			set interactiveCommand to _commandBuilder's buildInteractiveCommand()
+			--set interactiveCommand to _commandBuilder's buildInteractiveCommand()
+			set interactiveCommand to _commandBuilder's interactive_command()
 			set interactiveCommand to UtilityHandlers's cleanYenmark(interactiveCommand)
 			--log interactiveCommand
 			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation
@@ -235,7 +236,8 @@ on make_obj(theCommandBuilder)
 		
 		on openNewTermForCommand(theCommand)
 			--log "start openNewTermForCommand"
-			set interactiveCommand to _commandBuilder's buildInteractiveCommand()
+			--set interactiveCommand to _commandBuilder's buildInteractiveCommand()
+			set interactiveCommand to _commandBuilder's interactive_command()
 			set interactiveCommand to UtilityHandlers's cleanYenmark(interactiveCommand)
 			set interactiveCommand to interactiveCommand & return & theCommand
 			--log interactiveCommand
@@ -256,7 +258,8 @@ on make_obj(theCommandBuilder)
 		
 		(*** handlers for shell mode ***)
 		on runScript given activation:activateFlag
-			set allCommand to _commandBuilder's buildCommand()
+			--set allCommand to _commandBuilder's buildCommand()
+			set allCommand to _commandBuilder's build_command()
 			doCommands of TerminalCommander for allCommand given activation:activateFlag
 			beep
 		end runScript

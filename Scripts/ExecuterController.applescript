@@ -47,31 +47,31 @@ on resolveCommand(doc_info)
 	--log "start resolveCommand"
 	set firstLine to paragraph_at_index(1) of EditorClient
 	
-	set theScriptCommand to missing value
+	set a_command to missing value
 	if firstLine starts with "#!" then
-		set theScriptCommand to text 3 thru -1 of firstLine
-		set theScriptCommand to StringEngine's strip(theScriptCommand)
+		set a_command to text 3 thru -1 of firstLine
+		set a_command to StringEngine's strip(a_command)
 	end if
 	
 	set docMode to missing value
-	if theScriptCommand is missing value then
+	if a_command is missing value then
 		set docMode to document_mode() of EditorClient
-		set theScriptCommand to call method "commandForMode:" of TerminalClient with parameter docMode
+		set a_command to call method "commandForMode:" of TerminalClient with parameter docMode
 		try
-			get theScriptCommand
+			get a_command
 		on error number -2753
-			set theScriptCommand to missing value
+			set a_command to missing value
 		end try
 	end if
 	
-	if theScriptCommand is missing value then
+	if a_command is missing value then
 		set invalidCommand to localized string "invalidCommand"
 		set theMessage to _aDoc & space & _sQ & (name of doc_info) & _eQ & space & invalidCommand
 		showMessage(theMessage) of EditorClient
 		error "The document does not start with #!." number 1620
 	end if
 	--log "end resolveCommand"
-	return {command:theScriptCommand, mode:docMode, baseCommand:missing value}
+	return {command:a_command, mode:docMode, baseCommand:missing value}
 end resolveCommand
 
 on resolveHeaderCommand()
@@ -183,14 +183,16 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 	return {executer_key, an_executer}
 end getInteractiveExecuter
 
-on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
+on getExecuter for command_info given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	--log "start getExecuter"
 	set an_executer to missing value
 	(* get info of front document of Editor *)
 	set doc_info to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
 	(* resolve command name *)
-	set command_info to resolveCommand(doc_info)
+	if command_info is missing value then
+		set command_info to resolveCommand(doc_info)
+	end if
 	
 	(* get header commands *)
 	set headerCommands to resolveHeaderCommand()
@@ -212,7 +214,7 @@ on getExecuter given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
 	
 	(* make new Executer *)
 	if an_executer is missing value then
-		set a_command_builder to CommandBuilder's make_obj(file of doc_info, command of command_info)
+		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
 		
 		set an_executer to UnixScriptExecuter's make_obj(a_command_builder)
 		set_options(headerCommands) of an_executer

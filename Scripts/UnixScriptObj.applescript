@@ -9,7 +9,7 @@ global XDict
 (*=== interactive process *)
 on getLastResult()
 	--log "start getLastResult in UnixScriptObj"
-	set theExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
+	set theExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	
 	try
 		set theResult to getLastResult() of theExecuter
@@ -37,7 +37,7 @@ end getLastResult
 
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
-	set theExecuter to getExecuter of ExecuterController with interactive and allowBusyStatus
+	set theExecuter to getExecuter of ExecuterController for missing value with interactive and allowBusyStatus
 	(*if theExecuter is missing value then
 		display alert "UnixScriptServer: the Executer is not found"
 		consoleLog("UnixScriptServer: the Executer is not found") of UtilityHandlers
@@ -67,10 +67,10 @@ end showInteractiveTerminal
 on sendCommand(theCommand)
 	--log "start sendCommand in UnixScriptObj"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620, 1660} then
-			error errMsg number errNum
+		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
+	on error errMsg number errnum
+		if errnum is not in {1600, 1610, 1620, 1660} then
+			error errMsg number errnum
 		end if
 		return
 	end try
@@ -100,10 +100,10 @@ end isEndWithStrings
 on sendSelection(arg)
 	--log "start sendSelection"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController with interactive without allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620, 1660} then
-			error errMsg number errNum
+		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
+	on error errMsg number errnum
+		if errnum is not in {1600, 1610, 1620, 1660} then
+			error errMsg number errnum
 		end if
 		return
 	end try
@@ -164,10 +164,10 @@ end sendSelection
 (*= non-interactive commands *)
 on getCommonTerminal(optionRecord)
 	try
-		set theScriptExecuter to getExecuter of ExecuterController without interactive and allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620} then
-			error errMsg number errNum
+		set theScriptExecuter to getExecuter of ExecuterController for optionRecord without interactive and allowBusyStatus
+	on error errMsg number errnum
+		if errnum is not in {1600, 1610, 1620} then
+			error errMsg number errnum
 		end if
 		return missing value
 	end try
