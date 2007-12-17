@@ -192,6 +192,8 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 	(* resolve command name *)
 	if command_info is missing value then
 		set command_info to resolveCommand(doc_info)
+	else
+		set command_info to command_info & resolveCommand(doc_info)
 	end if
 	
 	(* get header commands *)
@@ -214,6 +216,7 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 	
 	(* make new Executer *)
 	if an_executer is missing value then
+		--log "will make new Executer"
 		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
 		
 		set an_executer to UnixScriptExecuter's make_obj(a_command_builder)

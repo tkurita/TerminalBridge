@@ -68,9 +68,9 @@ on sendCommand(theCommand)
 	--log "start sendCommand in UnixScriptObj"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
-	on error errMsg number errnum
-		if errnum is not in {1600, 1610, 1620, 1660} then
-			error errMsg number errnum
+	on error errMsg number errNum
+		if errNum is not in {1600, 1610, 1620, 1660} then
+			error errMsg number errNum
 		end if
 		return
 	end try
@@ -101,9 +101,9 @@ on sendSelection(arg)
 	--log "start sendSelection"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
-	on error errMsg number errnum
-		if errnum is not in {1600, 1610, 1620, 1660} then
-			error errMsg number errnum
+	on error errMsg number errNum
+		if errNum is not in {1600, 1610, 1620, 1660} then
+			error errMsg number errNum
 		end if
 		return
 	end try
@@ -165,9 +165,9 @@ end sendSelection
 on getCommonTerminal(optionRecord)
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for optionRecord without interactive and allowBusyStatus
-	on error errMsg number errnum
-		if errnum is not in {1600, 1610, 1620} then
-			error errMsg number errnum
+	on error errMsg number errNum
+		if errNum is not in {1600, 1610, 1620} then
+			error errMsg number errNum
 		end if
 		return missing value
 	end try
@@ -220,9 +220,11 @@ end runWithFinderSelection
 
 (*=== send command without CommandBuilder *)
 on sendCommandInCommonTerm(optionRecord)
+	log "start sendCommandInCommonTerm"
 	set a_command to StringEngine's strip(command of optionRecord)
 	set a_command to cleanYenmark(a_command) of UtilityHandlers
 	do_command of TerminalCommander for a_command with activation
+	log "end sendCommandInCommonTerm"
 	beep
 end sendCommandInCommonTerm
 
