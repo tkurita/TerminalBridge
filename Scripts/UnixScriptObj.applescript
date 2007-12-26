@@ -68,9 +68,9 @@ on sendCommand(theCommand)
 	--log "start sendCommand in UnixScriptObj"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620, 1660} then
-			error errMsg number errNum
+	on error errMsg number errnum
+		if errnum is not in {1600, 1610, 1620, 1660} then
+			error errMsg number errnum
 		end if
 		return
 	end try
@@ -101,9 +101,9 @@ on sendSelection(arg)
 	--log "start sendSelection"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620, 1660} then
-			error errMsg number errNum
+	on error errMsg number errnum
+		if errnum is not in {1600, 1610, 1620, 1660} then
+			error errMsg number errnum
 		end if
 		return
 	end try
@@ -165,9 +165,9 @@ end sendSelection
 on getCommonTerminal(optionRecord)
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for optionRecord without interactive and allowBusyStatus
-	on error errMsg number errNum
-		if errNum is not in {1600, 1610, 1620} then
-			error errMsg number errNum
+	on error errMsg number errnum
+		if errnum is not in {1600, 1610, 1620} then
+			error errMsg number errnum
 		end if
 		return missing value
 	end try
@@ -235,9 +235,17 @@ on get_named_term(a_name)
 	if my _namedTerms is missing value then
 		set my _namedTerms to make XDict
 	else
-		set target_term to my _namedTerms's value_for_key(a_name)
+		try
+			set target_term to my _namedTerms's value_for_key(a_name)
+		on error number 900
+			copy TerminalCommander to target_term
+			TerminalCommander's forgetTerminal()
+			target_term's forget()
+			target_term's set_custom_title("* " & a_name & " *")
+			my _namedTerms's set_value(a_name, target_term)
+		end try
 	end if
-	
+	(*
 	if target_term is missing value then
 		copy TerminalCommander to target_term
 		TerminalCommander's forgetTerminal()
@@ -245,6 +253,7 @@ on get_named_term(a_name)
 		target_term's set_custom_title("* " & a_name & " *")
 		my _namedTerms's set_value(a_name, target_term)
 	end if
+	*)
 	
 	return target_term
 end get_named_term

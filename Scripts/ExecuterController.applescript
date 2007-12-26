@@ -127,10 +127,11 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 		if (headerCommands's value_for_key("useOwnTerm")) then
 			set executer_key to file of doc_info
 		else
-			set shared_path to headerCommands's value_for_key("shareTerm")
-			if shared_path is missing value then
+			
+			try
+				set shared_path to headerCommands's value_for_key("shareTerm")
 				set executer_key to baseCommand of command_info
-			else
+			on error number 900
 				if shared_path does not start with "/" then
 					set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
 					set shared_path to folder_path & "/" & shared_path
@@ -154,17 +155,17 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 						error "No shareTerm File." number 1660
 					end if
 				end try
-			end if
+			end try
 		end if
 	else
 		set executer_key to baseCommand of command_info
 	end if
 	
-	if (headerCommands's value_for_key("process")) is missing value then
+	if not headerCommands's has_key("process") then
 		headerCommands's set_value("process", baseCommand of command_info)
 	end if
 	
-	if (headerCommands's value_for_key("prompt")) is missing value then
+	if not headerCommands's has_key("prompt") then
 		if (mode of command_info) is missing value then
 			set mode of command_info to document_mode() of EditorClient
 		end if
@@ -177,7 +178,10 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 	if (interactiveExecuters is missing value) then
 		set interactiveExecuters to make XDict
 	else
-		set an_executer to interactiveExecuters's value_for_key(executer_key)
+		try
+			set an_executer to interactiveExecuters's value_for_key(executer_key)
+		on error number 900
+		end try
 	end if
 	
 	return {executer_key, an_executer}
@@ -203,9 +207,9 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 	(* get interactive executer *)
 	if interactiveFlag then
 		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, headerCommands)
-		if an_executer is not missing value then
+		if an_executer is missing value then
 			an_executer's update_script_file(file of doc_info)
-			if (headerCommands's value_for_key("interactive")) is missing value then
+			if not headerCommands's has_key("interactive") then
 				headerCommands's set_value("interactive", command of command_info)
 			end if
 			an_executer's set_options(headerCommands)
@@ -227,11 +231,11 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 			if headerCommands's value_for_key("useOwnTerm") then
 				set a_title to a_title & "--" & (name of doc_info)
 			else
-				set shared_path to headerCommands's value_for_key("shareTerm")
-				if (shared_path is not missing value) then
+				try
+					set shared_path to headerCommands's value_for_key("shareTerm")
 					set doc_name to PathAnalyzer's name_of(executer_key)
 					set a_title to a_title & "--" & doc_name
-				end if
+				end try
 			end if
 			
 			if setTargetTerminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then

@@ -28,19 +28,19 @@ property lineFeed : ASCII character 10
 property backslash : ASCII character 128
 
 (* events of application*)
-on importScript(scriptName)
-	--log "start importScript"
+on import_script(scriptName)
+	--log "start import_script"
 	--log scriptName
 	tell main bundle
 		set scriptPath to path for script scriptName extension "scpt"
 	end tell
-	--log "end importScript"
+	--log "end import_script"
 	return load script POSIX file scriptPath
-end importScript
+end import_script
 
 script ScriptImporter
 	on do(scriptName)
-		return importScript(scriptName)
+		return import_script(scriptName)
 	end do
 end script
 
@@ -134,20 +134,20 @@ on will finish launching theObject
 	showStartupMessage("Loading Scripts ...")
 	--set appController to call method "delegate"
 	set appController to call method "sharedAppController" of class "AppController"
-	set UtilityHandlers to importScript("UtilityHandlers")
-	set MessageUtility to importScript("MessageUtility")
-	set TerminalCommander to make_obj() of (importScript("TerminalCommander"))
-	set TerminalSettingObj to importScript("TerminalSettingObj")
+	set UtilityHandlers to import_script("UtilityHandlers")
+	set MessageUtility to import_script("MessageUtility")
+	set TerminalCommander to make_obj() of (import_script("TerminalCommander"))
+	set TerminalSettingObj to import_script("TerminalSettingObj")
 	
-	set UnixScriptExecuter to importScript("UnixScriptExecuter")
-	set CommandBuilder to importScript("CommandBuilder")
-	set ExecuterController to importScript("ExecuterController")
+	set UnixScriptExecuter to import_script("UnixScriptExecuter")
+	set CommandBuilder to import_script("CommandBuilder")
+	set ExecuterController to import_script("ExecuterController")
 	ExecuterController's initialize()
-	set UnixScriptObj to importScript("UnixScriptObj")
+	set UnixScriptObj to import_script("UnixScriptObj")
 	
-	set SettingWindowObj to importScript("SettingWindowObj")
-	set EditorClient to importScript("EditorClient")
-	--log "end of importScripts"
+	set SettingWindowObj to import_script("SettingWindowObj")
+	set EditorClient to import_script("EditorClient")
+	--log "end of import_scripts"
 	
 	showStartupMessage("Loading Preferences ...")
 	--log "before loadSetting() of TerminalSettingObj"

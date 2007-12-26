@@ -17,10 +17,10 @@ on set_options(values)
 	setCleanCommands(my _options's value_for_key("process"))
 	my _commandBuilder's set_post_option(my _options's value_for_key("output"))
 	
-	set interactiveCommand to my _options's value_for_key("interactive")
-	if interactiveCommand is not missing value then
+	try
+		set interactiveCommand to my _options's value_for_key("interactive")
 		my _commandBuilder's set_command(interactiveCommand)
-	end if
+	end try
 	
 	--log "end setOptions"
 end set_options
@@ -171,8 +171,8 @@ on make_obj(theCommandBuilder)
 		on sendCommand for theCommand given allowBusyStatus:isBusyAllowed
 			--log "start sendCommand in executer"
 			set theCommand to clenupCommandText(theCommand)
-			set escapeChars to _options's value_for_key("escapeChars")
-			if escapeChars is not missing value then
+			try
+				set escapeChars to _options's value_for_key("escapeChars")
 				tell StringEngine
 					store_delimiters()
 					repeat with theChar in escapeChars
@@ -180,7 +180,7 @@ on make_obj(theCommandBuilder)
 					end repeat
 					restore_delimiters()
 				end tell
-			end if
+			end try
 			
 			if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isBusyAllowed then
 				--log "before checkTerminalStatus in sendCommand in executer"
