@@ -108,19 +108,19 @@ on clicked theObject
 	--log "start clicked"
 	set theTag to tag of theObject
 	if theTag is 1 then
-		controlClicked(theObject) of TerminalSettingObj
+		control_clicked(theObject) of TerminalSettingObj
 	else
-		controlClicked(theObject)
+		control_clicked(theObject)
 	end if
 end clicked
 
-on controlClicked(theObject)
+on control_clicked(theObject)
 	set theName to name of theObject
 	--set windowName to name of window of theObject
 	if theName is "RevertToDefault" then
 		RevertToDefault() of SettingWindowObj
 	end if
-end controlClicked
+end control_clicked
 
 on choose menu item theObject
 	set theName to name of theObject
