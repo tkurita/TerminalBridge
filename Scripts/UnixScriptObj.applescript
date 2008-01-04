@@ -12,26 +12,26 @@ on getLastResult()
 	set theExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	
 	try
-		set theResult to getLastResult() of theExecuter
-	on error errMsg number 1640
-		set theMessage to localized string "cantFindTerminal"
-		showMessage(theMessage) of EditorClient
+		set theresult to getLastResult() of theExecuter
+	on error msg number 1640
+		set a_msg to localized string "cantFindTerminal"
+		showMessage(a_msg) of EditorClient
 		return
 	end try
 	
-	if theResult is missing value then
-		set theMessage to localized string "noLastResult"
-		showMessage(theMessage) of EditorClient
+	if theresult is missing value then
+		set a_msg to localized string "noLastResult"
+		showMessage(a_msg) of EditorClient
 		return
 	end if
 	
-	if ((count paragraph of theResult) is 2) and (paragraph 2 of theResult is "") then
+	if ((count paragraph of theresult) is 2) and (paragraph 2 of theresult is "") then
 		set selectionRec to getSelectionRecord() of EditorClient
 		if (cursorInParagraph of selectionRec is not 0) then
-			set theResult to first paragraph of theResult
+			set theresult to first paragraph of theresult
 		end if
 	end if
-	insert_text(theResult) of EditorClient
+	insert_text(theresult) of EditorClient
 	--log "end getLastResult in UnixScriptObj"
 end getLastResult
 
@@ -48,17 +48,17 @@ on showInteractiveTerminal()
 			set theResult to false
 		end if
 	else*)
-	set theResult to bring_to_front of theExecuter with allowBusyStatus
-	if not theResult then
-		set theResult to openNewTerminal() of theExecuter
-		if theResult then
-			set theResult to bring_to_front of theExecuter with allowBusyStatus
+	set theresult to bring_to_front of theExecuter with allowBusyStatus
+	if not theresult then
+		set theresult to openNewTerminal() of theExecuter
+		if theresult then
+			set theresult to bring_to_front of theExecuter with allowBusyStatus
 		else
 			showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
 		end if
 	end if
 	
-	if not theResult then
+	if not theresult then
 		set theMessage to localized string "cantFindTerminal"
 		showMessage(theMessage) of EditorClient
 	end if
@@ -84,17 +84,17 @@ on sendCommand(theCommand)
 end sendCommand
 
 on isEndWithStrings(theString, stringList)
-	set theResult to false
+	set theresult to false
 	if theString ends with return then
 		set theString to text 1 thru -2 of theString
 	end if
 	repeat with a_string in stringList
 		if theString ends with a_string then
-			set theResult to true
+			set theresult to true
 			exit repeat
 		end if
 	end repeat
-	return theResult
+	return theresult
 end isEndWithStrings
 
 on sendSelection(arg)
@@ -220,11 +220,11 @@ end runWithFinderSelection
 
 (*=== send command without CommandBuilder *)
 on sendCommandInCommonTerm(optionRecord)
-	log "start sendCommandInCommonTerm"
+	--log "start sendCommandInCommonTerm"
 	set a_command to StringEngine's strip(command of optionRecord)
 	set a_command to cleanYenmark(a_command) of UtilityHandlers
 	do_command of TerminalCommander for a_command with activation
-	log "end sendCommandInCommonTerm"
+	--log "end sendCommandInCommonTerm"
 	beep
 end sendCommandInCommonTerm
 

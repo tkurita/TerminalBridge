@@ -200,11 +200,11 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 		set command_info to command_info & resolveCommand(doc_info)
 	end if
 	
-	(* get header commands *)
+	--log "get header commands"
 	set headerCommands to resolveHeaderCommand()
 	--log (headerCommands's dumpData())
 	
-	(* get interactive executer *)
+	--log "get interactive executer"
 	if interactiveFlag then
 		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, headerCommands)
 		if an_executer is missing value then
@@ -218,14 +218,13 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 		headerCommands's remove_for_key("interactive")
 	end if
 	
-	(* make new Executer *)
+	--log "make new Executer"
 	if an_executer is missing value then
 		--log "will make new Executer"
 		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
-		
 		set an_executer to UnixScriptExecuter's make_obj(a_command_builder)
 		set_options(headerCommands) of an_executer
-		
+		--log "before make interactive terminal"
 		if interactiveFlag then
 			set a_title to "* Inferior " & baseCommand of command_info
 			if headerCommands's value_for_key("useOwnTerm") then

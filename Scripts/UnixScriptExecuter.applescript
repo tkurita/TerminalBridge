@@ -10,16 +10,26 @@ property kShowTerminal : "ShowTerminal"
 property kCancel : "Cancel"
 
 (*== Common Handlers *)
-on set_options(values)
-	--log "start setOptions"
-	set my _options to values
-	setPrompt(my _options's value_for_key("prompt"))
-	setCleanCommands(my _options's value_for_key("process"))
-	my _commandBuilder's set_post_option(my _options's value_for_key("output"))
+on set_options(opt_dict)
+	set my _options to opt_dict
+	try
+		setPrompt(my _options's value_for_key("prompt"))
+	on error number 900
+	end try
+	try
+		setCleanCommands(my _options's value_for_key("process"))
+	on error number 900
+	end try
+	
+	try
+		my _commandBuilder's set_post_option(my _options's value_for_key("output"))
+	on error number 900
+	end try
 	
 	try
 		set interactiveCommand to my _options's value_for_key("interactive")
 		my _commandBuilder's set_command(interactiveCommand)
+	on error number 900
 	end try
 	
 	--log "end setOptions"
@@ -66,7 +76,7 @@ on make_obj(theCommandBuilder)
 		*)
 		on checkTerminalStatus(checkCount)
 			--log "start checkTerminalStatus"
-			set theResult to kTerminalReady
+			set theresult to kTerminalReady
 			if (contents of default entry "useExecCommand" of user defaults) then
 				set processList to getProcesses() of my _targetTerminal
 			else
@@ -109,34 +119,34 @@ on make_obj(theCommandBuilder)
 				set theReturned to button returned of theMessageResult
 				if theReturned is item 3 of buttonList then
 					bringToFront() of my _targetTerminal
-					set theResult to kShowTerminal
+					set theresult to kShowTerminal
 				else if theReturned is item 2 of buttonList then
-					set theResult to openNewTerminal()
-					if theResult then
-						set theResult to kTerminalReady
+					set theresult to openNewTerminal()
+					if theresult then
+						set theresult to kTerminalReady
 					else
-						set theResult to kCancel
+						set theresult to kCancel
 					end if
 				else
-					set theResult to kCancel
+					set theresult to kCancel
 				end if
 			else
 				if (processList is {}) then
-					set theResult to openNewTerminal()
-					if theResult then
-						set theResult to kTerminalReady
+					set theresult to openNewTerminal()
+					if theresult then
+						set theresult to kTerminalReady
 					else
-						set theResult to kCancel
+						set theresult to kCancel
 					end if
 				end if
 			end if
 			--log "end of checkTerminalStatus"
-			return theResult
+			return theresult
 		end checkTerminalStatus
 		
 		on setTargetTerminal given title:theCustomTitle, ignoreStatus:isIgnoreStatus
 			--log "start setTargetTerminal"
-			set theResult to true
+			set theresult to true
 			copy TerminalCommander to my _targetTerminal
 			tell my _targetTerminal
 				forget()
@@ -158,7 +168,7 @@ on make_obj(theCommandBuilder)
 			end if
 			*)
 			--log "end setTargetTerminal"
-			return theResult
+			return theresult
 		end setTargetTerminal
 		
 		on clenupCommandText(theCommand)
@@ -210,14 +220,14 @@ on make_obj(theCommandBuilder)
 			end if
 			
 			set theContents to my _targetTerminal's getContents()
-			set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
+			set theresult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			
-			if theResult is -1 then
+			if theresult is -1 then
 				set theContents to my _targetTerminal's getHistory()
-				set theResult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
+				set theresult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			end if
 			
-			if theResult is not 1 then
+			if theresult is not 1 then
 				return missing value
 			end if
 			
