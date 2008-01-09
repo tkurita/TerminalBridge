@@ -15,13 +15,13 @@ on getLastResult()
 		set theresult to getLastResult() of theExecuter
 	on error msg number 1640
 		set a_msg to localized string "cantFindTerminal"
-		showMessage(a_msg) of EditorClient
+		show_message(a_msg) of EditorClient
 		return
 	end try
 	
 	if theresult is missing value then
 		set a_msg to localized string "noLastResult"
-		showMessage(a_msg) of EditorClient
+		show_message(a_msg) of EditorClient
 		return
 	end if
 	
@@ -54,13 +54,13 @@ on showInteractiveTerminal()
 		if theresult then
 			set theresult to bring_to_front of theExecuter with allowBusyStatus
 		else
-			showMessage("can't open new terminal") of EditorClient -- this message should not be shown.
+			show_message("can't open new terminal") of EditorClient -- this message should not be shown.
 		end if
 	end if
 	
 	if not theresult then
 		set theMessage to localized string "cantFindTerminal"
-		showMessage(theMessage) of EditorClient
+		show_message(theMessage) of EditorClient
 	end if
 end showInteractiveTerminal
 
@@ -203,7 +203,7 @@ on runWithFinderSelection(optionRecord)
 	--log "start runWithFinderSelection"
 	set a_selection to getFinderSelection()
 	if a_selection is missing value then
-		showMessage("No Selection in Finder") of EditorClient
+		show_message("No Selection in Finder") of EditorClient
 		return
 	end if
 	if optionRecord is missing value then

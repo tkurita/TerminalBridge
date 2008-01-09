@@ -114,8 +114,8 @@ on make_obj(theCommandBuilder)
 				set termName to getTerminalName() of my _targetTerminal
 				set theMessage to getLocalizedString of UtilityHandlers given keyword:"cantExecCommand", insertTexts:{termName, processTexts}
 				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
-				set theMessageResult to showMessageWithButtons(theMessage, buttonList, item 3 of buttonList) of EditorClient
-				--log "after showMessageWithButtons"
+				set theMessageResult to show_message_buttons(theMessage, buttonList, item 3 of buttonList) of EditorClient
+				--log "after show_message_buttons"
 				set theReturned to button returned of theMessageResult
 				if theReturned is item 3 of buttonList then
 					bringToFront() of my _targetTerminal

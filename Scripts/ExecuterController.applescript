@@ -28,14 +28,14 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 	if (not isAllowUnsaved) and (a_script_file is missing value) then
 		set isNotSaved to localized string "isNotSaved"
 		set theMessage to (_aDoc & space & _sQ & a_name & _eQ & space & isNotSaved)
-		showMessage(theMessage) of EditorClient
+		show_message(theMessage) of EditorClient
 		error "The documet is not saved" number 1600
 	end if
 	
 	if not isAllowModified then
 		set modified_flag to is_modified() of EditorClient
 		if modified_flag then
-			if not save_with_asking() of EditorClient then
+			if not save_with_asking(localized string "DocumentIsModified_AskSave") of EditorClient then
 				error "The documen is modified. Saving the document is canceld by user." number 1610
 			end if
 		end if
@@ -67,7 +67,7 @@ on resolveCommand(doc_info)
 	if a_command is missing value then
 		set invalidCommand to localized string "invalidCommand"
 		set theMessage to _aDoc & space & _sQ & (name of doc_info) & _eQ & space & invalidCommand
-		showMessage(theMessage) of EditorClient
+		show_message(theMessage) of EditorClient
 		error "The document does not start with #!." number 1620
 	end if
 	--log "end resolveCommand"
@@ -145,7 +145,7 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 					end tell
 					set ignore_label to localized string "ignore"
 					set cancel_label to localized string "cancel"
-					set a_result to EditorClient's showMessageWithButtons(a_message, {cancel_label, ignore_label}, ignore_label)
+					set a_result to EditorClient's show_message_buttons(a_message, {cancel_label, ignore_label}, ignore_label)
 					if button returned of a_result is ignore_label then
 						set executer_key to baseCommand of command_info
 						headerCommands's remove_for_key("shareTerm")
