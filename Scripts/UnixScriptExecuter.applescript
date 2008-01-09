@@ -112,7 +112,7 @@ on make_obj(theCommandBuilder)
 				end tell
 				
 				set termName to getTerminalName() of my _targetTerminal
-				set theMessage to getLocalizedString of UtilityHandlers given keyword:"cantExecCommand", insertTexts:{termName, processTexts}
+				set theMessage to UtilityHandlers's localized_string("cantExecCommand", {termName, processTexts})
 				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
 				set theMessageResult to show_message_buttons(theMessage, buttonList, item 3 of buttonList) of EditorClient
 				--log "after show_message_buttons"
