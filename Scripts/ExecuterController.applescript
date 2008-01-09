@@ -127,15 +127,13 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 		if (headerCommands's value_for_key("useOwnTerm")) then
 			set executer_key to file of doc_info
 		else
-			
-			try
+			if headerCommands's has_key("shareTerm") then
 				set shared_path to headerCommands's value_for_key("shareTerm")
-				set executer_key to baseCommand of command_info
-			on error number 900
 				if shared_path does not start with "/" then
 					set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
 					set shared_path to folder_path & "/" & shared_path
 				end if
+				
 				try
 					set executer_key to POSIX file (shared_path) as alias
 				on error msg number -1700
@@ -155,7 +153,9 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 						error "No shareTerm File." number 1660
 					end if
 				end try
-			end try
+			else
+				set executer_key to baseCommand of command_info
+			end if
 		end if
 	else
 		set executer_key to baseCommand of command_info
@@ -207,7 +207,7 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 	--log "get interactive executer"
 	if interactiveFlag then
 		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, headerCommands)
-		if an_executer is missing value then
+		if an_executer is not missing value then
 			an_executer's update_script_file(file of doc_info)
 			if not headerCommands's has_key("interactive") then
 				headerCommands's set_value("interactive", command of command_info)
