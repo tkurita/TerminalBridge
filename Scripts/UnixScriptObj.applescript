@@ -67,7 +67,7 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on sendCommand(a_command)
-	log "start sendCommand in UnixScriptObj"
+	--log "start sendCommand in UnixScriptObj"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	on error errMsg number errnum
