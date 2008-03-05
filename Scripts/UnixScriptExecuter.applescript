@@ -177,31 +177,23 @@ on make_obj(a_commandBuilder)
 			return theresult
 		end setTargetTerminal
 		
-		on clenupCommandText(a_command)
+		on cleanup_command_text(a_command)
 			set a_command to XText's make_with(a_command)'s strip()
 			set a_command to UtilityHandlers's clean_yenmark(a_command)
-			(*
-			set a_command to StringEngine's strip(a_command)
-			set a_command to cleanYenmark(a_command) of UtilityHandlers
-			*)
 			return a_command
-		end clenupCommandText
+		end cleanup_command_text
 		
-		--on sendCommand(a_command)
 		on sendCommand for a_command given allowBusyStatus:isBusyAllowed
 			--log "start sendCommand in executer"
-			set a_command to clenupCommandText(a_command)
+			set x_command to cleanup_command_text(a_command)
 			try
 				set escapeChars to _options's value_for_key("escapeChars")
-				tell XText
-					store_delimiters()
-					repeat with theChar in escapeChars
-						set a_command to replace for a_command from theChar by (backslash of UtilityHandlers) & theChar
-					end repeat
-					restore_delimiters()
-				end tell
+				repeat with a_char in escapeChars
+					set x_command to x_command's replace(a_char, (backslash of UtilityHandlers) & a_char)
+				end repeat
 			end try
-			
+			set a_command to x_command's as_unicode()
+			--log "before getTargetTerminal"
 			if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isBusyAllowed then
 				--log "before checkTerminalStatus in sendCommand in executer"
 				set the_result to checkTerminalStatus(0)
@@ -278,15 +270,14 @@ on make_obj(a_commandBuilder)
 		
 		(*** handlers for shell mode ***)
 		on runScript given activation:activateFlag
-			--set allCommand to _commandBuilder's buildCommand()
 			set allCommand to _commandBuilder's build_command()
 			doCommands of TerminalCommander for allCommand given activation:activateFlag
 			beep
 		end runScript
 		
 		on sendCommandInCommonTerm for a_command given activation:activateFlag
-			set a_command to clenupCommandText(a_command)
-			doCommands of TerminalCommander for a_command given activation:activateFlag
+			set x_command to cleanup_command_text(a_command)
+			doCommands of TerminalCommander for x_command's as_unicode() given activation:activateFlag
 			beep
 		end sendCommandInCommonTerm
 	end script

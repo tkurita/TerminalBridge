@@ -5,6 +5,7 @@ global TerminalCommander
 global XText
 global UtilityHandlers
 global XDict
+global XList
 
 (*== execute tex commands called from tools from mi  *)
 (*=== interactive process *)
@@ -66,7 +67,7 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on sendCommand(a_command)
-	--log "start sendCommand in UnixScriptObj"
+	log "start sendCommand in UnixScriptObj"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	on error errMsg number errnum
@@ -84,19 +85,19 @@ on sendCommand(a_command)
 	end if
 end sendCommand
 
-on isEndWithStrings(theString, stringList)
-	set theresult to false
-	if theString ends with return then
-		set theString to text 1 thru -2 of theString
+on is_end_with_strings(a_string, string_list)
+	set a_result to false
+	if a_string's ends_with(return) then
+		set a_string to a_string's text_in_range(1, -2)
 	end if
-	repeat with a_string in stringList
-		if theString ends with a_string then
-			set theresult to true
+	repeat with end_text in string_list
+		if a_string's ends_with(end_text) then
+			set a_result to true
 			exit repeat
 		end if
 	end repeat
-	return theresult
-end isEndWithStrings
+	return a_result
+end is_end_with_strings
 
 on sendSelection(arg)
 	--log "start sendSelection"
@@ -113,8 +114,8 @@ on sendSelection(arg)
 		return
 	end if
 	
-	set a_command to get_selection() of EditorClient
-	if a_command is "" then
+	set x_command to XText's make_with(selection_contents() of EditorClient)
+	if length of x_command is 0 then
 		set a_command to current_paragraph() of EditorClient
 		if a_command is return then return
 		
@@ -127,43 +128,28 @@ on sendSelection(arg)
 				set line_end_escapes to missing value
 			end try
 		end if
-		
+		set x_command to XText's make_with(a_command)
 		if line_end_escapes is not missing value then
-			if isEndWithStrings(a_command, line_end_escapes) then
+			if is_end_with_strings(x_command, line_end_escapes) then
 				set current_index to index_current_paragraph() of EditorClient
 				set next_index to current_index + 1
 				set next_line to paragraph_at_index(next_index) of EditorClient
-				set command_list to {a_command, next_line}
-				repeat while (isEndWithStrings(next_line, line_end_escapes))
+				set command_list to {x_command's as_unicode(), next_line}
+				repeat while (is_end_with_strings(XText's make_with(next_line), line_end_escapes))
 					set next_index to next_index + 1
 					set next_line to paragraph_at_index(next_index) of EditorClient
 					set end of command_list to next_line
 				end repeat
-				set a_command to XList's make_with(command_list)'s as_xtext_with("")'s replace(tab, " ")
-				(*
-				tell StringEngine
-					store_delimiters() of it
-					set a_command to join of it for command_list by ""
-					set a_command to replace of it for a_command from tab by "  "
-					restore_delimiters() of it
-				end tell
-				*)
+				set x_command to XList's make_with(command_list)'s as_xtext_with("")'s replace(tab, " ")
 			end if
 		end if
 		
 	else
-		set a_command to XText's make_with(a_command)'s replace(tab, " ")
-		(*
-		tell StringEngine
-			store_delimiters() of it
-			set a_command to replace of it for a_command from tab by "  "
-			restore_delimiters() of it
-		end tell
-		*)
+		set x_command to x_command's replace(tab, " ")
 	end if
 	
-	if a_command is not "" then
-		sendCommand of theScriptExecuter for (a_command's as_unicode()) with allowBusyStatus
+	if length of x_command > 0 then
+		sendCommand of theScriptExecuter for (x_command's as_unicode()) with allowBusyStatus
 	end if
 end sendSelection
 
@@ -229,10 +215,6 @@ on sendCommandInCommonTerm(optionRecord)
 	--log "start sendCommandInCommonTerm"
 	set a_command to XText's make_with(command of optionRecord)'s strip()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
-	(*
-	set a_command to StringEngine's strip(command of optionRecord)
-	set a_command to cleanYenmark(a_command) of UtilityHandlers
-	*)
 	do_command of TerminalCommander for (a_command's as_unicode()) with activation
 	--log "end sendCommandInCommonTerm"
 	beep
