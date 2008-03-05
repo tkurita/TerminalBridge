@@ -3,8 +3,10 @@ on load(a_name)
 	return load(a_name) of application (get "UnixScriptToolsLib")
 end load
 
+property XText : load("XText")
+property XList : XText's XList
 property PathAnalyzer : load("PathAnalyzer")
-property StringEngine : StringEngine of PathAnalyzer
+--property StringEngine : load("StringEngine")
 property XDict : load("XDict")
 property TerminalCommanderBase : load("TerminalCommander")
 

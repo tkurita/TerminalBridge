@@ -2,7 +2,8 @@ global MessageUtility
 global CommandBuilder
 global XDict
 global EditorClient
-global StringEngine
+--global StringEngine
+global XText
 global UnixScriptExecuter
 global TerminalClient
 global PathAnalyzer
@@ -50,7 +51,7 @@ on resolveCommand(doc_info)
 	set a_command to missing value
 	if firstLine starts with "#!" then
 		set a_command to text 3 thru -1 of firstLine
-		set a_command to StringEngine's strip(a_command)
+		set a_command to XText's strip(a_command)
 	end if
 	
 	set docMode to missing value
@@ -93,7 +94,7 @@ on resolveHeaderCommand()
 							if length of a_paragraph is less than or equal to valPos then
 								exit repeat
 							end if
-							set a_value to StringEngine's strip(text valPos thru -1 of a_paragraph)
+							set a_value to XText's strip(text valPos thru -1 of a_paragraph)
 							if a_label is "escapeChars" then
 								set a_value to run script a_value
 							end if
@@ -116,12 +117,15 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 	--	log doc_info
 	--	log command_info
 	--	log headerCommands
+	set comList to XText's make_with(command of command_info)'s as_list_with(space)
+	(*
 	tell StringEngine
 		store_delimiters()
 		set comList to split for (command of command_info) by space
-		set baseCommand of command_info to last word of (first item of comList)
 		restore_delimiters()
 	end tell
+	*)
+	set baseCommand of command_info to last word of (first item of comList)
 	
 	if (file of doc_info is not missing value) then
 		if (headerCommands's value_for_key("useOwnTerm")) then
@@ -138,11 +142,14 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 					set executer_key to POSIX file (shared_path) as alias
 				on error msg number -1700
 					set a_message to localized string "noShareTermFile"
+					set a_messae to XText's make_with(a_message)'s format_with({shared_path})'s as_unicode()
+					(*
 					tell StringEngine
 						store_delimiters()
 						set a_message to formated_text given template:a_message, args:{shared_path}
 						restore_delimiters()
 					end tell
+					*)
 					set ignore_label to localized string "ignore"
 					set cancel_label to localized string "cancel"
 					set a_result to EditorClient's show_message_buttons(a_message, {cancel_label, ignore_label}, ignore_label)

@@ -1,7 +1,8 @@
 global TerminalCommander
 global TerminalClient
 global UtilityHandlers
-global StringEngine
+global XText
+global XList
 global EditorClient
 
 (* constants of result of checkTerminalStatus *)
@@ -52,10 +53,10 @@ on bring_to_front given allowBusyStatus:isAllowBusy
 	end if
 end bring_to_front
 
-on make_obj(theCommandBuilder)
+on make_obj(a_commandBuilder)
 	--log "start makeObj in UnixScriptExecuter"
 	script UnixScriptExecuter
-		property _commandBuilder : theCommandBuilder
+		property _commandBuilder : a_commandBuilder
 		property processName : missing value
 		property _targetTerminal : missing value
 		property _commandPrompt : missing value
@@ -85,11 +86,14 @@ on make_obj(theCommandBuilder)
 			--log processList
 			if isBusy() of my _targetTerminal then
 				--log "targetTermianl is Busy "
+				(*
 				tell StringEngine
 					store_delimiters()
 					set supportProcesses to split for my processName by ";"
 					restore_delimiters()
 				end tell
+				*)
+				set supportProcesses to XText's make_with(processName)'s as_list_with(";")
 				--log supportProcesses
 				set newProcesses to {}
 				repeat with theItem in processList
@@ -104,12 +108,14 @@ on make_obj(theCommandBuilder)
 						return checkTerminalStatus(checkCount + 1)
 					end if
 				end if
-				
+				set processTexts to XList's make_with(newProcesses)'s as_unicode_with(return)
+				(*
 				tell StringEngine
 					store_delimiters()
 					set processTexts to join for newProcesses by return
 					restore_delimiters()
 				end tell
+				*)
 				
 				set termName to getTerminalName() of my _targetTerminal
 				set theMessage to UtilityHandlers's localized_string("cantExecCommand", {termName, processTexts})
@@ -155,38 +161,42 @@ on make_obj(theCommandBuilder)
 				setWindowCloseAction("2")
 			end tell
 			(* -- 2006.10.06 必ず、terminal window を確保する必要があるのか？
-			set theCommand to my buildInteractiveCommand()
+			set a_command to my buildInteractiveCommand()
 			--log "after buildInteractiveCommand"
-			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
+			set a_command to cleanYenmark(a_command) of UtilityHandlers
 			--log "after cleanYenmark"
 			if getTargetTerminal of (my _targetTerminal) with allowBusyStatus then
 				if not isIgnoreStatus then
 					set theResult to checkTerminalStatus(0)
 				end if
 			else
-				set theResult to doCommands of (my _targetTerminal) for theCommand without activation
+				set theResult to doCommands of (my _targetTerminal) for a_command without activation
 			end if
 			*)
 			--log "end setTargetTerminal"
 			return theresult
 		end setTargetTerminal
 		
-		on clenupCommandText(theCommand)
-			set theCommand to StringEngine's strip(theCommand)
-			set theCommand to cleanYenmark(theCommand) of UtilityHandlers
-			return theCommand
+		on clenupCommandText(a_command)
+			set a_command to XText's make_with(a_command)'s strip()
+			set a_command to UtilityHandlers's clean_yenmark(a_command)
+			(*
+			set a_command to StringEngine's strip(a_command)
+			set a_command to cleanYenmark(a_command) of UtilityHandlers
+			*)
+			return a_command
 		end clenupCommandText
 		
-		--on sendCommand(theCommand)
-		on sendCommand for theCommand given allowBusyStatus:isBusyAllowed
+		--on sendCommand(a_command)
+		on sendCommand for a_command given allowBusyStatus:isBusyAllowed
 			--log "start sendCommand in executer"
-			set theCommand to clenupCommandText(theCommand)
+			set a_command to clenupCommandText(a_command)
 			try
 				set escapeChars to _options's value_for_key("escapeChars")
-				tell StringEngine
+				tell XText
 					store_delimiters()
 					repeat with theChar in escapeChars
-						set theCommand to replace for theCommand from theChar by (backslash of UtilityHandlers) & theChar
+						set a_command to replace for a_command from theChar by (backslash of UtilityHandlers) & theChar
 					end repeat
 					restore_delimiters()
 				end tell
@@ -197,15 +207,15 @@ on make_obj(theCommandBuilder)
 				set the_result to checkTerminalStatus(0)
 				if the_result is kTerminalReady then
 					--log "will doCmdInCurrentTerm"
-					--log theCommand
-					doCmdInCurrentTerm of (my _targetTerminal) for theCommand without activation
+					--log a_command
+					doCmdInCurrentTerm of (my _targetTerminal) for a_command without activation
 				else if the_result is kShowTerminal then
-					set the clipboard to theCommand
+					set the clipboard to a_command
 				else
 					return false
 				end if
 			else
-				openNewTermForCommand(theCommand)
+				openNewTermForCommand(a_command)
 			end if
 			
 			--log "end sendCommand"
@@ -244,12 +254,12 @@ on make_obj(theCommandBuilder)
 			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation
 		end openNewTerminal
 		
-		on openNewTermForCommand(theCommand)
+		on openNewTermForCommand(a_command)
 			--log "start openNewTermForCommand"
 			--set interactiveCommand to _commandBuilder's buildInteractiveCommand()
 			set interactiveCommand to _commandBuilder's interactive_command()
 			set interactiveCommand to UtilityHandlers's cleanYenmark(interactiveCommand)
-			set interactiveCommand to interactiveCommand & return & theCommand
+			set interactiveCommand to interactiveCommand & return & a_command
 			--log interactiveCommand
 			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation
 		end openNewTermForCommand
@@ -274,9 +284,9 @@ on make_obj(theCommandBuilder)
 			beep
 		end runScript
 		
-		on sendCommandInCommonTerm for theCommand given activation:activateFlag
-			set theCommand to clenupCommandText(theCommand)
-			doCommands of TerminalCommander for theCommand given activation:activateFlag
+		on sendCommandInCommonTerm for a_command given activation:activateFlag
+			set a_command to clenupCommandText(a_command)
+			doCommands of TerminalCommander for a_command given activation:activateFlag
 			beep
 		end sendCommandInCommonTerm
 	end script

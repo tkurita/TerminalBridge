@@ -1,5 +1,3 @@
-global StringEngine
-
 property parent : load("miClient") of application (get "UnixScriptToolsLib")
 
 on show_message_asking(msg)
