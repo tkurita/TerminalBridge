@@ -86,13 +86,6 @@ on make_obj(a_commandBuilder)
 			--log processList
 			if isBusy() of my _targetTerminal then
 				--log "targetTermianl is Busy "
-				(*
-				tell StringEngine
-					store_delimiters()
-					set supportProcesses to split for my processName by ";"
-					restore_delimiters()
-				end tell
-				*)
 				set supportProcesses to XText's make_with(processName)'s as_list_with(";")
 				--log supportProcesses
 				set newProcesses to {}
@@ -109,14 +102,6 @@ on make_obj(a_commandBuilder)
 					end if
 				end if
 				set processTexts to XList's make_with(newProcesses)'s as_unicode_with(return)
-				(*
-				tell StringEngine
-					store_delimiters()
-					set processTexts to join for newProcesses by return
-					restore_delimiters()
-				end tell
-				*)
-				
 				set termName to getTerminalName() of my _targetTerminal
 				set theMessage to UtilityHandlers's localized_string("cantExecCommand", {termName, processTexts})
 				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
@@ -160,19 +145,6 @@ on make_obj(a_commandBuilder)
 				setCleanCommands(processName)
 				setWindowCloseAction("2")
 			end tell
-			(* -- 2006.10.06 必ず、terminal window を確保する必要があるのか？
-			set a_command to my buildInteractiveCommand()
-			--log "after buildInteractiveCommand"
-			set a_command to cleanYenmark(a_command) of UtilityHandlers
-			--log "after cleanYenmark"
-			if getTargetTerminal of (my _targetTerminal) with allowBusyStatus then
-				if not isIgnoreStatus then
-					set theResult to checkTerminalStatus(0)
-				end if
-			else
-				set theResult to doCommands of (my _targetTerminal) for a_command without activation
-			end if
-			*)
 			--log "end setTargetTerminal"
 			return theresult
 		end setTargetTerminal
@@ -239,18 +211,16 @@ on make_obj(a_commandBuilder)
 		
 		on openNewTerminal()
 			--log "start openNewTerminal"
-			--set interactiveCommand to _commandBuilder's buildInteractiveCommand()
 			set interactiveCommand to _commandBuilder's interactive_command()
-			set interactiveCommand to UtilityHandlers's cleanYenmark(interactiveCommand)
+			set interactiveCommand to UtilityHandlers's clean_yenmark(interactiveCommand)
 			--log interactiveCommand
 			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation
 		end openNewTerminal
 		
 		on openNewTermForCommand(a_command)
 			--log "start openNewTermForCommand"
-			--set interactiveCommand to _commandBuilder's buildInteractiveCommand()
 			set interactiveCommand to _commandBuilder's interactive_command()
-			set interactiveCommand to UtilityHandlers's cleanYenmark(interactiveCommand)
+			set interactiveCommand to UtilityHandlers's clean_yenmark(interactiveCommand)
 			set interactiveCommand to interactiveCommand & return & a_command
 			--log interactiveCommand
 			return doCmdInNewTerm of (my _targetTerminal) for interactiveCommand without activation

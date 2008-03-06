@@ -119,7 +119,6 @@
 		2C738EF80519C8F90010646F /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
 		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
 		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
-		2C8622120A0F16C9004855E4 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/DonationReminder.nib; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA91F1E08B5E93B00A6B73C /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
@@ -228,7 +227,6 @@
 				DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */,
 				2CC8C94A07882A3600085682 /* FactorySettings.plist */,
 				2C9E42BE052215CB00248965 /* Localizable.strings */,
-				2C8622110A0F16C9004855E4 /* DonationReminder.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -404,14 +402,6 @@
 				2C732BE007AE5AE3005ACE75 /* Japanese */,
 			);
 			name = Setting.nib;
-			sourceTree = "<group>";
-		};
-		2C8622110A0F16C9004855E4 /* DonationReminder.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2C8622120A0F16C9004855E4 /* Japanese */,
-			);
-			name = DonationReminder.nib;
 			sourceTree = "<group>";
 		};
 		2C9E42BE052215CB00248965 /* Localizable.strings */ = {
