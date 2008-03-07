@@ -1,4 +1,4 @@
-global TerminalSettingObj
+global TerminalSettings
 global appController
 
 property WindowController : missing value
@@ -15,7 +15,7 @@ on initilize()
 end initilize
 
 on openWindow()
-	--log "start openWIndow in SettingWindowObj"
+	--log "start openWIndow in SettingWindowController"
 	if WindowController is missing value then
 		initilize()
 	end if
@@ -26,10 +26,10 @@ end openWindow
 on RevertToDefault()
 	--log "start RevertToDefault"
 	set currentTab to current tab view item of tab view "SettingTabs" of my targetWindow
-	set theName to name of currentTab
-	if theName is "TerminalSetting" then
-		revertToFactorySetting() of TerminalSettingObj
-	else if theName is "CommandAndProcess" then
+	set a_name to name of currentTab
+	if a_name is "TerminalSetting" then
+		revert_to_factory_setting() of TerminalSettings
+	else if a_name is "CommandAndProcess" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "CleanCommands"
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "ModeDefaults"
 	end if
@@ -37,15 +37,15 @@ on RevertToDefault()
 end RevertToDefault
 
 on selectedTab(tabViewItem)
-	set theName to name of tabViewItem
-	if theName is "TerminalSetting" then
+	set a_name to name of tabViewItem
+	if a_name is "TerminalSetting" then
 		loadTerminalSetting(tabViewItem)
 	end if
 end selectedTab
 
 on loadTerminalSetting(theView)
 	if not isLoadedTerminalSetting then
-		setSettingToWindow(theView) of TerminalSettingObj
+		set_setting_to_window(theView) of TerminalSettings
 		set isLoadedTerminalSetting to true
 	end if
 end loadTerminalSetting

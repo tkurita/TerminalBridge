@@ -6,12 +6,12 @@ end load
 property XText : load("XText")
 property XList : XText's XList
 property PathAnalyzer : load("PathAnalyzer")
---property StringEngine : load("StringEngine")
 property XDict : load("XDict")
 property TerminalCommanderBase : load("TerminalCommander")
+property TerminalColors : load("TerminalColors")
 
 property TerminalCommander : missing value
-property TerminalSettingObj : missing value
+property TerminalSettings : missing value
 property UtilityHandlers : missing value
 property MessageUtility : missing value
 property appController : missing value
@@ -19,7 +19,7 @@ property appController : missing value
 property ExecuterController : missing value
 property UnixScriptExecuter : missing value
 property UnixScriptObj : missing value
-property SettingWindowObj : missing value
+property SettingWindowController : missing value
 property CommandBuilder : missing value
 property EditorClient : missing value
 property TerminalClient : missing value
@@ -51,7 +51,7 @@ on launched theObject
 	(*debug code*)
 	--showInteractiveTerminal() of UnixScriptObj
 	--log "start launched"
-	--openWindow() of SettingWindowObj
+	--openWindow() of SettingWindowController
 	--getLastResult() of UnixScriptObj
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
@@ -86,12 +86,12 @@ on open theObject
 		else if command_id is "showInteractiveTerminal" then
 			showInteractiveTerminal() of UnixScriptObj
 		else if command_id is "sendCommand" then
-			sendCommand(arg) of UnixScriptObj
+			send_command(arg) of UnixScriptObj
 		else if command_id is "getLastResult" then
 			getLastResult() of UnixScriptObj
 			(* control UnixScriptServer *)
 		else if command_id is "setting" then
-			openWindow() of SettingWindowObj
+			openWindow() of SettingWindowController
 		else if command_id is "Help" then
 			call method "showHelp:"
 		end if
@@ -110,23 +110,23 @@ on clicked theObject
 	--log "start clicked"
 	set theTag to tag of theObject
 	if theTag is 1 then
-		control_clicked(theObject) of TerminalSettingObj
+		control_clicked(theObject) of TerminalSettings
 	else
 		control_clicked(theObject)
 	end if
 end clicked
 
 on control_clicked(theObject)
-	set theName to name of theObject
+	set a_name to name of theObject
 	--set windowName to name of window of theObject
-	if theName is "RevertToDefault" then
-		RevertToDefault() of SettingWindowObj
+	if a_name is "RevertToDefault" then
+		RevertToDefault() of SettingWindowController
 	end if
 end control_clicked
 
 on choose menu item theObject
-	set theName to name of theObject
-	if theName is "Preference" then
+	set a_name to name of theObject
+	if a_name is "Preference" then
 		show window "Setting"
 	end if
 end choose menu item
@@ -138,8 +138,8 @@ on will finish launching theObject
 	set appController to call method "sharedAppController" of class "AppController"
 	set UtilityHandlers to import_script("UtilityHandlers")
 	set MessageUtility to import_script("MessageUtility")
-	set TerminalCommander to make_obj() of (import_script("TerminalCommander"))
-	set TerminalSettingObj to import_script("TerminalSettingObj")
+	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
+	set TerminalSettings to import_script("TerminalSettings")
 	
 	set UnixScriptExecuter to import_script("UnixScriptExecuter")
 	set CommandBuilder to import_script("CommandBuilder")
@@ -147,14 +147,14 @@ on will finish launching theObject
 	ExecuterController's initialize()
 	set UnixScriptObj to import_script("UnixScriptObj")
 	
-	set SettingWindowObj to import_script("SettingWindowObj")
+	set SettingWindowController to import_script("SettingWindowController")
 	set EditorClient to import_script("EditorClient")
 	--log "end of import_scripts"
 	
 	showStartupMessage("Loading Preferences ...")
-	--log "before loadSetting() of TerminalSettingObj"
-	loadSettings() of TerminalSettingObj
-	--log "end of initializing TerminalSettingObj"
+	--log "before loadSetting() of TerminalSettings"
+	load_settings() of TerminalSettings
+	--log "end of initializing TerminalSettings"
 	
 	--log "end finish launching"
 end will finish launching
@@ -164,6 +164,6 @@ on showStartupMessage(theMessage)
 end showStartupMessage
 
 on selected tab view item theObject tab view item tabViewItem
-	selectedTab(tabViewItem) of SettingWindowObj
+	selectedTab(tabViewItem) of SettingWindowController
 end selected tab view item
 

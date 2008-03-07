@@ -18,7 +18,7 @@ on set_options(opt_dict)
 	on error number 900
 	end try
 	try
-		setCleanCommands(my _options's value_for_key("process"))
+		set_clean_commands(my _options's value_for_key("process"))
 	on error number 900
 	end try
 	
@@ -46,8 +46,8 @@ end update_script_file
 
 on bring_to_front given allowBusyStatus:isAllowBusy
 	--log "start bring_to_front in UnixScriptExecuter"
-	if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isAllowBusy then
-		return bringToFront() of (my _targetTerminal)
+	if resolve_terminal of (my _targetTerminal) given allowBusyStatus:isAllowBusy then
+		return bring_to_front() of (my _targetTerminal)
 	else
 		return false
 	end if
@@ -77,14 +77,14 @@ on make_obj(a_commandBuilder)
 		*)
 		on checkTerminalStatus(checkCount)
 			--log "start checkTerminalStatus"
-			set theresult to kTerminalReady
+			set a_result to kTerminalReady
 			if (contents of default entry "useExecCommand" of user defaults) then
-				set processList to getProcesses() of my _targetTerminal
+				set processList to running_processes() of my _targetTerminal
 			else
-				set processList to getProcessesOnShell() of my _targetTerminal
+				set processList to processes_on_shell() of my _targetTerminal
 			end if
 			--log processList
-			if isBusy() of my _targetTerminal then
+			if is_busy() of my _targetTerminal then
 				--log "targetTermianl is Busy "
 				set supportProcesses to XText's make_with(processName)'s as_list_with(";")
 				--log supportProcesses
@@ -102,51 +102,51 @@ on make_obj(a_commandBuilder)
 					end if
 				end if
 				set processTexts to XList's make_with(newProcesses)'s as_unicode_with(return)
-				set termName to getTerminalName() of my _targetTerminal
+				set termName to terminal_name() of my _targetTerminal
 				set theMessage to UtilityHandlers's localized_string("cantExecCommand", {termName, processTexts})
 				set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
 				set theMessageResult to show_message_buttons(theMessage, buttonList, item 3 of buttonList) of EditorClient
 				--log "after show_message_buttons"
 				set theReturned to button returned of theMessageResult
 				if theReturned is item 3 of buttonList then
-					bringToFront() of my _targetTerminal
-					set theresult to kShowTerminal
+					bring_to_front() of my _targetTerminal
+					set a_result to kShowTerminal
 				else if theReturned is item 2 of buttonList then
-					set theresult to openNewTerminal()
-					if theresult then
-						set theresult to kTerminalReady
+					set a_result to openNewTerminal()
+					if a_result then
+						set a_result to kTerminalReady
 					else
-						set theresult to kCancel
+						set a_result to kCancel
 					end if
 				else
-					set theresult to kCancel
+					set a_result to kCancel
 				end if
 			else
 				if (processList is {}) then
-					set theresult to openNewTerminal()
-					if theresult then
-						set theresult to kTerminalReady
+					set a_result to openNewTerminal()
+					if a_result then
+						set a_result to kTerminalReady
 					else
-						set theresult to kCancel
+						set a_result to kCancel
 					end if
 				end if
 			end if
 			--log "end of checkTerminalStatus"
-			return theresult
+			return a_result
 		end checkTerminalStatus
 		
 		on setTargetTerminal given title:theCustomTitle, ignoreStatus:isIgnoreStatus
 			--log "start setTargetTerminal"
-			set theresult to true
-			copy TerminalCommander to my _targetTerminal
+			set a_result to true
+			set my _targetTerminal to make TerminalCommander
 			tell my _targetTerminal
 				forget()
 				set_custom_title(theCustomTitle)
-				setCleanCommands(processName)
-				setWindowCloseAction("2")
+				set_clean_commands(processName)
+				set_window_close_action("2")
 			end tell
 			--log "end setTargetTerminal"
-			return theresult
+			return a_result
 		end setTargetTerminal
 		
 		on cleanup_command_text(a_command)
@@ -155,7 +155,7 @@ on make_obj(a_commandBuilder)
 			return a_command
 		end cleanup_command_text
 		
-		on sendCommand for a_command given allowBusyStatus:isBusyAllowed
+		on send_command for a_command given allowBusyStatus:isBusyAllowed
 			--log "start sendCommand in executer"
 			set x_command to cleanup_command_text(a_command)
 			try
@@ -165,14 +165,14 @@ on make_obj(a_commandBuilder)
 				end repeat
 			end try
 			set a_command to x_command's as_unicode()
-			--log "before getTargetTerminal"
-			if getTargetTerminal of (my _targetTerminal) given allowBusyStatus:isBusyAllowed then
+			--log "before resolve_terminal"
+			if resolve_terminal of (my _targetTerminal) given allowBusyStatus:isBusyAllowed then
 				--log "before checkTerminalStatus in sendCommand in executer"
 				set the_result to checkTerminalStatus(0)
 				if the_result is kTerminalReady then
-					--log "will doCmdInCurrentTerm"
+					--log "will do_in_current_term"
 					--log a_command
-					doCmdInCurrentTerm of (my _targetTerminal) for a_command without activation
+					do_in_current_term of (my _targetTerminal) for a_command without activation
 				else if the_result is kShowTerminal then
 					set the clipboard to a_command
 				else
@@ -184,24 +184,24 @@ on make_obj(a_commandBuilder)
 			
 			--log "end sendCommand"
 			return true
-		end sendCommand
+		end send_command
 		
 		on getLastResult()
 			--log "start getLastResult in UnixScriptExecuter"
-			if not (getTargetTerminal of (my _targetTerminal) without allowBusyStatus) then
+			if not (resolve_terminal of (my _targetTerminal) without allowBusyStatus) then
 				error "No Terminal found." number 1640
 				return missing value
 			end if
 			
 			set theContents to my _targetTerminal's getContents()
-			set theresult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
+			set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			
-			if theresult is -1 then
+			if a_result is -1 then
 				set theContents to my _targetTerminal's getHistory()
-				set theresult to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
+				set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {theContents, my _commandPrompt}
 			end if
 			
-			if theresult is not 1 then
+			if a_result is not 1 then
 				return missing value
 			end if
 			
@@ -234,20 +234,20 @@ on make_obj(a_commandBuilder)
 			--log "end setPrompt"
 		end setPrompt
 		
-		on setCleanCommands(theProcesses)
+		on set_clean_commands(theProcesses)
 			set processName to theProcesses & ";" & (contents of default entry "CleanCommands" of user defaults)
-		end setCleanCommands
+		end set_clean_commands
 		
 		(*** handlers for shell mode ***)
 		on runScript given activation:activateFlag
 			set allCommand to _commandBuilder's build_command()
-			doCommands of TerminalCommander for allCommand given activation:activateFlag
+			do_command of TerminalCommander for allCommand given activation:activateFlag
 			beep
 		end runScript
 		
 		on sendCommandInCommonTerm for a_command given activation:activateFlag
 			set x_command to cleanup_command_text(a_command)
-			doCommands of TerminalCommander for x_command's as_unicode() given activation:activateFlag
+			do_command of TerminalCommander for x_command's as_unicode() given activation:activateFlag
 			beep
 		end sendCommandInCommonTerm
 	end script

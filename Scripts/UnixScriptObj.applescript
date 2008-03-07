@@ -11,62 +11,62 @@ global XList
 (*=== interactive process *)
 on getLastResult()
 	--log "start getLastResult in UnixScriptObj"
-	set theExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
+	set an_executer to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	
 	try
-		set theresult to getLastResult() of theExecuter
+		set a_result to getLastResult() of an_executer
 	on error msg number 1640
 		set a_msg to localized string "cantFindTerminal"
 		show_message(a_msg) of EditorClient
 		return
 	end try
 	
-	if theresult is missing value then
+	if a_result is missing value then
 		set a_msg to localized string "noLastResult"
 		show_message(a_msg) of EditorClient
 		return
 	end if
 	
-	if ((count paragraph of theresult) is 2) and (paragraph 2 of theresult is "") then
+	if ((count paragraph of a_result) is 2) and (paragraph 2 of a_result is "") then
 		set selectionRec to getSelectionRecord() of EditorClient
 		if (cursorInParagraph of selectionRec is not 0) then
-			set theresult to first paragraph of theresult
+			set a_result to first paragraph of a_result
 		end if
 	end if
-	insert_text(theresult) of EditorClient
+	insert_text(a_result) of EditorClient
 	--log "end getLastResult in UnixScriptObj"
 end getLastResult
 
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
-	set theExecuter to getExecuter of ExecuterController for missing value with interactive and allowBusyStatus
-	(*if theExecuter is missing value then
+	set an_executer to getExecuter of ExecuterController for missing value with interactive and allowBusyStatus
+	(*if an_executer is missing value then
 		display alert "UnixScriptServer: the Executer is not found"
 		consoleLog("UnixScriptServer: the Executer is not found") of UtilityHandlers
-		-- このブロックはいらないかもしれない。theExecuter は いつ missing value　になる？
-		if getTargetTerminal of TerminalCommander with allowBusyStatus then
-			set theResult to bringToFront() of TerminalCommander
+		-- このブロックはいらないかもしれない。an_executer は いつ missing value　になる？
+		if resolve_terminal of TerminalCommander with allowBusyStatus then
+			set a_result to bring_to_front() of TerminalCommander
 		else
-			set theResult to false
+			set a_result to false
 		end if
 	else*)
-	set theresult to bring_to_front of theExecuter with allowBusyStatus
-	if not theresult then
-		set theresult to openNewTerminal() of theExecuter
-		if theresult then
-			set theresult to bring_to_front of theExecuter with allowBusyStatus
+	set a_result to bring_to_front of an_executer with allowBusyStatus
+	if not a_result then
+		set a_result to openNewTerminal() of an_executer
+		if a_result then
+			set a_result to bring_to_front of an_executer with allowBusyStatus
 		else
 			show_message("can't open new terminal") of EditorClient -- this message should not be shown.
 		end if
 	end if
 	
-	if not theresult then
+	if not a_result then
 		set theMessage to localized string "cantFindTerminal"
 		show_message(theMessage) of EditorClient
 	end if
 end showInteractiveTerminal
 
-on sendCommand(a_command)
+on send_command(a_command)
 	--log "start sendCommand in UnixScriptObj"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
@@ -81,9 +81,9 @@ on sendCommand(a_command)
 		return
 	end if
 	if a_command is not "" then
-		sendCommand of theScriptExecuter for a_command with allowBusyStatus
+		send_command of theScriptExecuter for a_command with allowBusyStatus
 	end if
-end sendCommand
+end send_command
 
 on is_end_with_strings(a_string, string_list)
 	set a_result to false
@@ -149,7 +149,7 @@ on sendSelection(arg)
 	end if
 	
 	if length of x_command > 0 then
-		sendCommand of theScriptExecuter for (x_command's as_unicode()) with allowBusyStatus
+		send_command of theScriptExecuter for (x_command's as_unicode()) with allowBusyStatus
 	end if
 end sendSelection
 
@@ -231,7 +231,7 @@ on get_named_term(a_name)
 			set target_term to my _namedTerms's value_for_key(a_name)
 		on error number 900
 			copy TerminalCommander to target_term
-			TerminalCommander's forgetTerminal()
+			TerminalCommander's forget()
 			target_term's forget()
 			target_term's set_custom_title("* " & a_name & " *")
 			my _namedTerms's set_value(a_name, target_term)
@@ -240,7 +240,7 @@ on get_named_term(a_name)
 	(*
 	if target_term is missing value then
 		copy TerminalCommander to target_term
-		TerminalCommander's forgetTerminal()
+		TerminalCommander's forget()
 		target_term's forget()
 		target_term's set_custom_title("* " & a_name & " *")
 		my _namedTerms's set_value(a_name, target_term)
