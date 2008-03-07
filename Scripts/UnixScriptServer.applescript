@@ -18,7 +18,7 @@ property appController : missing value
 
 property ExecuterController : missing value
 property UnixScriptExecuter : missing value
-property UnixScriptObj : missing value
+property UnixScriptController : missing value
 property SettingWindowController : missing value
 property CommandBuilder : missing value
 property EditorClient : missing value
@@ -49,15 +49,15 @@ end script
 on launched theObject
 	hide window "Startup"
 	(*debug code*)
-	--showInteractiveTerminal() of UnixScriptObj
+	--showInteractiveTerminal() of UnixScriptController
 	--log "start launched"
 	--openWindow() of SettingWindowController
-	--getLastResult() of UnixScriptObj
+	--getLastResult() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
 	--RunInTerminal()
 	--runWithFSToClipboard()
-	--sendSelection() of UnixScriptObj
+	--sendSelection() of UnixScriptController
 	--checkSyntax()
 	(*end of debug code*)
 end launched
@@ -72,23 +72,23 @@ on open theObject
 		end try
 		
 		if command_id is "runWithFinderSelection" then
-			runWithFinderSelection(arg) of UnixScriptObj
+			runWithFinderSelection(arg) of UnixScriptController
 		else if command_id is "RunInTerminal" then
-			RunInTerminal(arg) of UnixScriptObj
+			RunInTerminal(arg) of UnixScriptController
 		else if command_id is "sendCommandInCommonTerm" then
-			sendCommandInCommonTerm(arg) of UnixScriptObj
+			send_to_common_term(arg) of UnixScriptController
 		else if command_id is "send_in_named_term" then
-			send_in_named_term(arg) of UnixScriptObj
+			send_in_named_term(arg) of UnixScriptController
 			
 			(* interactive process *)
 		else if command_id is "sendSelection" then
-			sendSelection(arg) of UnixScriptObj
+			sendSelection(arg) of UnixScriptController
 		else if command_id is "showInteractiveTerminal" then
-			showInteractiveTerminal() of UnixScriptObj
+			showInteractiveTerminal() of UnixScriptController
 		else if command_id is "sendCommand" then
-			send_command(arg) of UnixScriptObj
+			send_command(arg) of UnixScriptController
 		else if command_id is "getLastResult" then
-			getLastResult() of UnixScriptObj
+			getLastResult() of UnixScriptController
 			(* control UnixScriptServer *)
 		else if command_id is "setting" then
 			openWindow() of SettingWindowController
@@ -145,7 +145,7 @@ on will finish launching theObject
 	set CommandBuilder to import_script("CommandBuilder")
 	set ExecuterController to import_script("ExecuterController")
 	ExecuterController's initialize()
-	set UnixScriptObj to import_script("UnixScriptObj")
+	set UnixScriptController to import_script("UnixScriptController")
 	
 	set SettingWindowController to import_script("SettingWindowController")
 	set EditorClient to import_script("EditorClient")

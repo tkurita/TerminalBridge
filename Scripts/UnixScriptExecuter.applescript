@@ -245,10 +245,10 @@ on make_obj(a_commandBuilder)
 			beep
 		end runScript
 		
-		on sendCommandInCommonTerm for a_command given activation:activateFlag
+		on send_to_common_term for a_command given activation:activateFlag
 			set x_command to cleanup_command_text(a_command)
 			do_command of TerminalCommander for x_command's as_unicode() given activation:activateFlag
 			beep
-		end sendCommandInCommonTerm
+		end send_to_common_term
 	end script
 end make_obj

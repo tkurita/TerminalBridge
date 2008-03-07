@@ -10,7 +10,7 @@ global XList
 (*== execute tex commands called from tools from mi  *)
 (*=== interactive process *)
 on getLastResult()
-	--log "start getLastResult in UnixScriptObj"
+	--log "start getLastResult in UnixScriptController"
 	set an_executer to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	
 	try
@@ -34,7 +34,7 @@ on getLastResult()
 		end if
 	end if
 	insert_text(a_result) of EditorClient
-	--log "end getLastResult in UnixScriptObj"
+	--log "end getLastResult in UnixScriptController"
 end getLastResult
 
 on showInteractiveTerminal()
@@ -67,7 +67,7 @@ on showInteractiveTerminal()
 end showInteractiveTerminal
 
 on send_command(a_command)
-	--log "start sendCommand in UnixScriptObj"
+	--log "start sendCommand in UnixScriptController"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	on error errMsg number errnum
@@ -211,14 +211,14 @@ on runWithFinderSelection(optionRecord)
 end runWithFinderSelection
 
 (*=== send command without CommandBuilder *)
-on sendCommandInCommonTerm(optionRecord)
-	--log "start sendCommandInCommonTerm"
+on send_to_common_term(optionRecord)
+	--log "start send_to_common_term"
 	set a_command to XText's make_with(command of optionRecord)'s strip()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	do_command of TerminalCommander for (a_command's as_unicode()) with activation
-	--log "end sendCommandInCommonTerm"
+	--log "end send_to_common_term"
 	beep
-end sendCommandInCommonTerm
+end send_to_common_term
 
 property _namedTerms : missing value
 
@@ -237,15 +237,6 @@ on get_named_term(a_name)
 			my _namedTerms's set_value(a_name, target_term)
 		end try
 	end if
-	(*
-	if target_term is missing value then
-		copy TerminalCommander to target_term
-		TerminalCommander's forget()
-		target_term's forget()
-		target_term's set_custom_title("* " & a_name & " *")
-		my _namedTerms's set_value(a_name, target_term)
-	end if
-	*)
 	
 	return target_term
 end get_named_term
