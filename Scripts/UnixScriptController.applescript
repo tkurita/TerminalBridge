@@ -9,12 +9,12 @@ global XList
 
 (*== execute tex commands called from tools from mi  *)
 (*=== interactive process *)
-on getLastResult()
+on last_result()
 	--log "start getLastResult in UnixScriptController"
 	set an_executer to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	
 	try
-		set a_result to getLastResult() of an_executer
+		set a_result to last_result() of an_executer
 	on error msg number 1640
 		set a_msg to localized string "cantFindTerminal"
 		show_message(a_msg) of EditorClient
@@ -35,7 +35,7 @@ on getLastResult()
 	end if
 	insert_text(a_result) of EditorClient
 	--log "end getLastResult in UnixScriptController"
-end getLastResult
+end last_result
 
 on showInteractiveTerminal()
 	--log "start showInteractiveTerminal"
@@ -52,7 +52,7 @@ on showInteractiveTerminal()
 	else*)
 	set a_result to bring_to_front of an_executer with allowBusyStatus
 	if not a_result then
-		set a_result to openNewTerminal() of an_executer
+		set a_result to open_new_terminal() of an_executer
 		if a_result then
 			set a_result to bring_to_front of an_executer with allowBusyStatus
 		else
@@ -61,8 +61,8 @@ on showInteractiveTerminal()
 	end if
 	
 	if not a_result then
-		set theMessage to localized string "cantFindTerminal"
-		show_message(theMessage) of EditorClient
+		set msg to localized string "cantFindTerminal"
+		show_message(msg) of EditorClient
 	end if
 end showInteractiveTerminal
 
@@ -185,8 +185,8 @@ on getFinderSelection()
 	end if
 	
 	set itemText to (quoted form of POSIX path of (item 1 of a_list as alias))
-	repeat with theItem in (rest of a_list)
-		set itemText to itemText & space & (quoted form of POSIX path of (theItem as alias))
+	repeat with an_item in (rest of a_list)
+		set itemText to itemText & space & (quoted form of POSIX path of (an_item as alias))
 	end repeat
 	return itemText
 end getFinderSelection

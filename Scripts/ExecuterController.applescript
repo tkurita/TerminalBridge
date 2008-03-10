@@ -28,8 +28,8 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 	
 	if (not isAllowUnsaved) and (a_script_file is missing value) then
 		set isNotSaved to localized string "isNotSaved"
-		set theMessage to (_aDoc & space & _sQ & a_name & _eQ & space & isNotSaved)
-		show_message(theMessage) of EditorClient
+		set msg to (_aDoc & space & _sQ & a_name & _eQ & space & isNotSaved)
+		show_message(msg) of EditorClient
 		error "The documet is not saved" number 1600
 	end if
 	
@@ -67,8 +67,8 @@ on resolveCommand(doc_info)
 	
 	if a_command is missing value then
 		set invalidCommand to localized string "invalidCommand"
-		set theMessage to _aDoc & space & _sQ & (name of doc_info) & _eQ & space & invalidCommand
-		show_message(theMessage) of EditorClient
+		set msg to _aDoc & space & _sQ & (name of doc_info) & _eQ & space & invalidCommand
+		show_message(msg) of EditorClient
 		error "The document does not start with #!." number 1620
 	end if
 	--log "end resolveCommand"
@@ -244,7 +244,7 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 				end try
 			end if
 			
-			if setTargetTerminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
+			if set_target_terminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
 				interactiveExecuters's set_value(executer_key, an_executer)
 			else
 				set an_executer to missing value

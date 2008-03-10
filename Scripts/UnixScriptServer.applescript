@@ -52,7 +52,7 @@ on launched theObject
 	--showInteractiveTerminal() of UnixScriptController
 	--log "start launched"
 	--openWindow() of SettingWindowController
-	--getLastResult() of UnixScriptController
+	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
 	--RunInTerminal()
@@ -88,7 +88,7 @@ on open theObject
 		else if command_id is "sendCommand" then
 			send_command(arg) of UnixScriptController
 		else if command_id is "getLastResult" then
-			getLastResult() of UnixScriptController
+			last_result() of UnixScriptController
 			(* control UnixScriptServer *)
 		else if command_id is "setting" then
 			openWindow() of SettingWindowController
@@ -159,8 +159,8 @@ on will finish launching theObject
 	--log "end finish launching"
 end will finish launching
 
-on showStartupMessage(theMessage)
-	set contents of text field "StartupMessage" of window "Startup" to theMessage
+on showStartupMessage(msg)
+	set contents of text field "StartupMessage" of window "Startup" to msg
 end showStartupMessage
 
 on selected tab view item theObject tab view item tabViewItem
