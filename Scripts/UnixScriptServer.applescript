@@ -40,67 +40,73 @@ on import_script(scriptName)
 	return load script POSIX file scriptPath
 end import_script
 
-script ScriptImporter
-	on do(scriptName)
-		return import_script(scriptName)
-	end do
-end script
-
 on launched theObject
 	hide window "Startup"
 	(*debug code*)
-	--showInteractiveTerminal() of UnixScriptController
+	--show_interactive_terminal() of UnixScriptController
 	--log "start launched"
-	--openWindow() of SettingWindowController
+	--open_window() of SettingWindowController
 	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
-	--RunInTerminal()
+	--run_in_terminal()
 	--runWithFSToClipboard()
-	--sendSelection() of UnixScriptController
+	--send_selection() of UnixScriptController
 	--checkSyntax()
 	(*end of debug code*)
 end launched
 
+on process_oldies(theObject)
+	set command_id to commandID of theObject
+	
+	set arg to missing value
+	try
+		set arg to argument of theObject
+	end try
+	
+	if command_id is "runWithFinderSelection" then
+		run_with_finder_selection(arg) of UnixScriptController
+	else if command_id is "RunInTerminal" then
+		run_in_terminal(arg) of UnixScriptController
+	else if command_id is "sendCommandInCommonTerm" then
+		send_to_common_term(arg) of UnixScriptController
+	else if command_id is "send_in_named_term" then
+		send_in_named_term(arg) of UnixScriptController
+		
+		(* interactive process *)
+	else if command_id is "sendSelection" then
+		send_selection(arg) of UnixScriptController
+	else if command_id is "showInteractiveTerminal" then
+		show_interactive_terminal() of UnixScriptController
+	else if command_id is "sendCommand" then
+		send_command(arg) of UnixScriptController
+	else if command_id is "getLastResult" then
+		last_result() of UnixScriptController
+		(* control UnixScriptServer *)
+	else if command_id is "setting" then
+		open_window() of SettingWindowController
+	else if command_id is "Help" then
+		call method "showHelp:"
+	end if
+	
+	try
+		if (activateTerminal of theObject) then
+			call method "activateAppOfIdentifer:" of class "SmartActivate" with parameter "com.apple.Terminal"
+		end if
+	end try
+end process_oldies
+
 on open theObject
 	if class of theObject is record then
-		set command_id to commandID of theObject
-		
-		set arg to missing value
 		try
-			set arg to argument of theObject
+			set command_class to commandClass of theObject
+		on error
+			process_oldies(theObject)
+			return true
 		end try
-		
-		if command_id is "runWithFinderSelection" then
-			runWithFinderSelection(arg) of UnixScriptController
-		else if command_id is "RunInTerminal" then
-			RunInTerminal(arg) of UnixScriptController
-		else if command_id is "sendCommandInCommonTerm" then
-			send_to_common_term(arg) of UnixScriptController
-		else if command_id is "send_in_named_term" then
-			send_in_named_term(arg) of UnixScriptController
-			
-			(* interactive process *)
-		else if command_id is "sendSelection" then
-			sendSelection(arg) of UnixScriptController
-		else if command_id is "showInteractiveTerminal" then
-			showInteractiveTerminal() of UnixScriptController
-		else if command_id is "sendCommand" then
-			send_command(arg) of UnixScriptController
-		else if command_id is "getLastResult" then
-			last_result() of UnixScriptController
-			(* control UnixScriptServer *)
-		else if command_id is "setting" then
-			openWindow() of SettingWindowController
-		else if command_id is "Help" then
-			call method "showHelp:"
+		if command_class is "action" then
+			theObject's commandScript's do(me)
 		end if
-		
-		try
-			if (activateTerminal of theObject) then
-				call method "activateAppOfIdentifer:" of class "SmartActivate" with parameter "com.apple.Terminal"
-			end if
-		end try
 	end if
 	--display dialog command_id
 	return true

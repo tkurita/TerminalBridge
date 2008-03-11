@@ -14,14 +14,14 @@ on initilize()
 	--applyDefaults()
 end initilize
 
-on openWindow()
-	--log "start openWIndow in SettingWindowController"
+on open_window()
+	--log "start open_window in SettingWindowController"
 	if WindowController is missing value then
 		initilize()
 	end if
 	activate
 	call method "showWindow:" of WindowController
-end openWindow
+end open_window
 
 on RevertToDefault()
 	--log "start RevertToDefault"

@@ -37,8 +37,8 @@ on last_result()
 	--log "end getLastResult in UnixScriptController"
 end last_result
 
-on showInteractiveTerminal()
-	--log "start showInteractiveTerminal"
+on show_interactive_terminal()
+	--log "start show_interactive_terminal"
 	set an_executer to getExecuter of ExecuterController for missing value with interactive and allowBusyStatus
 	(*if an_executer is missing value then
 		display alert "UnixScriptServer: the Executer is not found"
@@ -64,7 +64,7 @@ on showInteractiveTerminal()
 		set msg to localized string "cantFindTerminal"
 		show_message(msg) of EditorClient
 	end if
-end showInteractiveTerminal
+end show_interactive_terminal
 
 on send_command(a_command)
 	--log "start sendCommand in UnixScriptController"
@@ -99,8 +99,8 @@ on is_end_with_strings(a_string, string_list)
 	return a_result
 end is_end_with_strings
 
-on sendSelection(arg)
-	--log "start sendSelection"
+on send_selection(arg)
+	--log "start send_selection"
 	try
 		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
 	on error errMsg number errnum
@@ -151,7 +151,7 @@ on sendSelection(arg)
 	if length of x_command > 0 then
 		send_command of theScriptExecuter for (x_command's as_unicode()) with allowBusyStatus
 	end if
-end sendSelection
+end send_selection
 
 (*= non-interactive commands *)
 on getCommonTerminal(optionRecord)
@@ -168,12 +168,12 @@ on getCommonTerminal(optionRecord)
 end getCommonTerminal
 
 (*===  simply run in Terminal *)
-on RunInTerminal(optionRecord)
+on run_in_terminal(optionRecord)
 	set an_executer to getCommonTerminal(optionRecord)
 	if an_executer is missing value then return
 	
-	runScript of an_executer with activation
-end RunInTerminal
+	run_script of an_executer with activation
+end run_in_terminal
 
 (*=== run with Finder's selection *)
 on getFinderSelection()
@@ -191,8 +191,8 @@ on getFinderSelection()
 	return itemText
 end getFinderSelection
 
-on runWithFinderSelection(optionRecord)
-	--log "start runWithFinderSelection"
+on run_with_finder_selection(optionRecord)
+	--log "start run_with_finder_selection"
 	set a_selection to getFinderSelection()
 	if a_selection is missing value then
 		show_message("No Selection in Finder") of EditorClient
@@ -207,8 +207,8 @@ on runWithFinderSelection(optionRecord)
 	set an_executer to getCommonTerminal(optionRecord)
 	if an_executer is missing value then return
 	
-	runScript of an_executer with activation
-end runWithFinderSelection
+	run_script of an_executer with activation
+end run_with_finder_selection
 
 (*=== send command without CommandBuilder *)
 on send_to_common_term(optionRecord)

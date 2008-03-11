@@ -14,7 +14,7 @@ property kCancel : "Cancel"
 on set_options(opt_dict)
 	set my _options to opt_dict
 	try
-		setPrompt(my _options's value_for_key("prompt"))
+		set_prompt(my _options's value_for_key("prompt"))
 	on error number 900
 	end try
 	try
@@ -23,13 +23,13 @@ on set_options(opt_dict)
 	end try
 	
 	try
-		my _commandBuilder's set_post_option(my _options's value_for_key("output"))
+		my _command_builder's set_post_option(my _options's value_for_key("output"))
 	on error number 900
 	end try
 	
 	try
 		set a_command to my _options's value_for_key("interactive")
-		my _commandBuilder's set_command(a_command)
+		my _command_builder's set_command(a_command)
 	on error number 900
 	end try
 	
@@ -37,11 +37,11 @@ on set_options(opt_dict)
 end set_options
 
 on set_run_options(opt_record)
-	my _commandBuilder's set_run_options(opt_record)
+	my _command_builder's set_run_options(opt_record)
 end set_run_options
 
 on update_script_file(a_file)
-	my _commandBuilder's set_target_file(a_file)
+	my _command_builder's set_target_file(a_file)
 end update_script_file
 
 on bring_to_front given allowBusyStatus:isAllowBusy
@@ -61,16 +61,16 @@ end cleanup_command_text
 
 (*@group handlers for interactive mode *)
 (*!@abstruct
-		Check busy status of a terminal window. 
-		When the terminal window is busy, it will ask next actions of "cancel", "open new term" and "show the term" to user
-		process setting of _tergetTerminal is concerned.
-		
-		@param checkCount -- a number of trial after 1 sec delay.
-		
-		@result
-		boolean -- true when the terminal is not busy or a new terminal is opened.
-		*)
-on check_terminal_status(checkCount)
+Check busy status of a terminal window. 
+When the terminal window is busy, it will ask next actions of "cancel", "open new term" and "show the term" to user
+process setting of _tergetTerminal is concerned.
+
+@param n_checks -- a number of trial after 1 sec delay.
+
+@result
+boolean -- true when the terminal is not busy or a new terminal is opened.
+*)
+on check_terminal_status(n_checks)
 	--log "start check_terminal_status"
 	set a_result to kTerminalReady
 	if (contents of default entry "useExecCommand" of user defaults) then
@@ -91,22 +91,22 @@ on check_terminal_status(checkCount)
 		end repeat
 		
 		if length of new_processes is 0 then
-			if checkCount < 3 then
+			if n_checks < 3 then
 				delay 1
-				return check_terminal_status(checkCount + 1)
+				return check_terminal_status(n_checks + 1)
 			end if
 		end if
 		set process_texts to XList's make_with(new_processes)'s as_unicode_with(return)
 		set a_name to terminal_name() of my _target_terminal
 		set msg to UtilityHandlers's localized_string("cantExecCommand", {a_name, process_texts})
-		set buttonList to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
-		set theMessageResult to show_message_buttons(msg, buttonList, item 3 of buttonList) of EditorClient
+		set button_names to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
+		set a_result to show_message_buttons(msg, button_names, item 3 of button_names) of EditorClient
 		--log "after show_message_buttons"
-		set theReturned to button returned of theMessageResult
-		if theReturned is item 3 of buttonList then
+		set button_result to button returned of a_result
+		if button_result is item 3 of button_names then
 			bring_to_front() of my _target_terminal
 			set a_result to kShowTerminal
-		else if theReturned is item 2 of buttonList then
+		else if button_result is item 2 of button_names then
 			set a_result to open_new_terminal()
 			if a_result then
 				set a_result to kTerminalReady
@@ -148,8 +148,8 @@ on send_command for a_command given allowBusyStatus:isBusyAllowed
 	--log "start sendCommand in executer"
 	set x_command to cleanup_command_text(a_command)
 	try
-		set escapeChars to _options's value_for_key("escapeChars")
-		repeat with a_char in escapeChars
+		set escape_chars to _options's value_for_key("escapeChars")
+		repeat with a_char in escape_chars
 			set x_command to x_command's replace(a_char, (backslash of UtilityHandlers) & a_char)
 		end repeat
 	end try
@@ -157,40 +157,40 @@ on send_command for a_command given allowBusyStatus:isBusyAllowed
 	--log "before resolve_terminal"
 	if resolve_terminal of (my _target_terminal) given allowBusyStatus:isBusyAllowed then
 		--log "before check_terminal_status in sendCommand in executer"
-		set the_result to check_terminal_status(0)
-		if the_result is kTerminalReady then
+		set a_result to check_terminal_status(0)
+		if a_result is kTerminalReady then
 			--log "will do_in_current_term"
 			--log a_command
 			do_in_current_term of (my _target_terminal) for a_command without activation
-		else if the_result is kShowTerminal then
+		else if a_result is kShowTerminal then
 			set the clipboard to a_command
 		else
 			return false
 		end if
 	else
-		openNewTermForCommand(a_command)
+		open_new_term_for_command(a_command)
 	end if
 	
 	--log "end sendCommand"
 	return true
 end send_command
 
-on openNewTermForCommand(a_command)
-	--log "start openNewTermForCommand"
-	set a_command to _commandBuilder's interactive_command()
+on open_new_term_for_command(a_command)
+	--log "start open_new_term_for_command"
+	set a_command to my _command_builder's interactive_command()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	set a_command to a_command & return & a_command
 	--log a_command
 	return do_in_new_term of (my _target_terminal) for a_command without activation
-end openNewTermForCommand
+end open_new_term_for_command
 
-on setPrompt(thePrompt)
-	--log "start setPrompt"
-	if thePrompt is not missing value then
-		set my _commandPrompt to thePrompt
+on set_prompt(a_prompt)
+	--log "start set_prompt"
+	if a_prompt is not missing value then
+		set my _command_prompt to a_prompt
 	end if
-	--log "end setPrompt"
-end setPrompt
+	--log "end set_prompt"
+end set_prompt
 
 on set_clean_commands(processes)
 	set my _process_name to processes & ";" & (contents of default entry "CleanCommands" of user defaults)
@@ -204,11 +204,11 @@ on last_result()
 	end if
 	
 	set a_contents to my _target_terminal's window_contents()
-	set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _commandPrompt}
+	set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _command_prompt}
 	
 	if a_result is -1 then
 		set a_contents to my _target_terminal's buffer_history()
-		set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _commandPrompt}
+		set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _command_prompt}
 	end if
 	
 	if a_result is not 1 then
@@ -221,7 +221,7 @@ end last_result
 
 on open_new_terminal()
 	--log "start open_new_terminal"
-	set a_command to _commandBuilder's interactive_command()
+	set a_command to my _command_builder's interactive_command()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	--log a_command
 	return do_in_new_term of (my _target_terminal) for a_command without activation
@@ -229,11 +229,11 @@ end open_new_terminal
 
 
 (*!@group handlers for shell mode *)
-on runScript given activation:activateFlag
-	set a_command to _commandBuilder's build_command()
-	do_command of TerminalCommander for a_command given activation:activateFlag
+on run_script given activation:activate_flag
+	set a_command to my _command_builder's build_command()
+	do_command of TerminalCommander for a_command given activation:activate_flag
 	beep
-end runScript
+end run_script
 
 on send_to_common_term for a_command given activation:activateFlag
 	set x_command to cleanup_command_text(a_command)
@@ -241,16 +241,13 @@ on send_to_common_term for a_command given activation:activateFlag
 	beep
 end send_to_common_term
 
-on make_obj(a_commandBuilder)
+on make_with(a_command_builder)
 	--log "start makeObj in UnixScriptExecuter"
 	script UnixScriptExecuter
-		property _commandBuilder : a_commandBuilder
+		property _command_builder : a_command_builder
 		property _process_name : missing value
 		property _target_terminal : missing value
-		property _commandPrompt : missing value
+		property _command_prompt : missing value
 		property _options : missing value
-		
-		
-		
 	end script
-end make_obj
+end make_with

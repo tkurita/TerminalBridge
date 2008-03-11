@@ -2,7 +2,6 @@ global MessageUtility
 global CommandBuilder
 global XDict
 global EditorClient
---global StringEngine
 global XText
 global UnixScriptExecuter
 global TerminalClient
@@ -229,7 +228,7 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 	if an_executer is missing value then
 		--log "will make new Executer"
 		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
-		set an_executer to UnixScriptExecuter's make_obj(a_command_builder)
+		set an_executer to UnixScriptExecuter's make_with(a_command_builder)
 		set_options(headerCommands) of an_executer
 		--log "before make interactive terminal"
 		if interactiveFlag then
