@@ -51,7 +51,7 @@ on launched theObject
 	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
 	--run_in_terminal()
 	--runWithFSToClipboard()
-	--send_selection() of UnixScriptController
+	--send_selection(missing value) of UnixScriptController
 	--checkSyntax()
 	(*end of debug code*)
 end launched
@@ -101,7 +101,7 @@ on open theObject
 		try
 			set command_class to commandClass of theObject
 		on error
-			process_oldies(theObject)
+			--process_oldies(theObject)
 			return true
 		end try
 		if command_class is "action" then

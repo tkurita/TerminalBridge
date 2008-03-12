@@ -145,7 +145,8 @@ on set_target_terminal given title:a_title, ignoreStatus:isIgnoreStatus
 end set_target_terminal
 
 on send_command for a_command given allowBusyStatus:isBusyAllowed
-	--log "start sendCommand in executer"
+	--log "start send_command in executer"
+	--log a_command
 	set x_command to cleanup_command_text(a_command)
 	try
 		set escape_chars to _options's value_for_key("escapeChars")
@@ -171,17 +172,17 @@ on send_command for a_command given allowBusyStatus:isBusyAllowed
 		open_new_term_for_command(a_command)
 	end if
 	
-	--log "end sendCommand"
+	--log "end send_command"
 	return true
 end send_command
 
 on open_new_term_for_command(a_command)
 	--log "start open_new_term_for_command"
-	set a_command to my _command_builder's interactive_command()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
-	set a_command to a_command & return & a_command
-	--log a_command
-	return do_in_new_term of (my _target_terminal) for a_command without activation
+	set interactive_command to my _command_builder's interactive_command()
+	set all_command to interactive_command & return & a_command
+	--log all_command
+	return do_in_new_term of (my _target_terminal) for all_command without activation
 end open_new_term_for_command
 
 on set_prompt(a_prompt)

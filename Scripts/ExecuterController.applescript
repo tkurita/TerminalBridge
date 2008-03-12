@@ -193,8 +193,8 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 	return {executer_key, an_executer}
 end getInteractiveExecuter
 
-on getExecuter for command_info given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
-	--log "start getExecuter"
+on get_executer for command_info given interactive:interactiveFlag, allowBusyStatus:isAllowBusy
+	--log "start get_executer"
 	set an_executer to missing value
 	(* get info of front document of Editor *)
 	set doc_info to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
@@ -251,6 +251,6 @@ on getExecuter for command_info given interactive:interactiveFlag, allowBusyStat
 		end if
 	end if
 	
-	--log "end getExecuter"
+	--log "end get_executer"
 	return an_executer
-end getExecuter
+end get_executer

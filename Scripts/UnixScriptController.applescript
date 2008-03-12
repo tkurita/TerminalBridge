@@ -11,7 +11,7 @@ global XList
 (*=== interactive process *)
 on last_result()
 	--log "start getLastResult in UnixScriptController"
-	set an_executer to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
+	set an_executer to get_executer of ExecuterController for missing value with interactive without allowBusyStatus
 	
 	try
 		set a_result to last_result() of an_executer
@@ -39,17 +39,7 @@ end last_result
 
 on show_interactive_terminal()
 	--log "start show_interactive_terminal"
-	set an_executer to getExecuter of ExecuterController for missing value with interactive and allowBusyStatus
-	(*if an_executer is missing value then
-		display alert "UnixScriptServer: the Executer is not found"
-		consoleLog("UnixScriptServer: the Executer is not found") of UtilityHandlers
-		-- このブロックはいらないかもしれない。an_executer は いつ missing value　になる？
-		if resolve_terminal of TerminalCommander with allowBusyStatus then
-			set a_result to bring_to_front() of TerminalCommander
-		else
-			set a_result to false
-		end if
-	else*)
+	set an_executer to get_executer of ExecuterController for missing value with interactive and allowBusyStatus
 	set a_result to bring_to_front of an_executer with allowBusyStatus
 	if not a_result then
 		set a_result to open_new_terminal() of an_executer
@@ -67,9 +57,9 @@ on show_interactive_terminal()
 end show_interactive_terminal
 
 on send_command(a_command)
-	--log "start sendCommand in UnixScriptController"
+	--log "start send_command in UnixScriptController"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
+		set an_executer to get_executer of ExecuterController for missing value with interactive without allowBusyStatus
 	on error errMsg number errnum
 		if errnum is not in {1600, 1610, 1620, 1660} then
 			error errMsg number errnum
@@ -77,11 +67,11 @@ on send_command(a_command)
 		return
 	end try
 	
-	if theScriptExecuter is missing value then
+	if an_executer is missing value then
 		return
 	end if
 	if a_command is not "" then
-		send_command of theScriptExecuter for a_command with allowBusyStatus
+		send_command of an_executer for a_command with allowBusyStatus
 	end if
 end send_command
 
@@ -102,7 +92,7 @@ end is_end_with_strings
 on send_selection(arg)
 	--log "start send_selection"
 	try
-		set theScriptExecuter to getExecuter of ExecuterController for missing value with interactive without allowBusyStatus
+		set an_executer to get_executer of ExecuterController for missing value with interactive without allowBusyStatus
 	on error errMsg number errnum
 		if errnum is not in {1600, 1610, 1620, 1660} then
 			error errMsg number errnum
@@ -110,7 +100,7 @@ on send_selection(arg)
 		return
 	end try
 	
-	if theScriptExecuter is missing value then
+	if an_executer is missing value then
 		return
 	end if
 	
@@ -149,22 +139,22 @@ on send_selection(arg)
 	end if
 	
 	if length of x_command > 0 then
-		send_command of theScriptExecuter for (x_command's as_unicode()) with allowBusyStatus
+		send_command of an_executer for (x_command's as_unicode()) with allowBusyStatus
 	end if
 end send_selection
 
 (*= non-interactive commands *)
 on getCommonTerminal(optionRecord)
 	try
-		set theScriptExecuter to getExecuter of ExecuterController for optionRecord without interactive and allowBusyStatus
+		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowBusyStatus
 	on error errMsg number errnum
 		if errnum is not in {1600, 1610, 1620} then
 			error errMsg number errnum
 		end if
 		return missing value
 	end try
-	theScriptExecuter's set_run_options(optionRecord)
-	return theScriptExecuter
+	an_executer's set_run_options(optionRecord)
+	return an_executer
 end getCommonTerminal
 
 (*===  simply run in Terminal *)
