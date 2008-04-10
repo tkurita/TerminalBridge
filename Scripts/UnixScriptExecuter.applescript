@@ -149,9 +149,11 @@ on send_command for a_command given allowBusyStatus:isBusyAllowed
 	--log a_command
 	set x_command to cleanup_command_text(a_command)
 	try
-		set escape_chars to _options's value_for_key("escapeChars")
+		set escape_chars to my _options's value_for_key("escapeChars")
 		repeat with a_char in escape_chars
+			--log "will escape"
 			set x_command to x_command's replace(a_char, (backslash of UtilityHandlers) & a_char)
+			--log x_command
 		end repeat
 	end try
 	set a_command to x_command's as_unicode()
