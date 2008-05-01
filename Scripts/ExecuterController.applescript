@@ -35,7 +35,7 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 	if not isAllowModified then
 		set modified_flag to is_modified() of EditorClient
 		if modified_flag then
-			if not save_with_asking(localized string "DocumentIsModified_AskSave") of EditorClient then
+			if not EditorClient's save_with_asking(localized string "DocumentIsModified_AskSave") then
 				error "The documen is modified. Saving the document is canceld by user." number 1610
 			end if
 		end if

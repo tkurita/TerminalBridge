@@ -77,11 +77,12 @@ end send_command
 
 on is_end_with_strings(a_string, string_list)
 	set a_result to false
+	set lineend to ""
 	if a_string's ends_with(return) then
-		set a_string to a_string's text_in_range(1, -2)
+		set lineend to return
 	end if
 	repeat with end_text in string_list
-		if a_string's ends_with(end_text) then
+		if a_string's ends_with(end_text & lineend) then
 			set a_result to true
 			exit repeat
 		end if
