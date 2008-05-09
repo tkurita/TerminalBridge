@@ -11,7 +11,7 @@ global XList
 (*=== interactive process *)
 on last_result()
 	--log "start getLastResult in UnixScriptController"
-	set an_executer to get_executer of ExecuterController for missing value with interactive without allowBusyStatus
+	set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
 	
 	try
 		set a_result to last_result() of an_executer
@@ -39,12 +39,12 @@ end last_result
 
 on show_interactive_terminal()
 	--log "start show_interactive_terminal"
-	set an_executer to get_executer of ExecuterController for missing value with interactive and allowBusyStatus
-	set a_result to bring_to_front of an_executer with allowBusyStatus
+	set an_executer to get_executer of ExecuterController for missing value with interactive and allowing_busy
+	set a_result to bring_to_front of an_executer with allowing_busy
 	if not a_result then
 		set a_result to open_new_terminal() of an_executer
 		if a_result then
-			set a_result to bring_to_front of an_executer with allowBusyStatus
+			set a_result to bring_to_front of an_executer with allowing_busy
 		else
 			show_message("can't open new terminal") of EditorClient -- this message should not be shown.
 		end if
@@ -59,7 +59,7 @@ end show_interactive_terminal
 on send_command(a_command)
 	--log "start send_command in UnixScriptController"
 	try
-		set an_executer to get_executer of ExecuterController for missing value with interactive without allowBusyStatus
+		set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
 	on error errMsg number errnum
 		if errnum is not in {1600, 1610, 1620, 1660} then
 			error errMsg number errnum
@@ -71,7 +71,7 @@ on send_command(a_command)
 		return
 	end if
 	if a_command is not "" then
-		send_command of an_executer for a_command with allowBusyStatus
+		send_command of an_executer for a_command with allowing_busy
 	end if
 end send_command
 
@@ -93,7 +93,7 @@ end is_end_with_strings
 on send_selection(arg)
 	--log "start send_selection"
 	try
-		set an_executer to get_executer of ExecuterController for missing value with interactive without allowBusyStatus
+		set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
 	on error errMsg number errnum
 		if errnum is not in {1600, 1610, 1620, 1660} then
 			error errMsg number errnum
@@ -140,14 +140,14 @@ on send_selection(arg)
 	end if
 	
 	if length of x_command > 0 then
-		send_command of an_executer for (x_command's as_unicode()) with allowBusyStatus
+		send_command of an_executer for (x_command's as_unicode()) with allowing_busy
 	end if
 end send_selection
 
 (*= non-interactive commands *)
 on getCommonTerminal(optionRecord)
 	try
-		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowBusyStatus
+		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowing_busy
 	on error errMsg number errnum
 		if errnum is not in {1600, 1610, 1620} then
 			error errMsg number errnum

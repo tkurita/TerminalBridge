@@ -44,9 +44,9 @@ on update_script_file(a_file)
 	my _command_builder's set_target_file(a_file)
 end update_script_file
 
-on bring_to_front given allowBusyStatus:isAllowBusy
+on bring_to_front given allowing_busy:isAllowBusy
 	--log "start bring_to_front in UnixScriptExecuter"
-	if resolve_terminal of (my _target_terminal) given allowBusyStatus:isAllowBusy then
+	if resolve_terminal of (my _target_terminal) given allowing_busy:isAllowBusy then
 		return bring_to_front() of (my _target_terminal)
 	else
 		return false
@@ -144,7 +144,7 @@ on set_target_terminal given title:a_title, ignoreStatus:isIgnoreStatus
 	return a_result
 end set_target_terminal
 
-on send_command for a_command given allowBusyStatus:isBusyAllowed
+on send_command for a_command given allowing_busy:isBusyAllowed
 	--log "start send_command in executer"
 	--log a_command
 	set x_command to cleanup_command_text(a_command)
@@ -158,7 +158,7 @@ on send_command for a_command given allowBusyStatus:isBusyAllowed
 	end try
 	set a_command to x_command's as_unicode()
 	--log "before resolve_terminal"
-	if resolve_terminal of (my _target_terminal) given allowBusyStatus:isBusyAllowed then
+	if resolve_terminal of (my _target_terminal) given allowing_busy:isBusyAllowed then
 		--log "before check_terminal_status in sendCommand in executer"
 		set a_result to check_terminal_status(0)
 		if a_result is kTerminalReady then
@@ -201,7 +201,7 @@ end set_clean_commands
 
 on last_result()
 	--log "start getLastResult in UnixScriptExecuter"
-	if not (resolve_terminal of (my _target_terminal) without allowBusyStatus) then
+	if not (resolve_terminal of (my _target_terminal) without allowing_busy) then
 		error "No Terminal found." number 1640
 		return missing value
 	end if
