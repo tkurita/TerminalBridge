@@ -1,6 +1,8 @@
 (* shared script objects *)
+property loader : proxy() of application (get "UnixScriptToolsLib")
+
 on load(a_name)
-	return load(a_name) of application (get "UnixScriptToolsLib")
+	return loader's load(a_name)
 end load
 
 property XText : load("XText")
