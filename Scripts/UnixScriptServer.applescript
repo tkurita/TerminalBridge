@@ -7,7 +7,8 @@ end load
 
 property XText : load("XText")
 property XList : XText's XList
-property PathAnalyzer : load("PathAnalyzer")
+property XFile : load("XFile")
+-- property PathAnalyzer : load("PathAnalyzer")
 property XDict : load("XDict")
 property TerminalCommanderBase : load("TerminalCommander")
 property TerminalColors : load("TerminalColors")

@@ -40,8 +40,8 @@ on set_run_options(opt_record)
 	my _command_builder's set_run_options(opt_record)
 end set_run_options
 
-on update_script_file(a_file)
-	my _command_builder's set_target_file(a_file)
+on update_script_file(a_xfile)
+	my _command_builder's set_target_file(a_xfile)
 end update_script_file
 
 on bring_to_front given allowing_busy:isAllowBusy
@@ -130,6 +130,20 @@ on check_terminal_status(n_checks)
 	return a_result
 end check_terminal_status
 
+on prepare_terminal_with_owner(a_xfile)
+	set my _owner_file to a_xfile
+	set a_result to true
+	set my _target_terminal to make TerminalCommander
+	tell my _target_terminal
+		forget()
+		set_clean_commands(my _process_name)
+		set_window_close_action("2")
+	end tell
+	--log "end set_target_terminal"
+	return a_result
+end prepare_terminal_with_owner
+
+(*
 on set_target_terminal given title:a_title, ignoreStatus:isIgnoreStatus
 	--log "start set_target_terminal"
 	set a_result to true
@@ -143,6 +157,7 @@ on set_target_terminal given title:a_title, ignoreStatus:isIgnoreStatus
 	--log "end set_target_terminal"
 	return a_result
 end set_target_terminal
+*)
 
 on send_command for a_command given allowing_busy:isBusyAllowed
 	--log "start send_command in executer"
@@ -222,11 +237,23 @@ on last_result()
 	return call method "lastResultWithCR" of TerminalClient
 end last_result
 
+on build_terminal_title()
+	-- log "start build_terminal_title"
+	set a_title to "* Inferior " & my _command_builder's base_command()
+	if my _owner_file is not missing value then
+		my _owner_file's update_cache()
+		set a_title to a_title & "--" & my _owner_file's item_name()
+	end if
+	-- log ("end build_terminal_title" & a_title)
+	return a_title & " *"
+end build_terminal_title
+
 on open_new_terminal()
 	--log "start open_new_terminal"
 	set a_command to my _command_builder's interactive_command()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
-	--log a_command
+	my _target_terminal's set_custom_title(build_terminal_title())
+	--log "before end of open_new_terminal"
 	return do_in_new_term of (my _target_terminal) for a_command without activation
 end open_new_terminal
 
@@ -252,5 +279,6 @@ on make_with(a_command_builder)
 		property _target_terminal : missing value
 		property _command_prompt : missing value
 		property _options : missing value
+		property _owner_file : missing value
 	end script
 end make_with

@@ -5,7 +5,8 @@ global EditorClient
 global XText
 global UnixScriptExecuter
 global TerminalClient
-global PathAnalyzer
+--global PathAnalyzer
+global XFile
 
 property interactiveExecuters : missing value
 property _aDoc : missing value
@@ -20,8 +21,8 @@ on initialize()
 	set _eQ to localized string "endQuote"
 end initialize
 
-on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
-	--log "start getDocumentInfo"
+on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
+	--log "start document_info"
 	set a_name to document_name() of EditorClient
 	set a_script_file to document_file_as_alias() of EditorClient
 	
@@ -40,8 +41,11 @@ on getDocumentInfo given allowUnSaved:isAllowUnsaved, allowModified:isAllowModif
 			end if
 		end if
 	end if
+	if a_script_file is not missing value then
+		set a_script_file to XFile's make_with(a_script_file)
+	end if
 	return {name:a_name, file:a_script_file}
-end getDocumentInfo
+end document_info
 
 on resolveCommand(doc_info)
 	--log "start resolveCommand"
@@ -76,7 +80,7 @@ end resolveCommand
 
 on resolveHeaderCommand()
 	--log "start resolveHeaderCommand"
-	set headerCommands to make_with_lists({"useOwnTerm"}, {false}) of XDict
+	set hearder_coms to make_with_lists({"useOwnTerm"}, {false}) of XDict
 	set ith to 1
 	repeat
 		set a_paragraph to paragraph_at_index(ith) of EditorClient
@@ -98,7 +102,7 @@ on resolveHeaderCommand()
 								set a_value to run script a_value
 							end if
 						end if
-						headerCommands's set_value(a_label, a_value)
+						hearder_coms's set_value(a_label, a_value)
 						exit repeat
 					end if
 				end repeat
@@ -108,32 +112,26 @@ on resolveHeaderCommand()
 		end if
 		set ith to ith + 1
 	end repeat
-	return headerCommands
+	return hearder_coms
 end resolveHeaderCommand
 
-on getInteractiveExecuter(doc_info, command_info, headerCommands)
-	--log "start getInteractiveExecuter"
+on getInteractiveExecuter(doc_info, command_info, hearder_coms)
+	-- log "start getInteractiveExecuter"
 	--	log doc_info
 	--	log command_info
-	--	log headerCommands
+	--	log hearder_coms
 	set comList to XText's make_with(command of command_info)'s as_list_with(space)
-	(*
-	tell StringEngine
-		store_delimiters()
-		set comList to split for (command of command_info) by space
-		restore_delimiters()
-	end tell
-	*)
 	set baseCommand of command_info to last word of (first item of comList)
 	
 	if (file of doc_info is not missing value) then
-		if (headerCommands's value_for_key("useOwnTerm")) then
-			set executer_key to file of doc_info
+		if (hearder_coms's value_for_key("useOwnTerm")) then
+			set executer_key to (file of doc_info)'s as_alias()
 		else
-			if headerCommands's has_key("shareTerm") then
-				set shared_path to headerCommands's value_for_key("shareTerm")
+			if hearder_coms's has_key("shareTerm") then
+				set shared_path to hearder_coms's value_for_key("shareTerm")
 				if shared_path does not start with "/" then
-					set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
+					--set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
+					set folder_path to doc_info's file's parent_folder()'s posix_path()
 					set shared_path to folder_path & "/" & shared_path
 				end if
 				
@@ -154,7 +152,7 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 					set a_result to EditorClient's show_message_buttons(a_message, {cancel_label, ignore_label}, ignore_label)
 					if button returned of a_result is ignore_label then
 						set executer_key to baseCommand of command_info
-						headerCommands's remove_for_key("shareTerm")
+						hearder_coms's remove_for_key("shareTerm")
 					else
 						error "No shareTerm File." number 1660
 					end if
@@ -167,17 +165,17 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 		set executer_key to baseCommand of command_info
 	end if
 	
-	if not headerCommands's has_key("process") then
-		headerCommands's set_value("process", baseCommand of command_info)
+	if not hearder_coms's has_key("process") then
+		hearder_coms's set_value("process", baseCommand of command_info)
 	end if
 	
-	if not headerCommands's has_key("prompt") then
+	if not hearder_coms's has_key("prompt") then
 		if (mode of command_info) is missing value then
 			set mode of command_info to document_mode() of EditorClient
 		end if
 		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of command_info)
 		try -- theDefPrompt may be undefined
-			headerCommands's set_value("prompt", theDefPrompt)
+			hearder_coms's set_value("prompt", theDefPrompt)
 		end try
 	end if
 	set an_executer to missing value
@@ -189,7 +187,7 @@ on getInteractiveExecuter(doc_info, command_info, headerCommands)
 		on error number 900
 		end try
 	end if
-	
+	-- log "end of getInteractiveExecuter"
 	return {executer_key, an_executer}
 end getInteractiveExecuter
 
@@ -197,7 +195,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 	--log "start get_executer"
 	set an_executer to missing value
 	(* get info of front document of Editor *)
-	set doc_info to getDocumentInfo given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
+	set doc_info to document_info given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
 	(* resolve command name *)
 	if command_info is missing value then
@@ -207,43 +205,54 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 	end if
 	
 	--log "get header commands"
-	set headerCommands to resolveHeaderCommand()
-	--log (headerCommands's dumpData())
+	set hearder_coms to resolveHeaderCommand()
+	--log (hearder_coms's dumpData())
 	
 	--log "get interactive executer"
 	if interactiveFlag then
-		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, headerCommands)
+		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, hearder_coms)
 		if an_executer is not missing value then
 			an_executer's update_script_file(file of doc_info)
-			if not headerCommands's has_key("interactive") then
-				headerCommands's set_value("interactive", command of command_info)
+			if not hearder_coms's has_key("interactive") then
+				hearder_coms's set_value("interactive", command of command_info)
 			end if
-			an_executer's set_options(headerCommands)
+			an_executer's set_options(hearder_coms)
 		end if
 	else
-		headerCommands's remove_for_key("interactive")
+		hearder_coms's remove_for_key("interactive")
 	end if
 	
 	--log "make new Executer"
 	if an_executer is missing value then
-		--log "will make new Executer"
+		-- log "will make new Executer"
 		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
 		set an_executer to UnixScriptExecuter's make_with(a_command_builder)
-		set_options(headerCommands) of an_executer
-		--log "before make interactive terminal"
+		set_options(hearder_coms) of an_executer
+		-- log "before make interactive terminal"
 		if interactiveFlag then
+			(*
 			set a_title to "* Inferior " & baseCommand of command_info
-			if headerCommands's value_for_key("useOwnTerm") then
+			if hearder_coms's value_for_key("useOwnTerm") then
 				set a_title to a_title & "--" & (name of doc_info)
 			else
 				try
-					set shared_path to headerCommands's value_for_key("shareTerm")
+					set shared_path to hearder_coms's value_for_key("shareTerm")
 					set doc_name to PathAnalyzer's name_of(executer_key)
 					set a_title to a_title & "--" & doc_name
 				end try
 			end if
-			
-			if set_target_terminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
+			*)
+			--if set_target_terminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
+			set terminal_owner to missing value
+			if hearder_coms's value_for_key("useOwnTerm") then
+				set terminal_owner to doc_info's file
+			else
+				try
+					set shared_path to hearder_coms's value_for_key("shareTerm")
+					set terminal_owner to XFile's make_with(executer_key)
+				end try
+			end if
+			if an_executer's prepare_terminal_with_owner(terminal_owner) then
 				interactiveExecuters's set_value(executer_key, an_executer)
 			else
 				set an_executer to missing value
