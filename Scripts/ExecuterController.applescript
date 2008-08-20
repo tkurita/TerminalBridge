@@ -83,7 +83,12 @@ on resolveHeaderCommand()
 	set hearder_coms to make_with_lists({"useOwnTerm"}, {false}) of XDict
 	set ith to 1
 	repeat
-		set a_paragraph to paragraph_at_index(ith) of EditorClient
+		set a_paragraph to paragraph_at(ith) of EditorClient
+		try
+			get a_paragraph
+		on error
+			exit repeat -- reach to the end of the document
+		end try
 		if a_paragraph starts with "#" then
 			ignoring case
 				repeat with a_label in my _hcommandLabels
@@ -112,6 +117,7 @@ on resolveHeaderCommand()
 		end if
 		set ith to ith + 1
 	end repeat
+	--log "end resolveHeaderCommand"
 	return hearder_coms
 end resolveHeaderCommand
 

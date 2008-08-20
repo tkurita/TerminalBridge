@@ -51,7 +51,7 @@ on launched theObject
 	--open_window() of SettingWindowController
 	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
-	--open {commandID:"sendSelection", argument:{lineEndEscape:{backslash, "..."}}}
+	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})
 	--run_in_terminal()
 	--runWithFSToClipboard()
 	--send_selection(missing value) of UnixScriptController
