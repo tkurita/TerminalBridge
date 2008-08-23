@@ -7,6 +7,7 @@ global UtilityHandlers
 global XDict
 global XList
 
+property _ignoring_errors : {1600, 1610, 1620, 1660}
 (*== execute tex commands called from tools from mi  *)
 (*=== interactive process *)
 on last_result()
@@ -39,7 +40,14 @@ end last_result
 
 on show_interactive_terminal()
 	--log "start show_interactive_terminal"
-	set an_executer to get_executer of ExecuterController for missing value with interactive and allowing_busy
+	try
+		set an_executer to get_executer of ExecuterController for missing value with interactive and allowing_busy
+	on error msg number errno
+		if errorno is not in my _ignoring_errors then
+			error msg number errno
+		end if
+		return false
+	end try
 	set a_result to bring_to_front of an_executer with allowing_busy
 	if not a_result then
 		set a_result to open_new_terminal() of an_executer
@@ -61,7 +69,7 @@ on send_command(a_command)
 	try
 		set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
 	on error errMsg number errnum
-		if errnum is not in {1600, 1610, 1620, 1660} then
+		if errnum is not in my _ignoring_errors then
 			error errMsg number errnum
 		end if
 		return
@@ -95,7 +103,7 @@ on send_selection(arg)
 	try
 		set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
 	on error errMsg number errnum
-		if errnum is not in {1600, 1610, 1620, 1660} then
+		if errnum is not in my _ignoring_errors then
 			error errMsg number errnum
 		end if
 		return

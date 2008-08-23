@@ -136,28 +136,13 @@ on prepare_terminal_with_owner(a_xfile)
 	set my _target_terminal to make TerminalCommander
 	tell my _target_terminal
 		forget()
+		set_custom_title(missing value)
 		set_clean_commands(my _process_name)
 		set_window_close_action("2")
 	end tell
 	--log "end set_target_terminal"
 	return a_result
 end prepare_terminal_with_owner
-
-(*
-on set_target_terminal given title:a_title, ignoreStatus:isIgnoreStatus
-	--log "start set_target_terminal"
-	set a_result to true
-	set my _target_terminal to make TerminalCommander
-	tell my _target_terminal
-		forget()
-		set_custom_title(a_title)
-		set_clean_commands(my _process_name)
-		set_window_close_action("2")
-	end tell
-	--log "end set_target_terminal"
-	return a_result
-end set_target_terminal
-*)
 
 on send_command for a_command given allowing_busy:isBusyAllowed
 	--log "start send_command in executer"

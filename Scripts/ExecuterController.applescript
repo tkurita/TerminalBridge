@@ -5,20 +5,13 @@ global EditorClient
 global XText
 global UnixScriptExecuter
 global TerminalClient
---global PathAnalyzer
 global XFile
 
-property interactiveExecuters : missing value
-property _aDoc : missing value
-property _sQ : missing value
-property _eQ : missing value
+property _interactiveExecuters : missing value
 property _hcommandLabels : {"useOwnTerm", "escapeChars", "process", "output", "prompt", "interactive", "shareTerm"}
 
 on initialize()
 	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
-	set _aDoc to localized string "aDocument"
-	set _sQ to localized string "startQuote"
-	set _eQ to localized string "endQuote"
 end initialize
 
 on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
@@ -27,9 +20,8 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 	set a_script_file to document_file_as_alias() of EditorClient
 	
 	if (not isAllowUnsaved) and (a_script_file is missing value) then
-		set isNotSaved to localized string "isNotSaved"
-		set msg to (_aDoc & space & _sQ & a_name & _eQ & space & isNotSaved)
-		show_message(msg) of EditorClient
+		set msg to XText's make_with(localized string "DocIsNotSaved")'s format_with({a_name})
+		EditorClient's show_message(msg's as_unicode())
 		error "The documet is not saved" number 1600
 	end if
 	
@@ -69,9 +61,8 @@ on resolveCommand(doc_info)
 	end if
 	
 	if a_command is missing value then
-		set invalidCommand to localized string "invalidCommand"
-		set msg to _aDoc & space & _sQ & (name of doc_info) & _eQ & space & invalidCommand
-		show_message(msg) of EditorClient
+		set msg to XText's make_with(localized string "DocHasNotCommand")'s format_with({doc_info's name})
+		EditorClient's show_message(msg's as_unicode())
 		error "The document does not start with #!." number 1620
 	end if
 	--log "end resolveCommand"
@@ -117,6 +108,7 @@ on resolveHeaderCommand()
 		end if
 		set ith to ith + 1
 	end repeat
+	--log hearder_coms's dump()
 	--log "end resolveHeaderCommand"
 	return hearder_coms
 end resolveHeaderCommand
@@ -131,12 +123,11 @@ on getInteractiveExecuter(doc_info, command_info, hearder_coms)
 	
 	if (file of doc_info is not missing value) then
 		if (hearder_coms's value_for_key("useOwnTerm")) then
-			set executer_key to (file of doc_info)'s as_alias()
+			set executer_key to doc_info's file's as_alias()
 		else
 			if hearder_coms's has_key("shareTerm") then
 				set shared_path to hearder_coms's value_for_key("shareTerm")
 				if shared_path does not start with "/" then
-					--set folder_path to POSIX path of PathAnalyzer's folder_of(file of doc_info)
 					set folder_path to doc_info's file's parent_folder()'s posix_path()
 					set shared_path to folder_path & "/" & shared_path
 				end if
@@ -146,13 +137,6 @@ on getInteractiveExecuter(doc_info, command_info, hearder_coms)
 				on error msg number -1700
 					set a_message to localized string "noShareTermFile"
 					set a_messae to XText's make_with(a_message)'s format_with({shared_path})'s as_unicode()
-					(*
-					tell StringEngine
-						store_delimiters()
-						set a_message to formated_text given template:a_message, args:{shared_path}
-						restore_delimiters()
-					end tell
-					*)
 					set ignore_label to localized string "ignore"
 					set cancel_label to localized string "cancel"
 					set a_result to EditorClient's show_message_buttons(a_message, {cancel_label, ignore_label}, ignore_label)
@@ -185,11 +169,11 @@ on getInteractiveExecuter(doc_info, command_info, hearder_coms)
 		end try
 	end if
 	set an_executer to missing value
-	if (interactiveExecuters is missing value) then
-		set interactiveExecuters to make XDict
+	if (my _interactiveExecuters is missing value) then
+		set my _interactiveExecuters to make XDict
 	else
 		try
-			set an_executer to interactiveExecuters's value_for_key(executer_key)
+			set an_executer to my _interactiveExecuters's value_for_key(executer_key)
 		on error number 900
 		end try
 	end if
@@ -212,7 +196,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 	
 	--log "get header commands"
 	set hearder_coms to resolveHeaderCommand()
-	--log (hearder_coms's dumpData())
+	--log (hearder_coms's dump())
 	
 	--log "get interactive executer"
 	if interactiveFlag then
@@ -236,19 +220,6 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 		set_options(hearder_coms) of an_executer
 		-- log "before make interactive terminal"
 		if interactiveFlag then
-			(*
-			set a_title to "* Inferior " & baseCommand of command_info
-			if hearder_coms's value_for_key("useOwnTerm") then
-				set a_title to a_title & "--" & (name of doc_info)
-			else
-				try
-					set shared_path to hearder_coms's value_for_key("shareTerm")
-					set doc_name to PathAnalyzer's name_of(executer_key)
-					set a_title to a_title & "--" & doc_name
-				end try
-			end if
-			*)
-			--if set_target_terminal of an_executer given title:(a_title & " *"), ignoreStatus:isAllowBusy then
 			set terminal_owner to missing value
 			if hearder_coms's value_for_key("useOwnTerm") then
 				set terminal_owner to doc_info's file
@@ -259,7 +230,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 				end try
 			end if
 			if an_executer's prepare_terminal_with_owner(terminal_owner) then
-				interactiveExecuters's set_value(executer_key, an_executer)
+				my _interactiveExecuters's set_value(executer_key, an_executer)
 			else
 				set an_executer to missing value
 			end if
