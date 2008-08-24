@@ -265,7 +265,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
-								<string>29B97315FDCFA39411CA2CEA</string>
+								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>2C732BDF07AE5AE3005ACE75</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>2CA91F1F08B5E93B00A6B73C</string>
@@ -275,6 +276,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>12</integer>
+									<integer>11</integer>
 									<integer>7</integer>
 									<integer>0</integer>
 								</array>
@@ -384,9 +387,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C909ADC0E5FEF3F007A49E7</string>
+				<string>2CFFE0C90E61C23100457F9B</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C909ADD0E5FEF3F007A49E7</string>
+				<string>2CFFE0CA0E61C23100457F9B</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -543,6 +546,9 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
+		<string>2C4A70240980A77C00D4AF6B</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
 		<string>/Users/tkurita/Dev/Projects/UnixScriptToolsFormi/trunk/UnixScriptServer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -625,7 +631,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C4A70240980A77C00D4AF6B</string>
-				<string>2C909A390E5FD055007A49E7</string>
+				<string>2CFFE0DD0E61C2D400457F9B</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -770,7 +776,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ExecuterController.applescript</string>
+										<string></string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -826,8 +832,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>2C909A3D0E5FD055007A49E7</string>
-				<string>2C909A3E0E5FD055007A49E7</string>
+				<string>2CFFE0DF0E61C2D400457F9B</string>
+				<string>2CFFE0E00E61C2D400457F9B</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -964,7 +970,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {907, 510}}</string>
 								<key>RubberWindowFrame</key>
-								<string>86 285 907 551 0 0 1440 938 </string>
+								<string>283 196 907 551 0 0 1440 938 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXRunSessionModule</string>
@@ -987,14 +993,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>2C909A6F0E5FD79E007A49E7</string>
+				<string>2CFFE0CD0E61C23100457F9B</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>2C909A700E5FD79E007A49E7</string>
+				<string>2CFFE0CE0E61C23100457F9B</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
 			<key>WindowString</key>
-			<string>86 285 907 551 0 0 1440 938 </string>
+			<string>283 196 907 551 0 0 1440 938 </string>
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>

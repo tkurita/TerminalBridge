@@ -28,6 +28,7 @@ on RevertToDefault()
 	set currentTab to current tab view item of tab view "SettingTabs" of my targetWindow
 	set a_name to name of currentTab
 	if a_name is "TerminalSetting" then
+		set isLoadedTerminalSetting to false
 		revert_to_factory_setting() of TerminalSettings
 	else if a_name is "CommandAndProcess" then
 		call method "revertToFactoryDefaultForKey:" of appController with parameter "CleanCommands"
