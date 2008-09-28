@@ -1,5 +1,5 @@
 (* shared script objects *)
-property loader : proxy() of application (get "UnixScriptToolsLib")
+property loader : proxy() of application (get "TerminalBridgeLib")
 
 on load(a_name)
 	return loader's load(a_name)
@@ -8,10 +8,8 @@ end load
 property XText : load("XText")
 property XList : XText's XList
 property XFile : load("XFile")
--- property PathAnalyzer : load("PathAnalyzer")
 property XDict : load("XDict")
 property TerminalCommanderBase : load("TerminalCommander")
-property TerminalColors : load("TerminalColors")
 
 property TerminalCommander : missing value
 property TerminalSettings : missing value
@@ -28,8 +26,7 @@ property EditorClient : missing value
 property TerminalClient : missing value
 
 (*shared constants *)
-property dQ : ASCII character 34
-property lineFeed : ASCII character 10
+property linefeed : ASCII character 10
 property backslash : ASCII character 128
 
 (* events of application*)
