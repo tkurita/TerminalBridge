@@ -12,7 +12,7 @@
 			buildActionMask = 2147483647;
 			contextName = "";
 			files = (
-				2CA91F0408B5E93B00A6B73C /* UnixScriptServer.applescript in AppleScript */,
+				2CA91F0408B5E93B00A6B73C /* TerminalBridge.applescript in AppleScript */,
 				2CA91F0508B5E93B00A6B73C /* ColorSwitch.applescript in AppleScript */,
 				2CA91F0608B5E93B00A6B73C /* UnixScriptController.applescript in AppleScript */,
 				2CA91F0708B5E93B00A6B73C /* TerminalSettings.applescript in AppleScript */,
@@ -47,7 +47,7 @@
 		2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */; };
 		2CA91F0008B5E93B00A6B73C /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD4834208169C3800A7FDA9 /* SmartActivate.h */; };
 		2CA91F0108B5E93B00A6B73C /* AppController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C0B918408B5D01500602706 /* AppController.h */; };
-		2CA91F0408B5E93B00A6B73C /* UnixScriptServer.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
+		2CA91F0408B5E93B00A6B73C /* TerminalBridge.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TerminalBridge.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CA91F0508B5E93B00A6B73C /* ColorSwitch.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C738EF80519C8F90010646F /* ColorSwitch.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CA91F0608B5E93B00A6B73C /* UnixScriptController.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2C10B9F70618556700598626 /* UnixScriptController.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CA91F0708B5E93B00A6B73C /* TerminalSettings.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CC7DB0A0623BC9B003A9309 /* TerminalSettings.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
@@ -92,8 +92,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C030FE70AA06516005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = HelpSetup.plist; sourceTree = "<group>"; };
-		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
-		2C0B918408B5D01500602706 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
+		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		2C0B918408B5D01500602706 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		2C0BB03E0A7E5E39007AFDE3 /* PaletteWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaletteWindowController.h; sourceTree = "<group>"; };
 		2C0BB03F0A7E5E3A007AFDE3 /* PaletteWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaletteWindowController.m; sourceTree = "<group>"; };
 		2C0BB0420A7E5E3A007AFDE3 /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
@@ -109,32 +109,32 @@
 		2C4749B10A70B3D600096E8A /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
 		2C591E67099E0CBF000BC6BA /* TerminalClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalClient.h; sourceTree = "<group>"; };
 		2C591E68099E0CBF000BC6BA /* TerminalClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalClient.m; sourceTree = "<group>"; };
-		2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UnixScriptExecuter.applescript; sourceTree = "<group>"; };
+		2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UnixScriptExecuter.applescript; sourceTree = "<group>"; };
 		2C6C9FB30B92B03500B9C2CD /* OgreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OgreKit.framework; path = ../OgreKit.framework; sourceTree = SOURCE_ROOT; };
 		2C6FB98006243FF3004731C7 /* MessageUtility.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = MessageUtility.applescript; sourceTree = "<group>"; };
-		2C6FB982062440FA004731C7 /* ExecuterController.applescript */ = {isa = PBXFileReference; explicitFileType = sourcecode.applescript; fileEncoding = "-2147483647"; path = ExecuterController.applescript; sourceTree = "<group>"; };
+		2C6FB982062440FA004731C7 /* ExecuterController.applescript */ = {isa = PBXFileReference; explicitFileType = sourcecode.applescript; fileEncoding = 2147483649; path = ExecuterController.applescript; sourceTree = "<group>"; };
 		2C701E7508BB85D5000D1339 /* SettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindowController.h; sourceTree = "<group>"; };
 		2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindowController.m; sourceTree = "<group>"; };
 		2C732BE007AE5AE3005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
 		2C738EF80519C8F90010646F /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
-		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
-		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
+		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
+		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA91F1E08B5E93B00A6B73C /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
 		2CA91F1F08B5E93B00A6B73C /* UnixScriptServer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnixScriptServer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
+		2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
 		2CC483C9098FBCA4004E4BDE /* SmartActivate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SmartActivate.c; sourceTree = "<group>"; };
 		2CC4854D09906657004E4BDE /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
 		2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelimedStringToArrayTransformer.h; sourceTree = "<group>"; };
 		2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelimedStringToArrayTransformer.m; sourceTree = "<group>"; };
 		2CC7DB0A0623BC9B003A9309 /* TerminalSettings.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = TerminalSettings.applescript; sourceTree = "<group>"; };
-		2CC8C94A07882A3600085682 /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = "-2147483647"; path = FactorySettings.plist; sourceTree = "<group>"; };
-		2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
-		2CD4834208169C3800A7FDA9 /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
-		2CD4834308169C3800A7FDA9 /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
+		2CC8C94A07882A3600085682 /* FactorySettings.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 2147483649; path = FactorySettings.plist; sourceTree = "<group>"; };
+		2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TerminalCommander.applescript; sourceTree = "<group>"; };
+		2CD4834208169C3800A7FDA9 /* SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = SmartActivate.h; sourceTree = "<group>"; };
+		2CD4834308169C3800A7FDA9 /* SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = SmartActivate.m; sourceTree = "<group>"; };
 		DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppleScriptKit.framework; path = /System/Library/Frameworks/AppleScriptKit.framework; sourceTree = "<absolute>"; };
-		DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */ = {isa = PBXFileReference; fileEncoding = "-2147483647"; lastKnownFileType = sourcecode.applescript; path = UnixScriptServer.applescript; sourceTree = "<group>"; };
+		DA206CF3015C4E8B03C91932 /* TerminalBridge.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = TerminalBridge.applescript; sourceTree = "<group>"; };
 		DA206CF4015C4E8B03C91932 /* AppleScriptKit.asdictionary */ = {isa = PBXFileReference; lastKnownFileType = archive.asdictionary; name = AppleScriptKit.asdictionary; path = /System/Library/Frameworks/AppleScriptKit.framework/Versions/A/Resources/AppleScriptKit.asdictionary; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -156,7 +156,7 @@
 		080E96DDFE201D6D7F000001 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				DA206CF3015C4E8B03C91932 /* UnixScriptServer.applescript */,
+				DA206CF3015C4E8B03C91932 /* TerminalBridge.applescript */,
 				2C10B9F70618556700598626 /* UnixScriptController.applescript */,
 				2C22DEC8078A8BF800C57192 /* SettingWindowController.applescript */,
 				2C6FB982062440FA004731C7 /* ExecuterController.applescript */,
@@ -343,10 +343,12 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "UnixScriptServer" */;
+			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				2CA91EFE08B5E93B00A6B73C /* UnixScriptServer */,
 			);
@@ -433,7 +435,6 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = UnixScriptServer;
@@ -492,11 +493,11 @@
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/..\"";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
-				OPTIMIZATION_CFLAGS = "-O0";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
@@ -589,7 +590,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "UnixScriptServer" */ = {
+		2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C4A70140980A72B00D4AF6B /* Debug */,
