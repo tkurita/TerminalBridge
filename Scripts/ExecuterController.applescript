@@ -16,8 +16,11 @@ end initialize
 
 on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
 	--log "start document_info"
-	set a_name to document_name() of EditorClient
-	set a_script_file to document_file_as_alias() of EditorClient
+	if not EditorClient's exists_document() then
+		error "No opened documents in mi." number 1670
+	end if
+	set a_name to EditorClient's document_name()
+	set a_script_file to EditorClient's document_file_as_alias()
 	
 	if (not isAllowUnsaved) and (a_script_file is missing value) then
 		set msg to XText's make_with(localized string "DocIsNotSaved")'s format_with({a_name})
@@ -36,6 +39,7 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 	if a_script_file is not missing value then
 		set a_script_file to XFile's make_with(a_script_file)
 	end if
+	--log "end document_info"
 	return {name:a_name, file:a_script_file}
 end document_info
 
@@ -185,6 +189,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 	--log "start get_executer"
 	set an_executer to missing value
 	(* get info of front document of Editor *)
+	
 	set doc_info to document_info given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
 	(* resolve command name *)

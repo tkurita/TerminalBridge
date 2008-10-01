@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>Japanese</string>
 	<key>CFBundleExecutable</key>
-	<string>UnixScriptServer</string>
+	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
 	<string>2.2 copyright 2005-2008, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>UnixScriptServerHelp</string>
+	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>UnixScriptTools for mi ヘルプ</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>UnixScriptServer</string>
+	<string>TerminalBridge</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>UnixScriptServer</string>
+	<string>TerminalBridge</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>

@@ -25,11 +25,40 @@
 	[helpManager openHelpAnchor:@"Setting" inBook:bookName];
 }
 
+- (IBAction)reloadSettingsMenu:(id)sender
+{
+	TerminalApplication *termapp = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
+	NSArray *names = [[termapp settingsSets] arrayByApplyingSelector:@selector(name)];
+	
+	NSString *selected_title = [[settingMenu selectedItem] title];
+	NSUInteger nitems = [[settingMenu itemArray] count];
+	for (int n = nitems-1; n > 1; n--) {
+		[settingMenu removeItemAtIndex:n];
+	}
+	[settingMenu addItemsWithTitles:names];	
+	[settingMenu selectItemWithTitle:selected_title];
+}
+
 - (BOOL)windowShouldClose:(id)sender
 {
 	/* To support AppleScript Studio of MacOS X 10.4 */
 	[[self window] orderOut:self];
 	return NO;
+}
+
+- (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
+{
+	if ([[tabViewItem identifier] isEqualToString:@"TerminalSettings"]) {
+		[self reloadSettingsMenu:self];
+	}
+}
+
+- (IBAction)showWindow:(id)sender
+{
+	[super showWindow:sender];
+	if ([[[tabView selectedTabViewItem] identifier] isEqualToString:@"TerminalSettings"]) {
+		[self reloadSettingsMenu:self];
+	}
 }
 
 - (void)awakeFromNib

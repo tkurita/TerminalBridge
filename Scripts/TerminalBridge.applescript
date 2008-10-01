@@ -1,5 +1,5 @@
 (* shared script objects *)
-property loader : proxy() of application (get "TerminalBridgeLib")
+property loader : proxy() of application (get "UnixScriptToolsLib")
 
 on load(a_name)
 	return loader's load(a_name)
@@ -49,7 +49,7 @@ on launched theObject
 	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})
-	--run_in_terminal()
+	--run_in_terminal(missing value) of UnixScriptController
 	--runWithFSToClipboard()
 	--send_selection(missing value) of UnixScriptController
 	--checkSyntax()

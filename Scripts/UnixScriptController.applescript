@@ -7,7 +7,7 @@ global UtilityHandlers
 global XDict
 global XList
 
-property _ignoring_errors : {1600, 1610, 1620, 1660}
+property _ignoring_errors : {1600, 1610, 1620, 1660, 1670}
 (*== execute tex commands called from tools from mi  *)
 (*=== interactive process *)
 on last_result()
@@ -157,7 +157,7 @@ on getCommonTerminal(optionRecord)
 	try
 		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowing_busy
 	on error errMsg number errnum
-		if errnum is not in {1600, 1610, 1620} then
+		if errnum is not in {1600, 1610, 1620, 1670} then
 			error errMsg number errnum
 		end if
 		return missing value
