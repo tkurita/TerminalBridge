@@ -988,9 +988,9 @@
 	};
 	2C5B51610E8FE0F3009BED97 /* Terminal.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {718, 2478}}";
+			sepNavIntBoundsRect = "{{0, 0}, {766, 2520}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 679}";
+			sepNavVisRange = "{0, 1295}";
 		};
 	};
 	2C5B51630E8FE851009BED97 /* PlistBookmark */ = {
@@ -1220,9 +1220,9 @@
 	};
 	2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {972, 994}}";
-			sepNavSelRange = "{1464, 0}";
-			sepNavVisRange = "{782, 1215}";
+			sepNavIntBoundsRect = "{{0, 0}, {972, 924}}";
+			sepNavSelRange = "{1642, 0}";
+			sepNavVisRange = "{0, 1502}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{107, 185}, {750, 558}}";
 		};
@@ -1242,10 +1242,16 @@
 		name = "新規グループ";
 	};
 	2C738EF80519C8F90010646F /* ColorSwitch.applescript */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.applescript;
+		name = ColorSwitch.applescript;
+		path = /Users/tkurita/Documents/UnixScriptToolsFormi/TerminalBridge/trunk/ASStudioScriptLib/ColorSwitch.applescript;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {714, 177}}";
+			sepNavIntBoundsRect = "{{0, 0}, {766, 545}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 358}";
+			sepNavVisRange = "{0, 483}";
 			sepNavVisRect = "{{0, 0}, {793, 705}}";
 		};
 	};

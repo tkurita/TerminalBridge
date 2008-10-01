@@ -122,7 +122,6 @@
 		2C701E7508BB85D5000D1339 /* SettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindowController.h; sourceTree = "<group>"; };
 		2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindowController.m; sourceTree = "<group>"; };
 		2C732BE007AE5AE3005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
-		2C738EF80519C8F90010646F /* ColorSwitch.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = ColorSwitch.applescript; sourceTree = "<group>"; };
 		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
 		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -302,7 +301,6 @@
 				2CC7DB0A0623BC9B003A9309 /* TerminalSettings.applescript */,
 				2C42EC4007B350E800C8005B /* CommandBuilder.applescript */,
 				2C6FB98006243FF3004731C7 /* MessageUtility.applescript */,
-				2C738EF80519C8F90010646F /* ColorSwitch.applescript */,
 				2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */,
 			);
 			path = ASStudioScriptLib;
