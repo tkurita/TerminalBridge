@@ -776,6 +776,7 @@
 			2C780C100E929DEE0013F427 /* PBXTextBookmark */ = 2C780C100E929DEE0013F427 /* PBXTextBookmark */;
 			2C780C1C0E929E8B0013F427 /* PBXTextBookmark */ = 2C780C1C0E929E8B0013F427 /* PBXTextBookmark */;
 			2C780C200E929FC90013F427 /* PBXTextBookmark */ = 2C780C200E929FC90013F427 /* PBXTextBookmark */;
+			2C780C290E9392AA0013F427 /* PBXTextBookmark */ = 2C780C290E9392AA0013F427 /* PBXTextBookmark */;
 			2C867D540E9120860095E0BA = 2C867D540E9120860095E0BA /* PBXTextBookmark */;
 			2C867D550E9120860095E0BA = 2C867D550E9120860095E0BA /* PBXTextBookmark */;
 			2C867D580E9120860095E0BA = 2C867D580E9120860095E0BA /* PBXTextBookmark */;
@@ -2398,6 +2399,16 @@
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 782;
+	};
+	2C780C290E9392AA0013F427 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC7DB0A0623BC9B003A9309 /* TerminalSettings.applescript */;
+		name = "TerminalSettings.applescript: 27";
+		rLen = 0;
+		rLoc = 703;
+		rType = 0;
+		vrLen = 703;
+		vrLoc = 0;
 	};
 	2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {
 		uiCtxt = {
