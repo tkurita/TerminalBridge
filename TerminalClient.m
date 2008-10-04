@@ -40,12 +40,10 @@ static id sharedObj;
 #if useLog
 	NSLog(@"start extactLastResult:");
 #endif
-	//OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:[@"^" stringByAppendingString:thePrompt]];
 	NSString *regex_prompt = [@"^" stringByAppendingString:thePrompt];
 	NSRange lastRange, firstRange;
 	NSRange theRange = NSMakeRange([theText length],0);
 	NSString *theSubString;
-	//OGRegularExpressionMatch *match;
 	
 	//find last line which does not begin prompt
 	while(theRange.location > 0) {
@@ -61,17 +59,6 @@ static id sharedObj;
 			lastRange = theRange;
 			break;			
 		}
-/*		
-		match = [regex matchInString:theSubString];
-		if (match == nil) {
-#if useLog
-			NSLog(theSubString);
-			NSLog([match matchedString]);
-#endif
-			lastRange = theRange;
-			break;
-		}
-*/
 	}	
 	
 	if (theRange.location == 0) {
@@ -86,11 +73,6 @@ static id sharedObj;
 		
 		theRange = [theText lineRangeForRange:theRange];
 		theSubString = [theText substringWithRange:theRange];
-		/*
-		match = [regex matchInString:theSubString];
-		if (match != nil) {
-			break;
-		} */
 		if ([theSubString isMatchedByRegex:regex_prompt]) {
 			break;
 		} 
@@ -118,18 +100,11 @@ static id sharedObj;
 }
 
 -(NSString *)lastResultWithCR {
-	/*
-	 return [OGRegularExpression replaceNewlineCharactersInString:_lastResult 
-															  withCharacter:OgreCrNewlineCharacter];
-	 */
 	return [_lastResult stringByReplacingOccurrencesOfString:@"\n" withString:@"\r"];
 }
 
 -(void)setLastResult:(NSString *)theString {
-	/*OGRegularExpression *regex = [OGRegularExpression regularExpressionWithString:@"^"];
-	theString = [regex replaceAllMatchesInString:theString withString:@"# "];
-	 */
-	NSString *commented_result = [[theString stringByReplacingOccurrencesOfRegex:@"^" withString:@"# "] retain];
+	NSString *commented_result = [[theString stringByReplacingOccurrencesOfRegex:@"(?m)^" withString:@"# "] retain];
 	[_lastResult release];
 	_lastResult = commented_result;
 }
