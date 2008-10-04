@@ -51,7 +51,7 @@ on launched theObject
 	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})
 	--run_in_terminal(missing value) of UnixScriptController
 	--runWithFSToClipboard()
-	--send_selection(missing value) of UnixScriptController
+	send_selection(missing value) of UnixScriptController
 	--checkSyntax()
 	(*end of debug code*)
 end launched

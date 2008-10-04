@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXAppleScriptBuildPhase section */
@@ -46,6 +46,8 @@
 		2C6C9FCF0B92B03F00B9C2CD /* OgreKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C6C9FB30B92B03500B9C2CD /* OgreKit.framework */; };
 		2C701E7708BB85D5000D1339 /* SettingWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C701E7508BB85D5000D1339 /* SettingWindowController.h */; };
 		2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */; };
+		2C780C310E9399A40013F427 /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C780C2F0E9399A40013F427 /* RegexKitLite.h */; };
+		2C780C320E9399A40013F427 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C780C300E9399A40013F427 /* RegexKitLite.m */; };
 		2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */; };
 		2C7BC36908D98CB9001F4EFB /* TitlelessWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */; };
 		2CA91F0008B5E93B00A6B73C /* SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD4834208169C3800A7FDA9 /* SmartActivate.h */; };
@@ -122,6 +124,8 @@
 		2C701E7508BB85D5000D1339 /* SettingWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingWindowController.h; sourceTree = "<group>"; };
 		2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingWindowController.m; sourceTree = "<group>"; };
 		2C732BE007AE5AE3005ACE75 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/Setting.nib; sourceTree = "<group>"; };
+		2C780C2F0E9399A40013F427 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		2C780C300E9399A40013F427 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = TitlelessWindow.m; sourceTree = "<group>"; };
 		2C7BC36708D98CB9001F4EFB /* TitlelessWindow.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = TitlelessWindow.h; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				080E96DDFE201D6D7F000001 /* Scripts */,
 				2C42ECF707B3771800C8005B /* ASStudioScriptLib */,
 				2C0BB03D0A7E5E39007AFDE3 /* CocoaLib */,
+				2C780C2E0E9399A40013F427 /* RegexpKitLite */,
 				2C0B914D08B5CF1900602706 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -306,6 +311,15 @@
 			path = ASStudioScriptLib;
 			sourceTree = "<group>";
 		};
+		2C780C2E0E9399A40013F427 /* RegexpKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				2C780C2F0E9399A40013F427 /* RegexKitLite.h */,
+				2C780C300E9399A40013F427 /* RegexKitLite.m */,
+			);
+			path = RegexpKitLite;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -321,6 +335,7 @@
 				2C591E69099E0CBF000BC6BA /* TerminalClient.h in Headers */,
 				2C0BB04A0A7E5E3A007AFDE3 /* StringExtra.h in Headers */,
 				2C5B51620E8FE0F3009BED97 /* Terminal.h in Headers */,
+				2C780C310E9399A40013F427 /* RegexKitLite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +369,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Application */;
 			projectDirPath = "";
@@ -396,6 +411,7 @@
 				2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */,
 				2C591E6A099E0CBF000BC6BA /* TerminalClient.m in Sources */,
 				2C0BB04B0A7E5E3A007AFDE3 /* StringExtra.m in Sources */,
+				2C780C320E9399A40013F427 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,8 +448,7 @@
 		2C4A700F0980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
@@ -450,9 +465,9 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -483,10 +498,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				OTHER_OSAFLAGS = "-x";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -515,10 +530,10 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -544,9 +559,9 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = macosx10.5;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -561,7 +576,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				OTHER_LDFLAGS = "-licucore";
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
@@ -573,8 +589,9 @@
 					i386,
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
@@ -582,7 +599,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				OTHER_LDFLAGS = "-licucore";
+				SDKROOT = macosx10.5;
 			};
 			name = SDDebug;
 		};
@@ -590,7 +608,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_C_LANGUAGE_STANDARD = c99;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				OTHER_LDFLAGS = "-licucore";
+				SDKROOT = macosx10.5;
 			};
 			name = Default;
 		};

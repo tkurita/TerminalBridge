@@ -81,7 +81,7 @@ on check_terminal_status(n_checks)
 	--log process_list
 	if is_busy() of my _target_terminal then
 		--log "targetTermianl is Busy "
-		set support_processes to XText's make_with(my _process_name)'s as_list_with(";")
+		set support_processes to XText's make_with(my _clean_commands)'s as_list_with(";")
 		--log support_processes
 		set new_processes to {}
 		repeat with an_item in process_list
@@ -134,12 +134,13 @@ on prepare_terminal_with_owner(a_xfile)
 	set my _owner_file to a_xfile
 	set a_result to true
 	set my _target_terminal to make TerminalCommander
+	set a_title to build_terminal_title()
 	tell my _target_terminal
 		forget()
-		set_custom_title(missing value)
-		set_clean_commands(my _process_name)
-		set_window_close_action("2")
+		set_custom_title(a_title)
+		set_clean_commands(my _clean_commands)
 	end tell
+	--log my _clean_commands
 	--log "end set_target_terminal"
 	return a_result
 end prepare_terminal_with_owner
@@ -180,10 +181,17 @@ end send_command
 
 on open_new_term_for_command(a_command)
 	--log "start open_new_term_for_command"
-	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	set interactive_command to my _command_builder's interactive_command()
-	set all_command to interactive_command & return & a_command
+	if a_command is not missing value then
+		set a_command to UtilityHandlers's clean_yenmark(a_command)
+		set all_command to interactive_command & return & a_command
+	else
+		set all_command to interactive_command
+	end if
 	--log all_command
+	
+	set a_command to my _command_builder's interactive_command()
+	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	return do_in_new_term of (my _target_terminal) for all_command without activation
 end open_new_term_for_command
 
@@ -196,7 +204,7 @@ on set_prompt(a_prompt)
 end set_prompt
 
 on set_clean_commands(processes)
-	set my _process_name to processes & ";" & (contents of default entry "CleanCommands" of user defaults)
+	set my _clean_commands to processes & ";" & (contents of default entry "CleanCommands" of user defaults)
 end set_clean_commands
 
 on last_result()
@@ -234,12 +242,7 @@ on build_terminal_title()
 end build_terminal_title
 
 on open_new_terminal()
-	--log "start open_new_terminal"
-	set a_command to my _command_builder's interactive_command()
-	set a_command to UtilityHandlers's clean_yenmark(a_command)
-	my _target_terminal's set_custom_title(build_terminal_title())
-	--log "before end of open_new_terminal"
-	return do_in_new_term of (my _target_terminal) for a_command without activation
+	return open_new_term_for_command(missing value)
 end open_new_terminal
 
 
@@ -260,7 +263,7 @@ on make_with(a_command_builder)
 	--log "start makeObj in UnixScriptExecuter"
 	script UnixScriptExecuter
 		property _command_builder : a_command_builder
-		property _process_name : missing value
+		property _clean_commands : missing value
 		property _target_terminal : missing value
 		property _command_prompt : missing value
 		property _options : missing value

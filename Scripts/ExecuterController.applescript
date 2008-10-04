@@ -222,7 +222,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 		-- log "will make new Executer"
 		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
 		set an_executer to UnixScriptExecuter's make_with(a_command_builder)
-		set_options(hearder_coms) of an_executer
+		an_executer's set_options(hearder_coms)
 		-- log "before make interactive terminal"
 		if interactiveFlag then
 			set terminal_owner to missing value
