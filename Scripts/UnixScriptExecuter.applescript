@@ -208,16 +208,14 @@ on set_clean_commands(processes)
 end set_clean_commands
 
 on last_result()
-	log "start getLastResult in UnixScriptExecuter"
+	--log "start getLastResult in UnixScriptExecuter"
 	if not (resolve_terminal of (my _target_terminal) without allowing_busy) then
 		error "No Terminal found." number 1640
 		return missing value
 	end if
 	
 	set a_contents to my _target_terminal's window_contents()
-	log a_contents
 	set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _command_prompt}
-	log a_result
 	if a_result is -1 then
 		set a_contents to my _target_terminal's buffer_history()
 		set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _command_prompt}
