@@ -68,6 +68,8 @@
 		2CA91F1808B5E93B00A6B73C /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0B918308B5D01500602706 /* AppController.m */; };
 		2CA91F1B08B5E93B00A6B73C /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		2CA91F1C08B5E93B00A6B73C /* AppleScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA206CF1015C4E2903C91932 /* AppleScriptKit.framework */; };
+		2CA9B3290E97C06B009C0C2A /* DefaultToNilTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */; };
+		2CA9B32A0E97C06B009C0C2A /* DefaultToNilTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */; };
 		2CC483CA098FBCA4004E4BDE /* SmartActivate.c in Sources */ = {isa = PBXBuildFile; fileRef = 2CC483C9098FBCA4004E4BDE /* SmartActivate.c */; };
 		2CC4854E09906657004E4BDE /* EditorClient.applescript in AppleScript */ = {isa = PBXBuildFile; fileRef = 2CC4854D09906657004E4BDE /* EditorClient.applescript */; settings = {ATTRIBUTES = (Debug, ); }; };
 		2CC48BB209921FAE004E4BDE /* DelimedStringToArrayTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */; };
@@ -128,6 +130,8 @@
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA91F1E08B5E93B00A6B73C /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
 		2CA91F1F08B5E93B00A6B73C /* TerminalBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerminalBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultToNilTransformer.h; sourceTree = "<group>"; };
+		2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultToNilTransformer.m; sourceTree = "<group>"; };
 		2CB30A4C0650EC5100BD0857 /* UtilityHandlers.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UtilityHandlers.applescript; sourceTree = "<group>"; };
 		2CC483C9098FBCA4004E4BDE /* SmartActivate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SmartActivate.c; sourceTree = "<group>"; };
 		2CC4854D09906657004E4BDE /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
@@ -264,6 +268,8 @@
 				2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */,
 				2C591E67099E0CBF000BC6BA /* TerminalClient.h */,
 				2C591E68099E0CBF000BC6BA /* TerminalClient.m */,
+				2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */,
+				2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -330,6 +336,7 @@
 				2C0BB04A0A7E5E3A007AFDE3 /* StringExtra.h in Headers */,
 				2C5B51620E8FE0F3009BED97 /* Terminal.h in Headers */,
 				2C780C310E9399A40013F427 /* RegexKitLite.h in Headers */,
+				2CA9B3290E97C06B009C0C2A /* DefaultToNilTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +413,7 @@
 				2C591E6A099E0CBF000BC6BA /* TerminalClient.m in Sources */,
 				2C0BB04B0A7E5E3A007AFDE3 /* StringExtra.m in Sources */,
 				2C780C320E9399A40013F427 /* RegexKitLite.m in Sources */,
+				2CA9B32A0E97C06B009C0C2A /* DefaultToNilTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

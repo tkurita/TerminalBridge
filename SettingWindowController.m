@@ -1,6 +1,12 @@
 #import "SettingWindowController.h"
+#import "DefaultToNilTransformer.h"
 
 @implementation SettingWindowController
++ (void)initialize
+{	
+	NSValueTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
+}
 
 - (IBAction)addProcess:(id)sender
 {
@@ -65,6 +71,7 @@
 {
 	[[self window] center];
 	[self setWindowFrameAutosaveName:@"SettingWindow"];
+	[DefaultToNilTransformer setPopupMenu:settingMenu];
 }
 
 @end
