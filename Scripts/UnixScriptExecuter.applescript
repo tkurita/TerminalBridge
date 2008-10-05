@@ -47,10 +47,13 @@ end update_script_file
 on bring_to_front given allowing_busy:isAllowBusy
 	--log "start bring_to_front in UnixScriptExecuter"
 	if resolve_terminal of (my _target_terminal) given allowing_busy:isAllowBusy then
-		return bring_to_front() of (my _target_terminal)
+		--log "success to resolve_terminal"
+		set a_result to (my _target_terminal)'s bring_to_front()
 	else
-		return false
+		set a_result to false
 	end if
+	--log ("result of bring_to_front:" & a_result)
+	return a_result
 end bring_to_front
 
 on cleanup_command_text(a_command)
