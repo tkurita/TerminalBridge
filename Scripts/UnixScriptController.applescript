@@ -1,7 +1,6 @@
 global ExecuterController
 global EditorClient
 global TerminalCommander
---global StringEngine
 global XText
 global UtilityHandlers
 global XDict
@@ -43,7 +42,7 @@ on show_interactive_terminal()
 	try
 		set an_executer to get_executer of ExecuterController for missing value with interactive and allowing_busy
 	on error msg number errno
-		if errorno is not in my _ignoring_errors then
+		if errno is not in my _ignoring_errors then
 			error msg number errno
 		end if
 		return false
@@ -225,17 +224,17 @@ on get_named_term(a_name)
 	set target_term to missing value
 	if my _namedTerms is missing value then
 		set my _namedTerms to make XDict
-	else
-		try
-			set target_term to my _namedTerms's value_for_key(a_name)
-		on error number 900
-			copy TerminalCommander to target_term
-			TerminalCommander's forget()
-			target_term's forget()
-			target_term's set_custom_title("* " & a_name & " *")
-			my _namedTerms's set_value(a_name, target_term)
-		end try
 	end if
+	try
+		set target_term to my _namedTerms's value_for_key(a_name)
+	on error number 900
+		set target_term to TerminalCommander's make_with_title("* " & a_name & " *")
+		--TerminalCommander's forget()
+		target_term's forget()
+		--target_term's set_custom_title("* " & a_name & " *")
+		my _namedTerms's set_value(a_name, target_term)
+	end try
+	
 	
 	return target_term
 end get_named_term
@@ -243,6 +242,6 @@ end get_named_term
 on send_in_named_term(opt_rec)
 	set target_term to get_named_term(termTitle of opt_rec)
 	set a_command to XText's make_with(command of opt_rec)'s strip()
-	set a_command to UtilityHandler's clean_yenmark(a_command)
+	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	do_command of target_term for (a_command's as_unicode()) with activation
 end send_in_named_term
