@@ -45,13 +45,13 @@ on launched theObject
 	(*debug code*)
 	--show_interactive_terminal() of UnixScriptController
 	--log "start launched"
-	--open_window() of SettingWindowController
+	open_window() of SettingWindowController
 	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})
 	--run_in_terminal(missing value) of UnixScriptController
 	--runWithFSToClipboard()
-	send_selection(missing value) of UnixScriptController
+	--send_selection(missing value) of UnixScriptController
 	--checkSyntax()
 	(*end of debug code*)
 end launched
@@ -145,7 +145,9 @@ on will finish launching theObject
 	set UtilityHandlers to import_script("UtilityHandlers")
 	set MessageUtility to import_script("MessageUtility")
 	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
-	set TerminalSettings to import_script("TerminalSettings")
+	tell TerminalCommander
+		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
+	end tell
 	
 	set UnixScriptExecuter to import_script("UnixScriptExecuter")
 	set CommandBuilder to import_script("CommandBuilder")
@@ -157,9 +159,8 @@ on will finish launching theObject
 	set EditorClient to import_script("EditorClient")
 	--log "end of import_scripts"
 	
-	showStartupMessage("Loading Preferences ...")
+	--showStartupMessage("Loading Preferences ...")
 	--log "before loadSetting() of TerminalSettings"
-	load_settings() of TerminalSettings
 	--log "end of initializing TerminalSettings"
 	
 	--log "end finish launching"
@@ -168,8 +169,4 @@ end will finish launching
 on showStartupMessage(msg)
 	set contents of text field "StartupMessage" of window "Startup" to msg
 end showStartupMessage
-
-on selected tab view item theObject tab view item tabViewItem
-	selectedTab(tabViewItem) of SettingWindowController
-end selected tab view item
 

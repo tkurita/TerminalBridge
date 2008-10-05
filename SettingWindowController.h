@@ -7,13 +7,14 @@
 {
     IBOutlet id cleanCommandController;
 	IBOutlet id defaultCommandController;
-    IBOutlet id settingMenu;
-	IBOutlet id tabView;
+    IBOutlet NSPopUpButton* settingMenu;
+	IBOutlet NSTabView* tabView;
 }
 
 - (IBAction)addProcess:(id)sender;
 - (IBAction)addModeCommand:(id)sender;
 - (IBAction)showSettingHelp:(id)sender;
 - (IBAction)reloadSettingsMenu:(id)sender;
+- (IBAction)revertToFactoryDefaults:(id)sender;
 
 @end

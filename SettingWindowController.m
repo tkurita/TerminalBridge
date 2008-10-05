@@ -1,5 +1,6 @@
 #import "SettingWindowController.h"
 #import "DefaultToNilTransformer.h"
+#import "AppController.h"
 
 @implementation SettingWindowController
 + (void)initialize
@@ -43,6 +44,20 @@
 	}
 	[settingMenu addItemsWithTitles:names];	
 	[settingMenu selectItemWithTitle:selected_title];
+}
+
+- (IBAction)revertToFactoryDefaults:(id)sender
+{
+	NSString *identifier = [[tabView selectedTabViewItem] identifier];
+	AppController* app_controller = [AppController sharedAppController];
+	if ([identifier isEqualToString:@"TerminalSettings"]) {
+		[app_controller revertToFactoryDefaultForKey:@"ExecutionString"];
+		[settingMenu selectItemAtIndex:0]; 
+	}
+	else if ([identifier isEqualToString:@"CommandsAndProcesses"]) {
+		[app_controller revertToFactoryDefaultForKey:@"CleanCommands"];
+		[app_controller revertToFactoryDefaultForKey:@"ModeDefaults"];
+	}
 }
 
 - (BOOL)windowShouldClose:(id)sender
