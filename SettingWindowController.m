@@ -52,7 +52,7 @@
 	AppController* app_controller = [AppController sharedAppController];
 	if ([identifier isEqualToString:@"TerminalSettings"]) {
 		[app_controller revertToFactoryDefaultForKey:@"ExecutionString"];
-		[settingMenu selectItemAtIndex:0]; 
+		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SettingsSetName"];
 	}
 	else if ([identifier isEqualToString:@"CommandsAndProcesses"]) {
 		[app_controller revertToFactoryDefaultForKey:@"CleanCommands"];

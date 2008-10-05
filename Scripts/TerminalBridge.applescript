@@ -45,7 +45,7 @@ on launched theObject
 	(*debug code*)
 	--show_interactive_terminal() of UnixScriptController
 	--log "start launched"
-	open_window() of SettingWindowController
+	--open_window() of SettingWindowController
 	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})
@@ -111,24 +111,6 @@ on open theObject
 	--display dialog command_id
 	return true
 end open
-
-on clicked theObject
-	--log "start clicked"
-	set theTag to tag of theObject
-	if theTag is 1 then
-		control_clicked(theObject) of TerminalSettings
-	else
-		control_clicked(theObject)
-	end if
-end clicked
-
-on control_clicked(theObject)
-	set a_name to name of theObject
-	--set windowName to name of window of theObject
-	if a_name is "RevertToDefault" then
-		RevertToDefault() of SettingWindowController
-	end if
-end control_clicked
 
 on choose menu item theObject
 	set a_name to name of theObject

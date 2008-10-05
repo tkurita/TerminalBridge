@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="856"/>
+			<integer value="1192"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -58,7 +58,7 @@
 								<object class="NSTabViewItem" id="304964849">
 									<string key="NSIdentifier">TerminalSettings</string>
 									<object class="NSView" key="NSView" id="316904393">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="920269391"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -219,6 +219,7 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {525, 293}}</string>
+										<reference key="NSSuperview" ref="920269391"/>
 									</object>
 									<string type="base64-UTF8" key="NSLabel">44K/44O844Of44OK44OrA</string>
 									<reference key="NSColor" ref="909071012"/>
@@ -227,7 +228,7 @@
 								<object class="NSTabViewItem" id="920115158">
 									<string key="NSIdentifier">CommandsAndProcesses</string>
 									<object class="NSView" key="NSView" id="589461327">
-										<reference key="NSNextResponder" ref="920269391"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -699,14 +700,13 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {525, 293}}</string>
-										<reference key="NSSuperview" ref="920269391"/>
 									</object>
 									<string type="base64-UTF8" key="NSLabel">44Kz44Oe44Oz44OJ44Go44OX44Ot44K744K5A</string>
 									<reference key="NSColor" ref="909071012"/>
 									<reference key="NSTabView" ref="920269391"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="920115158"/>
+							<reference key="NSSelectedTabViewItem" ref="304964849"/>
 							<object class="NSFont" key="NSFont">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">1.300000e+01</double>
@@ -717,7 +717,7 @@
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="589461327"/>
+								<reference ref="316904393"/>
 							</object>
 						</object>
 						<object class="NSButton" id="983356958">
