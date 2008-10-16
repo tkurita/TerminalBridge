@@ -1,6 +1,7 @@
 #import "SettingWindowController.h"
 #import "DefaultToNilTransformer.h"
 #import "AppController.h"
+#import "Terminal.h"
 
 @implementation SettingWindowController
 + (void)initialize

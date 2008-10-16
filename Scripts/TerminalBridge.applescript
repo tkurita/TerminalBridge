@@ -91,7 +91,7 @@ on process_oldies(theObject)
 	
 	try
 		if (activateTerminal of theObject) then
-			call method "activateAppOfIdentifer:" of class "SmartActivate" with parameter "com.apple.Terminal"
+			call method "activateAppOfIdentifier:" of class "SmartActivate" with parameter "com.apple.Terminal"
 		end if
 	end try
 end process_oldies

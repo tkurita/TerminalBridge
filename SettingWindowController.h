@@ -1,7 +1,6 @@
 /* SettingWindowController */
 
 #import <Cocoa/Cocoa.h>
-#import "Terminal.h"
 
 @interface SettingWindowController : NSWindowController
 {

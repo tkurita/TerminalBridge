@@ -2,42 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>BackgroundColor</key>
-	<array>
-		<integer>65535</integer>
-		<integer>45746</integer>
-		<integer>27499</integer>
-	</array>
-	<key>BoldTextColor</key>
-	<array>
-		<integer>65535</integer>
-		<integer>0</integer>
-		<integer>0</integer>
-	</array>
 	<key>CleanCommands</key>
 	<string>sh;gnuplot;gnuplotx;gnuplot_x11;</string>
-	<key>CursorColor</key>
-	<array>
-		<integer>21823</integer>
-		<integer>21823</integer>
-		<integer>21823</integer>
-	</array>
 	<key>CustomTitle</key>
 	<string>* Inferior Terminal *</string>
 	<key>DonationURL</key>
 	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
 	<key>ExecutionString</key>
 	<string>unset PROMPT_COMMAND</string>
-	<key>IsChangeBackground</key>
-	<true/>
-	<key>IsChangeBoldText</key>
-	<true/>
-	<key>IsChangeCursor</key>
-	<false/>
-	<key>IsChangeNormalText</key>
-	<true/>
-	<key>IsChangeSelection</key>
-	<false/>
 	<key>ModeDefaults</key>
 	<array>
 		<dict>
@@ -65,30 +37,6 @@
 			<string>(gnuplot)?&gt;</string>
 		</dict>
 	</array>
-	<key>NormalTextColor</key>
-	<array>
-		<integer>0</integer>
-		<integer>0</integer>
-		<integer>0</integer>
-	</array>
-	<key>SelectionColor</key>
-	<array>
-		<integer>43690</integer>
-		<integer>43690</integer>
-		<integer>43690</integer>
-	</array>
-	<key>Shell</key>
-	<string>/bin/bash</string>
-	<key>ShellMode</key>
-	<integer>1</integer>
-	<key>StringEncoding</key>
-	<integer>4</integer>
-	<key>TerminalOpaqueness</key>
-	<integer>58100</integer>
-	<key>UseCtrlVEscapes</key>
-	<string>No</string>
-	<key>UseLoginShell</key>
-	<false/>
 	<key>backslash</key>
 	<string>\</string>
 	<key>useExecCommand</key>
