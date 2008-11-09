@@ -1,5 +1,4 @@
 #import "TerminalClient.h"
-#import <OgreKit/OgreKit.h>
 #import "RegexKitLite.h"
 
 #define useLog 0
@@ -44,6 +43,18 @@ static id sharedObj;
 	NSRange lastRange, firstRange;
 	NSRange theRange = NSMakeRange([theText length],0);
 	NSString *theSubString;
+	
+	// skip trailing empty lines
+	while(theRange.location > 0) {
+		theRange.location--;
+		theRange.length = 0;
+		theRange = [theText lineRangeForRange:theRange];
+		theSubString = [theText substringWithRange:theRange];
+		if ([theSubString length] > 1) {
+			theRange.location++;
+			break;
+		}
+	}
 	
 	//find last line which does not begin prompt
 	while(theRange.location > 0) {
