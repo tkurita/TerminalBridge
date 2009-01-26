@@ -10,13 +10,6 @@
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
 }
 
-- (IBAction)addProcess:(id)sender
-{
-	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObject:@"new_process" forKey:@"process"];
-	[cleanCommandController addObject:newObj];
-	[cleanCommandController setSelectedObjects:[NSArray arrayWithObject:newObj]];
-}
-
 - (IBAction)addModeCommand:(id)sender
 {
 	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"new_mode",@"mode",@"new_command",@"command",@"new_prompt",@"prompt",nil]; 

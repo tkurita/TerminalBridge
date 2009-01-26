@@ -45,7 +45,7 @@ on launched theObject
 	(*debug code*)
 	--show_interactive_terminal() of UnixScriptController
 	--log "start launched"
-	--open_window() of SettingWindowController
+	open_window() of SettingWindowController
 	--last_result() of UnixScriptController
 	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
 	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})

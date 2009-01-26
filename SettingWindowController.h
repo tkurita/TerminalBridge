@@ -8,9 +8,9 @@
 	IBOutlet id defaultCommandController;
     IBOutlet NSPopUpButton* settingMenu;
 	IBOutlet NSTabView* tabView;
+	IBOutlet id interactiveProcessSettingsMenu;
 }
 
-- (IBAction)addProcess:(id)sender;
 - (IBAction)addModeCommand:(id)sender;
 - (IBAction)showSettingHelp:(id)sender;
 - (IBAction)reloadSettingsMenu:(id)sender;

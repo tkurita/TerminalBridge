@@ -3,16 +3,16 @@
 
 @implementation DefaultToNilTransformer
 
-static NSPopUpButton *popupMenu = nil;
+static NSArray *nilWords = nil;
 
 + (Class)transformedValueClass
 {
 	return [NSString class];
 }
 
-+ (void)setPopupMenu:(NSPopUpButton *)aPopupMenu
++ (void)setNilWords:(NSArray *)array
 {
-	popupMenu = aPopupMenu;
+	nilWords = [array retain];
 }
 
 + (BOOL)allowsReverseTransformation
@@ -27,7 +27,7 @@ static NSPopUpButton *popupMenu = nil;
 
 - (id)reverseTransformedValue:(id)value
 {
-	if ([popupMenu indexOfSelectedItem] == 0) {
+	if ([nilWords containsObject:value]) {
 		return nil;
 	}
 

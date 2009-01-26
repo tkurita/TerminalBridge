@@ -5,5 +5,6 @@
 	
 }
 
-+ (void)setPopupMenu:(NSPopUpButton *)aPopupMenu;
++ (void)setNilWords:(NSArray *)array;
+
 @end

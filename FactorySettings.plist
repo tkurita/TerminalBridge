@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CleanCommands</key>
-	<string>sh;gnuplot;gnuplotx;gnuplot_x11;</string>
 	<key>CustomTitle</key>
 	<string>* Inferior Terminal *</string>
 	<key>DonationURL</key>
