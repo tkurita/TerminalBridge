@@ -37,14 +37,23 @@
 {
 	TerminalApplication *termapp = [SBApplication applicationWithBundleIdentifier:@"com.apple.Terminal"];
 	NSArray *names = [[termapp settingsSets] arrayByApplyingSelector:@selector(name)];
+	names = [names sortedArrayUsingSelector:@selector(localizedCompare:)];
 	
 	NSString *selected_title = [[settingMenu selectedItem] title];
 	NSUInteger nitems = [[settingMenu itemArray] count];
+	
 	for (int n = nitems-1; n > 1; n--) {
 		[settingMenu removeItemAtIndex:n];
 	}
 	[settingMenu addItemsWithTitles:names];	
 	[settingMenu selectItemWithTitle:selected_title];
+
+	nitems = [[interactiveProcessSettingsMenu itemArray] count];
+	
+	for (int n = nitems-1; n > 1; n--) {
+		[interactiveProcessSettingsMenu removeItemAtIndex:n];
+	}
+	[interactiveProcessSettingsMenu addItemsWithTitles:names];	
 }
 
 - (IBAction)revertToFactoryDefaults:(id)sender
@@ -70,24 +79,24 @@
 
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-	if ([[tabViewItem identifier] isEqualToString:@"TerminalSettings"]) {
-		[self reloadSettingsMenu:self];
-	}
+	[self reloadSettingsMenu:self];
 }
 
 - (IBAction)showWindow:(id)sender
 {
 	[super showWindow:sender];
-	if ([[[tabView selectedTabViewItem] identifier] isEqualToString:@"TerminalSettings"]) {
-		[self reloadSettingsMenu:self];
-	}
+	[self reloadSettingsMenu:self];
 }
 
 - (void)awakeFromNib
 {
 	[[self window] center];
 	[self setWindowFrameAutosaveName:@"SettingWindow"];
-	[DefaultToNilTransformer setPopupMenu:settingMenu];
+	NSString *default_lablel = NSLocalizedString(@"Default",@"");
+	NSString *nochange_lable = NSLocalizedString(@"No Change",@"");
+	[DefaultToNilTransformer setNilWords:
+			[NSArray arrayWithObjects: default_lablel, nochange_lable, nil]];
+	[[[settingMenu menu] itemAtIndex:0] setTitle:default_lablel];
 }
 
 @end
