@@ -6,8 +6,12 @@
 @implementation SettingWindowController
 + (void)initialize
 {	
-	NSValueTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	DefaultToNilTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	[transformer setNilWord:@"Default"];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
+	transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	[transformer setNilWord:@"No Change"];
+	[NSValueTransformer setValueTransformer:transformer forName:@"NoChangeToNil"];
 }
 
 - (IBAction)addModeCommand:(id)sender

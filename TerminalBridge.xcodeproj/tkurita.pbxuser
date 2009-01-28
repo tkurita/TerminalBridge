@@ -16,8 +16,8 @@
 			2CA7C65C09A46418009096C5 /* TerminalClient.m:79 */,
 			2C8623120A101C10004855E4 /* DonationReminder.m:12 */,
 			2C5B51A70E8FE984009BED97 /* TerminalBridge.applescript:48 */,
-			2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:30 */,
-			2CF5752F0F2DD6530005360A /* SettingWindowController.m:42 */,
+			2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:35 */,
+			2CF5752F0F2DD6530005360A /* SettingWindowController.m:46 */,
 		);
 		codeSenseManager = 2CF80EF2059B1ACB005C53F6 /* Code sense */;
 		executables = (
@@ -840,6 +840,25 @@
 			2CF577A60F2FE2490005360A /* PBXTextBookmark */ = 2CF577A60F2FE2490005360A /* PBXTextBookmark */;
 			2CF577A70F2FE2490005360A /* PBXTextBookmark */ = 2CF577A70F2FE2490005360A /* PBXTextBookmark */;
 			2CF577A80F2FE2490005360A /* PBXTextBookmark */ = 2CF577A80F2FE2490005360A /* PBXTextBookmark */;
+			2CF577AF0F2FE6450005360A /* PBXTextBookmark */ = 2CF577AF0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B00F2FE6450005360A /* PBXTextBookmark */ = 2CF577B00F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B10F2FE6450005360A /* PBXTextBookmark */ = 2CF577B10F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B20F2FE6450005360A /* PBXTextBookmark */ = 2CF577B20F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B30F2FE6450005360A /* PBXTextBookmark */ = 2CF577B30F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B40F2FE6450005360A /* PBXTextBookmark */ = 2CF577B40F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B50F2FE6450005360A /* PBXTextBookmark */ = 2CF577B50F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B60F2FE6450005360A /* PBXTextBookmark */ = 2CF577B60F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B70F2FE6450005360A /* PBXTextBookmark */ = 2CF577B70F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B80F2FE6450005360A /* PBXTextBookmark */ = 2CF577B80F2FE6450005360A /* PBXTextBookmark */;
+			2CF577B90F2FE6450005360A /* PBXTextBookmark */ = 2CF577B90F2FE6450005360A /* PBXTextBookmark */;
+			2CF577BA0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BA0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577BB0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BB0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577BC0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BC0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577BD0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BD0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577BE0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BE0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577BF0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BF0F2FE6450005360A /* PBXTextBookmark */;
+			2CF577C00F2FE6450005360A /* PBXTextBookmark */ = 2CF577C00F2FE6450005360A /* PBXTextBookmark */;
+			2CF577C90F2FE7A30005360A /* PBXTextBookmark */ = 2CF577C90F2FE7A30005360A /* PBXTextBookmark */;
 		};
 		sourceControlManager = 2CF80EF1059B1ACB005C53F6 /* Source Control */;
 		userBookmarkGroup = 2C72B7620521B991000AF3F1 /* PBXBookmarkGroup */;
@@ -864,9 +883,9 @@
 	};
 	2C0B918308B5D01500602706 /* AppController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {888, 2562}}";
-			sepNavSelRange = "{4133, 0}";
-			sepNavVisRange = "{3622, 929}";
+			sepNavIntBoundsRect = "{{0, 0}, {1015, 2548}}";
+			sepNavSelRange = "{4689, 5}";
+			sepNavVisRange = "{4105, 584}";
 			sepNavVisRect = "{{0, 0}, {709, 725}}";
 			sepNavWindowFrame = "{{494, 140}, {748, 798}}";
 		};
@@ -1003,7 +1022,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {982, 4764}}";
 			sepNavSelRange = "{10358, 0}";
-			sepNavVisRange = "{3819, 1201}";
+			sepNavVisRange = "{3819, 1778}";
 			sepNavVisRect = "{{0, 789}, {526, 10}}";
 			sepNavWindowFrame = "{{153, 126}, {1041, 812}}";
 		};
@@ -1156,9 +1175,9 @@
 	};
 	2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1015, 1344}}";
-			sepNavSelRange = "{3104, 0}";
-			sepNavVisRange = "{2337, 704}";
+			sepNavIntBoundsRect = "{{0, 0}, {972, 1358}}";
+			sepNavSelRange = "{272, 0}";
+			sepNavVisRange = "{0, 1178}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{107, 185}, {750, 558}}";
 		};
@@ -1480,16 +1499,16 @@
 	};
 	2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {600, 441}}";
-			sepNavSelRange = "{96, 0}";
-			sepNavVisRange = "{0, 133}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 451}}";
+			sepNavSelRange = "{124, 0}";
+			sepNavVisRange = "{0, 199}";
 		};
 	};
 	2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {863, 532}}";
-			sepNavSelRange = "{397, 0}";
-			sepNavVisRange = "{213, 266}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 658}}";
+			sepNavSelRange = "{486, 0}";
+			sepNavVisRange = "{194, 455}";
 		};
 	};
 	2CA9B3660E97C682009C0C2A /* PBXTextBookmark */ = {
@@ -1512,7 +1531,7 @@
 		vrLen = 534;
 		vrLoc = 0;
 	};
-	2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:30 */ = {
+	2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:35 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1524,7 +1543,7 @@
 		functionName = "-reverseTransformedValue:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 30;
+		lineNumber = 35;
 		location = TerminalBridge;
 		modificationTime = 254666598.475452;
 		state = 1;
@@ -1577,9 +1596,9 @@
 	};
 	2CC4854D09906657004E4BDE /* EditorClient.applescript */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {916, 526}}";
+			sepNavIntBoundsRect = "{{0, 0}, {916, 549}}";
 			sepNavSelRange = "{510, 68}";
-			sepNavVisRange = "{0, 703}";
+			sepNavVisRange = "{0, 725}";
 			sepNavVisRect = "{{0, 0}, {849, 371}}";
 			sepNavWindowFrame = "{{107, 85}, {932, 764}}";
 		};
@@ -1602,7 +1621,7 @@
 	};
 	2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {600, 441}}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 451}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 110}";
 			sepNavVisRect = "{{0, 0}, {671, 741}}";
@@ -1611,9 +1630,9 @@
 	};
 	2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {874, 664}}";
-			sepNavSelRange = "{85, 31}";
-			sepNavVisRange = "{0, 1034}";
+			sepNavIntBoundsRect = "{{0, 0}, {690, 658}}";
+			sepNavSelRange = "{185, 0}";
+			sepNavVisRange = "{0, 857}";
 			sepNavVisRect = "{{0, 0}, {852, 382}}";
 			sepNavWindowFrame = "{{204, 139}, {933, 799}}";
 		};
@@ -1655,7 +1674,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {687, 775}}";
 			sepNavSelRange = "{1298, 0}";
-			sepNavVisRange = "{672, 626}";
+			sepNavVisRange = "{0, 796}";
 			sepNavVisRect = "{{0, 74}, {728, 708}}";
 			sepNavWindowFrame = "{{52, 157}, {767, 781}}";
 		};
@@ -1720,7 +1739,7 @@
 		vrLen = 523;
 		vrLoc = 0;
 	};
-	2CF5752F0F2DD6530005360A /* SettingWindowController.m:42 */ = {
+	2CF5752F0F2DD6530005360A /* SettingWindowController.m:46 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1732,7 +1751,7 @@
 		functionName = "-reloadSettingsMenu:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 42;
+		lineNumber = 46;
 		location = TerminalBridge;
 		modificationTime = 254666549.2477531;
 		state = 1;
@@ -1772,7 +1791,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 101";
 		rLen = 0;
-		rLoc = 3104;
+		rLoc = 3336;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 2027;
@@ -1782,7 +1801,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 42";
 		rLen = 12;
-		rLoc = 1332;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1199;
 		vrLoc = 950;
@@ -1802,9 +1821,9 @@
 		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
 		name = "DefaultToNilTransformer.h: 9";
 		rLen = 0;
-		rLoc = 126;
+		rLoc = 192;
 		rType = 0;
-		vrLen = 183;
+		vrLen = 133;
 		vrLoc = 0;
 	};
 	2CF575C90F2DE4E60005360A /* PBXTextBookmark */ = {
@@ -1812,7 +1831,7 @@
 		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
 		name = "DefaultToNilTransformer.h: 8";
 		rLen = 0;
-		rLoc = 96;
+		rLoc = 162;
 		rType = 0;
 		vrLen = 133;
 		vrLoc = 0;
@@ -1822,7 +1841,7 @@
 		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
 		name = "DefaultToNilTransformer.h: 8";
 		rLen = 0;
-		rLoc = 96;
+		rLoc = 162;
 		rType = 0;
 		vrLen = 133;
 		vrLoc = 0;
@@ -1845,7 +1864,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
 		rLen = 14;
-		rLoc = 412;
+		rLoc = 503;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 111;
@@ -1855,7 +1874,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 49";
 		rLen = 0;
-		rLoc = 1530;
+		rLoc = 1762;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 1254;
@@ -1865,7 +1884,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
 		rLen = 0;
-		rLoc = 397;
+		rLoc = 483;
 		rType = 0;
 		vrLen = 400;
 		vrLoc = 79;
@@ -1875,7 +1894,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
 		rLen = 0;
-		rLoc = 397;
+		rLoc = 483;
 		rType = 0;
 		vrLen = 400;
 		vrLoc = 79;
@@ -1895,7 +1914,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 12";
 		rLen = 0;
-		rLoc = 352;
+		rLoc = 584;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 0;
@@ -1931,7 +1950,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 61";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2501;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 1644;
@@ -1963,7 +1982,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 61";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2501;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 1644;
@@ -1973,7 +1992,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 61";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2501;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 1644;
@@ -1983,7 +2002,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 61";
 		rLen = 0;
-		rLoc = 2269;
+		rLoc = 2501;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 1644;
@@ -3346,6 +3365,196 @@
 		rType = 0;
 		vrLen = 1201;
 		vrLoc = 3819;
+	};
+	2CF577AF0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0B918308B5D01500602706 /* AppController.m */;
+		name = "AppController.m: 155";
+		rLen = 0;
+		rLoc = 4133;
+		rType = 0;
+		vrLen = 939;
+		vrLoc = 3622;
+	};
+	2CF577B00F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */;
+		name = "TerminalCommander.applescript: 47";
+		rLen = 0;
+		rLoc = 1298;
+		rType = 0;
+		vrLen = 796;
+		vrLoc = 0;
+	};
+	2CF577B10F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 9";
+		rLen = 12;
+		rLoc = 225;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 0;
+	};
+	2CF577B20F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */;
+		name = "DelimedStringToArrayTransformer.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 110;
+		vrLoc = 0;
+	};
+	2CF577B30F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */;
+		name = "DelimedStringToArrayTransformer.m: 10";
+		rLen = 0;
+		rLoc = 185;
+		rType = 0;
+		vrLen = 857;
+		vrLoc = 0;
+	};
+	2CF577B40F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
+		name = "DefaultToNilTransformer.h: 7";
+		rLen = 0;
+		rLoc = 124;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 0;
+	};
+	2CF577B50F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 4";
+		rLen = 23;
+		rLoc = 54;
+		rType = 0;
+		vrLen = 458;
+		vrLoc = 0;
+	};
+	2CF577B60F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0B918308B5D01500602706 /* AppController.m */;
+		name = "AppController.m: 155";
+		rLen = 0;
+		rLoc = 4133;
+		rType = 0;
+		vrLen = 939;
+		vrLoc = 3622;
+	};
+	2CF577B70F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CD4833908169BB000A7FDA9 /* TerminalCommander.applescript */;
+		name = "TerminalCommander.applescript: 47";
+		rLen = 0;
+		rLoc = 1298;
+		rType = 0;
+		vrLen = 796;
+		vrLoc = 0;
+	};
+	2CF577B80F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 30";
+		rLen = 0;
+		rLoc = 483;
+		rType = 0;
+		vrLen = 401;
+		vrLoc = 78;
+	};
+	2CF577B90F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 9";
+		rLen = 12;
+		rLoc = 225;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 0;
+	};
+	2CF577BA0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */;
+		name = "DelimedStringToArrayTransformer.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 110;
+		vrLoc = 0;
+	};
+	2CF577BB0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */;
+		name = "DelimedStringToArrayTransformer.m: 10";
+		rLen = 0;
+		rLoc = 185;
+		rType = 0;
+		vrLen = 857;
+		vrLoc = 0;
+	};
+	2CF577BC0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 22";
+		rLen = 0;
+		rLoc = 318;
+		rType = 0;
+		vrLen = 455;
+		vrLoc = 0;
+	};
+	2CF577BD0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
+		name = "DefaultToNilTransformer.h: 7";
+		rLen = 0;
+		rLoc = 154;
+		rType = 0;
+		vrLen = 198;
+		vrLoc = 0;
+	};
+	2CF577BE0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 4";
+		rLen = 23;
+		rLoc = 54;
+		rType = 0;
+		vrLen = 458;
+		vrLoc = 0;
+	};
+	2CF577BF0F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
+		name = "DefaultToNilTransformer.h: 7";
+		rLen = 0;
+		rLoc = 124;
+		rType = 0;
+		vrLen = 199;
+		vrLoc = 0;
+	};
+	2CF577C00F2FE6450005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 42";
+		rLen = 0;
+		rLoc = 629;
+		rType = 0;
+		vrLen = 454;
+		vrLoc = 194;
+	};
+	2CF577C90F2FE7A30005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 35";
+		rLen = 0;
+		rLoc = 486;
+		rType = 0;
+		vrLen = 455;
+		vrLoc = 194;
 	};
 	2CF80EF1059B1ACB005C53F6 /* Source Control */ = {
 		isa = PBXSourceControlManager;
