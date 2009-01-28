@@ -5,6 +5,5 @@
 	NSString *nilWord;
 }
 @property (retain, readwrite) NSString *nilWord;
-+ (void)setNilWords:(NSArray *)array;
 
 @end

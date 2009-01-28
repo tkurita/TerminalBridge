@@ -66,13 +66,6 @@
 	}
 }
 
-- (BOOL)windowShouldClose:(id)sender
-{
-	/* To support AppleScript Studio of MacOS X 10.4 */
-	[[self window] orderOut:self];
-	return NO;
-}
-
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
 	[self reloadSettingsMenu:self];
@@ -88,11 +81,7 @@
 {
 	[[self window] center];
 	[self setWindowFrameAutosaveName:@"SettingWindow"];
-	NSString *default_lablel = NSLocalizedString(@"Default",@"");
-	NSString *nochange_lable = NSLocalizedString(@"No Change",@"");
-	[DefaultToNilTransformer setNilWords:
-			[NSArray arrayWithObjects: default_lablel, nochange_lable, nil]];
-	[[[settingMenu menu] itemAtIndex:0] setTitle:default_lablel];
+	[[[settingMenu menu] itemAtIndex:0] setTitle:NSLocalizedString(@"Default",@"")];
 }
 
 @end

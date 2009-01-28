@@ -4,16 +4,9 @@
 @implementation DefaultToNilTransformer
 @synthesize nilWord;
 
-static NSArray *nilWords = nil;
-
 + (Class)transformedValueClass
 {
 	return [NSString class];
-}
-
-+ (void)setNilWords:(NSArray *)array
-{
-	nilWords = [array retain];
 }
 
 + (BOOL)allowsReverseTransformation
@@ -32,11 +25,6 @@ static NSArray *nilWords = nil;
 
 - (id)reverseTransformedValue:(id)value
 {
-	/*
-	 if ([nilWords containsObject:value]) {
-		return nil;
-	}
-	*/
 	if ([value isEqualToString:NSLocalizedString(nilWord, @"")]) {
 		return nil;
 	}

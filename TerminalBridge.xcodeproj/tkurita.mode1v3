@@ -336,7 +336,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2CF577C90F2FE7A30005360A</string>
+										<string>2CF577DB0F2FE9C70005360A</string>
 										<key>history</key>
 										<array>
 											<string>2C5B51630E8FE851009BED97</string>
@@ -366,8 +366,8 @@
 											<string>2CF577B10F2FE6450005360A</string>
 											<string>2CF577B20F2FE6450005360A</string>
 											<string>2CF577B30F2FE6450005360A</string>
-											<string>2CF577B40F2FE6450005360A</string>
-											<string>2CF577B50F2FE6450005360A</string>
+											<string>2CF577D40F2FE8670005360A</string>
+											<string>2CF577CD0F2FE8640005360A</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -422,6 +422,8 @@
 											<string>2CF577BD0F2FE6450005360A</string>
 											<string>2CF577BE0F2FE6450005360A</string>
 											<string>2CF577BF0F2FE6450005360A</string>
+											<string>2CF577D50F2FE8670005360A</string>
+											<string>2CF577D60F2FE8670005360A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -648,12 +650,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AppController.m</string>
+								<string>DefaultToNilTransformer.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -670,8 +674,6 @@
 							<string>412pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXBuildLogShowsTranscriptDefaultKey</key>
@@ -866,6 +868,8 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -892,8 +896,6 @@
 							<string>473pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -939,7 +941,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>

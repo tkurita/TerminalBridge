@@ -16,7 +16,7 @@
 			2CA7C65C09A46418009096C5 /* TerminalClient.m:79 */,
 			2C8623120A101C10004855E4 /* DonationReminder.m:12 */,
 			2C5B51A70E8FE984009BED97 /* TerminalBridge.applescript:48 */,
-			2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:35 */,
+			2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:28 */,
 			2CF5752F0F2DD6530005360A /* SettingWindowController.m:46 */,
 		);
 		codeSenseManager = 2CF80EF2059B1ACB005C53F6 /* Code sense */;
@@ -859,6 +859,21 @@
 			2CF577BF0F2FE6450005360A /* PBXTextBookmark */ = 2CF577BF0F2FE6450005360A /* PBXTextBookmark */;
 			2CF577C00F2FE6450005360A /* PBXTextBookmark */ = 2CF577C00F2FE6450005360A /* PBXTextBookmark */;
 			2CF577C90F2FE7A30005360A /* PBXTextBookmark */ = 2CF577C90F2FE7A30005360A /* PBXTextBookmark */;
+			2CF577CC0F2FE8640005360A /* PBXTextBookmark */ = 2CF577CC0F2FE8640005360A /* PBXTextBookmark */;
+			2CF577CD0F2FE8640005360A /* PBXTextBookmark */ = 2CF577CD0F2FE8640005360A /* PBXTextBookmark */;
+			2CF577CE0F2FE8640005360A /* PBXTextBookmark */ = 2CF577CE0F2FE8640005360A /* PBXTextBookmark */;
+			2CF577CF0F2FE8640005360A /* PBXTextBookmark */ = 2CF577CF0F2FE8640005360A /* PBXTextBookmark */;
+			2CF577D00F2FE8640005360A /* PBXTextBookmark */ = 2CF577D00F2FE8640005360A /* PBXTextBookmark */;
+			2CF577D10F2FE8640005360A /* PBXTextBookmark */ = 2CF577D10F2FE8640005360A /* PBXTextBookmark */;
+			2CF577D20F2FE8640005360A /* PBXTextBookmark */ = 2CF577D20F2FE8640005360A /* PBXTextBookmark */;
+			2CF577D30F2FE8640005360A /* PBXTextBookmark */ = 2CF577D30F2FE8640005360A /* PBXTextBookmark */;
+			2CF577D40F2FE8670005360A /* PBXTextBookmark */ = 2CF577D40F2FE8670005360A /* PBXTextBookmark */;
+			2CF577D50F2FE8670005360A /* PBXTextBookmark */ = 2CF577D50F2FE8670005360A /* PBXTextBookmark */;
+			2CF577D60F2FE8670005360A /* PBXTextBookmark */ = 2CF577D60F2FE8670005360A /* PBXTextBookmark */;
+			2CF577D70F2FE8670005360A /* PBXTextBookmark */ = 2CF577D70F2FE8670005360A /* PBXTextBookmark */;
+			2CF577D80F2FE9B40005360A /* PBXTextBookmark */ = 2CF577D80F2FE9B40005360A /* PBXTextBookmark */;
+			2CF577D90F2FE9B40005360A /* PBXTextBookmark */ = 2CF577D90F2FE9B40005360A /* PBXTextBookmark */;
+			2CF577DB0F2FE9C70005360A /* PBXTextBookmark */ = 2CF577DB0F2FE9C70005360A /* PBXTextBookmark */;
 		};
 		sourceControlManager = 2CF80EF1059B1ACB005C53F6 /* Source Control */;
 		userBookmarkGroup = 2C72B7620521B991000AF3F1 /* PBXBookmarkGroup */;
@@ -1175,9 +1190,9 @@
 	};
 	2C701E7608BB85D5000D1339 /* SettingWindowController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {972, 1358}}";
-			sepNavSelRange = "{272, 0}";
-			sepNavVisRange = "{0, 1178}";
+			sepNavIntBoundsRect = "{{0, 0}, {972, 1232}}";
+			sepNavSelRange = "{2570, 0}";
+			sepNavVisRange = "{0, 1217}";
 			sepNavVisRect = "{{0, 0}, {0, 0}}";
 			sepNavWindowFrame = "{{107, 185}, {750, 558}}";
 		};
@@ -1500,15 +1515,15 @@
 	2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {600, 451}}";
-			sepNavSelRange = "{124, 0}";
-			sepNavVisRange = "{0, 199}";
+			sepNavSelRange = "{155, 0}";
+			sepNavVisRange = "{0, 161}";
 		};
 	};
 	2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {600, 658}}";
-			sepNavSelRange = "{486, 0}";
-			sepNavVisRange = "{194, 455}";
+			sepNavIntBoundsRect = "{{0, 0}, {600, 490}}";
+			sepNavSelRange = "{100, 0}";
+			sepNavVisRange = "{37, 448}";
 		};
 	};
 	2CA9B3660E97C682009C0C2A /* PBXTextBookmark */ = {
@@ -1531,7 +1546,7 @@
 		vrLen = 534;
 		vrLoc = 0;
 	};
-	2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:35 */ = {
+	2CA9B37C0E97C759009C0C2A /* DefaultToNilTransformer.m:28 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1543,7 +1558,7 @@
 		functionName = "-reverseTransformedValue:";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 35;
+		lineNumber = 28;
 		location = TerminalBridge;
 		modificationTime = 254666598.475452;
 		state = 1;
@@ -1791,7 +1806,7 @@
 		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
 		name = "SettingWindowController.m: 101";
 		rLen = 0;
-		rLoc = 3336;
+		rLoc = 2980;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 2027;
@@ -1821,7 +1836,7 @@
 		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
 		name = "DefaultToNilTransformer.h: 9";
 		rLen = 0;
-		rLoc = 192;
+		rLoc = 155;
 		rType = 0;
 		vrLen = 133;
 		vrLoc = 0;
@@ -1831,7 +1846,7 @@
 		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
 		name = "DefaultToNilTransformer.h: 8";
 		rLen = 0;
-		rLoc = 162;
+		rLoc = 155;
 		rType = 0;
 		vrLen = 133;
 		vrLoc = 0;
@@ -1841,7 +1856,7 @@
 		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
 		name = "DefaultToNilTransformer.h: 8";
 		rLen = 0;
-		rLoc = 162;
+		rLoc = 155;
 		rType = 0;
 		vrLen = 133;
 		vrLoc = 0;
@@ -1863,8 +1878,8 @@
 		isa = PBXTextBookmark;
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
-		rLen = 14;
-		rLoc = 503;
+		rLen = 0;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 363;
 		vrLoc = 111;
@@ -1884,7 +1899,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
 		rLen = 0;
-		rLoc = 483;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 400;
 		vrLoc = 79;
@@ -1894,7 +1909,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
 		rLen = 0;
-		rLoc = 483;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 400;
 		vrLoc = 79;
@@ -3461,7 +3476,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 30";
 		rLen = 0;
-		rLoc = 483;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 401;
 		vrLoc = 78;
@@ -3501,7 +3516,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 22";
 		rLen = 0;
-		rLoc = 318;
+		rLoc = 215;
 		rType = 0;
 		vrLen = 455;
 		vrLoc = 0;
@@ -3541,7 +3556,7 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 42";
 		rLen = 0;
-		rLoc = 629;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 454;
 		vrLoc = 194;
@@ -3551,10 +3566,155 @@
 		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
 		name = "DefaultToNilTransformer.m: 35";
 		rLen = 0;
-		rLoc = 486;
+		rLoc = 380;
 		rType = 0;
 		vrLen = 455;
 		vrLoc = 194;
+	};
+	2CF577CC0F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0B918308B5D01500602706 /* AppController.m */;
+		name = "AppController.m: 183";
+		rLen = 5;
+		rLoc = 4689;
+		rType = 0;
+		vrLen = 584;
+		vrLoc = 4105;
+	};
+	2CF577CD0F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "warning: ‘nilWords’ defined but not used";
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		rLen = 1;
+		rLoc = 6;
+		rType = 1;
+	};
+	2CF577CE0F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C0B918308B5D01500602706 /* AppController.m */;
+		name = "AppController.m: 183";
+		rLen = 5;
+		rLoc = 4689;
+		rType = 0;
+		vrLen = 584;
+		vrLoc = 4105;
+	};
+	2CF577CF0F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 7";
+		rLen = 0;
+		rLoc = 100;
+		rType = 0;
+		vrLen = 401;
+		vrLoc = 78;
+	};
+	2CF577D00F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC4854D09906657004E4BDE /* EditorClient.applescript */;
+		name = "EditorClient.applescript: 19";
+		rLen = 68;
+		rLoc = 510;
+		rType = 0;
+		vrLen = 725;
+		vrLoc = 0;
+	};
+	2CF577D10F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
+		rLen = 0;
+		rLoc = 2898;
+		rType = 0;
+	};
+	2CF577D20F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CC4854D09906657004E4BDE /* EditorClient.applescript */;
+		name = "EditorClient.applescript: 19";
+		rLen = 68;
+		rLoc = 510;
+		rType = 0;
+		vrLen = 725;
+		vrLoc = 0;
+	};
+	2CF577D30F2FE8640005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 91";
+		rLen = 0;
+		rLoc = 2977;
+		rType = 0;
+		vrLen = 692;
+		vrLoc = 2435;
+	};
+	2CF577D40F2FE8670005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
+		name = "DefaultToNilTransformer.h: 8";
+		rLen = 0;
+		rLoc = 155;
+		rType = 0;
+		vrLen = 161;
+		vrLoc = 0;
+	};
+	2CF577D50F2FE8670005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 13";
+		rLen = 0;
+		rLoc = 161;
+		rType = 0;
+		vrLen = 440;
+		vrLoc = 78;
+	};
+	2CF577D60F2FE8670005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */;
+		name = "DefaultToNilTransformer.h: 8";
+		rLen = 0;
+		rLoc = 155;
+		rType = 0;
+		vrLen = 161;
+		vrLoc = 0;
+	};
+	2CF577D70F2FE8670005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 7";
+		rLen = 0;
+		rLoc = 100;
+		rType = 0;
+		vrLen = 448;
+		vrLoc = 37;
+	};
+	2CF577D80F2FE9B40005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 7";
+		rLen = 0;
+		rLoc = 100;
+		rType = 0;
+		vrLen = 401;
+		vrLoc = 78;
+	};
+	2CF577D90F2FE9B40005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */;
+		name = "SettingWindowController.m: 67";
+		rLen = 0;
+		rLoc = 2570;
+		rType = 0;
+		vrLen = 1217;
+		vrLoc = 0;
+	};
+	2CF577DB0F2FE9C70005360A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */;
+		name = "DefaultToNilTransformer.m: 7";
+		rLen = 0;
+		rLoc = 100;
+		rType = 0;
+		vrLen = 448;
+		vrLoc = 37;
 	};
 	2CF80EF1059B1ACB005C53F6 /* Source Control */ = {
 		isa = PBXSourceControlManager;
