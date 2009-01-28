@@ -4,6 +4,7 @@
 @interface TerminalClient : NSObject {
 	NSMutableDictionary *modeCommands;
 	NSMutableDictionary *modePrompts;
+	NSMutableDictionary *modeSettingsNames;
 	NSString *_lastResult;
 }
 

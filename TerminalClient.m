@@ -34,12 +34,52 @@ static id sharedObj;
 	return sharedObj;
 }
 
+- (BOOL)isReadyTerminalContents:(NSString *)theText withPrompt:(NSString *)thePrompt
+{
+	BOOL result = NO;
+	NSString *regex_prompt = thePrompt;
+	if (![regex_prompt hasPrefix:@"^"])
+		regex_prompt = [@"^" stringByAppendingString:regex_prompt];
+	NSRange theRange = NSMakeRange([theText length],0);
+	NSString *theSubString;
+	
+	// skip trailing empty lines
+	while(theRange.location > 0) {
+		theRange.location--;
+		theRange.length = 0;
+		theRange = [theText lineRangeForRange:theRange];
+		theSubString = [theText substringWithRange:theRange];
+		if ([theSubString length] > 1) {
+			theRange.location++;
+			break;
+		}
+	}
+	
+	if (theRange.location > 0) {
+		theRange.location = theRange.location - 1;
+		theRange.length = 0;
+		
+		theRange = [theText lineRangeForRange:theRange];
+		theSubString = [theText substringWithRange:theRange];
+	#if useLog
+		NSLog(theSubString);
+	#endif
+		if ([theSubString isMatchedByRegex:regex_prompt]) {
+			result = YES;	
+		}
+	} 
+	
+	return result;
+}
+
 - (NSNumber *)extactLastResult:(NSString *)theText withPrompt:(NSString *)thePrompt
 {
 #if useLog
 	NSLog(@"start extactLastResult:");
 #endif
-	NSString *regex_prompt = [@"^" stringByAppendingString:thePrompt];
+	NSString *regex_prompt = thePrompt;
+	if (![regex_prompt hasPrefix:@"^"])
+		regex_prompt = [@"^" stringByAppendingString:regex_prompt];
 	NSRange lastRange, firstRange;
 	NSRange theRange = NSMakeRange([theText length],0);
 	NSString *theSubString;
@@ -130,6 +170,11 @@ static id sharedObj;
 	return [modeCommands objectForKey:theMode];
 }
 
+- (NSString *)settingsNameForMode:(NSString *)theMode
+{
+	return [modeSettingsNames objectForKey:theMode];
+}
+
 - (void)setModeDefaults:(NSArray *)modeDefaults
 {
 #if useLog
@@ -137,18 +182,23 @@ static id sharedObj;
 #endif
 	[modeCommands release];
 	[modePrompts release];
+	[modeSettingsNames release];
 	
 	unsigned nCap = [modeDefaults count];
 	modeCommands = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
 	modePrompts = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
+	modeSettingsNames = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
 	
 	NSEnumerator *enumerator = [modeDefaults objectEnumerator];
 	NSDictionary *dict;
 	NSDictionary *mode;
+	NSString *a_value = nil;
 	while (dict = [enumerator nextObject]) {
 		mode = [dict objectForKey:@"mode"];
 		[modeCommands setObject:[dict objectForKey:@"command"] forKey:mode];
 		[modePrompts setObject:[dict objectForKey:@"prompt"] forKey:mode];
+		if (a_value = [dict objectForKey:@"terminalSettings"]) 
+			[modeSettingsNames setObject:a_value forKey:mode];
 	}
 }
 

@@ -8,7 +8,7 @@ global TerminalClient
 global XFile
 
 property _interactiveExecuters : missing value
-property _hcommandLabels : {"useOwnTerm", "escapeChars", "process", "output", "prompt", "interactive", "shareTerm"}
+property _hcommandLabels : {"useOwnTerm", "escapeChars", "output", "prompt", "interactive", "shareTerm"}
 
 on initialize()
 	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
@@ -53,10 +53,9 @@ on resolveCommand(doc_info)
 		set a_command to XText's strip(a_command)
 	end if
 	
-	set docMode to missing value
+	set a_mode to document_mode() of EditorClient
 	if a_command is missing value then
-		set docMode to document_mode() of EditorClient
-		set a_command to call method "commandForMode:" of TerminalClient with parameter docMode
+		set a_command to call method "commandForMode:" of TerminalClient with parameter a_mode
 		try
 			get a_command
 		on error number -2753
@@ -70,7 +69,7 @@ on resolveCommand(doc_info)
 		error "The document does not start with #!." number 1620
 	end if
 	--log "end resolveCommand"
-	return {command:a_command, mode:docMode, baseCommand:missing value}
+	return {command:a_command, mode:a_mode, baseCommand:missing value}
 end resolveCommand
 
 on resolveHeaderCommand()
@@ -117,8 +116,8 @@ on resolveHeaderCommand()
 	return hearder_coms
 end resolveHeaderCommand
 
-on getInteractiveExecuter(doc_info, command_info, hearder_coms)
-	-- log "start getInteractiveExecuter"
+on interactive_executer(doc_info, command_info, hearder_coms)
+	-- log "start interactive_executer"
 	--	log doc_info
 	--	log command_info
 	--	log hearder_coms
@@ -159,19 +158,14 @@ on getInteractiveExecuter(doc_info, command_info, hearder_coms)
 		set executer_key to baseCommand of command_info
 	end if
 	
-	if not hearder_coms's has_key("process") then
-		hearder_coms's set_value("process", baseCommand of command_info)
-	end if
-	
+	(*
 	if not hearder_coms's has_key("prompt") then
-		if (mode of command_info) is missing value then
-			set mode of command_info to document_mode() of EditorClient
-		end if
 		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of command_info)
 		try -- theDefPrompt may be undefined
 			hearder_coms's set_value("prompt", theDefPrompt)
 		end try
 	end if
+	*)
 	set an_executer to missing value
 	if (my _interactiveExecuters is missing value) then
 		set my _interactiveExecuters to make XDict
@@ -181,9 +175,9 @@ on getInteractiveExecuter(doc_info, command_info, hearder_coms)
 		on error number 900
 		end try
 	end if
-	-- log "end of getInteractiveExecuter"
+	-- log "end of interactive_executer"
 	return {executer_key, an_executer}
-end getInteractiveExecuter
+end interactive_executer
 
 on get_executer for command_info given interactive:interactiveFlag, allowing_busy:isAllowBusy
 	--log "start get_executer"
@@ -205,13 +199,14 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 	
 	--log "get interactive executer"
 	if interactiveFlag then
-		set {executer_key, an_executer} to getInteractiveExecuter(doc_info, command_info, hearder_coms)
+		set {executer_key, an_executer} to interactive_executer(doc_info, command_info, hearder_coms)
 		if an_executer is not missing value then
 			an_executer's update_script_file(file of doc_info)
 			if not hearder_coms's has_key("interactive") then
 				hearder_coms's set_value("interactive", command of command_info)
 			end if
 			an_executer's set_options(hearder_coms)
+			an_executer's set_docmode(mode of command_info)
 		end if
 	else
 		hearder_coms's remove_for_key("interactive")
@@ -223,6 +218,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 		set a_command_builder to CommandBuilder's make_for_file(file of doc_info, command of command_info)
 		set an_executer to UnixScriptExecuter's make_with(a_command_builder)
 		an_executer's set_options(hearder_coms)
+		an_executer's set_docmode(mode of command_info)
 		-- log "before make interactive terminal"
 		if interactiveFlag then
 			set terminal_owner to missing value

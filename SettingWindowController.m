@@ -58,7 +58,6 @@
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"SettingsSetName"];
 	}
 	else if ([identifier isEqualToString:@"CommandsAndProcesses"]) {
-		[app_controller revertToFactoryDefaultForKey:@"CleanCommands"];
 		[app_controller revertToFactoryDefaultForKey:@"ModeDefaults"];
 	}
 }

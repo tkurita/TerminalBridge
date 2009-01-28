@@ -229,12 +229,9 @@ on get_named_term(a_name)
 		set target_term to my _namedTerms's value_for_key(a_name)
 	on error number 900
 		set target_term to TerminalCommander's make_with_title("* " & a_name & " *")
-		--TerminalCommander's forget()
 		target_term's forget()
-		--target_term's set_custom_title("* " & a_name & " *")
 		my _namedTerms's set_value(a_name, target_term)
 	end try
-	
 	
 	return target_term
 end get_named_term
