@@ -71,6 +71,7 @@ on cleanup_command_text(a_command)
 end cleanup_command_text
 
 on is_ready_prompt()
+	--log "start is_ready_prompt"
 	set a_prompt to command_prompt()
 	if a_prompt is missing value then return false
 	set a_contents to my _target_terminal's window_contents()
@@ -173,7 +174,7 @@ on check_terminal_status(n_checks)
 		end if
 	*)
 	end if
-	log "end of check_terminal_status"
+	--log "end of check_terminal_status"
 	return a_result
 end check_terminal_status
 
@@ -250,6 +251,7 @@ on set_prompt(a_prompt)
 end set_prompt
 
 on command_prompt()
+	--log "start command_prompt"
 	set a_result to missing value
 	if my _command_prompt is missing value then
 		if my _docmode is not missing value then
@@ -264,6 +266,7 @@ on command_prompt()
 	else
 		set a_result to my _command_prompt
 	end if
+	--log "end command_prompt with result : " & a_result
 	return a_result
 end command_prompt
 (*
@@ -272,24 +275,24 @@ on set_clean_commands(processes)
 end set_clean_commands
 *)
 on last_result()
-	--log "start getLastResult in UnixScriptExecuter"
+	-- log "start last_result in UnixScriptExecuter"
 	if not (resolve_terminal of (my _target_terminal) without allowing_busy) then
 		error "No Terminal found." number 1640
 		return missing value
 	end if
 	
 	set a_contents to my _target_terminal's window_contents()
-	set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _command_prompt}
+	set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, command_prompt()}
 	if a_result is -1 then
 		set a_contents to my _target_terminal's buffer_history()
-		set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, my _command_prompt}
+		set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, command_prompt()}
 	end if
 	
 	if a_result is not 1 then
 		return missing value
 	end if
 	
-	--log "end getLastResult in UnixScriptExecuter"
+	-- log "end last_result in UnixScriptExecuter"
 	return call method "lastResultWithCR" of TerminalClient
 end last_result
 
