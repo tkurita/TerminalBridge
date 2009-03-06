@@ -34,6 +34,14 @@
 			<key>prompt</key>
 			<string>(gnuplot)?&gt;</string>
 		</dict>
+		<dict>
+			<key>command</key>
+			<string>bash</string>
+			<key>mode</key>
+			<string>bash</string>
+			<key>prompt</key>
+			<string>.*\$\s</string>
+		</dict>
 	</array>
 	<key>backslash</key>
 	<string>\</string>

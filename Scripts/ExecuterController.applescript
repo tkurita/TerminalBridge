@@ -117,7 +117,7 @@ on resolveHeaderCommand()
 end resolveHeaderCommand
 
 on interactive_executer(doc_info, command_info, hearder_coms)
-	-- log "start interactive_executer"
+	log "start interactive_executer"
 	--	log doc_info
 	--	log command_info
 	--	log hearder_coms
@@ -158,14 +158,6 @@ on interactive_executer(doc_info, command_info, hearder_coms)
 		set executer_key to baseCommand of command_info
 	end if
 	
-	(*
-	if not hearder_coms's has_key("prompt") then
-		set theDefPrompt to call method "promptForMode:" of TerminalClient with parameter (mode of command_info)
-		try -- theDefPrompt may be undefined
-			hearder_coms's set_value("prompt", theDefPrompt)
-		end try
-	end if
-	*)
 	set an_executer to missing value
 	if (my _interactiveExecuters is missing value) then
 		set my _interactiveExecuters to make XDict
@@ -173,9 +165,11 @@ on interactive_executer(doc_info, command_info, hearder_coms)
 		try
 			set an_executer to my _interactiveExecuters's value_for_key(executer_key)
 		on error number 900
+			log "no cached excuter for " & executer_key
 		end try
 	end if
-	-- log "end of interactive_executer"
+	log "executer_key : " & executer_key
+	log "end of interactive_executer"
 	return {executer_key, an_executer}
 end interactive_executer
 

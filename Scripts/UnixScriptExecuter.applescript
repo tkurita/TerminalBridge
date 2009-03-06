@@ -276,7 +276,7 @@ end set_clean_commands
 *)
 on last_result()
 	-- log "start last_result in UnixScriptExecuter"
-	if not (resolve_terminal of (my _target_terminal) without allowing_busy) then
+	if not (resolve_terminal of (my _target_terminal) with allowing_busy) then
 		error "No Terminal found." number 1640
 		return missing value
 	end if
