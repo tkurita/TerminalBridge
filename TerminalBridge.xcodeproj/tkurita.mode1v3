@@ -269,6 +269,7 @@
 								<string>29B97314FDCFA39411CA2CEA</string>
 								<string>2C42ECF707B3771800C8005B</string>
 								<string>29B97317FDCFA39411CA2CEA</string>
+								<string>2C732BDF07AE5AE3005ACE75</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
@@ -277,7 +278,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>21</integer>
+									<integer>15</integer>
 									<integer>12</integer>
 									<integer>0</integer>
 								</array>
@@ -332,7 +333,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C12916F0F615363007E2481</string>
+										<string>2C12919C0F6401E4007E2481</string>
 										<key>history</key>
 										<array>
 											<string>2C5B51630E8FE851009BED97</string>
@@ -364,7 +365,7 @@
 											<string>2C1291430F614F26007E2481</string>
 											<string>2C1291440F614F26007E2481</string>
 											<string>2C1291450F614F26007E2481</string>
-											<string>2C1291460F614F26007E2481</string>
+											<string>2C1291880F6183B4007E2481</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -396,17 +397,7 @@
 											<string>2CF577150F2F26FF0005360A</string>
 											<string>2CF5771D0F2F26FF0005360A</string>
 											<string>2CF577B60F2FE6450005360A</string>
-											<string>2C12913B0F614304007E2481</string>
-											<string>2C12913C0F614304007E2481</string>
-											<string>2C12913D0F614304007E2481</string>
 											<string>2C12913E0F614304007E2481</string>
-											<string>2C1291400F614304007E2481</string>
-											<string>2C1291470F614F26007E2481</string>
-											<string>2C1291480F614F26007E2481</string>
-											<string>2C1291490F614F26007E2481</string>
-											<string>2C12914A0F614F26007E2481</string>
-											<string>2C12914B0F614F26007E2481</string>
-											<string>2C12914C0F614F26007E2481</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -433,7 +424,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>UnixScriptController.applescript</string>
+								<string>HelpSetup.plist</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -441,14 +432,13 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>UnixScriptController.applescript</string>
+										<string>HelpSetup.plist</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C1291700F615363007E2481</string>
+										<string>2C1291A00F6401E4007E2481</string>
 										<key>history</key>
 										<array>
-											<string>2C5B51630E8FE851009BED97</string>
 											<string>2C5B51640E8FE851009BED97</string>
 											<string>2C867D550E9120860095E0BA</string>
 											<string>2C780BA70E9284BD0013F427</string>
@@ -469,7 +459,6 @@
 											<string>2CB721D10F32CD1100995D8A</string>
 											<string>2CB721D20F32CD1100995D8A</string>
 											<string>2C1291350F614304007E2481</string>
-											<string>2C1291360F614304007E2481</string>
 											<string>2C1291370F614304007E2481</string>
 											<string>2C1291390F614304007E2481</string>
 											<string>2C1291420F614F26007E2481</string>
@@ -477,7 +466,9 @@
 											<string>2C1291450F614F26007E2481</string>
 											<string>2C1291600F61530D007E2481</string>
 											<string>2C1291610F61530D007E2481</string>
-											<string>2C1291620F61530D007E2481</string>
+											<string>2C1291890F6183B4007E2481</string>
+											<string>2C12919D0F6401E4007E2481</string>
+											<string>2C12919E0F6401E4007E2481</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -510,9 +501,7 @@
 											<string>2CF5771D0F2F26FF0005360A</string>
 											<string>2CF577B60F2FE6450005360A</string>
 											<string>2C12913E0F614304007E2481</string>
-											<string>2C1291520F615102007E2481</string>
-											<string>2C1291630F61530D007E2481</string>
-											<string>2C1291640F61530D007E2481</string>
+											<string>2C12919F0F6401E4007E2481</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -534,8 +523,6 @@
 							<string>219pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -573,9 +560,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>2C1290F50F60445E007E2481</string>
+				<string>2C1291A10F6401E4007E2481</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>2C1290F60F60445E007E2481</string>
+				<string>2C1291A20F6401E4007E2481</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
@@ -719,10 +706,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1CD10A99069EF8BA00B06720</string>
 		<string>2C9A5F1D0E8DB722009680D1</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/tkurita/Dev/Projects/UnixScriptTools for mi/TerminalBridge/trunk/TerminalBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -805,7 +789,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>2C9A5F1D0E8DB722009680D1</string>
-				<string>2C1291540F615102007E2481</string>
+				<string>2C1291A30F6401E4007E2481</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
