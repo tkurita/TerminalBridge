@@ -40,6 +40,12 @@ enum cantExecWindowResult {
 	return self;
 }
 
+- (void)dealloc
+{
+	[terminalName release];
+	[super dealloc];
+}
+
 - (void)checkQuit:(NSTimer *)aTimer
 {
 	NSArray *appList = [[NSWorkspace sharedWorkspace] launchedApplications];
