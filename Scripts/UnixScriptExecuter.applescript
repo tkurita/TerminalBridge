@@ -113,13 +113,7 @@ on check_terminal_status(n_checks)
 			tell application "Terminal"
 				set support_processes to clean commands of a_term
 			end tell
-			(*
-			if (contents of default entry "useExecCommand" of user defaults) then
-				set process_list to running_processes() of my _target_terminal
-			else
-				set process_list to processes_on_shell() of my _target_terminal
-			end if
-			*)
+			
 			set process_list to processes_on_shell() of my _target_terminal
 			set new_processes to {}
 			repeat with an_item in process_list
@@ -127,27 +121,12 @@ on check_terminal_status(n_checks)
 					set end of new_processes to contents of an_item
 				end if
 			end repeat
-			(*
-			if length of new_processes is 0 then
-				if n_checks < 3 then
-					delay 1
-					return check_terminal_status(n_checks + 1)
-				end if
-			end if
-			*)
-			if length of new_process > 0 then
+			
+			if length of new_processes > 0 then
 				set a_name to terminal_name() of my _target_terminal
 				set a_result to call method "displayCantExecWindowForTerminalName:processes:" of appController with parameters {a_name, new_processes}
 			end if
-			(*
-			set process_texts to XList's make_with(new_processes)'s as_unicode_with(return)
-			set msg to UtilityHandlers's localized_string("cantExecCommand", {a_name, process_texts})
-			set button_names to {localized string "cancel", localized string "openTerm", localized string "showTerm"}
-			set a_result to show_message_buttons(msg, button_names, last item of button_names) of EditorClient
-			log "after show_message_buttons"
-			log a_result
-			set button_result to button returned of a_result
-			*)
+			
 			if a_result is kShowTerminal then
 				bring_to_front() of my _target_terminal
 			else if a_result is kNewTerminal then
@@ -162,17 +141,6 @@ on check_terminal_status(n_checks)
 				set a_result to kTerminalReady
 			end if
 		end if
-		(*
-	else
-		if (process_list is {}) then
-			set a_result to open_new_terminal()
-			if a_result then
-				set a_result to kTerminalReady
-			else
-				set a_result to kCancel
-			end if
-		end if
-	*)
 	end if
 	--log "end of check_terminal_status"
 	return a_result
