@@ -160,6 +160,7 @@ enum cantExecWindowResult {
 	}
 	[cantExecWindow center];
 	NSString *result;
+	[cantExecWindow makeFirstResponder:showTerminalButton];
 	int result_code = [[NSApplication sharedApplication] runModalForWindow:cantExecWindow];
     [cantExecWindow orderOut:self];
     

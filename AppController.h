@@ -9,6 +9,7 @@
 	IBOutlet NSWindow *cantExecWindow;
 	IBOutlet NSTextView *processListView;
 	IBOutlet NSButton *addProcessButton;
+	IBOutlet NSButton *showTerminalButton;
 	NSString *terminalName;
 }
 

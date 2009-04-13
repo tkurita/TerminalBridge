@@ -850,7 +850,7 @@
 											</object>
 											<int key="NSTVFlags">6</int>
 											<string key="NSMaxSize">{860, 1e+07}</string>
-											<string key="NSMinize">{215, 1}</string>
+											<string key="NSMinize">{215, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
@@ -1210,6 +1210,14 @@ gZnjgII</string>
 						</object>
 					</object>
 					<int key="connectionID">1181</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">showTerminalButton</string>
+						<reference key="source" ref="412198525"/>
+						<reference key="destination" ref="518953550"/>
+					</object>
+					<int key="connectionID">1182</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1904,6 +1912,7 @@ gZnjgII</string>
 					<string>1157.IBPluginDependency</string>
 					<string>1158.IBPluginDependency</string>
 					<string>1159.IBPluginDependency</string>
+					<string>1165.IBPluginDependency</string>
 					<string>1175.IBPluginDependency</string>
 					<string>1176.IBPluginDependency</string>
 					<string>1177.IBPluginDependency</string>
@@ -2094,9 +2103,10 @@ gZnjgII</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{261, 482}, {495, 400}}</string>
-					<string>{{261, 482}, {495, 400}}</string>
+					<string>{{195, 110}, {495, 400}}</string>
+					<string>{{195, 110}, {495, 400}}</string>
 					<boolean value="NO"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2212,7 +2222,7 @@ gZnjgII</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1181</int>
+			<int key="maxID">1182</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2246,12 +2256,14 @@ gZnjgII</string>
 							<string>addProcessButton</string>
 							<string>cantExecWindow</string>
 							<string>processListView</string>
+							<string>showTerminalButton</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSButton</string>
 							<string>NSWindow</string>
 							<string>NSTextView</string>
+							<string>NSButton</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
