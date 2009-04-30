@@ -43,34 +43,44 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 	return {name:a_name, file:a_script_file}
 end document_info
 
-on resolveCommand(doc_info)
-	--log "start resolveCommand"
+on resolve_command(doc_info, command_info)
+	--log "start resolve_command"
+	if command_info is missing value then
+		{command:missing value, mode:missing value, baseCommand:missing value}
+	else
+		try
+			get command of command_info
+		on error
+			set command_info to command_info & {command:missing value}
+		end try
+		set command_info to command_info & {mode:missing value, baseCommand:missing value}
+	end if
+	
 	set firstLine to paragraph_at_index(1) of EditorClient
 	
-	set a_command to missing value
 	if firstLine starts with "#!" then
 		set a_command to text 3 thru -1 of firstLine
 		set a_command to XText's strip(a_command)
+		set command of command_info to a_command
 	end if
 	
-	set a_mode to document_mode() of EditorClient
-	if a_command is missing value then
-		set a_command to call method "commandForMode:" of TerminalClient with parameter a_mode
+	set mode of command_info to document_mode() of EditorClient
+	if command of command_info is missing value then
+		set a_command to call method "commandForMode:" of TerminalClient with parameter (mode of command_info)
 		try
 			get a_command
-		on error number -2753
-			set a_command to missing value
+			set command of command_info to command_info
 		end try
 	end if
 	
-	if a_command is missing value then
+	if command of command_info is missing value then
 		set msg to XText's make_with(localized string "DocHasNotCommand")'s format_with({doc_info's name})
 		EditorClient's show_message(msg's as_unicode())
 		error "The document does not start with #!." number 1620
 	end if
-	--log "end resolveCommand"
-	return {command:a_command, mode:a_mode, baseCommand:missing value}
-end resolveCommand
+	--log "end resolve_command"
+	return command_info
+end resolve_command
 
 on resolveHeaderCommand()
 	--log "start resolveHeaderCommand"
@@ -181,11 +191,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 	set doc_info to document_info given allowUnSaved:interactiveFlag, allowModified:interactiveFlag
 	
 	(* resolve command name *)
-	if command_info is missing value then
-		set command_info to resolveCommand(doc_info)
-	else
-		set command_info to command_info & resolveCommand(doc_info)
-	end if
+	set command_info to resolve_command(doc_info, command_info)
 	
 	--log "get header commands"
 	set hearder_coms to resolveHeaderCommand()

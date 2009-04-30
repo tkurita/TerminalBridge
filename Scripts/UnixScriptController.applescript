@@ -165,7 +165,14 @@ on getCommonTerminal(optionRecord)
 	return an_executer
 end getCommonTerminal
 
-(*===  simply run in Terminal *)
+(*===  simply run in Terminal
+Abailable labels for optionRecord
+- command
+- commandOption
+- postOption
+- preOption
+- commandArg
+*)
 on run_in_terminal(optionRecord)
 	set an_executer to getCommonTerminal(optionRecord)
 	if an_executer is missing value then return
