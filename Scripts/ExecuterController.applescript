@@ -46,7 +46,7 @@ end document_info
 on resolve_command(doc_info, command_info)
 	--log "start resolve_command"
 	if command_info is missing value then
-		{command:missing value, mode:missing value, baseCommand:missing value}
+		set command_info to {command:missing value, mode:missing value, baseCommand:missing value}
 	else
 		try
 			get command of command_info
@@ -69,7 +69,7 @@ on resolve_command(doc_info, command_info)
 		set a_command to call method "commandForMode:" of TerminalClient with parameter (mode of command_info)
 		try
 			get a_command
-			set command of command_info to command_info
+			set command of command_info to a_command
 		end try
 	end if
 	
