@@ -127,7 +127,7 @@ on resolveHeaderCommand()
 end resolveHeaderCommand
 
 on interactive_executer(doc_info, command_info, hearder_coms)
-	log "start interactive_executer"
+	-- log "start interactive_executer"
 	--	log doc_info
 	--	log command_info
 	--	log hearder_coms
@@ -178,8 +178,8 @@ on interactive_executer(doc_info, command_info, hearder_coms)
 			log "no cached excuter for " & executer_key
 		end try
 	end if
-	log "executer_key : " & executer_key
-	log "end of interactive_executer"
+	--log "executer_key : " & executer_key
+	--log "end of interactive_executer"
 	return {executer_key, an_executer}
 end interactive_executer
 
