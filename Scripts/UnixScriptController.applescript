@@ -56,7 +56,6 @@ on show_interactive_terminal()
 			show_message("can't open new terminal") of EditorClient -- this message should not be shown.
 		end if
 	end if
-	
 	if not a_result then
 		set msg to localized string "cantFindTerminal"
 		show_message(msg) of EditorClient

@@ -58,6 +58,7 @@ on bring_to_front given allowing_busy:isAllowBusy
 		--log "success to resolve_terminal"
 		set a_result to (my _target_terminal)'s bring_to_front()
 	else
+		--log "fail to resolove_terminal"
 		set a_result to false
 	end if
 	--log ("result of bring_to_front:" & a_result)
@@ -162,8 +163,8 @@ end prepare_terminal_with_owner
 
 on send_command for a_command given allowing_busy:isBusyAllowed
 	--log "start send_command in executer"
-	--log a_command
 	set x_command to cleanup_command_text(a_command)
+	
 	try
 		set escape_chars to my _options's value_for_key("escapeChars")
 		repeat with a_char in escape_chars
@@ -173,6 +174,7 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 		end repeat
 	end try
 	set a_command to x_command's as_unicode()
+	set a_command to call method "stringByReplacingOccurrencesOfRegex:withString:" of a_command with parameters {"(?m)^\\s+", ""}
 	--log "before resolve_terminal"
 	if resolve_terminal of (my _target_terminal) given allowing_busy:isBusyAllowed then
 		--log "before check_terminal_status in sendCommand in executer"
@@ -180,7 +182,8 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 		if a_result is kTerminalReady then
 			--log "will do_in_current_term"
 			--log a_command
-			do_in_current_term of (my _target_terminal) for a_command without activation
+			set a_text to a_command as text
+			do_in_current_term of (my _target_terminal) for a_text without activation
 		else if a_result is kShowTerminal then
 			set the clipboard to a_command
 		else
