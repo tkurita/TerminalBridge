@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.3.2b copyright 2005-2009, Tetsuro KURITA</string>
+	<string>2.3.2b copyright 2005-2010, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>

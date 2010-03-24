@@ -1,15 +1,9 @@
-(* shared script objects *)
-property loader : proxy() of application (get "UnixScriptToolsLib")
-
-on load(a_name)
-	return loader's load(a_name)
-end load
-
-property XText : load("XText")
-property XList : XText's XList
-property XFile : load("XFile")
-property XDict : load("XDict")
-property TerminalCommanderBase : load("TerminalCommander")
+property XText : module
+property XList : module
+property XFile : module
+property XDict : module
+property TerminalCommanderBase : module "TerminalCommander"
+property loader : boot (module loader of application (get "UnixScriptToolsLib")) for me
 
 property TerminalCommander : missing value
 property TerminalSettings : missing value
