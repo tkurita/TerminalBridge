@@ -148,6 +148,7 @@ on check_terminal_status(n_checks)
 end check_terminal_status
 
 on prepare_terminal_with_owner(a_xfile)
+	--log "start prepare_terminal_with_owner"
 	set my _owner_file to a_xfile
 	set a_result to true
 	set my _target_terminal to make TerminalCommander
@@ -207,9 +208,6 @@ on open_new_term_for_command(a_command)
 		set all_command to interactive_command
 	end if
 	--log all_command
-	
-	set a_command to my _command_builder's interactive_command()
-	set a_command to UtilityHandlers's clean_yenmark(a_command)
 	return do_in_new_term of (my _target_terminal) for all_command without activation
 end open_new_term_for_command
 
@@ -297,7 +295,7 @@ on send_to_common_term for a_command given activation:activateFlag
 end send_to_common_term
 
 on make_with(a_command_builder)
-	--log "start makeObj in UnixScriptExecuter"
+	--log "start make_with in UnixScriptExecuter"
 	script UnixScriptExecuter
 		property _command_builder : a_command_builder
 		--property _clean_commands : missing value
