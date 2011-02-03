@@ -7,11 +7,13 @@
 	<key>CFBundleExecutable</key>
 	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.3.2b copyright 2005-2010, Tetsuro KURITA</string>
+	<string>2.3.2 copyright 2005-2011, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>UnixScriptTools for mi ヘルプ</string>
+	<key>CFBundleIconFile</key>
+	<string>TerminalBridge.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>TerminalBridge</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -23,7 +25,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2.3.2</string>
+	<string>6</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
