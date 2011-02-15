@@ -50,52 +50,11 @@ on launched theObject
 	(*end of debug code*)
 end launched
 
-on process_oldies(theObject)
-	set command_id to commandID of theObject
-	
-	set arg to missing value
-	try
-		set arg to argument of theObject
-	end try
-	
-	if command_id is "runWithFinderSelection" then
-		run_with_finder_selection(arg) of UnixScriptController
-	else if command_id is "RunInTerminal" then
-		run_in_terminal(arg) of UnixScriptController
-	else if command_id is "sendCommandInCommonTerm" then
-		send_to_common_term(arg) of UnixScriptController
-	else if command_id is "send_in_named_term" then
-		send_in_named_term(arg) of UnixScriptController
-		
-		(* interactive process *)
-	else if command_id is "sendSelection" then
-		send_selection(arg) of UnixScriptController
-	else if command_id is "showInteractiveTerminal" then
-		show_interactive_terminal() of UnixScriptController
-	else if command_id is "sendCommand" then
-		send_command(arg) of UnixScriptController
-	else if command_id is "getLastResult" then
-		last_result() of UnixScriptController
-		(* control UnixScriptServer *)
-	else if command_id is "setting" then
-		open_window() of SettingWindowController
-	else if command_id is "Help" then
-		call method "showHelp:"
-	end if
-	
-	try
-		if (activateTerminal of theObject) then
-			call method "activateAppOfIdentifier:" of class "SmartActivate" with parameter "com.apple.Terminal"
-		end if
-	end try
-end process_oldies
-
 on open theObject
 	if class of theObject is record then
 		try
 			set command_class to commandClass of theObject
 		on error
-			--process_oldies(theObject)
 			return true
 		end try
 		if command_class is "action" then

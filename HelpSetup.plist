@@ -5,8 +5,10 @@
 	<key>IsLocalized</key>
 	<false/>
 	<key>ManualFolder</key>
-	<string>/Users/tkurita/Factories/Websites/scriptfactory/web-content/Softwares/mi/UnixScriptToolsFormi/manual</string>
+	<string>/Users/tkurita/Factories/Websites/scriptfactory/web-content/software/mi/UnixScriptToolsFormi/manual</string>
 	<key>ManualPage</key>
 	<string>index.html</string>
+	<key>AppleIcon</key>
+	<string>TerminalBridge16.png</string>
 </dict>
 </plist>

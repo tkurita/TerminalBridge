@@ -144,14 +144,13 @@ on send_selection(arg)
 	else
 		set x_command to x_command's replace(tab, " ")
 	end if
-	
 	if length of x_command > 0 then
 		send_command of an_executer for (x_command's as_unicode()) with allowing_busy
 	end if
 end send_selection
 
 (*= non-interactive commands *)
-on getCommonTerminal(optionRecord)
+on common_terminal(optionRecord)
 	try
 		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowing_busy
 	on error errMsg number errnum
@@ -162,7 +161,7 @@ on getCommonTerminal(optionRecord)
 	end try
 	an_executer's set_run_options(optionRecord)
 	return an_executer
-end getCommonTerminal
+end common_terminal
 
 (*===  simply run in Terminal
 Abailable labels for optionRecord
@@ -173,7 +172,7 @@ Abailable labels for optionRecord
 - commandArg
 *)
 on run_in_terminal(optionRecord)
-	set an_executer to getCommonTerminal(optionRecord)
+	set an_executer to common_terminal(optionRecord)
 	if an_executer is missing value then return
 	
 	run_script of an_executer with activation
@@ -208,7 +207,7 @@ on run_with_finder_selection(optionRecord)
 		set optionRecord to optionRecord & {commandArg:a_selection}
 	end if
 	
-	set an_executer to getCommonTerminal(optionRecord)
+	set an_executer to common_terminal(optionRecord)
 	if an_executer is missing value then return
 	
 	run_script of an_executer with activation
