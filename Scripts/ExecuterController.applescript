@@ -5,7 +5,8 @@ global EditorClient
 global XText
 global UnixScriptExecuter
 global TerminalClient
-global XFile
+--global XFile
+global PathInfo
 
 property _interactiveExecuters : missing value
 property _hcommandLabels : {"useOwnTerm", "escapeChars", "output", "prompt", "interactive", "shareTerm"}
@@ -37,7 +38,8 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 		end if
 	end if
 	if a_script_file is not missing value then
-		set a_script_file to XFile's make_with(a_script_file)
+		--set a_script_file to XFile's make_with(a_script_file)
+		set a_script_file to PathInfo's make_with(a_script_file)
 	end if
 	--log "end document_info"
 	return {name:a_name, file:a_script_file}
@@ -227,7 +229,7 @@ on get_executer for command_info given interactive:interactiveFlag, allowing_bus
 			else
 				try
 					set shared_path to hearder_coms's value_for_key("shareTerm")
-					set terminal_owner to XFile's make_with(executer_key)
+					set terminal_owner to PathInfo's make_with(executer_key)
 				end try
 			end if
 			if an_executer's prepare_terminal_with_owner(terminal_owner) then

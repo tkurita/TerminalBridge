@@ -3,8 +3,10 @@ global TerminalClient
 global UtilityHandlers
 global XText
 global XList
+global PathInfo
 global EditorClient
 global appController
+
 
 (* constants of result of check_terminal_status *)
 property kTerminalReady : "TerminalReady"
@@ -182,7 +184,6 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 		set a_result to check_terminal_status(0)
 		if a_result is kTerminalReady then
 			--log "will do_in_current_term"
-			--log a_command
 			set a_text to a_command as text
 			do_in_current_term of (my _target_terminal) for a_text without activation
 		else if a_result is kShowTerminal then
@@ -208,6 +209,14 @@ on open_new_term_for_command(a_command)
 		set all_command to interactive_command
 	end if
 	--log all_command
+	if my _fresh then
+		set my _fresh to false
+	else
+		if my _owner_file is not missing value then
+			set my _owner_file to PathInfo's make_with(my _owner_file's as_alias())
+			my _target_terminal's set_custom_title(build_terminal_title())
+		end if
+	end if
 	return do_in_new_term of (my _target_terminal) for all_command without activation
 end open_new_term_for_command
 
@@ -269,7 +278,7 @@ on build_terminal_title()
 	-- log "start build_terminal_title"
 	set a_title to "* Inferior " & my _command_builder's base_command()
 	if my _owner_file is not missing value then
-		my _owner_file's update_cache()
+		--my _owner_file's update_cache()
 		set a_title to a_title & "--" & my _owner_file's item_name()
 	end if
 	-- log ("end build_terminal_title" & a_title)
@@ -304,5 +313,6 @@ on make_with(a_command_builder)
 		property _options : missing value
 		property _owner_file : missing value
 		property _docmode : missing value
+		property _fresh : true
 	end script
 end make_with

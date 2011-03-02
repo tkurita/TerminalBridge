@@ -1,6 +1,7 @@
 property XText : module
 property XList : module
 property XFile : module
+property PathInfo : module
 property XDict : module
 property TerminalCommanderBase : module "TerminalCommander"
 property loader : boot (module loader of application (get "UnixScriptToolsLib")) for me
