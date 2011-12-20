@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.3.3b copyright 2005-2011, Tetsuro KURITA</string>
+	<string>2.3.3 copyright 2005-2011, Tetsuro KURITA</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3.3b</string>
+	<string>2.3.3</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>copyright 2005-2011, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
@@ -39,6 +39,6 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>DonationURL</key>
-	<string>http://homepage.mac.com/tkurita/scriptfactory/donationproxy.html</string>
+	<string>http://www.script-factory.net/donationproxy.html</string>
 </dict>
 </plist>

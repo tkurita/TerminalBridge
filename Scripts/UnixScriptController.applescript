@@ -130,11 +130,11 @@ on send_selection(arg)
 			if is_end_with_strings(x_command, line_end_escapes) then
 				set current_index to index_current_paragraph() of EditorClient
 				set next_index to current_index + 1
-				set next_line to paragraph_at_index(next_index) of EditorClient
+				set next_line to paragraph_at(next_index) of EditorClient
 				set command_list to {x_command's as_unicode(), next_line}
 				repeat while (is_end_with_strings(XText's make_with(next_line), line_end_escapes))
 					set next_index to next_index + 1
-					set next_line to paragraph_at_index(next_index) of EditorClient
+					set next_line to paragraph_at(next_index) of EditorClient
 					set end of command_list to next_line
 				end repeat
 				set x_command to XList's make_with(command_list)'s as_xtext_with("")'s replace(tab, " ")

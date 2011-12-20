@@ -58,7 +58,7 @@ on resolve_command(doc_info, command_info)
 		set command_info to command_info & {mode:missing value, baseCommand:missing value}
 	end if
 	
-	set firstLine to paragraph_at_index(1) of EditorClient
+	set firstLine to paragraph_at(1) of EditorClient
 	
 	if firstLine starts with "#!" then
 		set a_command to text 3 thru -1 of firstLine
