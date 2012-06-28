@@ -28,7 +28,7 @@ on last_result()
 	end if
 	
 	if ((count paragraph of a_result) is 2) and (paragraph 2 of a_result is "") then
-		set selectionRec to getSelectionRecord() of EditorClient
+		set selectionRec to EditorClient's selection_info()
 		if (cursorInParagraph of selectionRec is not 0) then
 			set a_result to first paragraph of a_result
 		end if
@@ -66,9 +66,9 @@ on send_command(a_command)
 	--log "start send_command in UnixScriptController"
 	try
 		set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
-	on error errMsg number errnum
+	on error errmsg number errnum
 		if errnum is not in my _ignoring_errors then
-			error errMsg number errnum
+			error errmsg number errnum
 		end if
 		return
 	end try
@@ -100,9 +100,9 @@ on send_selection(arg)
 	--log "start send_selection"
 	try
 		set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
-	on error errMsg number errnum
+	on error errmsg number errnum
 		if errnum is not in my _ignoring_errors then
-			error errMsg number errnum
+			error errmsg number errnum
 		end if
 		return
 	end try
@@ -153,9 +153,9 @@ end send_selection
 on common_terminal(optionRecord)
 	try
 		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowing_busy
-	on error errMsg number errnum
+	on error errmsg number errnum
 		if errnum is not in {1600, 1610, 1620, 1670} then
-			error errMsg number errnum
+			error errmsg number errnum
 		end if
 		return missing value
 	end try
