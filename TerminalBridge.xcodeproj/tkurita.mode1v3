@@ -235,8 +235,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -274,6 +272,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>2C0BB03D0A7E5E39007AFDE3</string>
+								<string>2C0B914D08B5CF1900602706</string>
 								<string>29B97323FDCFA39411CA2CEA</string>
 								<string>1058C7A0FEA54F0111CA2CBB</string>
 								<string>1058C7A2FEA54F0111CA2CBB</string>
@@ -284,8 +284,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>22</integer>
-									<integer>21</integer>
+									<integer>37</integer>
+									<integer>36</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -360,12 +360,14 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>UnixScriptController.applescript</string>
+								<string>TitlelessWindow.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -373,11 +375,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>UnixScriptController.applescript</string>
+										<string>TitlelessWindow.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>2C8407AF159C24CF0088C648</string>
+										<string>2C8407DF159C27840088C648</string>
 										<key>history</key>
 										<array>
 											<string>2C7736B21308C815001C7FD2</string>
@@ -385,7 +387,9 @@
 											<string>2C38BCAB14A0CF2A00568B88</string>
 											<string>2C91CF1914DAF27700588379</string>
 											<string>2C8407AE159C24CF0088C648</string>
-											<string>2C8407AA159C24CE0088C648</string>
+											<string>2C8407B7159C25160088C648</string>
+											<string>2C8407C3159C257B0088C648</string>
+											<string>2C8407C4159C257B0088C648</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -592,8 +596,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>2C8407D6159C26AE0088C648</string>
+		<string>2C8407D7159C26AE0088C648</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>2C9A5F1D0E8DB722009680D1</string>
+		<string>1C78EAAD065D492600B07095</string>
 		<string>/Users/tkurita/Dev/Projects/UnixScriptTools-for-mi/TerminalBridge/trunk/TerminalBridge.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -618,7 +626,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>TitlelessWindow.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -635,6 +643,8 @@
 							<string>323pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -794,13 +804,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>2CE666C414FBE06C00B3755C</string>
+				<string>2C8407BA159C25160088C648</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>2CE666C514FBE06C00B3755C</string>
-				<string>2CE666C614FBE06C00B3755C</string>
-				<string>2CE666C714FBE06C00B3755C</string>
-				<string>2CE666C814FBE06C00B3755C</string>
-				<string>2CE666C914FBE06C00B3755C</string>
+				<string>2C8407BB159C25160088C648</string>
+				<string>2C8407BC159C25160088C648</string>
+				<string>2C8407BD159C25160088C648</string>
+				<string>2C8407BE159C25160088C648</string>
+				<string>2C8407BF159C25160088C648</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -958,7 +968,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>2CE76595131DF63400C56787</string>
+				<string>2C8407D2159C26950088C648</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
