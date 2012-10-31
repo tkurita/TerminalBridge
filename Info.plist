@@ -7,11 +7,11 @@
 	<key>CFBundleExecutable</key>
 	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.3.3 copyright 2005-2011, Tetsuro KURITA</string>
+	<string>2.3.4 copyright 2005-2012, Tetsuro KURITA</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3.3</string>
+	<string>2.3.4</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>copyright 2005-2011, Tetsuro KURITA</string>
+	<string>copyright 2005-2012, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
@@ -29,7 +29,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>9</string>
+	<string>10</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
