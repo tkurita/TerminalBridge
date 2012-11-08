@@ -1,4 +1,3 @@
-global TerminalSettings
 global appController
 
 property WindowController : missing value
