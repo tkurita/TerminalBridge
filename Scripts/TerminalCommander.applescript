@@ -47,7 +47,7 @@ on buildup()
 			if a_name is missing value then
 				tell current application's class "NSUserDefaults"
 					tell its standardUserDefaults()
-						set activate_flag to stringForKey_("SettingsSetName")
+						set a_name to stringForKey_("SettingsSetName")
 					end tell
 				end tell
 			end if
