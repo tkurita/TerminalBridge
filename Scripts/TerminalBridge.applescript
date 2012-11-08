@@ -10,7 +10,6 @@ script TerminalBrdigeController
 	property loader : boot (module loader of application (get "UnixScriptToolsLib")) for me
 	
 	property TerminalCommander : missing value
-	property TerminalSettings : missing value
 	property UtilityHandlers : missing value
 	
 	property ExecuterController : missing value
