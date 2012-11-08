@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+<dictionary title="Dictionary">
+	<suite name="TerminalBridge Suite" code="TmBd">
+		<command name="perform task" code="TmBdPfTs" description="order a task to TerminalBridge">
+			<cocoa class="PerformScriptCommand"/>
+			<parameter name="with script" code="whSp" description="script object" type="any">
+				<cocoa key="withScript"/>
+			</parameter>
+		</command>
+		<command name="show help" code="TmBdsHHp" description="open a helpbook in the HelpViewer.">
+			<cocoa class="ShowHelpCommand"/>
+		</command>
+	</suite>
+</dictionary>

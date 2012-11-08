@@ -7,9 +7,9 @@
 	<key>CFBundleExecutable</key>
 	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
-	<string>2.3.4 copyright 2005-2012, Tetsuro KURITA</string>
+	<string>2.4 copyright 2005-2012, Tetsuro KURITA</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3.4</string>
+	<string>2.4</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>copyright 2005-2012, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
@@ -29,7 +29,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>12</string>
 	<key>LSUIElement</key>
 	<string>1</string>
 	<key>NSAppleScriptEnabled</key>
@@ -40,5 +40,7 @@
 	<string>NSApplication</string>
 	<key>DonationURL</key>
 	<string>http://www.script-factory.net/donationproxy.html</string>
+	<key>OSAScriptingDefinition</key>
+	<string>TerminalBridge.sdef</string>
 </dict>
 </plist>

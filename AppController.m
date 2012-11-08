@@ -14,6 +14,7 @@ enum cantExecWindowResult {
 
 @implementation AppController
 @synthesize terminalName;
+@synthesize factoryDefaults;
 
 + (void)initialize	// Early initialization
 {	
@@ -81,6 +82,10 @@ enum cantExecWindowResult {
 	[[NSApp mainWindow] close];
 }
 
+- (id)terminalBridgeController
+{
+	return terminalBridgeController;
+}
 
 #pragma mark methods for factory settings
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
@@ -93,9 +98,9 @@ enum cantExecWindowResult {
 - (id)factoryDefaultForKey:(NSString *)theKey
 {
 #if useLog
-	NSLog(@"call farcotryDefaultForKey");
+	NSLog(@"start farcotryDefaultForKey");
 #endif
-	return [factoryDefaults objectForKey:theKey];
+	return [factoryDefaults objectForKey:theKey];;
 }
 
 #pragma mark delegate of NSApplication
@@ -110,6 +115,11 @@ enum cantExecWindowResult {
 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:factoryDefaults];
+	
+	[terminalBridgeController setup];
+#if useLog
+	NSLog(@"end applicationWillFinishLaunching");
+#endif
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -123,8 +133,9 @@ enum cantExecWindowResult {
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
-	
+	[startupWindow close];
 	[DonationReminder remindDonation];
+	//[terminalBridgeController performDebug];
 }
 
 #pragma mark methods for can't exec window
@@ -186,5 +197,12 @@ enum cantExecWindowResult {
 	}
 	return result;
 }
+
+/*
+- (void)awakeFromNib
+{
+	NSLog(@"start awakeFromNib in AppController");
+}
+ */
 
 @end

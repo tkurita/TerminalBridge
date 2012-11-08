@@ -1,108 +1,70 @@
-property XText : module
-property XList : module
-property XFile : module
-property PathInfo : module
-property XDict : module
-property TerminalCommanderBase : module "TerminalCommander"
-property loader : boot (module loader of application (get "UnixScriptToolsLib")) for me
-
-property TerminalCommander : missing value
-property TerminalSettings : missing value
-property UtilityHandlers : missing value
-property MessageUtility : missing value
-property appController : missing value
-
-property ExecuterController : missing value
-property UnixScriptExecuter : missing value
-property UnixScriptController : missing value
-property SettingWindowController : missing value
-property CommandBuilder : missing value
-property EditorClient : missing value
-property TerminalClient : missing value
-
-(*shared constants *)
-property linefeed : ASCII character 10
-property backslash : ASCII character 128
-
-(* events of application*)
-on import_script(scriptName)
-	--log "start import_script"
-	--log scriptName
-	tell main bundle
-		set scriptPath to path for script scriptName extension "scpt"
-	end tell
-	--log "end import_script"
-	return load script POSIX file scriptPath
-end import_script
-
-on launched theObject
-	hide window "Startup"
-	(*debug code*)
-	--show_interactive_terminal() of UnixScriptController
-	--log "start launched"
-	--open_window() of SettingWindowController
-	--last_result() of UnixScriptController
-	--open {commandID:"runWithFinderSelection", argument:{postOption:"|pbcopy"}}
-	--UnixScriptController's send_selection({lineEndEscape:{backslash, "..."}})
-	--run_in_terminal(missing value) of UnixScriptController
-	--runWithFSToClipboard()
-	--send_selection(missing value) of UnixScriptController
-	--checkSyntax()
-	(*end of debug code*)
-end launched
-
-on open theObject
-	if class of theObject is record then
-		try
-			set command_class to commandClass of theObject
-		on error
-			return true
-		end try
-		if command_class is "action" then
-			theObject's commandScript's do(me)
-		end if
-	end if
-	--display dialog command_id
-	return true
-end open
-
-on choose menu item theObject
-	set a_name to name of theObject
-	if a_name is "Preference" then
-		show window "Setting"
-	end if
-end choose menu item
-
-on will finish launching theObject
-	--log "start will finish launching"	
-	showStartupMessage("Loading Scripts ...")
-	--set appController to call method "delegate"
-	set appController to call method "sharedAppController" of class "AppController"
-	set UtilityHandlers to import_script("UtilityHandlers")
-	set MessageUtility to import_script("MessageUtility")
-	set TerminalCommander to buildup() of (import_script("TerminalCommander"))
-	tell TerminalCommander
-		set_custom_title(call method "factoryDefaultForKey:" of appController with parameter "CustomTitle")
-	end tell
+script TerminalBrdigeController
+	property parent : class "NSObject"
 	
-	set UnixScriptExecuter to import_script("UnixScriptExecuter")
-	set CommandBuilder to import_script("CommandBuilder")
-	set ExecuterController to import_script("ExecuterController")
-	ExecuterController's initialize()
-	set UnixScriptController to import_script("UnixScriptController")
+	property XText : module
+	property XList : module
+	property XFile : module
+	property PathInfo : module
+	property XDict : module
+	property TerminalCommanderBase : module "TerminalCommander"
+	property loader : boot (module loader of application (get "UnixScriptToolsLib")) for me
 	
-	set SettingWindowController to import_script("SettingWindowController")
-	set EditorClient to import_script("EditorClient")
-	--log "end of import_scripts"
+	property TerminalCommander : missing value
+	property TerminalSettings : missing value
+	property UtilityHandlers : missing value
 	
-	--showStartupMessage("Loading Preferences ...")
-	--log "before loadSetting() of TerminalSettings"
-	--log "end of initializing TerminalSettings"
+	property ExecuterController : missing value
+	property UnixScriptExecuter : missing value
+	property UnixScriptController : missing value
+	property SettingWindowController : missing value
+	property CommandBuilder : missing value
+	property EditorClient : missing value
+	property TerminalClient : missing value
 	
-	--log "end finish launching"
-end will finish launching
-
-on showStartupMessage(msg)
-	set contents of text field "StartupMessage" of window "Startup" to msg
-end showStartupMessage
-
+	(*shared constants *)
+	property linefeed : ASCII character 10
+	property backslash : ASCII character 128
+	
+	(* IB outlets *)
+	property appController : missing value
+	property startupMessageField : missing value
+	
+	on import_script(a_name)
+		--log "start import_script"
+		set a_script to load script (path to resource a_name & ".scpt")
+		return a_script
+	end import_script
+	
+	on performDebug()
+		UnixScriptController's show_interactive_terminal()
+	end performDebug
+	
+	on performTask_(a_script)
+		set a_script to a_script as script
+		a_script's do(me)
+	end performTask_
+	
+	on setup()
+		startupMessageField's setStringValue_("Loading Scripts ...")
+		set UtilityHandlers to import_script("UtilityHandlers")
+		set TerminalCommander to buildup() of (import_script("TerminalCommander"))
+		tell TerminalCommander
+			set_custom_title(appController's factoryDefaultForKey_("CustomTitle") as text)
+		end tell
+		
+		set UnixScriptExecuter to import_script("UnixScriptExecuter")
+		set CommandBuilder to import_script("CommandBuilder")
+		set ExecuterController to import_script("ExecuterController")
+		ExecuterController's initialize()
+		set UnixScriptController to import_script("UnixScriptController")
+		
+		set SettingWindowController to import_script("SettingWindowController")
+		set EditorClient to import_script("EditorClient")
+	end setup
+	
+	on activate_process(app_id)
+		tell current application's class "SmartActivate"
+			activateAppOfIdentifier_(app_id)
+		end tell
+	end activate_process
+end script

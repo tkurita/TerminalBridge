@@ -10,10 +10,13 @@
 	IBOutlet NSTextView *processListView;
 	IBOutlet NSButton *addProcessButton;
 	IBOutlet NSButton *showTerminalButton;
+	IBOutlet id terminalBridgeController;
+	IBOutlet NSWindow *startupWindow;
 	NSString *terminalName;
 }
 
 @property(retain, readwrite) NSString *terminalName;
+@property(retain, readwrite) NSDictionary *factoryDefaults;
 
 + (id)sharedAppController;
 
@@ -29,6 +32,6 @@
 - (void)checkQuit:(NSTimer *)aTimer;
 - (id)factoryDefaultForKey:(NSString *)theKey;
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey;
-
+- (id)terminalBridgeController;
 
 @end

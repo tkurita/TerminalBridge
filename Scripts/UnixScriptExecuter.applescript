@@ -17,17 +17,6 @@ property kCancel : "Cancel"
 (*== Common Handlers *)
 on set_options(opt_dict)
 	set my _options to opt_dict
-	(*
-	try
-		set_prompt(my _options's value_for_key("prompt"))
-	on error number 900
-	end try
-	
-	try
-		set_clean_commands(my _options's value_for_key("process"))
-	on error number 900
-	end try
-	*)
 	try
 		my _command_builder's set_post_option(my _options's value_for_key("output"))
 	on error number 900
@@ -78,17 +67,14 @@ on is_ready_prompt()
 	set a_prompt to command_prompt()
 	if a_prompt is missing value then return false
 	set a_contents to my _target_terminal's window_contents()
-	set a_result to call method "isReadyTerminalContents:withPrompt:" of TerminalClient with parameters {a_contents, a_prompt}
-	return (a_result is 1)
+	return TerminalClient's isReadyTerminalContents_withPrompt_(a_contents, a_prompt) as boolean
 end is_ready_prompt
 
 on settings_name()
-	set a_name to call method "settingsNameForMode:" of TerminalClient with parameter (my _docmode)
-	try
-		get a_name
-	on error
-		set a_name to missing value
-	end try
+	set a_name to TerminalClient's settingsNameForMode_(my _docmode)
+	if a_name is not missing value then
+		set a_name to a_name as text
+	end if
 	return a_name
 end settings_name
 
@@ -127,9 +113,8 @@ on check_terminal_status(n_checks)
 			
 			if length of new_processes > 0 then
 				set a_name to terminal_name() of my _target_terminal
-				set a_result to call method "displayCantExecWindowForTerminalName:processes:" of appController with parameters {a_name, new_processes}
+				set a_result to appController's displayCantExecWindowForTerminalName_processes_(a_name, new_processes) as text
 			end if
-			
 			if a_result is kShowTerminal then
 				bring_to_front() of my _target_terminal
 			else if a_result is kNewTerminal then
@@ -158,14 +143,13 @@ on prepare_terminal_with_owner(a_xfile)
 	tell my _target_terminal
 		forget()
 		set_custom_title(a_title)
-		--set_clean_commands(my _clean_commands)
 		set_delegate(me)
 	end tell
 	return a_result
 end prepare_terminal_with_owner
 
 on send_command for a_command given allowing_busy:isBusyAllowed
-	--log "start send_command in executer"
+	--log "start send_command in UnixScriptExecuter"
 	set x_command to cleanup_command_text(a_command)
 	
 	try
@@ -177,13 +161,14 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 		end repeat
 	end try
 	set a_command to x_command's as_unicode()
-	set a_command to call method "stringByReplacingOccurrencesOfRegex:withString:" of a_command with parameters {"(?m)^\\s+", ""}
-	--log "before resolve_terminal"
+	tell current application's class "NSString"
+		tell its stringWithString_(a_command)
+			set a_command to stringByReplacingOccurrencesOfRegex_withString_("(?m)^\\s+", "") as text
+		end tell
+	end tell
 	if resolve_terminal of (my _target_terminal) given allowing_busy:isBusyAllowed then
-		--log "before check_terminal_status in sendCommand in executer"
 		set a_result to check_terminal_status(0)
 		if a_result is kTerminalReady then
-			--log "will do_in_current_term"
 			set a_text to a_command as text
 			do_in_current_term of (my _target_terminal) for a_text without activation
 		else if a_result is kShowTerminal then
@@ -195,7 +180,7 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 		open_new_term_for_command(a_command)
 	end if
 	
-	--log "end send_command"
+	--log "end send_command UnixScriptExecuter"
 	return true
 end send_command
 
@@ -217,6 +202,7 @@ on open_new_term_for_command(a_command)
 			my _target_terminal's set_custom_title(build_terminal_title())
 		end if
 	end if
+	--log "before do_in_new_term"
 	return do_in_new_term of (my _target_terminal) for all_command without activation
 end open_new_term_for_command
 
@@ -233,7 +219,7 @@ on command_prompt()
 	set a_result to missing value
 	if my _command_prompt is missing value then
 		if my _docmode is not missing value then
-			set a_prompt to call method "promptForMode:" of TerminalClient with parameter (my _docmode)
+			set a_prompt to TerminalClient's promptForMode_(my _docmode) as text
 			try
 				get a_prompt
 			on error
@@ -247,31 +233,28 @@ on command_prompt()
 	--log "end command_prompt with result : " & a_result
 	return a_result
 end command_prompt
-(*
-on set_clean_commands(processes)
-	set my _clean_commands to processes & ";" & (contents of default entry "CleanCommands" of user defaults)
-end set_clean_commands
-*)
+
 on last_result()
-	-- log "start last_result in UnixScriptExecuter"
+	--log "start last_result in UnixScriptExecuter"
 	if not (resolve_terminal of (my _target_terminal) with allowing_busy) then
 		error "No Terminal found." number 1640
 		return missing value
 	end if
 	
 	set a_contents to my _target_terminal's window_contents()
-	set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, command_prompt()}
+	set a_prompt to command_prompt()
+	set a_result to TerminalClient's extactLastResult_withPrompt_(a_contents, a_prompt) as integer
 	if a_result is -1 then
 		set a_contents to my _target_terminal's buffer_history()
-		set a_result to call method "extactLastResult:withPrompt:" of TerminalClient with parameters {a_contents, command_prompt()}
+		set a_result to TerminalClient's extactLastResult_withPrompt_(a_contents, command_prompt())
 	end if
 	
 	if a_result is not 1 then
 		return missing value
 	end if
 	
-	-- log "end last_result in UnixScriptExecuter"
-	return call method "lastResultWithCR" of TerminalClient
+	--log "end last_result in UnixScriptExecuter"
+	return TerminalClient's lastResultWithCR() as text
 end last_result
 
 on build_terminal_title()
@@ -307,7 +290,6 @@ on make_with(a_command_builder)
 	--log "start make_with in UnixScriptExecuter"
 	script UnixScriptExecuter
 		property _command_builder : a_command_builder
-		--property _clean_commands : missing value
 		property _target_terminal : missing value
 		property _command_prompt : missing value
 		property _options : missing value

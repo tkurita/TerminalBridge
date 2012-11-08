@@ -5,9 +5,12 @@ property WindowController : missing value
 property targetWindow : missing value
 
 on initilize()
-	set WindowController to call method "alloc" of class "SettingWindowController"
-	set WindowController to call method "initWithWindowNibName:" of WindowController with parameter "Setting"
-	set targetWindow to call method "window" of WindowController
+	tell current application
+		tell class "SettingWindowController"'s alloc()
+			set WindowController to initWithWindowNibName_("Setting")
+		end tell
+	end tell
+	set targetWindow to WindowController's |window|()
 end initilize
 
 on open_window()
@@ -16,5 +19,5 @@ on open_window()
 		initilize()
 	end if
 	activate
-	call method "showWindow:" of WindowController
+	WindowController's showWindow_(me)
 end open_window

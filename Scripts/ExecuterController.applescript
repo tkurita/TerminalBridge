@@ -1,4 +1,3 @@
-global MessageUtility
 global CommandBuilder
 global XDict
 global EditorClient
@@ -12,7 +11,9 @@ property _interactiveExecuters : missing value
 property _hcommandLabels : {"useOwnTerm", "escapeChars", "output", "prompt", "interactive", "shareTerm"}
 
 on initialize()
-	set TerminalClient to call method "sharedTerminalClient" of class "TerminalClient"
+	tell current application's class "TerminalClient"
+		set TerminalClient to sharedTerminalClient()
+	end tell
 end initialize
 
 on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModified
@@ -22,7 +23,6 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 	end if
 	set a_name to EditorClient's document_name()
 	set a_script_file to EditorClient's document_file_as_alias()
-	
 	if (not isAllowUnsaved) and (a_script_file is missing value) then
 		set msg to XText's make_with(localized string "DocIsNotSaved")'s format_with({a_name})
 		EditorClient's show_message(msg's as_unicode())
@@ -30,7 +30,7 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 	end if
 	
 	if not isAllowModified then
-		set modified_flag to is_modified() of EditorClient
+		set modified_flag to EditorClient's is_modified()
 		if modified_flag then
 			if not EditorClient's save_with_asking(localized string "DocumentIsModified_AskSave") then
 				error "The documen is modified. Saving the document is canceld by user." number 1610
@@ -38,7 +38,7 @@ on document_info given allowUnSaved:isAllowUnsaved, allowModified:isAllowModifie
 		end if
 	end if
 	if a_script_file is not missing value then
-		--set a_script_file to XFile's make_with(a_script_file)
+		a_script_file as alias
 		set a_script_file to PathInfo's make_with(a_script_file)
 	end if
 	--log "end document_info"
@@ -68,7 +68,7 @@ on resolve_command(doc_info, command_info)
 	
 	set mode of command_info to document_mode() of EditorClient
 	if command of command_info is missing value then
-		set a_command to call method "commandForMode:" of TerminalClient with parameter (mode of command_info)
+		set a_command to TerminalClient's commandForMode_(mode of command_info) as text
 		try
 			get a_command
 			set command of command_info to a_command
@@ -148,7 +148,7 @@ on interactive_executer(doc_info, command_info, hearder_coms)
 				end if
 				
 				try
-					set executer_key to POSIX file (shared_path) as alias
+					set executer_key to (shared_path as POSIX file) as alias
 				on error msg number -1700
 					set a_message to localized string "noShareTermFile"
 					set a_messae to XText's make_with(a_message)'s format_with({shared_path})'s as_unicode()

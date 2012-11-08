@@ -14,7 +14,7 @@ on last_result()
 	set an_executer to get_executer of ExecuterController for missing value with interactive without allowing_busy
 	
 	try
-		set a_result to last_result() of an_executer
+		set a_result to an_executer's last_result()
 	on error msg number 1640
 		set a_msg to localized string "cantFindTerminal"
 		show_message(a_msg) of EditorClient
@@ -72,13 +72,13 @@ on send_command(a_command)
 		end if
 		return
 	end try
-	
 	if an_executer is missing value then
 		return
 	end if
 	if a_command is not "" then
 		send_command of an_executer for a_command with allowing_busy
 	end if
+	--log "end send_command in UnixScriptController"
 end send_command
 
 on is_end_with_strings(a_string, string_list)
@@ -151,6 +151,7 @@ end send_selection
 
 (*= non-interactive commands *)
 on common_terminal(optionRecord)
+	--log "start common_terminal"
 	try
 		set an_executer to get_executer of ExecuterController for optionRecord without interactive and allowing_busy
 	on error errmsg number errnum
@@ -172,6 +173,7 @@ Abailable labels for optionRecord
 - commandArg
 *)
 on run_in_terminal(optionRecord)
+	--log "start run_in_terminal"
 	set an_executer to common_terminal(optionRecord)
 	if an_executer is missing value then return
 	
