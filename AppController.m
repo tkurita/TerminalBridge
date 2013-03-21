@@ -55,11 +55,11 @@ enum cantExecWindowResult {
 	id appDict;
 	BOOL isMiLaunched = NO;
 	while (appDict = [enumerator nextObject]) {
-		NSString *appName = [appDict objectForKey:@"NSApplicationName"];
-		if ([appName isEqualToString:@"mi"] ) {
+		NSString *app_identifier = [appDict objectForKey:@"NSApplicationBundleIdentifier"];
+		if ([app_identifier isEqualToString:@"net.mimikaki.mi"] ) {
 			isMiLaunched = YES;
 			break;
-		}
+		}		
 	}
 	
 	if (! isMiLaunched) {
