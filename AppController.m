@@ -12,6 +12,10 @@ enum cantExecWindowResult {
 	CANTEXEC_SHOWTERM
 };
 
+@interface TerminalBridgeController : NSObject
+- (void)setup;
+@end
+
 @implementation AppController
 @synthesize terminalName;
 @synthesize factoryDefaults;
@@ -128,7 +132,9 @@ enum cantExecWindowResult {
 	NSLog(@"start applicationDidFinishLaunching");
 #endif
 	
-	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self selector:@selector(checkQuit:) userInfo:nil repeats:YES];
+	//appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
+	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self 
+										selector:@selector(checkQuit:) userInfo:nil repeats:YES];
 	[appQuitTimer retain];
 	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];

@@ -246,7 +246,7 @@ on last_result()
 	set a_result to TerminalClient's extactLastResult_withPrompt_(a_contents, a_prompt) as integer
 	if a_result is -1 then
 		set a_contents to my _target_terminal's buffer_history()
-		set a_result to TerminalClient's extactLastResult_withPrompt_(a_contents, command_prompt())
+		set a_result to TerminalClient's extactLastResult_withPrompt_(a_contents, command_prompt()) as integer
 	end if
 	
 	if a_result is not 1 then
