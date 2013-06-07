@@ -71,14 +71,16 @@ enum cantExecWindowResult {
 	}
 }
 
+
 - (void)anApplicationIsTerminated:(NSNotification *)aNotification
 {
 #if useLog
 	NSLog(@"anApplicationIsTerminated");
 #endif
-	NSString *appName = [[aNotification userInfo] objectForKey:@"NSApplicationName"];
-	//NSLog(appName);
-	if ([appName isEqualToString:@"mi"] ) [[NSApplication sharedApplication] terminate:self];
+	NSDictionary *user_info = [aNotification userInfo];
+	NSString *identifier = [user_info objectForKey:@"NSApplicationBundleIdentifier"];
+	if ([identifier isEqualToString:@"net.mimikaki.mi"] ) [[NSApplication sharedApplication] terminate:self];
+	
 }
 
 - (IBAction)closeWindow:(id)sender
