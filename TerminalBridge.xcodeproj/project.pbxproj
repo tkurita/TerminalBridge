@@ -42,7 +42,6 @@
 		2CE824AA1642C96A001DEA83 /* CommandBuilder.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2CE824A91642C96A001DEA83 /* CommandBuilder.applescript */; settings = {ATTRIBUTES = (); }; };
 		2CE825311642D943001DEA83 /* TerminalBridge.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2CE825301642D943001DEA83 /* TerminalBridge.sdef */; };
 		2CE8255A1642E239001DEA83 /* PerformScriptCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE825581642E239001DEA83 /* PerformScriptCommand.m */; };
-		2CE827571643D501001DEA83 /* ShowHelpCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CE827551643D501001DEA83 /* ShowHelpCommand.h */; };
 		2CE827581643D501001DEA83 /* ShowHelpCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE827561643D501001DEA83 /* ShowHelpCommand.m */; };
 /* End PBXBuildFile section */
 
@@ -283,7 +282,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CE827571643D501001DEA83 /* ShowHelpCommand.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

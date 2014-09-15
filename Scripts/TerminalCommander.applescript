@@ -5,7 +5,7 @@ on buildup()
 		property parent : TerminalCommanderBase
 		
 		on send_command for a_command
-			log "before boolForKey in send_command"
+			--log "before boolForKey in send_command"
 			tell current application's class "NSUserDefaults"
 				tell its standardUserDefaults()
 					set activate_flag to boolForKey_("ActivateTerminal") as boolean
