@@ -5,7 +5,7 @@
 	<key>CustomTitle</key>
 	<string>* Inferior Terminal *</string>
 	<key>ExecutionString</key>
-	<string>unset PROMPT_COMMAND</string>
+	<string></string>
 	<key>ModeDefaults</key>
 	<array>
 		<dict>
