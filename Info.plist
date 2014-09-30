@@ -11,7 +11,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.4.2</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>copyright 2005-2013, Tetsuro KURITA</string>
+	<string>copyright 2005-2014, Tetsuro KURITA</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
@@ -31,7 +31,7 @@
 	<key>CFBundleVersion</key>
 	<string>15</string>
 	<key>LSUIElement</key>
-	<string>1</string>
+	<false/>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
