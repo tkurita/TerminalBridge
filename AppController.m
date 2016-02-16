@@ -3,8 +3,6 @@
 #import "DonationReminder/DonationReminder.h"
 #define useLog 0
 
-static id sharedObj = nil;
-
 enum cantExecWindowResult {
 	CANTEXEC_CANCEL,
 	CANTEXEC_NEWTERM,
@@ -24,26 +22,37 @@ enum cantExecWindowResult {
 	[NSValueTransformer setValueTransformer:transformer forName:@"DelimedStringToArrayTransformer"];
 }
 
-+ (id)sharedAppController
+#pragma mark singleton
+static id sharedInstance = nil;
+
++ (AppController *)sharedAppController
 {
-	if (sharedObj == nil) {
-		sharedObj = [[self alloc] init];
-	}
-	return sharedObj;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        (void)[[AppController alloc] init];
+    });
+    return sharedInstance;
 }
 
-- (id)init
-{
-	if (self = [super init]) {
-		if (sharedObj == nil) {
-			sharedObj = self;
-		}
-	}
++ (id)allocWithZone:(NSZone *)zone {
 	
-	return self;
+	__block id ret = nil;
+	
+	static dispatch_once_t once;
+	dispatch_once(&once, ^{
+		sharedInstance = [super allocWithZone:zone];
+		ret = sharedInstance;
+	});
+	
+	return  ret;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;
+}
 
+#pragma mark methods
 - (void)checkQuit:(NSTimer *)aTimer
 {
     if (! [[NSRunningApplication runningApplicationsWithBundleIdentifier:@"net.mimikaki.mi"] count]) {

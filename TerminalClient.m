@@ -2,16 +2,7 @@
 
 #define useLog 0
 
-static id sharedObj;
-
 @implementation TerminalClient
-
-- (void) dealloc
-{
-	[modeCommands release];
-	[modePrompts release];
-	[super dealloc];
-}
 
 - (id)init
 {
@@ -25,14 +16,37 @@ static id sharedObj;
 	return self;
 }
 
-+ (id)sharedTerminalClient
+#pragma mark singleton
+static id sharedInstance = nil;
+
++ (TerminalClient *)sharedTerminalClient
 {
-	if (sharedObj == nil) {
-		sharedObj = [[self alloc] init];
-	}
-	return sharedObj;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        (void)[[AppController alloc] init];
+    });
+    return sharedInstance;
 }
 
++ (id)allocWithZone:(NSZone *)zone {
+	
+	__block id ret = nil;
+	
+	static dispatch_once_t once;
+	dispatch_once(&once, ^{
+		sharedInstance = [super allocWithZone:zone];
+		ret = sharedInstance;
+	});
+	
+	return  ret;
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;
+}
+
+#pragma mark methods
 - (BOOL)isReadyTerminalContents:(NSString *)theText withPrompt:(NSString *)thePrompt
 {
 	BOOL result = NO;
