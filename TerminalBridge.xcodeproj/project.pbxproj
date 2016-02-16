@@ -64,7 +64,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		2C030FE70AA06516005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = HelpSetup.plist; sourceTree = "<group>"; };
-		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
+		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		2C0B918408B5D01500602706 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		2C0BB0420A7E5E3A007AFDE3 /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
 		2C0BB0430A7E5E3A007AFDE3 /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
@@ -431,7 +431,6 @@
 		2C4A700F0980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 15;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -449,11 +448,9 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "/Library/Application Support/mi";
 				LIBRARY_SEARCH_PATHS = "";
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -463,17 +460,12 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		2C4A70100980A72B00D4AF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					"$(ARCHS_STANDARD_32_64_BIT)",
-				);
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 15;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -492,9 +484,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
-				OTHER_OSAFLAGS = "-x";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
 				WARNING_CFLAGS = (
@@ -503,7 +493,6 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -527,9 +516,7 @@
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
-				OTHER_OSAFLAGS = "-l \\\"AppleScript Debugger\\\"";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
 				WARNING_CFLAGS = (
@@ -560,7 +547,6 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
-				SDKROOT = macosx10.6;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
 				WARNING_CFLAGS = (
@@ -575,41 +561,36 @@
 		2C4A70140980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				OTHER_LDFLAGS = "-licucore";
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		2C4A70150980A72B00D4AF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				OTHER_LDFLAGS = "-licucore";
-				PREBINDING = NO;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		2C4A70160980A72B00D4AF6B /* SDDebug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				OTHER_LDFLAGS = "-licucore";
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = SDDebug;
 		};
 		2C4A70170980A72B00D4AF6B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				OTHER_LDFLAGS = "-licucore";
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 			};
 			name = Default;
 		};
