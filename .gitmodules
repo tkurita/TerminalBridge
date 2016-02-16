@@ -7,3 +7,39 @@
 [submodule "StringExtra"]
 	path = StringExtra
 	url = http://github.com/tkurita/StringExtra.git
+[submodule "LibraryScripts/FinderSelection.scptd"]
+	path = LibraryScripts/FinderSelection.scptd
+	url = http://github.com/tkurita/FinderSelection.scptd.git
+[submodule "LibraryScripts/FrontAccess.scptd"]
+	path = LibraryScripts/FrontAccess.scptd
+	url = http://github.com/tkurita/FrontAccess.scptd.git
+[submodule "LibraryScripts/GUIScriptingChecker.scptd"]
+	path = LibraryScripts/GUIScriptingChecker.scptd
+	url = http://github.com/tkurita/GUIScriptingChecker.scptd.git
+[submodule "LibraryScripts/miClient.scptd"]
+	path = LibraryScripts/miClient.scptd
+	url = http://github.com/tkurita/miClient.scptd.git
+[submodule "LibraryScripts/PathInfo.scptd"]
+	path = LibraryScripts/PathInfo.scptd
+	url = http://github.com/tkurita/PathInfo.scptd.git
+[submodule "LibraryScripts/TemporaryItem.scptd"]
+	path = LibraryScripts/TemporaryItem.scptd
+	url = http://github.com/tkurita/TemporaryItem.scptd.git
+[submodule "LibraryScripts/TerminalCommander.scptd"]
+	path = LibraryScripts/TerminalCommander.scptd
+	url = http://github.com/tkurita/TerminalCommander.scptd.git
+[submodule "LibraryScripts/XCharacterSet.scptd"]
+	path = LibraryScripts/XCharacterSet.scptd
+	url = http://github.com/tkurita/XCharacterSet.scptd.git
+[submodule "LibraryScripts/XDict.scptd"]
+	path = LibraryScripts/XDict.scptd
+	url = http://github.com/tkurita/XDict.scptd.git
+[submodule "LibraryScripts/XFile.scptd"]
+	path = LibraryScripts/XFile.scptd
+	url = http://github.com/tkurita/XFile.scptd.git
+[submodule "LibraryScripts/XList.scptd"]
+	path = LibraryScripts/XList.scptd
+	url = http://github.com/tkurita/XList.scptd.git
+[submodule "LibraryScripts/XText.scptd"]
+	path = LibraryScripts/XText.scptd
+	url = http://github.com/tkurita/XText.scptd.git
