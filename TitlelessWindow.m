@@ -7,6 +7,6 @@
     [result setLevel: NSStatusWindowLevel];
     [result setAlphaValue:0.8];
 	[result center];
-    return result;
+    return (TitlelessWindow *)result;
 }
 @end

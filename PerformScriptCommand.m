@@ -1,6 +1,10 @@
 #import "PerformScriptCommand.h"
 #import "AppController.h"
 
+@interface TerminalBridgeController : NSObject
+- (void) performTask:(NSAppleEventDescriptor *)desc;
+@end
+
 @implementation PerformScriptCommand
 
 - (id)performDefaultImplementation
