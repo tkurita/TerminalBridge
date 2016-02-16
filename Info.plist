@@ -15,7 +15,7 @@
 	<key>CFBundleHelpBookFolder</key>
 	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
-	<string>UnixScriptTools for mi ヘルプ</string>
+	<string>Scriptfactory.TerminalBridge.help</string>
 	<key>CFBundleIconFile</key>
 	<string>TerminalBridge.icns</string>
 	<key>CFBundleIdentifier</key>

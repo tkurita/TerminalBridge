@@ -6,9 +6,7 @@
 	<false/>
 	<key>ManualFolder</key>
 	<string>/Users/tkurita/Factories/Websites/scriptfactory/web-content/software/mi/UnixScriptToolsFormi/manual/ja</string>
-	<key>ManualPage</key>
-	<string>index.html</string>
-	<key>AppleIcon</key>
-	<string>TerminalBridge16.png</string>
+	<key>NewLayout</key>
+	<true/>
 </dict>
 </plist>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C030FF50AA066AC005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C030FE70AA06516005B592F /* HelpSetup.plist */; };
+		2C19DA1F1C733A93001DB865 /* TerminalBridgeHelp in Resources */ = {isa = PBXBuildFile; fileRef = 2C19DA1E1C733A93001DB865 /* TerminalBridgeHelp */; };
 		2C591E8A099ECCCC000BC6BA /* UnixScriptExecuter.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C5B51320E8FD5F2009BED97 /* minus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B51300E8FD5F2009BED97 /* minus.tiff */; };
 		2C5B51330E8FD5F2009BED97 /* plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B51310E8FD5F2009BED97 /* plus.tiff */; };
@@ -83,6 +84,7 @@
 		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		2C0B918408B5D01500602706 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		2C10B9F70618556700598626 /* UnixScriptController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = UnixScriptController.applescript; sourceTree = "<group>"; };
+		2C19DA1E1C733A93001DB865 /* TerminalBridgeHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TerminalBridgeHelp; sourceTree = "<group>"; };
 		2C22DEC8078A8BF800C57192 /* SettingWindowController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowController.applescript; sourceTree = "<group>"; };
 		2C4749B10A70B3D600096E8A /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
 		2C591E67099E0CBF000BC6BA /* TerminalClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalClient.h; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2C19DA1E1C733A93001DB865 /* TerminalBridgeHelp */,
 				2C5B51300E8FD5F2009BED97 /* minus.tiff */,
 				2C7E63D712FA49A6006F711F /* TerminalBridge.icns */,
 				2C5B51310E8FD5F2009BED97 /* plus.tiff */,
@@ -379,6 +382,7 @@
 				2C5B51330E8FD5F2009BED97 /* plus.tiff in Resources */,
 				2C7E63D812FA49A6006F711F /* TerminalBridge.icns in Resources */,
 				2CE825311642D943001DEA83 /* TerminalBridge.sdef in Resources */,
+				2C19DA1F1C733A93001DB865 /* TerminalBridgeHelp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +400,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$BUILD_STYLE\" = 'Release' ]; then\ncd $BUILT_PRODUCTS_DIR\nSetupHelpBook $FULL_PRODUCT_NAME\nfi\n";
+			shellScript = "if [ ! \"$CONFIGURATION\" = 'Release' ]; then\necho \"HelpBook setup script will run only with Release configuration\";\nexit 0\nfi\n\ncd \"$BUILT_PRODUCTS_DIR\"\nSetupHelpBook \"$FULL_PRODUCT_NAME\"\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
