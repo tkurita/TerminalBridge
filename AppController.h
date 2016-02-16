@@ -4,19 +4,17 @@
 
 @interface AppController : NSObject
 {
-	NSTimer *appQuitTimer;
-	NSDictionary *factoryDefaults;
 	IBOutlet NSWindow *cantExecWindow;
 	IBOutlet NSTextView *processListView;
 	IBOutlet NSButton *addProcessButton;
 	IBOutlet NSButton *showTerminalButton;
 	IBOutlet id terminalBridgeController;
 	IBOutlet NSWindow *startupWindow;
-	NSString *terminalName;
 }
 
-@property(retain, readwrite) NSString *terminalName;
-@property(retain, readwrite) NSDictionary *factoryDefaults;
+@property(retain) NSString *terminalName;
+@property(retain) NSDictionary *factoryDefaults;
+@property(retain) NSTimer *appQuitTimer;
 
 + (id)sharedAppController;
 

@@ -157,7 +157,7 @@ static id sharedObj;
 	
 	theRange.location = firstRange.location;
 	theRange.length = NSMaxRange(lastRange)-theRange.location;
-	[self setLastResult:[theText substringWithRange:theRange]];
+	self.lastResult = [theText substringWithRange:theRange];
 
 	return @1;
 }
@@ -201,21 +201,19 @@ static id sharedObj;
 	[modeSettingsNames release];
 	
 	unsigned nCap = [modeDefaults count];
-	modeCommands = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
-	modePrompts = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
-	modeSettingsNames = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
+	self.modeCommands = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
+	self.modePrompts = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
+	self.modeSettingsNames = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
 	
-	NSEnumerator *enumerator = [modeDefaults objectEnumerator];
-	NSDictionary *dict;
 	NSDictionary *mode;
 	NSString *a_value = nil;
-	while (dict = [enumerator nextObject]) {
-		mode = [dict objectForKey:@"mode"];
+    for (NSDictionary *dict in [modeDefaults objectEnumerator]) {
+ 		mode = [dict objectForKey:@"mode"];
 		[modeCommands setObject:[dict objectForKey:@"command"] forKey:mode];
 		[modePrompts setObject:[dict objectForKey:@"prompt"] forKey:mode];
-		if (a_value = [dict objectForKey:@"terminalSettings"]) 
+		if (a_value = [dict objectForKey:@"terminalSettings"])
 			[modeSettingsNames setObject:a_value forKey:mode];
-	}
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

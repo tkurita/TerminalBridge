@@ -17,8 +17,6 @@ enum cantExecWindowResult {
 @end
 
 @implementation AppController
-@synthesize terminalName;
-@synthesize factoryDefaults;
 
 + (void)initialize	// Early initialization
 {	
@@ -47,7 +45,7 @@ enum cantExecWindowResult {
 
 - (void)dealloc
 {
-	[terminalName release];
+	_terminalName = nil;
 	[super dealloc];
 }
 
@@ -83,7 +81,7 @@ enum cantExecWindowResult {
 #pragma mark methods for factory settings
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
 {
-	id factorySetting = [factoryDefaults objectForKey:theKey];
+	id factorySetting = [_factoryDefaults objectForKey:theKey];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:factorySetting forKey:theKey];
 }
@@ -93,7 +91,7 @@ enum cantExecWindowResult {
 #if useLog
 	NSLog(@"start farcotryDefaultForKey");
 #endif
-	return [factoryDefaults objectForKey:theKey];;
+	return _factoryDefaults[theKey];
 }
 
 #pragma mark delegate of NSApplication
@@ -104,10 +102,10 @@ enum cantExecWindowResult {
 	NSLog(@"start applicationWillFinishLaunching");
 #endif
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
-	factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
+	self.factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-	[userDefaults registerDefaults:factoryDefaults];
+	[userDefaults registerDefaults:_factoryDefaults];
 	
 	[terminalBridgeController setup];
 #if useLog
@@ -121,11 +119,8 @@ enum cantExecWindowResult {
 	NSLog(@"start applicationDidFinishLaunching");
 #endif
 	
-	//appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:60*60 target:self 
-	appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self 
+	self.appQuitTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self
 										selector:@selector(checkQuit:) userInfo:nil repeats:YES];
-	[appQuitTimer retain];
-	
 	NSNotificationCenter *notifyCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
 	[notifyCenter addObserver:self selector:@selector(anApplicationIsTerminated:) name:NSWorkspaceDidTerminateApplicationNotification object:nil];
 	[startupWindow close];
@@ -156,7 +151,7 @@ enum cantExecWindowResult {
 
 - (NSString *)displayCantExecWindowForTerminalName:(NSString *)termname processes:(NSArray *)processes
 {
-	[self setTerminalName:termname];
+	self.terminalName = termname;
 	if ([processes count]) {
 		[processListView setString:[processes componentsJoinedByString:@"\n"]];
 		[addProcessButton setEnabled:YES];
