@@ -14,11 +14,6 @@
 	return YES;
 }
 
-- (void)dealloc
-{
-	[nilWord release];
-	[super dealloc];
-}
 
 - (id)transformedValue:(id)aString
 {

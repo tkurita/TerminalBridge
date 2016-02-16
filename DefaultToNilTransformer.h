@@ -4,6 +4,6 @@
 @interface DefaultToNilTransformer : NSValueTransformer {
 	NSString *nilWord;
 }
-@property (retain, readwrite) NSString *nilWord;
+@property (strong, readwrite) NSString *nilWord;
 
 @end

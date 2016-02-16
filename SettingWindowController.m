@@ -6,10 +6,10 @@
 @implementation SettingWindowController
 + (void)initialize
 {	
-	DefaultToNilTransformer *transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	DefaultToNilTransformer *transformer = [[DefaultToNilTransformer alloc] init];
 	[transformer setNilWord:@"Default"];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DefaultToNil"];
-	transformer = [[[DefaultToNilTransformer alloc] init] autorelease];
+	transformer = [[DefaultToNilTransformer alloc] init];
 	[transformer setNilWord:@"No Change"];
 	[NSValueTransformer setValueTransformer:transformer forName:@"NoChangeToNil"];
 }

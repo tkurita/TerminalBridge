@@ -20,7 +20,7 @@ enum cantExecWindowResult {
 
 + (void)initialize	// Early initialization
 {	
-	NSValueTransformer *transformer = [[[DelimedStringToArrayTransformer alloc] init] autorelease];
+	NSValueTransformer *transformer = [[DelimedStringToArrayTransformer alloc] init];
 	[NSValueTransformer setValueTransformer:transformer forName:@"DelimedStringToArrayTransformer"];
 }
 
@@ -43,11 +43,6 @@ enum cantExecWindowResult {
 	return self;
 }
 
-- (void)dealloc
-{
-	_terminalName = nil;
-	[super dealloc];
-}
 
 - (void)checkQuit:(NSTimer *)aTimer
 {
@@ -102,7 +97,7 @@ enum cantExecWindowResult {
 	NSLog(@"start applicationWillFinishLaunching");
 #endif
 	NSString *defaultsPlistPath = [[NSBundle mainBundle] pathForResource:@"FactorySettings" ofType:@"plist"];
-	self.factoryDefaults = [[NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath] retain];
+	self.factoryDefaults = [NSDictionary dictionaryWithContentsOfFile:defaultsPlistPath];
 
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults registerDefaults:_factoryDefaults];

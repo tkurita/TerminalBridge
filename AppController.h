@@ -12,9 +12,9 @@
 	IBOutlet NSWindow *startupWindow;
 }
 
-@property(retain) NSString *terminalName;
-@property(retain) NSDictionary *factoryDefaults;
-@property(retain) NSTimer *appQuitTimer;
+@property(strong) NSString *terminalName;
+@property(strong) NSDictionary *factoryDefaults;
+@property(strong) NSTimer *appQuitTimer;
 
 + (id)sharedAppController;
 
