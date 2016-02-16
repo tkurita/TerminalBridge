@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2C030FF50AA066AC005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C030FE70AA06516005B592F /* HelpSetup.plist */; };
-		2C0BB04B0A7E5E3A007AFDE3 /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0BB0430A7E5E3A007AFDE3 /* StringExtra.m */; };
 		2C591E8A099ECCCC000BC6BA /* UnixScriptExecuter.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C5B51320E8FD5F2009BED97 /* minus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B51300E8FD5F2009BED97 /* minus.tiff */; };
 		2C5B51330E8FD5F2009BED97 /* plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B51310E8FD5F2009BED97 /* plus.tiff */; };
@@ -20,6 +19,8 @@
 		2C84D0491C72F4D800394023 /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C84D0451C72F49900394023 /* DonationReminder.framework */; };
 		2C84D04D1C72F53C00394023 /* NSRunningApplication+SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C84D04B1C72F53C00394023 /* NSRunningApplication+SmartActivate.h */; };
 		2C84D04E1C72F53C00394023 /* NSRunningApplication+SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84D04C1C72F53C00394023 /* NSRunningApplication+SmartActivate.m */; };
+		2C84D0521C72FE6F00394023 /* StringExtra.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C84D0501C72FE6F00394023 /* StringExtra.h */; };
+		2C84D0531C72FE6F00394023 /* StringExtra.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84D0511C72FE6F00394023 /* StringExtra.m */; };
 		2CA91F0408B5E93B00A6B73C /* TerminalBridge.applescript in Sources */ = {isa = PBXBuildFile; fileRef = DA206CF3015C4E8B03C91932 /* TerminalBridge.applescript */; settings = {ATTRIBUTES = (); }; };
 		2CA91F0608B5E93B00A6B73C /* UnixScriptController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C10B9F70618556700598626 /* UnixScriptController.applescript */; settings = {ATTRIBUTES = (); }; };
 		2CA91F0908B5E93B00A6B73C /* ExecuterController.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C6FB982062440FA004731C7 /* ExecuterController.applescript */; settings = {ATTRIBUTES = (); }; };
@@ -81,11 +82,9 @@
 		2C030FE70AA06516005B592F /* HelpSetup.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; path = HelpSetup.plist; sourceTree = "<group>"; };
 		2C0B918308B5D01500602706 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		2C0B918408B5D01500602706 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
-		2C0BB0420A7E5E3A007AFDE3 /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
-		2C0BB0430A7E5E3A007AFDE3 /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
 		2C10B9F70618556700598626 /* UnixScriptController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = UnixScriptController.applescript; sourceTree = "<group>"; };
 		2C22DEC8078A8BF800C57192 /* SettingWindowController.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = SettingWindowController.applescript; sourceTree = "<group>"; };
-		2C4749B10A70B3D600096E8A /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../../AppleScriptDoc/History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
+		2C4749B10A70B3D600096E8A /* History.rd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = History.rd; path = ../History.rd; sourceTree = SOURCE_ROOT; wrapsLines = 1; };
 		2C591E67099E0CBF000BC6BA /* TerminalClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalClient.h; sourceTree = "<group>"; };
 		2C591E68099E0CBF000BC6BA /* TerminalClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerminalClient.m; sourceTree = "<group>"; };
 		2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */ = {isa = PBXFileReference; fileEncoding = 2147483649; lastKnownFileType = sourcecode.applescript; path = UnixScriptExecuter.applescript; sourceTree = "<group>"; };
@@ -103,6 +102,8 @@
 		2C84D0401C72F49800394023 /* DonationReminder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DonationReminder.xcodeproj; path = DonationReminder/DonationReminder.xcodeproj; sourceTree = "<group>"; };
 		2C84D04B1C72F53C00394023 /* NSRunningApplication+SmartActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunningApplication+SmartActivate.h"; sourceTree = "<group>"; };
 		2C84D04C1C72F53C00394023 /* NSRunningApplication+SmartActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRunningApplication+SmartActivate.m"; sourceTree = "<group>"; };
+		2C84D0501C72FE6F00394023 /* StringExtra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringExtra.h; sourceTree = "<group>"; };
+		2C84D0511C72FE6F00394023 /* StringExtra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringExtra.m; sourceTree = "<group>"; };
 		2C8C1DD80520B0DB009688D1 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Japanese; path = Japanese.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2C9E42C1052215F000248965 /* Japanese */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; lineEnding = 0; name = Japanese; path = Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2CA91F1E08B5E93B00A6B73C /* Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist; fileEncoding = 4; lineEnding = 0; path = Info.plist; sourceTree = "<group>"; };
@@ -188,8 +189,8 @@
 			children = (
 				2C4749B10A70B3D600096E8A /* History.rd */,
 				2C84D04A1C72F53C00394023 /* NSRunningApplication-SmartActivate */,
+				2C84D04F1C72FE6F00394023 /* StringExtra */,
 				080E96DDFE201D6D7F000001 /* Scripts */,
-				2C0BB03D0A7E5E39007AFDE3 /* CocoaLib */,
 				2C0B914D08B5CF1900602706 /* Classes */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -258,15 +259,6 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		2C0BB03D0A7E5E39007AFDE3 /* CocoaLib */ = {
-			isa = PBXGroup;
-			children = (
-				2C0BB0420A7E5E3A007AFDE3 /* StringExtra.h */,
-				2C0BB0430A7E5E3A007AFDE3 /* StringExtra.m */,
-			);
-			path = CocoaLib;
-			sourceTree = "<group>";
-		};
 		2C84D0411C72F49800394023 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,6 +276,15 @@
 			path = "NSRunningApplication-SmartActivate";
 			sourceTree = "<group>";
 		};
+		2C84D04F1C72FE6F00394023 /* StringExtra */ = {
+			isa = PBXGroup;
+			children = (
+				2C84D0501C72FE6F00394023 /* StringExtra.h */,
+				2C84D0511C72FE6F00394023 /* StringExtra.m */,
+			);
+			path = StringExtra;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -292,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C84D04D1C72F53C00394023 /* NSRunningApplication+SmartActivate.h in Headers */,
+				2C84D0521C72FE6F00394023 /* StringExtra.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +327,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -414,11 +419,11 @@
 				2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */,
 				2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */,
 				2CC48BB309921FAE004E4BDE /* DelimedStringToArrayTransformer.m in Sources */,
-				2C0BB04B0A7E5E3A007AFDE3 /* StringExtra.m in Sources */,
 				2CA9B32A0E97C06B009C0C2A /* DefaultToNilTransformer.m in Sources */,
 				2CE8255A1642E239001DEA83 /* PerformScriptCommand.m in Sources */,
 				2CE827581643D501001DEA83 /* ShowHelpCommand.m in Sources */,
 				2C84D04E1C72F53C00394023 /* NSRunningApplication+SmartActivate.m in Sources */,
+				2C84D0531C72FE6F00394023 /* StringExtra.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,17 +468,15 @@
 		2C4A700F0980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/..\"";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "";
@@ -498,17 +501,15 @@
 		2C4A70100980A72B00D4AF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/..\"";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -531,15 +532,14 @@
 		2C4A70110980A72B00D4AF6B /* SDDebug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/..\"";
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "";
@@ -563,14 +563,13 @@
 		2C4A70120980A72B00D4AF6B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CURRENT_PROJECT_VERSION = 15;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 16;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/..\"";
-				GCC_ENABLE_OBJC_GC = required;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -594,7 +593,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -603,7 +604,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -612,7 +615,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
 			name = SDDebug;
@@ -621,7 +626,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				OTHER_LDFLAGS = "-licucore";
+				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
 			name = Default;

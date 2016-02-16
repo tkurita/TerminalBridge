@@ -4,3 +4,6 @@
 [submodule "NSRunningApplication-SmartActivate"]
 	path = NSRunningApplication-SmartActivate
 	url = http://github.com/tkurita/NSRunningApplication-SmartActivate.git
+[submodule "StringExtra"]
+	path = StringExtra
+	url = http://github.com/tkurita/StringExtra.git
