@@ -1,5 +1,4 @@
 #import "TerminalClient.h"
-#import "RegexKitLite.h"
 
 #define useLog 0
 
@@ -64,7 +63,11 @@ static id sharedObj;
 	#if useLog
 		NSLog(theSubString);
 	#endif
-		if ([theSubString isMatchedByRegex:regex_prompt]) {
+        NSError *error = NULL;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regex_prompt
+                                                                               options:0
+                                                                                 error:&error];
+        if ([regex numberOfMatchesInString:theSubString options:0 range:NSMakeRange(0, theSubString.length)]) {
 			result = YES;	
 		}
 	} 
@@ -74,6 +77,11 @@ static id sharedObj;
 
 - (NSNumber *)extactLastResult:(NSString *)theText withPrompt:(NSString *)thePrompt
 {
+    /*
+     -1 : can't find previous prompt. need to expand search region.
+     1 : success to obtain last result
+     0 : error. no result.
+     */
 #if useLog
 	NSLog(@"start extactLastResult:");
 #endif
@@ -97,23 +105,33 @@ static id sharedObj;
 	}
 	
 	//find last line which does not begin prompt
+    NSError *error = NULL;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regex_prompt
+                                                                           options:0
+                                                                             error:&error];
+    if (error) {
+        [NSApp presentError:error];
+        return @0;
+    }
+    
 	while(theRange.location > 0) {
 		theRange.location = theRange.location - 1;
 		theRange.length = 0;
 		
 		theRange = [theText lineRangeForRange:theRange];
-		theSubString = [theText substringWithRange:theRange];
+		
 #if useLog
-		NSLog(theSubString);
+		theSubString = [theText substringWithRange:theRange];
+        NSLog(theSubString);
 #endif
-		if (! [theSubString isMatchedByRegex:regex_prompt]) {
-			lastRange = theRange;
-			break;			
+        if (! [regex numberOfMatchesInString:theText options:0 range:theRange]) {
+            lastRange = theRange;
+			break;
 		}
 	}	
 	
 	if (theRange.location == 0) {
-		return  [NSNumber numberWithInt:0];
+		return @0; // no result.
 	}
 	
 	// find the line start with prompt
@@ -123,11 +141,9 @@ static id sharedObj;
 		theRange.length = 0;
 		
 		theRange = [theText lineRangeForRange:theRange];
-		theSubString = [theText substringWithRange:theRange];
-		if ([theSubString isMatchedByRegex:regex_prompt]) {
+        if ([regex numberOfMatchesInString:theText options:0 range:theRange]) {
 			break;
-		} 
-		else {
+		} else {
 #if useLog
 			NSLog(theSubString);
 #endif
@@ -136,14 +152,14 @@ static id sharedObj;
 	}
 	
 	if (theRange.location == 0) {
-		return  [NSNumber numberWithInt:-1];
+		return  @-1; // can't find prompt. need to go back more.
 	}
 	
 	theRange.location = firstRange.location;
 	theRange.length = NSMaxRange(lastRange)-theRange.location;
 	[self setLastResult:[theText substringWithRange:theRange]];
 
-	return [NSNumber numberWithInt:1];
+	return @1;
 }
 
 -(NSString *)lastResult {
