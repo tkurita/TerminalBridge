@@ -15,9 +15,9 @@ on buildup()
 		end send_command
 		
 		on activate_terminal()
-			tell current application's class "SmartActivate"
-				activateAppOfIdentifier_("com.apple.Terminal")
-			end tell
+            tell current application's class "NRunningApplication"
+                activateAppOfIdentifier_("com.apple.Terminal")
+            end tell
 			return true
 		end activate_terminal
 		

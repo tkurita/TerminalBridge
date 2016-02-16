@@ -62,8 +62,8 @@ script TerminalBrdigeController
 	end setup
 	
 	on activate_process(app_id)
-		tell current application's class "SmartActivate"
-			activateAppOfIdentifier_(app_id)
-		end tell
+        tell current application's class "NRunningApplication"
+            activateAppOfIdentifier_(app_id)
+        end tell
 	end activate_process
 end script

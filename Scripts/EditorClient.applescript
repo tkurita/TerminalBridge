@@ -1,8 +1,8 @@
 property parent : load("miClient") of application (get "UnixScriptToolsLib")
 
 on show_message_asking(msg)
-	tell current application's class "SmartActivate"
-		activateAppOfType_("MMKE")
+	tell current application's class "NRunningApplication"
+		activateAppOfIdentifier_("net.mimikaki.mi")
 	end tell
 	
 	tell application "mi"
@@ -16,8 +16,8 @@ on show_message_asking(msg)
 end show_message_asking
 
 on show_message_buttons(msg, button_list, default_button)
-	tell current application's class "SmartActivate"
-		activateAppOfType_("MMKE")
+	tell current application's class "NRunningApplication"
+		activateAppOfIdentifier_("net.mimikaki.mi")
 	end tell
 	tell application "mi"
 		try
@@ -30,8 +30,8 @@ on show_message_buttons(msg, button_list, default_button)
 end show_message_buttons
 
 on show_message(msg)
-	tell current application's class "SmartActivate"
-		activateAppOfType_("MMKE")
+	tell current application's class "NRunningApplication"
+		activateAppOfIdentifier_("net.mimikaki.mi")
 	end tell
 	tell application "mi"
 		display alert msg
