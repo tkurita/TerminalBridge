@@ -18,14 +18,14 @@
 {
 	NSMutableDictionary *newObj = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"new_mode",@"mode",@"new_command",@"command",@"new_prompt",@"prompt",nil]; 
 	[defaultCommandController addObject:newObj];
-	[defaultCommandController setSelectedObjects:[NSArray arrayWithObject:newObj]];
+	[defaultCommandController setSelectedObjects:@[newObj]];
 }
 
 - (IBAction)showSettingHelp:(id)sender
 {
 	NSHelpManager *helpManager = [NSHelpManager sharedHelpManager];
 	NSDictionary *theDict = [[NSBundle mainBundle] infoDictionary];
-	NSString *bookName = [theDict objectForKey:@"CFBundleHelpBookName"];
+	NSString *bookName = theDict[@"CFBundleHelpBookName"];
 	
 	[helpManager openHelpAnchor:@"Setting" inBook:bookName];
 }

@@ -63,7 +63,7 @@ enum cantExecWindowResult {
 	NSLog(@"anApplicationIsTerminated");
 #endif
 	NSDictionary *user_info = [aNotification userInfo];
-	NSString *identifier = [user_info objectForKey:@"NSApplicationBundleIdentifier"];
+	NSString *identifier = user_info[@"NSApplicationBundleIdentifier"];
 	if ([identifier isEqualToString:@"net.mimikaki.mi"] ) [[NSApplication sharedApplication] terminate:self];
 	
 }
@@ -81,7 +81,7 @@ enum cantExecWindowResult {
 #pragma mark methods for factory settings
 - (void)revertToFactoryDefaultForKey:(NSString *)theKey
 {
-	id factorySetting = [_factoryDefaults objectForKey:theKey];
+	id factorySetting = _factoryDefaults[theKey];
 	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 	[userDefaults setObject:factorySetting forKey:theKey];
 }

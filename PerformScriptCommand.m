@@ -10,7 +10,7 @@
 - (id)performDefaultImplementation
 {
 	//NSLog(@"%@", [self directParameter]);
-	NSAppleEventDescriptor *desc =  [[self arguments] objectForKey:@"withScript"];
+	NSAppleEventDescriptor *desc =  [self arguments][@"withScript"];
 	[[[AppController sharedAppController] terminalBridgeController] performTask:desc];
 	return nil;
 }
