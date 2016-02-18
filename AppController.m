@@ -29,7 +29,7 @@ static id sharedInstance = nil;
 {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        (void)[[AppController alloc] init];
+        (void)[[self alloc] init];
     });
     return sharedInstance;
 }
