@@ -15,7 +15,7 @@ on buildup()
 		end send_command
 		
 		on activate_terminal()
-            tell current application's class "NRunningApplication"
+            tell current application's class "NSRunningApplication"
                 activateAppOfIdentifier_("com.apple.Terminal")
             end tell
 			return true
@@ -38,7 +38,18 @@ on buildup()
 			return continue custom_title()
 		end custom_title
 		
-		on settings_name()
+        --should be remove
+        on find_by_directory given allowing_busy:allow_busy_flag
+            set my_dir to working_directory()
+            if my_dir is missing value then
+                return false
+            end if
+            activate
+            display alert "find_by_directory is called. TerminalControl.osax is required."
+            continue find_by_directory given allowing_busy:allow_busy_flag
+        end find_by_directory
+
+        on settings_name()
 			--log "start settings_name"
 			set a_name to missing value
 			if my _delegate is not missing value then
@@ -57,5 +68,5 @@ on buildup()
 			return a_name
 		end settings_name
 	end script
-	return TerminalCommanderExtend
+	return TerminalCommanderExtend's set_use_osax_for_customtitle(false)
 end buildup

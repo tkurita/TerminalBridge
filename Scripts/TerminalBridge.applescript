@@ -62,7 +62,7 @@ script TerminalBrdigeController
 	end setup
 	
 	on activate_process(app_id)
-        tell current application's class "NRunningApplication"
+        tell current application's class "NSRunningApplication"
             activateAppOfIdentifier_(app_id)
         end tell
 	end activate_process

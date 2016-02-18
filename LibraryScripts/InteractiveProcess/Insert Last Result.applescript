@@ -1,10 +1,11 @@
 property TerminalBridgeProxy : module
+(*
 on _compile()
 	boot (module loader of application (get "UnixScriptToolsLib")) for me
 	return missing value
 end _compile
 property _ : _compile()
-
+*)
 on run
 	try
 		main()

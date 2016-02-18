@@ -160,12 +160,14 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 			--log x_command
 		end repeat
 	end try
-	set a_command to x_command's as_unicode()
-	tell current application's class "NSString"
-		tell its stringWithString_(a_command)
-			set a_command to stringByReplacingOccurrencesOfRegex_withString_("(?m)^\\s+", "") as text
-		end tell
-	end tell
+    script StripHeadSpaces
+        on do(a_text)
+            set a_result to XText's strip_beginning(a_text)
+            return item 2 of a_result
+        end do
+    end script
+    set a_command to XList's make_with(paragraphs of x_command's as_text())'s Å 
+                    map(StripHeadSpaces)'s as_text_with(return)
 	if resolve_terminal of (my _target_terminal) given allowing_busy:isBusyAllowed then
 		set a_result to check_terminal_status(0)
 		if a_result is kTerminalReady then

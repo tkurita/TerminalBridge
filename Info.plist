@@ -31,7 +31,7 @@
 	<key>CFBundleVersion</key>
 	<string>16</string>
 	<key>LSUIElement</key>
-	<false/>
+	<true/>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
 	<key>NSMainNibFile</key>
