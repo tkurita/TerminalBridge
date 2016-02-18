@@ -4,10 +4,11 @@
 @interface TerminalClient : NSObject {
 }
 
-@property (retain) NSMutableDictionary *modeCommands;
-@property (retain) NSMutableDictionary *modePrompts;
-@property (retain) NSMutableDictionary *modeSettingsNames;
-@property (retain) NSString *lastResult;
+@property (strong) NSMutableDictionary *modeCommands;
+@property (strong) NSMutableDictionary *modePrompts;
+@property (strong) NSMutableDictionary *modeSettingsNames;
+@property (nonatomic, strong) NSString *lastResult;
+@property (strong) NSRegularExpression *lineHeadPattern;
 
 + (id)sharedTerminalClient;
 - (NSNumber *)extactLastResult:(NSString *)theText withPrompt:(NSString *)thePrompt;

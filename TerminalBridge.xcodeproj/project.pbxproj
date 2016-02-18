@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2C030FF50AA066AC005B592F /* HelpSetup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C030FE70AA06516005B592F /* HelpSetup.plist */; };
 		2C19DA1F1C733A93001DB865 /* TerminalBridgeHelp in Resources */ = {isa = PBXBuildFile; fileRef = 2C19DA1E1C733A93001DB865 /* TerminalBridgeHelp */; };
+		2C4A83DA1C75488B00CEB8AB /* TerminalClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C591E68099E0CBF000BC6BA /* TerminalClient.m */; };
 		2C591E8A099ECCCC000BC6BA /* UnixScriptExecuter.applescript in Sources */ = {isa = PBXBuildFile; fileRef = 2C591E89099ECCCC000BC6BA /* UnixScriptExecuter.applescript */; settings = {ATTRIBUTES = (); }; };
 		2C5B51320E8FD5F2009BED97 /* minus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B51300E8FD5F2009BED97 /* minus.tiff */; };
 		2C5B51330E8FD5F2009BED97 /* plus.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 2C5B51310E8FD5F2009BED97 /* plus.tiff */; };
@@ -428,6 +429,7 @@
 				2CE827581643D501001DEA83 /* ShowHelpCommand.m in Sources */,
 				2C84D04E1C72F53C00394023 /* NSRunningApplication+SmartActivate.m in Sources */,
 				2C84D0531C72FE6F00394023 /* StringExtra.m in Sources */,
+				2C4A83DA1C75488B00CEB8AB /* TerminalClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,10 +488,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/mi";
+				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -519,10 +520,9 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/mi";
+				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -551,10 +551,9 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/mi";
+				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -581,10 +580,9 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/mi";
+				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -602,7 +600,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
@@ -613,7 +610,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
@@ -624,7 +620,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
@@ -635,7 +630,6 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				OTHER_LDFLAGS = "-licucore";
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};

@@ -11,6 +11,8 @@
 		[self setModeDefaults:[userDefaults objectForKey:@"ModeDefaults"]];
 		[userDefaults addObserver:self forKeyPath:@"ModeDefaults"
 						  options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld) context:nil];
+        NSError *err = nil;
+        self.lineHeadPattern = [NSRegularExpression regularExpressionWithPattern:@"(?m)^" options:0 error:&err];
 	}
 	
 	return self;
@@ -19,11 +21,11 @@
 #pragma mark singleton
 static id sharedInstance = nil;
 
-+ (TerminalClient *)sharedTerminalClient
++ (id)sharedTerminalClient
 {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
-        (void)[[AppController alloc] init];
+        (void)[[self alloc] init];
     });
     return sharedInstance;
 }
@@ -176,33 +178,34 @@ static id sharedInstance = nil;
 	return @1;
 }
 
--(NSString *)lastResult {
-	return _lastResult;
-}
-
 -(NSString *)lastResultWithCR {
 	return [_lastResult stringByReplacingOccurrencesOfString:@"\n" withString:@"\r"];
 }
 
 -(void)setLastResult:(NSString *)theString {
-	NSString *commented_result = [[theString stringByReplacingOccurrencesOfRegex:@"(?m)^" withString:@"# "] retain];
-	[_lastResult release];
+    NSString *commented_result =[_lineHeadPattern
+                                 stringByReplacingMatchesInString:theString
+                                                        options:0
+                                 range:NSMakeRange(0, theString.length)
+                                 withTemplate:@"# "];
+	//NSString *commented_result = [theString stringByReplacingOccurrencesOfRegex:@"(?m)^" withString:@"# "];
+	_lastResult = nil;
 	_lastResult = commented_result;
 }
 
 - (NSString *)promptForMode:(NSString *)theMode
 {
-	return [modePrompts objectForKey:theMode];
+	return _modePrompts[theMode];
 }
 
 - (NSString *)commandForMode:(NSString *)theMode
 {
-	return [modeCommands objectForKey:theMode];
+	return _modeCommands[theMode];
 }
 
 - (NSString *)settingsNameForMode:(NSString *)theMode
 {
-	return [modeSettingsNames objectForKey:theMode];
+	return _modeSettingsNames[theMode];
 }
 
 - (void)setModeDefaults:(NSArray *)modeDefaults
@@ -210,23 +213,19 @@ static id sharedInstance = nil;
 #if useLog
 	NSLog([modeDefaults description]);
 #endif
-	[modeCommands release];
-	[modePrompts release];
-	[modeSettingsNames release];
-	
 	unsigned nCap = [modeDefaults count];
-	self.modeCommands = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
-	self.modePrompts = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
-	self.modeSettingsNames = [[NSMutableDictionary dictionaryWithCapacity:nCap] retain];
+	self.modeCommands = [NSMutableDictionary dictionaryWithCapacity:nCap];
+	self.modePrompts = [NSMutableDictionary dictionaryWithCapacity:nCap];
+	self.modeSettingsNames = [NSMutableDictionary dictionaryWithCapacity:nCap];
 	
 	NSDictionary *mode;
 	NSString *a_value = nil;
     for (NSDictionary *dict in [modeDefaults objectEnumerator]) {
  		mode = [dict objectForKey:@"mode"];
-		[modeCommands setObject:[dict objectForKey:@"command"] forKey:mode];
-		[modePrompts setObject:[dict objectForKey:@"prompt"] forKey:mode];
-		if (a_value = [dict objectForKey:@"terminalSettings"])
-			[modeSettingsNames setObject:a_value forKey:mode];
+		_modeCommands[mode] = dict[@"command"];
+		_modePrompts[mode] =  dict[@"prompt"];
+		if ((a_value = dict[@"terminalSettings"]))
+			_modeSettingsNames[mode] = a_value;
     }
 }
 
