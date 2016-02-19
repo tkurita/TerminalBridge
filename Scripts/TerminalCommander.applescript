@@ -37,17 +37,6 @@ on buildup()
 		on custom_title()
 			return continue custom_title()
 		end custom_title
-		
-        --should be remove
-        on find_by_directory given allowing_busy:allow_busy_flag
-            set my_dir to working_directory()
-            if my_dir is missing value then
-                return false
-            end if
-            activate
-            display alert "find_by_directory is called. TerminalControl.osax is required."
-            continue find_by_directory given allowing_busy:allow_busy_flag
-        end find_by_directory
 
         on settings_name()
 			--log "start settings_name"
@@ -68,5 +57,5 @@ on buildup()
 			return a_name
 		end settings_name
 	end script
-	return TerminalCommanderExtend's set_use_osax_for_customtitle(false)
+	return TerminalCommanderExtend
 end buildup
