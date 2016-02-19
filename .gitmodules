@@ -13,9 +13,6 @@
 [submodule "LibraryScripts/FrontAccess.scptd"]
 	path = LibraryScripts/FrontAccess.scptd
 	url = http://github.com/tkurita/FrontAccess.scptd.git
-[submodule "LibraryScripts/GUIScriptingChecker.scptd"]
-	path = LibraryScripts/GUIScriptingChecker.scptd
-	url = http://github.com/tkurita/GUIScriptingChecker.scptd.git
 [submodule "LibraryScripts/miClient.scptd"]
 	path = LibraryScripts/miClient.scptd
 	url = http://github.com/tkurita/miClient.scptd.git
