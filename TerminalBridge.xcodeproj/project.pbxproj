@@ -495,7 +495,6 @@
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
-				USER_HEADER_SEARCH_PATHS = "";
 				VERSIONING_SYSTEM = apple_generic;
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -518,7 +517,6 @@
 					"$(SRCROOT)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
 				);
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
@@ -536,37 +534,6 @@
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
-		};
-		2C4A70110980A72B00D4AF6B /* SDDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 16;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SRCROOT)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_3)",
-				);
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "/Library/Application Support/mi3";
-				LIBRARY_SEARCH_PATHS = "";
-				OTHER_CFLAGS = "";
-				PRODUCT_NAME = TerminalBridge;
-				SECTORDER_FLAGS = "";
-				VERSIONING_SYSTEM = apple_generic;
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-			};
-			name = SDDebug;
 		};
 		2C4A70120980A72B00D4AF6B /* Default */ = {
 			isa = XCBuildConfiguration;
@@ -617,16 +584,6 @@
 			};
 			name = Release;
 		};
-		2C4A70160980A72B00D4AF6B /* SDDebug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				PRODUCT_VERSION = 2.5;
-				SDKROOT = macosx;
-			};
-			name = SDDebug;
-		};
 		2C4A70170980A72B00D4AF6B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -645,22 +602,20 @@
 			buildConfigurations = (
 				2C4A700F0980A72B00D4AF6B /* Debug */,
 				2C4A70100980A72B00D4AF6B /* Release */,
-				2C4A70110980A72B00D4AF6B /* SDDebug */,
 				2C4A70120980A72B00D4AF6B /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C4A70140980A72B00D4AF6B /* Debug */,
 				2C4A70150980A72B00D4AF6B /* Release */,
-				2C4A70160980A72B00D4AF6B /* SDDebug */,
 				2C4A70170980A72B00D4AF6B /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

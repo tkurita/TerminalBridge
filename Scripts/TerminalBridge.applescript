@@ -1,4 +1,4 @@
-script TerminalBrdigeController
+script TerminalBridgeController
 	property parent : class "NSObject"
 	
 	property XText : module
