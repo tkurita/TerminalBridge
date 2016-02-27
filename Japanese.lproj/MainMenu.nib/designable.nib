@@ -989,7 +989,7 @@ gZnjgII</string>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomObject" id="16296984">
-				<string key="NSClassName">TerminalBrdigeController</string>
+				<string key="NSClassName">TerminalBridgeController</string>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1984,7 +1984,7 @@ gZnjgII</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">TerminalBrdigeController</string>
+					<string key="className">TerminalBridgeController</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">performTask:</string>
@@ -2058,7 +2058,7 @@ gZnjgII</string>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/TerminalBrdigeController.h</string>
+						<string key="minorKey">./Classes/TerminalBridgeController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
