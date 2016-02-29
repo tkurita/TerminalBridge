@@ -61,6 +61,13 @@
 			remoteGlobalIDString = 2C4A363119E61FC40031E521;
 			remoteInfo = DonationReminder;
 		};
+		2CBB6CBB1C840E0300848E25 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CBB6CB61C84088800848E25;
+			remoteInfo = "Clean Installation";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -114,6 +121,7 @@
 		2CA91F1F08B5E93B00A6B73C /* TerminalBridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TerminalBridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA9B3270E97C06B009C0C2A /* DefaultToNilTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultToNilTransformer.h; sourceTree = "<group>"; };
 		2CA9B3280E97C06B009C0C2A /* DefaultToNilTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultToNilTransformer.m; sourceTree = "<group>"; };
+		2CBB6CBE1C842F2000848E25 /* pre-action.mk */ = {isa = PBXFileReference; lastKnownFileType = text; path = "pre-action.mk"; sourceTree = "<group>"; };
 		2CC4854D09906657004E4BDE /* EditorClient.applescript */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.applescript; path = EditorClient.applescript; sourceTree = "<group>"; };
 		2CC48BB009921FAE004E4BDE /* DelimedStringToArrayTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DelimedStringToArrayTransformer.h; sourceTree = "<group>"; };
 		2CC48BB109921FAE004E4BDE /* DelimedStringToArrayTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelimedStringToArrayTransformer.m; sourceTree = "<group>"; };
@@ -228,6 +236,7 @@
 				2CC8C94A07882A3600085682 /* FactorySettings.plist */,
 				2C9E42BE052215CB00248965 /* Localizable.strings */,
 				2CE825301642D943001DEA83 /* TerminalBridge.sdef */,
+				2CBB6CBE1C842F2000848E25 /* pre-action.mk */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -305,6 +314,23 @@
 		};
 /* End PBXHeadersBuildPhase section */
 
+/* Begin PBXLegacyTarget section */
+		2CBB6CB61C84088800848E25 /* Clean Installation */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-f pre-action.mk $(ACTION)";
+			buildConfigurationList = 2CBB6CB71C84088800848E25 /* Build configuration list for PBXLegacyTarget "Clean Installation" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = "Clean Installation";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Clean Installation";
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		2CA91EFE08B5E93B00A6B73C /* TerminalBridge */ = {
 			isa = PBXNativeTarget;
@@ -320,6 +346,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2CBB6CBC1C840E0300848E25 /* PBXTargetDependency */,
 				2C84D0471C72F4AA00394023 /* PBXTargetDependency */,
 			);
 			name = TerminalBridge;
@@ -357,6 +384,7 @@
 			projectRoot = "";
 			targets = (
 				2CA91EFE08B5E93B00A6B73C /* TerminalBridge */,
+				2CBB6CB61C84088800848E25 /* Clean Installation */,
 			);
 		};
 /* End PBXProject section */
@@ -442,6 +470,11 @@
 			isa = PBXTargetDependency;
 			name = DonationReminder;
 			targetProxy = 2C84D0461C72F4AA00394023 /* PBXContainerItemProxy */;
+		};
+		2CBB6CBC1C840E0300848E25 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CBB6CB61C84088800848E25 /* Clean Installation */;
+			targetProxy = 2CBB6CBB1C840E0300848E25 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -594,6 +627,93 @@
 			};
 			name = Default;
 		};
+		2CBB6CB81C84088800848E25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2CBB6CB91C84088800848E25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		2CBB6CBA1C84088800848E25 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Default;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -616,6 +736,15 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2CBB6CB71C84088800848E25 /* Build configuration list for PBXLegacyTarget "Clean Installation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CBB6CB81C84088800848E25 /* Debug */,
+				2CBB6CB91C84088800848E25 /* Release */,
+				2CBB6CBA1C84088800848E25 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

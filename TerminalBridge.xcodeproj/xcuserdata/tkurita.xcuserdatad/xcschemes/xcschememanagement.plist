@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Clean Installation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>TerminalBridge.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2CA91EFE08B5E93B00A6B73C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2CBB6CB61C84088800848E25</key>
 		<dict>
 			<key>primary</key>
 			<true/>
