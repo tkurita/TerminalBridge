@@ -151,10 +151,11 @@ on interactive_executer(doc_info, command_info, hearder_coms)
 					set executer_key to (shared_path as POSIX file) as alias
 				on error msg number -1700
 					set a_message to localized string "noShareTermFile"
-					set a_messae to XText's make_with(a_message)'s format_with({shared_path})'s as_unicode()
+					set a_message to XText's make_with(a_message)'s format_with({shared_path})'s as_unicode()
 					set ignore_label to localized string "ignore"
 					set cancel_label to localized string "cancel"
-					set a_result to EditorClient's show_message_buttons(a_message, {cancel_label, ignore_label}, ignore_label)
+					set a_result to EditorClient's show_message_buttons(a_message, Å 
+                                            {cancel_label, ignore_label}, ignore_label)
 					if button returned of a_result is ignore_label then
 						set executer_key to baseCommand of command_info
 						hearder_coms's remove_for_key("shareTerm")
