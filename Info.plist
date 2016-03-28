@@ -8,10 +8,6 @@
 	<string>TerminalBridge</string>
 	<key>CFBundleGetInfoString</key>
 	<string>${PRODUCT_VERSION} ${COPYRIGHT}</string>
-	<key>CFBundleShortVersionString</key>
-	<string>${PRODUCT_VERSION}</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>${COPYRIGHT}</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>TerminalBridgeHelp</string>
 	<key>CFBundleHelpBookName</key>
@@ -19,27 +15,31 @@
 	<key>CFBundleIconFile</key>
 	<string>TerminalBridge.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>TerminalBridge</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>TerminalBridge</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>${PRODUCT_VERSION}</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>16</string>
+	<key>DonationURL</key>
+	<string>http://www.script-factory.net/donationproxy.html</string>
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSAppleScriptEnabled</key>
 	<string>YES</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>${COPYRIGHT}</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>DonationURL</key>
-	<string>http://www.script-factory.net/donationproxy.html</string>
 	<key>OSAScriptingDefinition</key>
 	<string>TerminalBridge.sdef</string>
 </dict>

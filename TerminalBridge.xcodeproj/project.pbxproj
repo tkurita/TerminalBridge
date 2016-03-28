@@ -17,7 +17,7 @@
 		2C701E7808BB85D5000D1339 /* SettingWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C701E7608BB85D5000D1339 /* SettingWindowController.m */; };
 		2C7BC36808D98CB9001F4EFB /* TitlelessWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BC36608D98CB9001F4EFB /* TitlelessWindow.m */; };
 		2C7E63D812FA49A6006F711F /* TerminalBridge.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C7E63D712FA49A6006F711F /* TerminalBridge.icns */; };
-		2C84D0481C72F4C400394023 /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C84D0451C72F49900394023 /* DonationReminder.framework */; };
+		2C84D0481C72F4C400394023 /* DonationReminder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2C84D0451C72F49900394023 /* DonationReminder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		2C84D0491C72F4D800394023 /* DonationReminder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C84D0451C72F49900394023 /* DonationReminder.framework */; };
 		2C84D04D1C72F53C00394023 /* NSRunningApplication+SmartActivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C84D04B1C72F53C00394023 /* NSRunningApplication+SmartActivate.h */; };
 		2C84D04E1C72F53C00394023 /* NSRunningApplication+SmartActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C84D04C1C72F53C00394023 /* NSRunningApplication+SmartActivate.m */; };
@@ -361,7 +361,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0730;
 			};
 			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -526,6 +526,7 @@
 				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = TerminalBridge;
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -556,6 +557,7 @@
 				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = TerminalBridge;
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -585,6 +587,7 @@
 				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = TerminalBridge;
 				PRODUCT_NAME = TerminalBridge;
 				SECTORDER_FLAGS = "";
 				VERSIONING_SYSTEM = apple_generic;
@@ -600,8 +603,9 @@
 		2C4A70140980A72B00D4AF6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
+				ENABLE_TESTABILITY = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
 			};
@@ -610,7 +614,6 @@
 		2C4A70150980A72B00D4AF6B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
@@ -620,7 +623,6 @@
 		2C4A70170980A72B00D4AF6B /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				PRODUCT_VERSION = 2.5;
 				SDKROOT = macosx;
