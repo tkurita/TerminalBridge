@@ -525,6 +525,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = TerminalBridge;
 				PRODUCT_NAME = TerminalBridge;
@@ -556,6 +557,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = TerminalBridge;
 				PRODUCT_NAME = TerminalBridge;
@@ -586,6 +588,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "/Library/Application Support/mi3";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = TerminalBridge;
 				PRODUCT_NAME = TerminalBridge;

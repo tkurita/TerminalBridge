@@ -220,7 +220,7 @@ on send_to_common_term(optionRecord)
 	--log "start send_to_common_term"
 	set a_command to XText's make_with(command of optionRecord)'s strip()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
-	do_command of TerminalCommander for (a_command's as_unicode()) with activation
+	TerminalCommander's do(a_command's as_unicode())
 	--log "end send_to_common_term"
 	beep
 end send_to_common_term
@@ -247,5 +247,5 @@ on send_in_named_term(opt_rec)
 	set target_term to get_named_term(termTitle of opt_rec)
 	set a_command to XText's make_with(command of opt_rec)'s strip()
 	set a_command to UtilityHandlers's clean_yenmark(a_command)
-	do_command of target_term for (a_command's as_unicode()) with activation
+	target_term's do(a_command's as_unicode())
 end send_in_named_term

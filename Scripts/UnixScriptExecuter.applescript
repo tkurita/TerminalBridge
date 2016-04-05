@@ -278,13 +278,13 @@ end open_new_terminal
 (*!@group handlers for shell mode *)
 on run_script given activation:activate_flag
 	set a_command to my _command_builder's build_command()
-	do_command of TerminalCommander for a_command given activation:activate_flag
+    TerminalCommander's do_with({command:a_command, with_activation:activate_flag})
 	beep
 end run_script
 
 on send_to_common_term for a_command given activation:activateFlag
 	set x_command to cleanup_command_text(a_command)
-	do_command of TerminalCommander for x_command's as_unicode() given activation:activateFlag
+    TerminalCommander's do_with({command:x_command's as_unicode(), with_activation:activateFlag})
 	beep
 end send_to_common_term
 
