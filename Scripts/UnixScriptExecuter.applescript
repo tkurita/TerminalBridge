@@ -172,7 +172,7 @@ on send_command for a_command given allowing_busy:isBusyAllowed
 		set a_result to check_terminal_status(0)
 		if a_result is kTerminalReady then
 			set a_text to a_command as text
-			do_in_current_term of (my _target_terminal) for a_text without activation
+            my _target_terminal's do_in_current_term({command:a_text,  with_activation:false})
 		else if a_result is kShowTerminal then
 			set the clipboard to a_command
 		else
@@ -205,7 +205,7 @@ on open_new_term_for_command(a_command)
 		end if
 	end if
 	--log "before do_in_new_term"
-	return do_in_new_term of (my _target_terminal) for all_command without activation
+    return my _target_terminal's do_in_new_term({command:all_command,  with_activation:false})
 end open_new_term_for_command
 
 on set_prompt(a_prompt)
