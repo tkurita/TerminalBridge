@@ -134,7 +134,12 @@ on interactive_executer(doc_info, command_info, hearder_coms)
 	--	log command_info
 	--	log hearder_coms
 	set comList to XText's make_with(command of command_info)'s as_list_with(space)
-	set baseCommand of command_info to last word of (first item of comList)
+    set candidate to last word of (first item of comList)
+    if candidate is "env" then
+        set baseCommand of command_info to last word of (second item of comList)
+    else
+        set baseCommand of command_info to candidate
+    end if
 	
 	if (file of doc_info is not missing value) then
 		if (hearder_coms's value_for_key("useOwnTerm")) then
