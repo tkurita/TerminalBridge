@@ -512,7 +512,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
@@ -546,7 +546,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
@@ -577,7 +577,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 17;
+				CURRENT_PROJECT_VERSION = 18;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
@@ -609,7 +609,7 @@
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
 				ENABLE_TESTABILITY = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_VERSION = 2.5.1;
+				PRODUCT_VERSION = 2.5.2;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -618,7 +618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				PRODUCT_VERSION = 2.5.1;
+				PRODUCT_VERSION = 2.5.2;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -627,7 +627,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPYRIGHT = "Copyright 2005-2016, Tetsuro KURITA";
-				PRODUCT_VERSION = 2.5.1;
+				PRODUCT_VERSION = 2.5.2;
 				SDKROOT = macosx;
 			};
 			name = Default;

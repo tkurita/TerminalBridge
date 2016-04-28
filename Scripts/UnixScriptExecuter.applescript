@@ -99,7 +99,7 @@ on check_terminal_status(n_checks)
 			set a_result to kTerminalReady
 		else
 			set a_term to my _target_terminal's terminal_window()
-			tell application "Terminal"
+			tell application id "com.apple.Terminal"
 				set support_processes to clean commands of a_term
 			end tell
 			
@@ -120,7 +120,7 @@ on check_terminal_status(n_checks)
 			else if a_result is kNewTerminal then
 				set a_result to open_new_terminal()
 			else if a_result is "AddProcesses" then
-				tell application "Terminal"
+				tell application id "com.apple.Terminal"
 					tell current settings of a_term
 						set current_list to clean commands
 						set clean commands to (current_list & new_processes)
