@@ -362,6 +362,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					2CA91EFE08B5E93B00A6B73C = {
+						DevelopmentTeam = N3YK2F43T4;
+					};
+				};
 			};
 			buildConfigurationList = 2C4A70130980A72B00D4AF6B /* Build configuration list for PBXProject "TerminalBridge" */;
 			compatibilityVersion = "Xcode 3.2";
