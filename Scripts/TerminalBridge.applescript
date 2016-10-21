@@ -1,3 +1,5 @@
+property NSRunningApplication : class "NSRunningApplication"
+
 script TerminalBridgeController
 	property parent : class "NSObject"
 	
@@ -62,8 +64,6 @@ script TerminalBridgeController
 	end setup
 	
 	on activate_process(app_id)
-        tell current application's class "NSRunningApplication"
-            activateAppOfIdentifier_(app_id)
-        end tell
+        NSRunningApplication's activateAppOfIdentifier_(app_id)
 	end activate_process
 end script

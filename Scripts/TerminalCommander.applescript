@@ -1,4 +1,6 @@
 global TerminalCommanderBase
+property NSUserDefaults : class "NSUserDefaults"
+property NSRunningApplication : class "NSRunningApplication"
 
 on buildup()
 	script TerminalCommanderExtend
@@ -6,27 +8,21 @@ on buildup()
 		
 		on send_command for a_command
 			--log "before boolForKey in send_command"
-			tell current application's class "NSUserDefaults"
-				tell its standardUserDefaults()
-					set activate_flag to boolForKey_("ActivateTerminal") as boolean
-				end tell
+			tell NSUserDefaults's standardUserDefaults()
+                set activate_flag to boolForKey_("ActivateTerminal") as boolean
 			end tell
             do_with({command:a_command, with_activation:activate_flag})
 		end send_command
 		
 		on activate_terminal()
-            tell current application's class "NSRunningApplication"
-                activateAppOfIdentifier_("com.apple.Terminal")
-            end tell
+            NSRunningApplication's activateAppOfIdentifier_("com.apple.Terminal")
 			return true
 		end activate_terminal
 		
 		on execution_string()
 			--log "start execution_string"
-			tell current application's class "NSUserDefaults"
-				tell its standardUserDefaults()
-					set exec_string to stringForKey_("ExecutionString") as text
-				end tell
+			tell NSUserDefaults's standardUserDefaults()
+				set exec_string to stringForKey_("ExecutionString") as text
 			end tell
 			if exec_string is "" then
 				set exec_string to missing value
@@ -45,10 +41,8 @@ on buildup()
 				set a_name to my _delegate's settings_name()
 			end if
 			if a_name is missing value then
-				tell current application's class "NSUserDefaults"
-					tell its standardUserDefaults()
-						set a_name to stringForKey_("SettingsSetName")
-					end tell
+				tell NSUserDefaults's standardUserDefaults()
+                    set a_name to stringForKey_("SettingsSetName")
 				end tell
 			end if
 			if a_name is not missing value then

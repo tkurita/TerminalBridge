@@ -1,11 +1,10 @@
 property parent : load("miClient") of application (get "UnixScriptToolsLib")
+property NSRunningApplication : class "NSRunningApplication"
 
 on show_message_asking(msg)
-	tell current application's class "NSRunningApplication"
-		activateAppOfIdentifier_("net.mimikaki.mi")
-	end tell
+    NSRunningApplication's activateAppOfIdentifier_("net.mimikaki.mi")
 	
-	tell application "mi"
+	tell application id "net.mimikaki.mi"
 		try
 			display dialog msg
 		on error
@@ -16,10 +15,9 @@ on show_message_asking(msg)
 end show_message_asking
 
 on show_message_buttons(msg, button_list, default_button)
-	tell current application's class "NSRunningApplication"
-		activateAppOfIdentifier_("net.mimikaki.mi")
-	end tell
-	tell application "mi"
+    NSRunningApplication's activateAppOfIdentifier_("net.mimikaki.mi")
+
+	tell application id "net.mimikaki.mi"
 		try
 			set a_result to display dialog msg buttons button_list default button default_button
 		on error
@@ -30,10 +28,8 @@ on show_message_buttons(msg, button_list, default_button)
 end show_message_buttons
 
 on show_message(msg)
-	tell current application's class "NSRunningApplication"
-		activateAppOfIdentifier_("net.mimikaki.mi")
-	end tell
-	tell application "mi"
+    NSRunningApplication's activateAppOfIdentifier_("net.mimikaki.mi")
+	tell application id "net.mimikaki.mi"
 		display alert msg
 	end tell
 end show_message

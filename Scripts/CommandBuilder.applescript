@@ -1,6 +1,8 @@
 global XText
 global linefeed
 
+property NSUserDefaults : class "NSUserDefaults"
+
 on set_post_option(an_option)
 	set my _postOption to an_option
 end set_post_option
@@ -55,7 +57,7 @@ on interactive_command()
 		set a_command to a_command & space & my _commandOption
 	end if
 	set a_flag to false
-	tell current application's class "NSUserDefaults"'s standardUserDefaults()
+	tell NSUserDefaults's standardUserDefaults()
 		set a_flag to boolForKey_("useExecCommand") as boolean
 	end tell
 	if a_flag then
