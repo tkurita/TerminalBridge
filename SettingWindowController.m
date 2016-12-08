@@ -39,7 +39,7 @@
 	NSString *selected_title = [[settingMenu selectedItem] title];
 	NSUInteger nitems = [[settingMenu itemArray] count];
 	
-	for (int n = nitems-1; n > 1; n--) {
+	for (NSUInteger n = nitems-1; n > 1; n--) {
 		[settingMenu removeItemAtIndex:n];
 	}
 	[settingMenu addItemsWithTitles:names];	
@@ -47,7 +47,7 @@
 
 	nitems = [[interactiveProcessSettingsMenu itemArray] count];
 	
-	for (int n = nitems-1; n > 1; n--) {
+	for (NSUInteger n = nitems-1; n > 1; n--) {
 		[interactiveProcessSettingsMenu removeItemAtIndex:n];
 	}
 	[interactiveProcessSettingsMenu addItemsWithTitles:names];	

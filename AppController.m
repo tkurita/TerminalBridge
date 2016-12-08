@@ -166,7 +166,7 @@ static id sharedInstance = nil;
 	[cantExecWindow center];
 	NSString *result;
 	[cantExecWindow makeFirstResponder:showTerminalButton];
-	int result_code = [[NSApplication sharedApplication] runModalForWindow:cantExecWindow];
+	NSInteger result_code = [[NSApplication sharedApplication] runModalForWindow:cantExecWindow];
     [cantExecWindow orderOut:self];
     
 	switch (result_code) {

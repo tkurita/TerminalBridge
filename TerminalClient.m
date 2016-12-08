@@ -213,7 +213,7 @@ static id sharedInstance = nil;
 #if useLog
 	NSLog([modeDefaults description]);
 #endif
-	unsigned nCap = [modeDefaults count];
+	NSUInteger nCap = [modeDefaults count];
 	self.modeCommands = [NSMutableDictionary dictionaryWithCapacity:nCap];
 	self.modePrompts = [NSMutableDictionary dictionaryWithCapacity:nCap];
 	self.modeSettingsNames = [NSMutableDictionary dictionaryWithCapacity:nCap];
