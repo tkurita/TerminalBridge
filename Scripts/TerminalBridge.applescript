@@ -3,13 +3,13 @@ property NSRunningApplication : class "NSRunningApplication"
 script TerminalBridgeController
 	property parent : class "NSObject"
 	
-	property XText : module
-	property XList : module
-	property XFile : module
-	property PathInfo : module
-	property XDict : module
-	property TerminalCommanderBase : module "TerminalCommander"
-	property loader : boot (module loader of application (get "UnixScriptToolsLib")) for me
+	property XText : "@module"
+	property XList : "@module"
+	property XFile : "@module"
+	property PathInfo : "@module"
+	property XDict : "@module"
+	property TerminalCommanderBase : "@module TerminalCommander"
+	property _ : (application (get "UnixScriptToolsLib"))'s loader()'s setup(me)
 	
 	property TerminalCommander : missing value
 	property UtilityHandlers : missing value

@@ -1,4 +1,4 @@
-property TerminalBridgeProxy : module
+property TerminalBridgeProxy : "@module"
 property _command : missing value
 
 on run

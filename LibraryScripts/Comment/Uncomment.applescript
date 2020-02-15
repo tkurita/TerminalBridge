@@ -1,9 +1,5 @@
-property XText : module
-on _compile()
-	boot (module loader of application (get "UnixScriptToolsLib")) for me
-	return missing value
-end _compile
-property _ : _compile()
+property XText : "@module"
+property _ : application (get "UnixScriptToolsLib")'s loader()'s setup(me)
 
 property _comment_char : "#" as Unicode text
 

@@ -1,13 +1,7 @@
-property TerminalBridgeProxy : module
-property PathInfo : module
-property EditorClient : module "miClient"
-(*
-on _compile()
-	boot (module loader of application (get "UnixScriptToolsLib")) for me
-	return missing value
-end _compile
-property _ : _compile()
-*)
+property TerminalBridgeProxy : "@module"
+property PathInfo : "@module"
+property EditorClient : "@module miClient"
+
 property _command : "cd"
 
 on run

@@ -1,11 +1,5 @@
-property TerminalBridgeProxy : module
-(*
-on _compile()
-	boot (module loader of application (get "UnixScriptToolsLib")) for me
-	return missing value
-end _compile
-property _ : _compile()
-*)
+property TerminalBridgeProxy : "@module"
+
 property backslash : ASCII character 128
 property _lineend_escapes : {backslash}
 

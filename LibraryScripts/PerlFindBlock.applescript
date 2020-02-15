@@ -1,5 +1,5 @@
-property EditorClient : module "miClient"
-property XText : module
+property EditorClient : "@module miClient"
+property XText : "@module"
 
 property quoteSet : {"'", quote}
 property backslash : ASCII character 128
