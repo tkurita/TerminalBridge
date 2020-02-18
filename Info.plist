@@ -42,5 +42,7 @@
 	<string>NSApplication</string>
 	<key>OSAScriptingDefinition</key>
 	<string>TerminalBridge.sdef</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>TerminalBridge require to control other applications mi, Finder, Terminal and so on via AppleScript to run.</string>
 </dict>
 </plist>
